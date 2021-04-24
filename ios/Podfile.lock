@@ -1,28 +1,55 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_boost (0.0.2):
+    - Flutter
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - integration_test (0.0.1):
+    - Flutter
+  - path_provider (0.0.1):
     - Flutter
   - print_color (0.0.1):
     - Flutter
+  - sqflite (0.0.2):
+    - Flutter
+    - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_boost (from `.symlinks/plugins/flutter_boost/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - print_color (from `.symlinks/plugins/print_color/ios`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
+
+SPEC REPOS:
+  trunk:
+    - FMDB
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_boost:
+    :path: ".symlinks/plugins/flutter_boost/ios"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
   print_color:
     :path: ".symlinks/plugins/print_color/ios"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_boost: a7cfa776b75329d5e7d101d0cd33e75042bcde69
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   print_color: 3c6a94346f99dc2661e70b9132bc61c1eb4a02d2
+  sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 
 COCOAPODS: 1.10.0
