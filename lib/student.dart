@@ -1,9 +1,8 @@
-class StudentClassroom{
-    //JsonName:name
-    String name;
 
-    //JsonName:id
-    int id;
+
+class StudentClassroom{
+    String? name;
+    int? id;
 
     StudentClassroom({
       this.name,
@@ -11,14 +10,11 @@ class StudentClassroom{
     });
   }
 
-  class StudentTeachers{
-    //JsonName:name
-    String name;
+  class StudentTeacher{
+    String? name;
+    int? age;
 
-    //JsonName:age
-    int age;
-
-    StudentTeachers({
+    StudentTeacher({
       this.name,
       this.age,
     });
@@ -26,19 +22,19 @@ class StudentClassroom{
 
   class Student{
     //JsonName:score
-    int score;
+    int? score;
 
     //JsonName:teachers
-    List<StudentTeachers> teachers;
+    List<StudentTeacher>? teachers;
 
     //JsonName:name
-    String name;
+    String? name;
 
     //JsonName:classroom
-    StudentClassroom classroom;
+    StudentClassroom? classroom;
 
     //JsonName:id
-    String id;
+    String? id;
 
     Student({
       this.score,
