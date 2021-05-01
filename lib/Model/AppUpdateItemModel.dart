@@ -1,0 +1,22 @@
+
+///升级模型
+class AppUpdateItemModel {
+  final String? appIcon;//App图标
+  final String? appName;//App名称
+  final String? appSize;//App大小
+  final String? appDate;//App更新日期
+  final String? appDescription;//App更新文案
+  final String? appVersion;//App版本
+  final bool isShowAll;//App更新文案
+
+  //构造函数语法糖，为属性赋值
+  const AppUpdateItemModel({
+    this.appIcon = "-",
+    this.appSize = "-",
+    this.appName = "-",
+    this.appDate = "-",
+    this.appDescription = "-",
+    this.appVersion = "-",
+    this.isShowAll = false,
+  });
+}
