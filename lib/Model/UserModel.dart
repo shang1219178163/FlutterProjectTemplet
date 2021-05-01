@@ -1,18 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
 
-// user.g.dart 将在我们运行生成命令后自动生成
-part "../User.g.dart";
+class UserModel {
+  /// 用户昵称
+  final String title;
 
-///这个标注是告诉生成器，这个类是需要生成Model类的
-@JsonSerializable()
+  /// 用户头像
+  final String imageUrl;
 
-class User{
-  String? name;
-  String? email;
+  /// 消息内容
+  final String content;
 
-  User(this.name, this.email);
+  /// 消息收到时间
+  final String time;
 
-  //不同的类使用不同的mixin即可
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-  Map<String, dynamic> toJson() => _$UserToJson(this);
+  const UserModel({
+    required this.title,
+    required this.imageUrl,
+    required this.content,
+    required this.time,
+  });
 }

@@ -3,7 +3,7 @@ import 'package:styled_widget/styled_widget.dart';
 import 'DDLog.dart';
 import 'FirstPage.dart';
 import 'SecondPage.dart';
-import 'Model/ThirdPage.dart';
+import 'ThirdPage.dart';
 import 'FourthPage.dart';
 import 'BatterLevelPage.dart';
 
@@ -32,8 +32,8 @@ class TabBarDemo extends StatelessWidget {
           body: TabBarView(
             children: [
               FirstPage(title: '',).center(),
-              ThirdPage().center(),
               SecondPage().center(),
+              ThirdPage().center(),
               FourthPage().center(),
               BatterLevelPage(title: 'Batter Level Page').center(),
               // Center(child: SecondPage()),
