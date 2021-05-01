@@ -5,9 +5,11 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DDLog.dart';
 
 import 'package:fluttertemplet/TabBarDemo.dart';
+import 'package:fluttertemplet/ListPageController.dart';
 
 import 'FButtonPage.dart';
 import 'PopupMenuButton_extension.dart';
+import 'NNListWidgetPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -143,9 +145,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   }));
               },
             ),
-            IconButton(icon: Icon(Icons.directions_bike),
-              onPressed: ()=> DDLog("directions_bike", StackTrace.current),
-
+            IconButton(icon: Icon(Icons.directions_bike), onPressed:  (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                    // return ListWidgetPage();
+                    return ListPageController();
+                  }));
+              },
             ),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
@@ -208,6 +214,3 @@ class _MyHomePageState extends State<MyHomePage> {
     "1111".printNew();
   }
 }
-
-// class FButtonPage {
-// }

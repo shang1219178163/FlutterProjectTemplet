@@ -17,6 +17,16 @@ extension NavigatorExt on Navigator{
     }
     Navigator.pop(context);
   }
+
+  // static void popPage(BuildContext context, Dynamic? obj, [StackTrace? current]){
+  //   if (!Navigator.canPop(context)) {
+  //     if (current != null) {
+  //       DDLog("已经是根页面了！", current);
+  //     }
+  //     return;
+  //   }
+  //   Navigator.pop(context, obj);
+  // }
 }
 
 enum ImageAlignment {
