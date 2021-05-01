@@ -17,8 +17,15 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+analyzer:
+#  enable-experiment:
+#    - nullable
+#  enable-experiment:
+#    - non-nullable
+
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
+#  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,10 +34,50 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+
+  json_serializable: ^4.1.1
+  flutter_boost:
+  textless:
+  division:
+  #  easy_localization:
+#  flutter_hooks:
+#  flutter_linkify:
+  qr_flutter:
+  flutter_carousel_slider:
+
+#  get:
+  flutter_slidable:
+  cached_network_image:
+#  flutter_local_notifications:
+  hive:
+
   simple_logger:
   dio:
   styled_widget:
   print_color:
+  pull_to_refresh:
+  auto_size_text:
+  table_calendar:
+  web_socket_channel:
+
+#  fbutton: ^2.0.0
+#  fsuper: ^2.0.0
+#  fswitch: ^1.1.2
+#  fradio: ^1.0.1
+#  ffloat: ^1.0.1
+#  frefresh: ^1.1.0
+#  fdottedline: ^1.0.0
+#  fsearch: ^1.0.0
+
+#  ftoast:
+#  floading:
+#  fcontrol:
+#  fcommon:
+#    git:
+#      url: 'git@github.com:Fliggy-Mobile/fcommon.git'
+#      ref: 'master'
 
 dev_dependencies:
   flutter_test:
@@ -50,9 +97,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
+#    - images/a_dot_burr.jpeg
+#    - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
