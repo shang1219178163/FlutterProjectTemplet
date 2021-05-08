@@ -45,15 +45,11 @@ enum ImageAlignment {
 
 extension TextButtonExt on TextButton{
 
-  // ignore: non_constant_identifier_names, missing_return
-  static TextButton build(String text, Widget? image, ImageAlignment imageAlignment, void callback(String value)) {
-    if (image == null) {
-      return TextButton(
-        onPressed: () => callback(text),
-        child: Text(text),
-      );
-    }
-
+  static TextButton build({
+    required String text,
+    required Widget image,
+    required ImageAlignment imageAlignment,
+    required void callback(String value)}) {
     switch (imageAlignment) {
       case ImageAlignment.left:
         return TextButton(

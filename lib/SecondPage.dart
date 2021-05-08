@@ -79,26 +79,54 @@ class SecondPage extends StatelessWidget {
                     border: Border.all(width: 1.0, color: Colors.red)),
 
                 // WidgetExt.buildBtn("菜单", Icon(Icons.send), ImageAlignment.right),
-                TextButtonExt.build("菜单left", Icon(Icons.info), ImageAlignment.left, (value) {
+                TextButtonExt.build(
+                    text: "个人信息",
+                    image: Icon(Icons.person),
+                    imageAlignment: ImageAlignment.right,
+                    callback: (value) {
                   DDLog(value, StackTrace.current);
-                }).decorated(color: Colors.white,
+                }),
+
+                TextButtonExt.build(
+                    text: "菜单left",
+                    image: Icon(Icons.info),
+                    imageAlignment: ImageAlignment.left,
+                    callback: (value) {
+                      DDLog(value, StackTrace.current);
+                      
+                    })
+                    .decorated(color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     border: Border.all(width: 1.0, color: Colors.red),),
 
-                TextButtonExt.build("菜单right", Icon(Icons.info), ImageAlignment.right, (value) {
+                TextButtonExt.build(
+                    text: "菜单right",
+                    image: Icon(Icons.info),
+                    imageAlignment: ImageAlignment.right,
+                    callback: (value) {
                   DDLog(value, StackTrace.current);
+
                 }).decorated(color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     border: Border.all(width: 1.0, color: Colors.red)),
 
-                TextButtonExt.build("菜单top", Icon(Icons.info), ImageAlignment.top, (value) {
+                TextButtonExt.build(
+                    text: "菜单top",
+                    image: Icon(Icons.info),
+                    imageAlignment: ImageAlignment.top,
+                    callback: (value) {
                   DDLog(value, StackTrace.current);
+
                 }).decorated(color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                     border: Border.all(width: 1.0, color: Colors.red),),
 
-                TextButtonExt.build("菜单bottom", Icon(Icons.info), ImageAlignment.bottom, (value) {
+                TextButtonExt.build(text: "菜单bottom",
+                    image: Icon(Icons.info),
+                    imageAlignment: ImageAlignment.bottom,
+                    callback: (value) {
                   DDLog(value, StackTrace.current);
+
                 }).decorated(color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
                   border: Border.all(width: 1.0, color: Colors.red),),
