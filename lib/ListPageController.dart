@@ -7,7 +7,7 @@ import 'BasicWidget/UpdateAppNewCard.dart';
 
 import 'NNListWidgetPage.dart';
 import 'mockData/mock_data.dart';
-import 'package:fluttertemplet/DDLog.dart';
+
 
 class ListPageController extends StatefulWidget {
 
@@ -22,6 +22,7 @@ class _ListPageControllerState extends State<ListPageController> with SingleTick
   void initState() {
     super.initState();
     this.tabController = TabController(length: pages.length, vsync: this);
+    // this.tabController.index = 2;
   }
 
   @override

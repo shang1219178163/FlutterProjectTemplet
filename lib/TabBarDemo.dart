@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'DDLog.dart';
 import 'FirstPage.dart';
 import 'SecondPage.dart';
 import 'ThirdPage.dart';
@@ -16,7 +15,7 @@ class TabBarDemo extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             leading: Icon(Icons.arrow_back)
-                    // .gestures(onTap: ()=> DDLog("back", StackTrace.current)
+                    // .gestures(onTap: ()=> DDLog("back")
                       .gestures(onTap: (){ Navigator.pop(context); }),
             bottom: TabBar(
               tabs: [

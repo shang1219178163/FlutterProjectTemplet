@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:fluttertemplet/navigator_extension.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'DDLog.dart';
-import 'Navigator_extension.dart';
+import 'DartExpand/DDLog.dart';
+import 'DartExpand/Navigator_extension.dart';
 
 class SecondPage extends StatelessWidget {
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +15,9 @@ class SecondPage extends StatelessWidget {
           appBar: AppBar(
             leading: BackButton(
                       color: Colors.white,
-                      onPressed: (){ NavigatorExt.popPage(context, StackTrace.current); }
+                      onPressed: (){ NavigatorExt.popPage(context); }
                       ),
-            // .gestures(onTap: ()=> DDLog("back", StackTrace.current)
+            // .gestures(onTap: ()=> DDLog("back")
             title: Text("$this"),
           ),
           body: Center(
@@ -34,7 +32,7 @@ class SecondPage extends StatelessWidget {
                 ElevatedButton.icon(
                     icon: Icon(Icons.send),
                     label: Text("发送"),
-                    // onPressed: () => DDLog('pressed', StackTrace.current),
+                    // onPressed: () => DDLog('pressed'),
                     onPressed: () => {
                       test()
                   },
@@ -43,11 +41,11 @@ class SecondPage extends StatelessWidget {
                 OutlinedButton.icon(
                   icon: Icon(Icons.add),
                   label: Text("添加"),
-                  onPressed: () => DDLog('pressed', StackTrace.current),
+                  onPressed: () => DDLog('pressed'),
                 ),
 
                 TextButton(
-                  onPressed: () => DDLog('$this', StackTrace.current),
+                  onPressed: () => DDLog('$this'),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -63,7 +61,7 @@ class SecondPage extends StatelessWidget {
                     .decorated(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(5))),
 
                 TextButton(
-                  onPressed: () => DDLog('Make a Note', StackTrace.current),
+                  onPressed: () => DDLog('Make a Note'),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +82,7 @@ class SecondPage extends StatelessWidget {
                     image: Icon(Icons.person),
                     imageAlignment: ImageAlignment.right,
                     callback: (value) {
-                  DDLog(value, StackTrace.current);
+                  DDLog(value);
                 }),
 
                 TextButtonExt.build(
@@ -92,7 +90,7 @@ class SecondPage extends StatelessWidget {
                     image: Icon(Icons.info),
                     imageAlignment: ImageAlignment.left,
                     callback: (value) {
-                      DDLog(value, StackTrace.current);
+                      DDLog(value);
                       
                     })
                     .decorated(color: Colors.white,
@@ -104,7 +102,7 @@ class SecondPage extends StatelessWidget {
                     image: Icon(Icons.info),
                     imageAlignment: ImageAlignment.right,
                     callback: (value) {
-                  DDLog(value, StackTrace.current);
+                  DDLog(value);
 
                 }).decorated(color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -115,7 +113,7 @@ class SecondPage extends StatelessWidget {
                     image: Icon(Icons.info),
                     imageAlignment: ImageAlignment.top,
                     callback: (value) {
-                  DDLog(value, StackTrace.current);
+                  DDLog(value);
 
                 }).decorated(color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -125,7 +123,7 @@ class SecondPage extends StatelessWidget {
                     image: Icon(Icons.info),
                     imageAlignment: ImageAlignment.bottom,
                     callback: (value) {
-                  DDLog(value, StackTrace.current);
+                  DDLog(value);
 
                 }).decorated(color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -135,7 +133,7 @@ class SecondPage extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => DDLog('floatingActionButton', StackTrace.current),
+            onPressed: () => DDLog('floatingActionButton'),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -152,9 +150,9 @@ class SecondPage extends StatelessWidget {
 
     var list = _emap["a"];
     list!.remove("1");
-    // DDLog(list, StackTrace.current);
-    // DDLog(_emap, StackTrace.current);
+    // DDLog(list);
+    // DDLog(_emap);
 
-    DDLog([list, _emap], StackTrace.current);
+    DDLog([list, _emap]);
   }
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'DDLog.dart';
-import 'navigator_extension.dart';
+import 'DartExpand/DDLog.dart';
+import 'DartExpand/Navigator_extension.dart';
 
 class FirstPage extends StatefulWidget {
-  FirstPage({Key? key, required this.title}) : super(key: key);
+  FirstPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _FirstPageState createState() => _FirstPageState();
@@ -29,12 +29,12 @@ class _FirstPageState extends State<FirstPage> {
         child: Scaffold(
           appBar: _hiddenAppBar ? null : AppBar(
             leading: Icon(Icons.arrow_back)
-                  // .gestures(onTap: ()=> DDLog("back", StackTrace.current)
+                  // .gestures(onTap: ()=> DDLog("back")
                     .gestures(onTap: (){
-                      NavigatorExt.popPage(context, StackTrace.current);
+                      NavigatorExt.popPage(context);
                       // Navigator.popPage(context);
                       // if (!Navigator.canPop(context)) {
-                      //   DDLog("已经是根页面了！", StackTrace.current);
+                      //   DDLog("已经是根页面了！");
                       //   return;
                       // }
                       // Navigator.pop(context);
@@ -71,8 +71,8 @@ class _FirstPageState extends State<FirstPage> {
                 // .gestures(onTap: () => print('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => logger.info('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => print('${DateTime.now()} RaisedButton pressed'))
-                //  .gestures(onTap: () => DDLog('RaisedButton pressed', StackTrace.current))
-                //  .gestures(onTap: () => DDLog('RaisedButton pressed', StackTrace.current))
+                //  .gestures(onTap: () => DDLog('RaisedButton pressed'))
+                //  .gestures(onTap: () => DDLog('RaisedButton pressed'))
                     .gestures(onTap: _changeAppBarState)
 
               ],
@@ -81,30 +81,10 @@ class _FirstPageState extends State<FirstPage> {
           floatingActionButton: FloatingActionButton(
             tooltip: 'Increment',
             child: Icon(Icons.add),
-            onPressed: () => DDLog('floatingActionButton', StackTrace.current),
+            onPressed: () => DDLog('floatingActionButton'),
           ), // This trailing comma makes auto-formatting nicer for build methods.
         ),
       ),
     );
   }
 }
-
-
-// extension NavigatorExtension on Navigator {
-//
-//   static void popPage(BuildContext context){
-//     if (!Navigator.canPop(context)) {
-//       DDLog("已经是根页面了!!！", StackTrace.current);
-//       return;
-//     }
-//     Navigator.pop(context);
-//   }
-//
-//   void printAA(String s){
-//     print("**** ${s} ****");
-//   }
-//
-//   printNew(){
-//     print("**** ${this} ****");
-//   }
-// }

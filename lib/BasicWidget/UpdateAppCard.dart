@@ -1,8 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/DDLog.dart';
+import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
-
 import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
 
 class UpdateAppCard extends StatelessWidget {
@@ -49,7 +48,7 @@ class UpdateAppCard extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
             //右边距为10，其余均为0 child: FlatButton(//按钮控件
             child: ElevatedButton(
-              onPressed: () => DDLog('Make a Note', StackTrace.current),
+              onPressed: () => DDLog('Make a Note'),
               child: Row(
                 children: [
                   Text("更新"),
