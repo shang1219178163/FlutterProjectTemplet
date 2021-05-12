@@ -4,14 +4,14 @@
 // import 'package:flutter/cupertino.dart' show BuildContext, Navigator;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'DDLog.dart' show DDLog;
+import 'package:fluttertemplet/DartExpand/DDLog.dart';
 
 extension NavigatorExt on Navigator{
 
   static void popPage(BuildContext context, [StackTrace? current]){
     if (!Navigator.canPop(context)) {
       if (current != null) {
-        DDLog("已经是根页面了！", current);
+        DDLog("已经是根页面了！");
       }
       return;
     }
@@ -113,6 +113,73 @@ extension TextButtonExt on TextButton{
     }
   }
 
+  static TextButton buildNew({
+    required Text text,
+    required Widget image,
+    required ImageAlignment imageAlignment,
+    required void callback(Text text)}) {
+    switch (imageAlignment) {
+      case ImageAlignment.left:
+        return TextButton(
+          onPressed: () => callback(text),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              image,
+              SizedBox(width: 8),
+              text,
+            ],
+          ),
+        );
+
+      case ImageAlignment.top:
+        return TextButton(
+          onPressed: () => callback(text),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              image,
+              SizedBox(width: 8),
+              text,
+            ],
+          ),
+        );
+
+      case ImageAlignment.right:
+        return TextButton(
+          onPressed: () => callback(text),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              text,
+              SizedBox(width: 8),
+              image,
+            ],
+          ),
+        );
+
+      case ImageAlignment.bottom:
+        return TextButton(
+          onPressed: () => callback(text),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              text,
+              SizedBox(width: 8),
+              image,
+            ],
+          ),
+        );
+    }
+  }
 }
 
 // extension WidgetExt on Widget{
