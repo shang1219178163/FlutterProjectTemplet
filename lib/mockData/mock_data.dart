@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertemplet/Model/UserModel.dart';
 import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
 
@@ -94,3 +96,4 @@ const List<AppUpdateItemModel> kUpdateAppList = [
     appVersion: "版本 1.8.0",
   ),
 ];
+

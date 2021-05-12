@@ -7,8 +7,6 @@ import 'package:styled_widget/styled_widget.dart';
 
 extension ListViewExt on ListView{
 
-  // CupertinoScrollbar addCupertinoScrollbar() => CupertinoScrollbar(child: this);
-
   CupertinoScrollbar addCupertinoScrollbar({
     Key? key,
     ScrollController? controller,
