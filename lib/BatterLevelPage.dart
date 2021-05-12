@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'DDLog.dart';
-import 'navigator_extension.dart';
+import 'DartExpand/DDLog.dart';
+import 'DartExpand/Navigator_extension.dart';
 
 
 class BatterLevelPage extends StatefulWidget {
@@ -35,7 +35,6 @@ class _BatterLevelPageState extends State<BatterLevelPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
           leading: Icon(Icons.arrow_back)
@@ -43,7 +42,7 @@ class _BatterLevelPageState extends State<BatterLevelPage> {
                   NavigatorExt.popPage(context);
                   // Navigator.popPage(context);
                   // if (!Navigator.canPop(context)) {
-                  //   DDLog("已经是根页面了！", StackTrace.current);
+                  //   DDLog("已经是根页面了！");
                   //   return;
                   // }
                   // Navigator.pop(context);
