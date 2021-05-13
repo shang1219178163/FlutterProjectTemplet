@@ -20,8 +20,10 @@ import 'DartExpand/DDLog.dart';
 import 'DartExpand/PopupMenuButton_extension.dart';
 import 'DartExpand/AlertDialog_extension.dart';
 import 'FButtonPage.dart';
+import 'GridViewExample.dart';
 import 'IconsListPage.dart';
 import 'NNListWidgetPage.dart';
+import 'PageViewExamplePage.dart';
 import 'WidgetListPage.dart';
 
 
@@ -37,6 +39,9 @@ var kRoutes = <String, WidgetBuilder>{
   "/AlertDialogExamplePage": (context) => AlertDialogExamplePage(),
   "/AlertSheetExamplePage": (context) => AlertSheetExamplePage(),
   "/IconsListPage": (context) => IconsListPage(),
+  "/GridViewExample": (context) => GridViewExample(),
+  "/PageViewExample": (context) => PageViewExample(),
+  "/PageViewTabBarWidget": (context) => PageViewTabBarWidget(),
 
 };
 
@@ -120,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         currentIndex = index;
       });
+      DDLog(currentIndex);
     }
   }
 
@@ -153,7 +159,14 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       body: pages[currentIndex],
+      // body: PageView(onPageChanged: (index){
+      //     _changePage(index);
+      //   },
+      //     children: pages,
+      // ),
+
     );
+
   }
 
   ///创建导航栏
@@ -247,127 +260,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void showAlertDialog(){
-    final title = "新版本 v${2.1}";
-    final message = """
-        1、支持立体声蓝牙耳机，同时改善配对性能;
-        2、提供屏幕虚拟键盘;
-        3、更简洁更流畅，使用起来更快;
-        4、修复一些软件在使用时自动退出bug;
-        5、新增加了分类查看功能;
-          """;
-
-    // CupertinoAlertDialogExt.showAlert(context: context,
-    //     title: title,
-    //     message: message,
-    //     actionTitles: ["取消", "确定"],
-    //     callback: (value){
-    //       if (value == "取消") {
-    //         Navigator.of(context).pop();
-    //       }
-    //       DDLog(value);
-    //     });
-    // AlertDialogExt.showAlert(context);
-  }
-
-  void showAlertSheet(){
-    final title = "新版本 v${2.1}";
-    final message = """
-        1、支持立体声蓝牙耳机，同时改善配对性能;
-        2、提供屏幕虚拟键盘;
-        3、更简洁更流畅，使用起来更快;
-        4、修复一些软件在使用时自动退出bug;
-        5、新增加了分类查看功能;
-          """;
-
-    // CupertinoActionSheetExt.showModalPopup(
-    //     context: context,
-    //     title: title,
-    //     message: message,
-    //     actionTitles: ["选择 1", "选择 2", "选择 3",],
-    //     callback: (value){
-    //       DDLog(value);
-    //     });
-    // return;
-
-    final actions = [
-      ListTile(
-        leading: Icon(Icons.add),
-        title: Text('Add account'),
-        trailing: Icon(Icons.check),
-        onTap: () {
-          DDLog("account");
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.settings),
-        title: Text('Manage accounts'),
-        onTap: () {
-          DDLog("accounts");
-        },
-      ),
-      ListTile(
-        leading: Icon(Icons.person),
-        title: Text(
-          "Your Profile",
-        ),
-        onTap: () {
-          DDLog("Profile");
-        },
-      ),
-    ]
-    //     .map((e) => CupertinoActionSheetAction(onPressed: () {
-    //   Navigator.pop(context);
-    // }, child: e,)).toList()
-    ;
-
-    CupertinoActionSheetExt.showModalPopupWidgets(
-      context: context,
-      title: title,
-      message: message,
-      actionWidgets: actions,
-    );
-    return;
-      CupertinoActionSheet(
-          title: Text(title),
-          // message: Text(message),
-          actions: [
-            CupertinoActionSheetAction(
-              child: Text('1'),
-              onPressed: () {
-                print('pressed');
-              },
-            ),
-            CupertinoActionSheetAction(
-              child:  Material(
-                type: MaterialType.transparency,
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(top: -10, bottom: -10),
-                  leading: Icon(Icons.person),
-                  trailing: Icon(Icons.add_a_photo),
-                  title: Text(
-                    "Your Profile",
-                  ),
-                  onTap: () {
-                    debugPrint("Tapped Profile");
-                    },
-                ),
-              ),
-              onPressed: () {
-                print('pressed');
-              },
-
-            ),
-          ],
-          cancelButton:
-          CupertinoActionSheetAction(
-            child: Text('Cancel'),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-      ).show(context);
-  }
 }
 
 ///左侧抽屉菜单
