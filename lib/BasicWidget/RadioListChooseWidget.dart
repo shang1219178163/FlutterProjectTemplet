@@ -41,12 +41,14 @@ class RadioListTileModel{
 
 ///单选列表
 class RadioListChooseWidget extends StatefulWidget {
-  Object selectedIndex = 0;
   var models = <RadioListTileModel>[];
+  Object index = 0;
+  void Function(Object index) callback;
 
   RadioListChooseWidget({
     required this.models,
-    required this.selectedIndex,
+    required this.index,
+    required this.callback,
   });
 
   @override
@@ -73,11 +75,11 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
           onChanged: (value) {
             _changeValue(value);
           },
-          groupValue: widget.selectedIndex,
+          groupValue: widget.index,
           title: e.title,
           subtitle: e.subtitle,
           secondary: e.secondary,
-          selected: widget.selectedIndex == widget.models.indexOf(e),
+          selected: widget.index == widget.models.indexOf(e),
         ),).toList(),
       ),
     );
@@ -88,8 +90,9 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
       return;
     }
     setState(() {
-      widget.selectedIndex = value;
+      widget.index = value;
     });
-    DDLog(widget.selectedIndex);
+    widget.callback(widget.index);
+    // DDLog(widget.selectedIndex);
   }
 }

@@ -8,12 +8,17 @@ import 'RadioListChooseWidget.dart';
 
 ///单选列表
 class CheckListChooseWidget extends StatefulWidget {
-  var selectedIndexs = Set<Object?>();
+  var indexs = Set<int>();
   var models = <RadioListTileModel>[];
+  void Function(Set<int> indexs) callback;
+
+  final Color? containerColor;
 
   CheckListChooseWidget({
     required this.models,
-    required this.selectedIndexs,
+    required this.indexs,
+    required this.callback,
+    this.containerColor,
   });
 
   @override
@@ -26,7 +31,7 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-          color: Colors.black.withAlpha(35),
+          color: widget.containerColor ?? Colors.black.withAlpha(35),
           height: 73 * widget.models.length.toDouble(), // Change as per your requirement
           width: 0, // Change as per your requirement
           child: ListView(
@@ -34,8 +39,8 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
         title: e.title,
         subtitle: e.subtitle,
         // trailing: widget.selectedIndexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : Icon(Icons.check_box_outline_blank),
-        trailing: widget.selectedIndexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : null,
-        selected: widget.selectedIndexs.contains(widget.models.indexOf(e)),
+        trailing: widget.indexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : null,
+        selected: widget.indexs.contains(widget.models.indexOf(e)),
         // dense: true,
         onTap: (){
           _changeValue(widget.models.indexOf(e));
@@ -52,7 +57,7 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
         children:  widget.models.map((e) => ListTile(
           title: e.title,
           subtitle: e.subtitle,
-          trailing: widget.selectedIndexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : Icon(Icons.check_box_outline_blank),
+          trailing: widget.indexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : Icon(Icons.check_box_outline_blank),
         ),).toList()
         ,
         // children: widget.titles.map((e) => TextButton.icon(onPressed: (){
@@ -70,14 +75,15 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
     );
   }
 
-  void _changeValue(Object? value) {
+  void _changeValue(int value) {
     setState(() {
-      if (widget.selectedIndexs.contains(value)) {
-        widget.selectedIndexs.remove(value);
+      if (widget.indexs.contains(value)) {
+        widget.indexs.remove(value);
       } else {
-        widget.selectedIndexs.add(value);
+        widget.indexs.add(value);
       }
-      DDLog(widget.selectedIndexs);
+      widget.callback(widget.indexs);
+      // DDLog(widget.indexs);
     });
   }
 }

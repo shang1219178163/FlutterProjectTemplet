@@ -6,7 +6,7 @@ import 'package:styled_widget/styled_widget.dart';
 
 
 extension AlertDialogExt on AlertDialog{
-
+  ///showDialog
   void show(BuildContext context) {
     showDialog(
       context: context,
@@ -17,43 +17,41 @@ extension AlertDialogExt on AlertDialog{
     );
   }
 
+  ///按平台弹出不同样式
   static void showAlert({
     required BuildContext context,
-    required String title,
-    String? message,
+    Widget? title,
+    Widget? content,
     required List<String> actionTitles,
     required void Function(String value) callback}) {
 
     switch(Platform.operatingSystem) {
       case "android":
-        AlertDialogExt.showAlertDialog(context: context, title: title, message: message, actionTitles: actionTitles, callback: callback);
+        AlertDialog(
+          title: title,
+          content: content,
+          actions: actionTitles.map((e) => TextButton(onPressed: (){
+            callback(e);
+          }, child: Text(e),)).toList()
+          ,
+        )
+            .show(context);
+
         break;
       default:
-        CupertinoAlertDialogExt.showAlertDialog(context: context, title: title, message: message, actionTitles: actionTitles, callback: callback);
+
+        CupertinoAlertDialog(
+          title: title,
+          content: content,
+          actions: actionTitles.map((e) => TextButton(onPressed: (){
+            callback(e);
+          }, child: Text(e),)).toList()
+          ,
+        )
+            .show(context);
         break;
     }
-  }
 
-  static void showAlertDialog({
-    required BuildContext context,
-    required String title,
-    String? message,
-    required List<String> actionTitles,
-    required void Function(String value) callback}){
-    AlertDialog(
-      title: Text(title),
-      content: Text(message ?? "").textAlignment(TextAlign.start),
-      actions: actionTitles.map((e) => TextButton(onPressed: (){
-        // if (["Cancel", "取消"].contains(e)) {
-        //   Navigator.pop(context);
-        // }
-        callback(e);
-        Navigator.pop(context);
-      }, child: Text(e),)).toList()
-      ,
-    )
-        .show(context)
-    ;
   }
 }
 
@@ -71,51 +69,6 @@ extension CupertinoAlertDialogExt on CupertinoAlertDialog{
     );
   }
 
-  static void showAlertDialog({
-    required BuildContext context,
-    required String title,
-    String? message,
-    required List<String> actionTitles,
-    required void Function(String value) callback}){
-
-    CupertinoAlertDialog(
-      title: Text(title),
-      content: Text(message ?? "").textAlignment(TextAlign.start),
-      actions: actionTitles.map((e) => TextButton(onPressed: (){
-        // if (["Cancel", "取消"].contains(e)) {
-        //   Navigator.pop(context);
-        // }
-        callback(e);
-        Navigator.pop(context);
-      }, child: Text(e),)).toList()
-        ,
-    )
-        .show(context)
-    ;
-  }
-
-  static void showAlertDialogContentWidget({
-    required BuildContext context,
-    required String title,
-    required Widget content,
-    required List<String> actionTitles,
-    required void Function(String value) callback}){
-
-    CupertinoAlertDialog(
-      title: Text(title),
-      content: content,
-      actions: actionTitles.map((e) => TextButton(onPressed: (){
-        // if (["Cancel", "取消"].contains(e)) {
-        //   Navigator.pop(context);
-        // }
-        callback(e);
-        Navigator.pop(context);
-      }, child: Text(e),)).toList()
-      ,
-    )
-        .show(context)
-    ;
-  }
 }
 
 

@@ -18,6 +18,17 @@ extension NavigatorExt on Navigator{
     Navigator.pop(context);
   }
 
+  // @optionalTypeArgs
+  // static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
+  //   if (!Navigator.canPop(context)) {
+  //     // if (StackTrace.current != null) {
+  //       DDLog("已经是根页面了！");
+  //     // }
+  //     return;
+  //   }
+  //   Navigator.of(context).pop<T>(result);
+  // }
+
   // static void popPage(BuildContext context, Dynamic? obj, [StackTrace? current]){
   //   if (!Navigator.canPop(context)) {
   //     if (current != null) {

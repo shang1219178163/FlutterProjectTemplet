@@ -75,45 +75,66 @@ class _AlertDialogExamplePageState extends State<AlertDialogExamplePage> {
 
       case 2:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: title,
-              content: LinearProgressIndicator(
-                backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation(Colors.blue),
-                value: .5,
-              ).padding(top: 15),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text(title),
+            content: LinearProgressIndicator(
+              backgroundColor: Colors.grey[200],
+              valueColor: AlwaysStoppedAnimation(Colors.blue),
+              value: .5,
+            ).padding(top: 15),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
       case 3:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: title,
-              content: CircularProgressIndicator(
-                backgroundColor: Colors.grey[200],
-                valueColor: AlwaysStoppedAnimation(Colors.blue),
-                value: .7,
-              ).padding(top: 15),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text(title),
+            content: CircularProgressIndicator(
+              backgroundColor: Colors.grey[200],
+              valueColor: AlwaysStoppedAnimation(Colors.blue),
+              value: .7,
+            ).padding(top: 15),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
       case 4:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: title,
-              content: buildWrap(context),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text(title),
+            content: buildWrap(context),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
@@ -124,14 +145,22 @@ class _AlertDialogExamplePageState extends State<AlertDialogExamplePage> {
             RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
             RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
           ];
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: "支付方式 RadioListChooseWidget",
-              content: RadioListChooseWidget(models: list, selectedIndex: 1),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
-  }
+
+          CupertinoAlertDialog(
+            title: Text("支付方式 RadioListChooseWidget"),
+            content: RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); },),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
+        }
         break;
 
       case 6:
@@ -141,49 +170,78 @@ class _AlertDialogExamplePageState extends State<AlertDialogExamplePage> {
             RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
             RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
           ];
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: "支付方式 CheckListChooseWidget",
-              content: CheckListChooseWidget(models: list, selectedIndexs: Set.from([0])),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+
+          CupertinoAlertDialog(
+            title: Text("支付方式 CheckListChooseWidget"),
+            content: CheckListChooseWidget(models: list, indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
       case 7:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: "单选  RadioBoxChooseWidget",
-              content: RadioBoxChooseWidget(titles: titles, selectedIndex: 0,),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text("单选  RadioBoxChooseWidget"),
+            content: RadioBoxChooseWidget(titles: titles, index: 0, callback: (int index) { DDLog(index); },),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
       case 8:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: "多选 CheckBoxChooseWidget",
-              content: CheckBoxChooseWidget(titles: titles, selectedIndexs: Set.from([0]),),
-              actionTitles: ["确定", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text("多选 CheckBoxChooseWidget"),
+            content: CheckBoxChooseWidget(titles: titles, indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
 
       case 9:
         {
-          CupertinoAlertDialogExt.showAlertDialogContentWidget(context: context,
-              title: "性别",
-              content: RadioTileSexWidget(selectedIndex: 0,),
-              actionTitles: ["取消", ],
-              callback: (value){
-                DDLog(value);
-              });
+          CupertinoAlertDialog(
+            title: Text("性别"),
+            content: RadioTileSexWidget(selectedIndex: 0,),
+            actions: ["确定", ].map((e) => TextButton(onPressed: (){
+              // if (["Cancel", "取消"].contains(e)) {
+              //   Navigator.pop(context);
+              // }
+              DDLog(e);
+
+              Navigator.pop(context);
+            }, child: Text(e),)).toList()
+            ,
+          )
+              .show(context);
         }
         break;
       default:
@@ -196,23 +254,34 @@ class _AlertDialogExamplePageState extends State<AlertDialogExamplePage> {
   }
 
   void showCupertinoAlertDialog(){
-    CupertinoAlertDialogExt.showAlertDialog(context: context,
-        title: title,
-        message: message,
-        actionTitles: ["取消", "确定"],
-        callback: (value){
-          DDLog(value);
-        });
+    CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(message).textAlignment(TextAlign.start),
+      actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
+        DDLog(e);
+        Navigator.pop(context);
+      }, child: Text(e),)).toList()
+      ,
+    )
+        .show(context)
+    ;
   }
 
   void showAlertDialog(){
-    AlertDialogExt.showAlertDialog(context: context,
-        title: title,
-        message: message,
-        actionTitles: ["取消", "确定"],
-        callback: (value){
-          DDLog(value);
-        });
+      AlertDialog(
+        title: Text(title),
+        content: Text(message).textAlignment(TextAlign.start),
+        actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
+          // if (["Cancel", "取消"].contains(e)) {
+          //   Navigator.pop(context);
+          // }
+          DDLog(e);
+          Navigator.pop(context);
+        }, child: Text(e),)).toList()
+        ,
+      )
+          .show(context)
+      ;
   }
 
 

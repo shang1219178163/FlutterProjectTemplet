@@ -6,12 +6,14 @@ import 'package:styled_widget/styled_widget.dart';
 
 ///单选菜单
 class RadioBoxChooseWidget extends StatefulWidget {
-  Object? selectedIndex = 0;
+  int index = 0;
   var titles = [];
+  void Function(int index) callback;
 
   RadioBoxChooseWidget({
     required this.titles,
-    required this.selectedIndex,
+    required this.index,
+    required this.callback,
   });
 
   @override
@@ -33,7 +35,7 @@ class _RadioBoxChooseWidgetState extends State<RadioBoxChooseWidget> {
           // DDLog(widget.titles.indexOf(e));
           _changeValue(widget.titles.indexOf(e));
         },
-          icon: widget.titles.indexOf(e) == widget.selectedIndex ? Icon(Icons.radio_button_checked_outlined) : Icon(Icons.radio_button_unchecked_outlined),
+          icon: widget.titles.indexOf(e) == widget.index ? Icon(Icons.radio_button_checked_outlined) : Icon(Icons.radio_button_unchecked_outlined),
           label: Text(e),
           style: OutlinedButton.styleFrom(
             backgroundColor: Colors.transparent,
@@ -44,10 +46,11 @@ class _RadioBoxChooseWidgetState extends State<RadioBoxChooseWidget> {
     );
   }
 
-  void _changeValue(Object? value) {
+  void _changeValue(int index) {
     setState(() {
-      widget.selectedIndex = value;
+      widget.index = index;
     });
-    DDLog(widget.selectedIndex);
+    widget.callback(widget.index);
+    // DDLog(widget.index);
   }
 }

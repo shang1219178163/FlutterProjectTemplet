@@ -8,12 +8,14 @@ import 'package:styled_widget/styled_widget.dart';
 ///单多选菜单
 class CheckBoxChooseWidget extends StatefulWidget {
 
-  var selectedIndexs = Set<Object?>();
+  var indexs = Set<int>();
   var titles = [];
+  void Function(Set<int> indexs) callback;
 
   CheckBoxChooseWidget({
     required this.titles,
-    required this.selectedIndexs,
+    required this.indexs,
+    required this.callback,
   });
 
   @override
@@ -35,7 +37,7 @@ class _CheckBoxChooseWidgetState extends State<CheckBoxChooseWidget> {
           _changeValue(widget.titles.indexOf(e));
         },
           // icon: widget.selectedIndexs.contains(widget.titles.indexOf(e)) ? Icon(Icons.radio_button_checked_outlined) : Icon(Icons.radio_button_unchecked_outlined),
-          icon: widget.selectedIndexs.contains(widget.titles.indexOf(e)) ? Icon(Icons.check_box_outlined) : Icon(Icons.check_box_outline_blank),
+          icon: widget.indexs.contains(widget.titles.indexOf(e)) ? Icon(Icons.check_box_outlined) : Icon(Icons.check_box_outline_blank),
           label: Text(e),
           // style: OutlinedButton.styleFrom(
           //   backgroundColor: Colors.transparent,
@@ -50,14 +52,15 @@ class _CheckBoxChooseWidgetState extends State<CheckBoxChooseWidget> {
     );
   }
 
-  void _changeValue(Object? value) {
+  void _changeValue(int value) {
     setState(() {
-      if (widget.selectedIndexs.contains(value)) {
-        widget.selectedIndexs.remove(value);
+      if (widget.indexs.contains(value)) {
+        widget.indexs.remove(value);
       } else {
-        widget.selectedIndexs.add(value);
+        widget.indexs.add(value);
       }
-      DDLog(widget.selectedIndexs);
+      widget.callback(widget.indexs);
+      // DDLog(widget.indexs);
     });
   }
 }

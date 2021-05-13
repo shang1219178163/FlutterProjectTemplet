@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
+import 'DartExpand/DDLog.dart';
+
+import 'BasicWidget/CheckListChooseWidget.dart';
+import 'BasicWidget/CheckBoxChooseWidget.dart';
+import 'BasicWidget/RadioListChooseWidget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
+import 'DartExpand/Widget_extension.dart';
 
 
 class AlertSheetExamplePage extends StatefulWidget {
@@ -14,16 +19,15 @@ class AlertSheetExamplePage extends StatefulWidget {
 
 class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
 
-  var titles = ["默认样式", "ListTile", "添加子视图", "3", "4", "5", "6", "7", "8"];
+  var titles = ["默认样式", "ListTile", "添加子视图", "自定义", "单选列表", "多选列表", "6", "7", "8"];
 
   final title = "新版本 v${2.1}";
   final message = """
-        1、支持立体声蓝牙耳机，同时改善配对性能;
-        2、提供屏幕虚拟键盘;
-        3、更简洁更流畅，使用起来更快;
-        4、修复一些软件在使用时自动退出bug;
-        5、新增加了分类查看功能;
-          """;
+1、支持立体声蓝牙耳机，同时改善配对性能;
+2、提供屏幕虚拟键盘;
+3、更简洁更流畅，使用起来更快;
+4、修复一些软件在使用时自动退出bug;
+""";
 
 
   @override
@@ -72,26 +76,53 @@ class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
 
       case 2:
         {
-          showModalPopupContentWidget();
         }
         break;
 
       case 3:
         {
-
+          ActionSheetExt.showModalSheet(context: context,
+              title: title,
+              message: message,
+              actionTitles: titles,
+              callback: (value){
+                DDLog(value);
+              }
+          );
         }
         break;
 
       case 4:
         {
+          showModalPopupRadioListChoose();
 
         }
         break;
 
       case 5:
         {
+          final list = [
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+          ];
 
-        }
+          CupertinoActionSheet(
+            title: Text(title),
+            message: Text(message),
+            actions: [
+              CheckListChooseWidget(models: list, indexs: Set.from([0]), containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
+            ],
+            cancelButton: CupertinoActionSheetAction(
+              child: Text('取消'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ).show(context)
+          ;
+
+      }
         break;
 
       case 6:
@@ -116,61 +147,31 @@ class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
           showAlertSheet();
         break;
     }
-
+    // DDLog(e);
   }
 
-    // Wrap buildWrap(BuildContext context) {
-  //   return Wrap(
-  //     spacing: 8.0, // 主轴(水平)方向间距
-  //     runSpacing: 0.0, // 纵轴（垂直）方向间距
-  //     alignment: WrapAlignment.start, //沿主轴方向居中
-  //     children: <Widget>[
-  //       ActionChip(
-  //         avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('A')),
-  //         label: Text('Hamilton'),
-  //         onPressed: (){
-  //           DDLog('Hamilton');
-  //         },
-  //       ),
-  //       ActionChip(
-  //         avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('M')),
-  //         label: Text('Lafayette'),
-  //         onPressed: (){
-  //           DDLog('Lafayette');
-  //         },
-  //       ),
-  //       ActionChip(
-  //         avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
-  //         label: Text('Mulligan'),
-  //         onPressed: (){
-  //           DDLog('Mulligan');
-  //         },
-  //       ),
-  //       ActionChip(
-  //         avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('J')),
-  //         label: Text('Laurens'),
-  //         onPressed: (){
-  //           DDLog('Laurens');
-  //         },
-  //       ),
-  //     ],
-  //   );
-  // }
+  void showAlertSheet() {
+    CupertinoActionSheet(
+      title: Text(title),
+      message: Text(message),
+      actions: ["选择 1", "选择 2", "选择 3",].map((e) => CupertinoActionSheetAction(
+        child: Text(e),
+        onPressed: () {
+          DDLog(e);
+          Navigator.pop(context);
+        },
+      ),).toList(),
+      cancelButton: CupertinoActionSheetAction(
+        child: Text('取消'),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+    ).show(context)
+    ;
+  }
 
-
-    void showAlertSheet() {
-
-      CupertinoActionSheetExt.showModalPopup(
-          context: context,
-          title: title,
-          message: message,
-          actionTitles: ["选择 1", "选择 2", "选择 3",],
-          callback: (value){
-            DDLog(value);
-          });
-    }
-
-    void showAlertSheetListTile() {
+  void showAlertSheetListTile() {
       final actions = [
         ListTile(
           leading: Icon(Icons.add),
@@ -201,24 +202,17 @@ class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
             Navigator.pop(context);
           },
         ),
-      ]
-      //     .map((e) => CupertinoActionSheetAction(onPressed: () {
-      //   Navigator.pop(context);
-      // }, child: e,)).toList()
-          ;
-      CupertinoActionSheetExt.showModalPopupWidgets(
-        context: context,
-        title: title,
-        message: message,
-        actionWidgets: actions,
-      );
-    }
+      ];
 
-
-    void showModalPopupContentWidget(){
       CupertinoActionSheet(
         title: Text(title),
-        message: RadioListChooseNewWidget(),
+        message: Text(message),
+        actions: [
+          actions
+              .toColumn()
+              .decorated(color: Colors.black.withAlpha(10))
+              .toMaterial()
+        ],
         cancelButton: CupertinoActionSheetAction(
           child: Text('取消'),
           onPressed: () {
@@ -229,6 +223,28 @@ class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
       ;
     }
 
+  void showModalPopupRadioListChoose(){
+      final list = [
+        RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+        RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+        RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+      ];
+
+      CupertinoActionSheet(
+        title: Text(title),
+        message: Text(message),
+        actions: [
+          RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); },),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          child: Text('取消'),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ).show(context)
+      ;
+    }
 }
 
 
