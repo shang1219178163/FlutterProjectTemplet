@@ -54,7 +54,6 @@ dependencies:
 #  flutter_local_notifications:
   hive:
 
-  simple_logger:
   dio:
   styled_widget:
   print_color:
@@ -62,6 +61,7 @@ dependencies:
   auto_size_text:
   table_calendar:
   web_socket_channel:
+  timelines:
 
 #  fbutton: ^2.0.0
 #  fsuper: ^2.0.0
