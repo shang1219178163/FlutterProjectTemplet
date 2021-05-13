@@ -49,7 +49,8 @@ var list = [
   ["/AlertDialogExamplePage", "AlertDialog", ],
   ["/AlertSheetExamplePage", "AlertSheet", ],
   ["/IconsListPage", "fluttefr 系统 Icons", ],
-
+  ["/GridViewExample", "GridView", ],
+  ["/PageViewExample", "PageView", ],
 ];
 
 List<PageWidgetModel> pages = [
