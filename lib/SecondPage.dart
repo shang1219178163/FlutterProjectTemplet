@@ -13,11 +13,11 @@ class SecondPage extends StatelessWidget {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            leading: BackButton(
-                      color: Colors.white,
-                      onPressed: (){ NavigatorExt.popPage(context); }
-                      ),
-            // .gestures(onTap: ()=> DDLog("back")
+            // leading: BackButton(
+            //           color: Colors.white,
+            //           onPressed: (){ NavigatorExt.popPage(context); }
+            //           ),
+            // // .gestures(onTap: ()=> DDLog("back")
             title: Text("$this"),
           ),
           body: Center(
@@ -34,8 +34,8 @@ class SecondPage extends StatelessWidget {
                     label: Text("发送"),
                     // onPressed: () => DDLog('pressed'),
                     onPressed: () => {
-                      test()
-                  },
+                      // test();
+                    },
                 ),
 
                 OutlinedButton.icon(

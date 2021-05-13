@@ -10,9 +10,9 @@ class ThirdPage extends StatelessWidget {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
-            leading: Icon(Icons.backspace_outlined)
-            // .gestures(onTap: ()=> DDLog("back")
-                .gestures(onTap: (){ Navigator.pop(context); }),
+            // leading: Icon(Icons.backspace_outlined)
+            // // .gestures(onTap: ()=> DDLog("back")
+            //     .gestures(onTap: (){ Navigator.pop(context); }),
             title: Text("$this"),
           ),
           body: Center(

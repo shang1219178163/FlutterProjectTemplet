@@ -28,17 +28,17 @@ class _FirstPageState extends State<FirstPage> {
         length: 4,
         child: Scaffold(
           appBar: _hiddenAppBar ? null : AppBar(
-            leading: Icon(Icons.arrow_back)
-                  // .gestures(onTap: ()=> DDLog("back")
-                    .gestures(onTap: (){
-                      NavigatorExt.popPage(context);
-                      // Navigator.popPage(context);
-                      // if (!Navigator.canPop(context)) {
-                      //   DDLog("已经是根页面了！");
-                      //   return;
-                      // }
-                      // Navigator.pop(context);
-                    }),
+            // leading: Icon(Icons.arrow_back)
+            //       // .gestures(onTap: ()=> DDLog("back")
+            //         .gestures(onTap: (){
+            //           NavigatorExt.popPage(context);
+            //           // Navigator.popPage(context);
+            //           // if (!Navigator.canPop(context)) {
+            //           //   DDLog("已经是根页面了！");
+            //           //   return;
+            //           // }
+            //           // Navigator.pop(context);
+            //         }),
 
             title: Text("$this"),
           ),

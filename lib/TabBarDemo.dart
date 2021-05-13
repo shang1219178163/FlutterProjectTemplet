@@ -14,9 +14,9 @@ class TabBarDemo extends StatelessWidget {
         length: 5,
         child: Scaffold(
           appBar: AppBar(
-            leading: Icon(Icons.arrow_back)
-                    // .gestures(onTap: ()=> DDLog("back")
-                      .gestures(onTap: (){ Navigator.pop(context); }),
+            // leading: Icon(Icons.arrow_back)
+            //         // .gestures(onTap: ()=> DDLog("back")
+            //           .gestures(onTap: (){ Navigator.pop(context); }),
             bottom: TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.home)),
