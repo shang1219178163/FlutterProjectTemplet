@@ -106,4 +106,15 @@ extension CupertinoActionSheetExt on CupertinoActionSheet{
 }
 
 
+extension CupertinoDatePickerExt on CupertinoDatePicker{
+  ///showCupertinoModalPopup
+  void show(BuildContext context) {
+    showCupertinoModalPopup(
+      context: context,
+      builder: (BuildContext context) {
+        return this;
+      },
+    );
+  }
 
+}
