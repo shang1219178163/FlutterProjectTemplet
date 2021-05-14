@@ -6,13 +6,13 @@ import 'package:styled_widget/styled_widget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
 
 
-class GridViewExample extends StatefulWidget {
+class GridViewDemoPage extends StatefulWidget {
 
   @override
-  _GridViewExampleState createState() => _GridViewExampleState();
+  _GridViewDemoPageState createState() => _GridViewDemoPageState();
 }
 
-class _GridViewExampleState extends State<GridViewExample> {
+class _GridViewDemoPageState extends State<GridViewDemoPage> {
 
   var titles = ["默认样式", "ListTile", "添加子视图", "3", "4", "5", "6", "7", "8"];
 

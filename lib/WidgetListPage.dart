@@ -8,7 +8,7 @@ import 'BasicWidget/UpdateAppNewCard.dart';
 
 import 'NNListWidgetPage.dart';
 import 'mockData/mock_data.dart';
-
+import 'package:fluttertemplet/FTRouter.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -46,11 +46,16 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
 
 var list = [
-  ["/AlertDialogExamplePage", "AlertDialog", ],
-  ["/AlertSheetExamplePage", "AlertSheet", ],
-  ["/IconsListPage", "fluttefr 系统 Icons", ],
-  ["/GridViewExample", "GridView", ],
-  ["/PageViewExample", "PageView", ],
+  [FTRouter.iconsListPage, "flutter 系统 Icons", ],
+  [FTRouter.alertDialogDemoPage, "AlertDialog", ],
+  [FTRouter.alertSheetDemoPage, "AlertSheet", ],
+  [FTRouter.gridViewDemoPage, "GridView", ],
+  [FTRouter.pageViewDemoPage, "PageView", ],
+  [FTRouter.snackBarDemoPage, "SnackBar", ],
+  [FTRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
+  [FTRouter.pickerDemoPage, "pickerDemoPage", ],
+  [FTRouter.datePickerPage, "DatePickerPage", ],
+
 ];
 
 List<PageWidgetModel> pages = [
@@ -67,7 +72,7 @@ List<PageWidgetModel> pages = [
         subtitle: Text(array[0]),
         onTap: (){
           Navigator.pushNamed(context, array[0], arguments: array);
-          DDLog(array);
+          // DDLog(array);
         },
       );
     },

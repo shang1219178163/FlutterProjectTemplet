@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-import 'AlertSheetExamplePage.dart';
+import 'AlertSheetDemoPage.dart';
 import 'BasicWidget/CheckBoxChooseWidget.dart';
 import 'BasicWidget/CheckListChooseWidget.dart';
 import 'BasicWidget/RadioBoxChooseWidget.dart';
@@ -12,13 +12,13 @@ import 'DartExpand/AlertDialog_extension.dart';
 
 
 
-class AlertDialogExamplePage extends StatefulWidget {
+class AlertDialogDemoPage extends StatefulWidget {
 
   @override
-  _AlertDialogExamplePageState createState() => _AlertDialogExamplePageState();
+  _AlertDialogDemoPageState createState() => _AlertDialogDemoPageState();
 }
 
-class _AlertDialogExamplePageState extends State<AlertDialogExamplePage> {
+class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
 
   var itemSize = Size(70, 70);
 

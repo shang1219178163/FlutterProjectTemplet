@@ -9,13 +9,13 @@ import 'package:styled_widget/styled_widget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
 
 
-class PageViewExample extends StatefulWidget {
+class PageViewDemoPage extends StatefulWidget {
 
   @override
-  _PageViewExampleState createState() => _PageViewExampleState();
+  _PageViewDemoPageState createState() => _PageViewDemoPageState();
 }
 
-class _PageViewExampleState extends State<PageViewExample> {
+class _PageViewDemoPageState extends State<PageViewDemoPage> {
 
   var titles = ["PageViewTabBarWidget", "2", "3"];
 

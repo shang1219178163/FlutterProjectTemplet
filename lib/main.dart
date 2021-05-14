@@ -1,49 +1,56 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/BasicWidget/AppUpgradeWidget.dart';
-import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/FirstPage.dart';
-import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
-import 'package:fluttertemplet/FourthPage.dart';
-import 'package:fluttertemplet/SecondPage.dart';
-import 'package:fluttertemplet/ThirdPage.dart';
-import 'package:fluttertemplet/TextlessPage.dart';
-
+import 'package:fluttertemplet/FTRouter.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-import 'package:fluttertemplet/TabBarDemo.dart';
-import 'package:fluttertemplet/ListPageController.dart';
-
-import 'AlertDialogExamplePage.dart';
-import 'AlertSheetExamplePage.dart';
-import 'DartExpand/DDLog.dart';
+import 'package:fluttertemplet/BasicWidget/AppUpgradeWidget.dart';
+import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
+import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
+import 'CupertinoTabScaffoldDemoPage.dart';
 import 'DartExpand/PopupMenuButton_extension.dart';
 import 'DartExpand/AlertDialog_extension.dart';
+
+import 'package:fluttertemplet/FirstPage.dart';
+import 'package:fluttertemplet/SecondPage.dart';
+import 'package:fluttertemplet/ThirdPage.dart';
+import 'package:fluttertemplet/FourthPage.dart';
+import 'package:fluttertemplet/TextlessPage.dart';
+
+import 'package:fluttertemplet/TabBarDemoPage.dart';
+import 'package:fluttertemplet/ListPageController.dart';
+
+import 'AlertDialogDemoPage.dart';
+import 'AlertSheetDemoPage.dart';
+import 'DartExpand/DDLog.dart';
+
 import 'FButtonPage.dart';
-import 'GridViewExample.dart';
+import 'GridViewDemoPage.dart';
 import 'IconsListPage.dart';
 import 'NNListWidgetPage.dart';
-import 'PageViewExamplePage.dart';
+import 'PageViewDemoPage.dart';
 import 'WidgetListPage.dart';
+import 'SnackBarDemoPage.dart';
 
 
-var kRoutes = <String, WidgetBuilder>{
-  "/MyHomePage": (context) => MyHomePage(),
-  "/FirstPage": (context) => FirstPage(),
-  "/SecondPage": (context) => SecondPage(),
-  "/ThirdPage": (context) => ThirdPage(),
-  "/FourthPage": (context) => FourthPage(),
-  "/TabBarDemo": (context) => TabBarDemo(),
-  "/WidgetListPage": (context) => WidgetListPage(),
-  "/textlessPage": (context) => TextlessPage(),
-  "/AlertDialogExamplePage": (context) => AlertDialogExamplePage(),
-  "/AlertSheetExamplePage": (context) => AlertSheetExamplePage(),
-  "/IconsListPage": (context) => IconsListPage(),
-  "/GridViewExample": (context) => GridViewExample(),
-  "/PageViewExample": (context) => PageViewExample(),
-  "/PageViewTabBarWidget": (context) => PageViewTabBarWidget(),
-
-};
+// var kRoutes = <String, WidgetBuilder>{
+//   "/MyHomePage": (context) => MyHomePage(),
+//   "/FirstPage": (context) => FirstPage(),
+//   "/SecondPage": (context) => SecondPage(),
+//   "/ThirdPage": (context) => ThirdPage(),
+//   "/FourthPage": (context) => FourthPage(),
+//   "/TabBarDemo": (context) => TabBarDemo(),
+//   "/WidgetListPage": (context) => WidgetListPage(),
+//   "/textlessPage": (context) => TextlessPage(),
+//   "/AlertDialogDemoPage": (context) => AlertDialogDemoPage(),
+//   "/AlertSheetDemoPage": (context) => AlertSheetDemoPage(),
+//   "/IconsListPage": (context) => IconsListPage(),
+//   "/GridViewDemoPage": (context) => GridViewDemoPage(),
+//   "/PageViewExample": (context) => PageViewDemoPage(),
+//   "/PageViewTabBarWidget": (context) => PageViewTabBarWidget(),
+//   "/SnackBarDemoPage": (context) => SnackBarDemoPage(),
+//   "/CupertinoTabScaffoldDemoPage": (context) => CupertinoTabScaffoldDemoPage(),
+//
+// };
 
 
 void main() {
@@ -66,9 +73,11 @@ class MyApp extends StatelessWidget {
         // textTheme: TextTheme(body1: TextStyle(color: Colors.red))//设置文本颜色为红色
     ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      initialRoute: "/MyHomePage",
-      routes: kRoutes,
-    // routes: {
+      // initialRoute: "/MyHomePage",
+      // routes: kRoutes,
+      initialRoute: FTRouter.homePage,
+      routes: FTRouter.routes,
+      // routes: {
     //     "/": (context) => MyHomePage(),
     //     "/TwoPage": (context) => TwoPage(),
     //   },

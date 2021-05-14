@@ -11,13 +11,13 @@ import 'DartExpand/ActionSheet_extension.dart';
 import 'DartExpand/Widget_extension.dart';
 
 
-class AlertSheetExamplePage extends StatefulWidget {
+class AlertSheetDemoPage extends StatefulWidget {
 
   @override
-  _AlertSheetExamplePageState createState() => _AlertSheetExamplePageState();
+  _AlertSheetDemoPageState createState() => _AlertSheetDemoPageState();
 }
 
-class _AlertSheetExamplePageState extends State<AlertSheetExamplePage> {
+class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
   var titles = ["默认样式", "ListTile", "添加子视图", "自定义", "单选列表", "多选列表", "6", "7", "8"];
 
