@@ -660,6 +660,13 @@
             </list>
           </value>
         </entry>
+        <entry key="webview_flutter">
+          <value>
+            <list>
+              <option value="$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/webview_flutter-2.0.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="win32">
           <value>
             <list>
@@ -778,6 +785,7 @@
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/watcher-1.0.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/web_socket_channel-2.0.0/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/webdriver-3.0.0/lib" />
+      <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/webview_flutter-2.0.4/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/win32-1.7.4+1/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/xdg_directories-0.1.2/lib" />
       <root url="file://$USER_HOME$/flutter/.pub-cache/hosted/pub.flutter-io.cn/xml-5.1.0/lib" />

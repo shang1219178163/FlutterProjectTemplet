@@ -47,6 +47,8 @@ dependencies:
 #  flutter_linkify:
   qr_flutter:
   flutter_carousel_slider:
+#  flutter_webview_plugin:
+  webview_flutter:
 
 #  get:
   flutter_slidable:

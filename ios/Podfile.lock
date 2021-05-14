@@ -14,6 +14,8 @@ PODS:
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
+  - webview_flutter (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -22,6 +24,7 @@ DEPENDENCIES:
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - print_color (from `.symlinks/plugins/print_color/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - webview_flutter (from `.symlinks/plugins/webview_flutter/ios`)
 
 SPEC REPOS:
   trunk:
@@ -40,6 +43,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/print_color/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
+  webview_flutter:
+    :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
@@ -49,6 +54,7 @@ SPEC CHECKSUMS:
   path_provider: d1a68c4065ce2e0f6fd03f8a46d698525dc79f06
   print_color: 786fead0bca1f4bb22b961b51bed5313c610b99c
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
+  webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 
