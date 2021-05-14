@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:textless/textless.dart';
 
 class TextlessPage extends StatefulWidget {
-  TextlessPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
+  TextlessPage({Key? key, this.title}) : super(key: key);
 
   @override
   _TextlessPageState createState() => _TextlessPageState();

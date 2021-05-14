@@ -4,9 +4,9 @@ import 'DartExpand/DDLog.dart';
 import 'DartExpand/Navigator_extension.dart';
 
 class FirstPage extends StatefulWidget {
-  FirstPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
+  FirstPage({Key? key, this.title}) : super(key: key);
 
   @override
   _FirstPageState createState() => _FirstPageState();
