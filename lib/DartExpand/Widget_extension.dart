@@ -89,14 +89,71 @@ extension WidgetExt on Widget {
 
 
   /// 时间选择器
+  void showBottomPicker({
+    required BuildContext context,
+    double? height,
+    required Widget child,
+    required void callback(String title)}) {
+
+    final title = "请选择";
+    final actionTitles = ['取消', '确定'];
+
+    Container(
+      height: height ?? 300,
+      // color: Color.fromARGB(255, 255, 255, 255),
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(children: [
+            // Close the modal
+            CupertinoButton(
+              child: Text(actionTitles[0]),
+              // onPressed: () => Navigator.of(ctx).pop(),
+              onPressed: (){
+                callback(actionTitles[0]);
+                Navigator.of(context).pop();
+              },
+            ),
+            Expanded(child: Text(title,
+              style: TextStyle(fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.black,
+                  backgroundColor: Colors.white,
+                  decoration: TextDecoration.none),
+              textAlign: TextAlign.center,)
+            ),
+
+            CupertinoButton(
+              child: Text(actionTitles[1]),
+              // onPressed: () => Navigator.of(ctx).pop(),
+              onPressed: (){
+                callback(actionTitles[1]);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],),
+          Container(
+            height: 216,
+            color: Colors.white,
+            child: child,
+          ),
+        ],
+      ),
+    ).toShowCupertinoModalPopup(context: context);
+  }
+
+  /// 时间选择器
   void showDatePicker({
     required BuildContext context,
     DateTime? initialDateTime,
-    required CupertinoDatePickerMode mode,
+    CupertinoDatePickerMode? mode,
     // required void Function(DateTime dateTime, String title) callback}) {
     required void callback(DateTime dateTime, String title)}) {
 
     DateTime dateTime = initialDateTime ?? DateTime.now();
+
+    final title = "请选择";
+    final actionTitles = ['取消', '确定'];
 
     Container(
       height: 300,
@@ -107,14 +164,14 @@ extension WidgetExt on Widget {
           Row(children: [
             // Close the modal
             CupertinoButton(
-              child: Text('取消'),
+              child: Text(actionTitles[0]),
               // onPressed: () => Navigator.of(ctx).pop(),
               onPressed: (){
-                callback(dateTime, "取消");
+                callback(dateTime, actionTitles[0]);
                 Navigator.of(context).pop();
               },
             ),
-            Expanded(child: Text("请选择",
+            Expanded(child: Text(title,
               style: TextStyle(fontSize: 17,
                   fontWeight: FontWeight.normal,
                   color: Colors.black,
@@ -124,10 +181,10 @@ extension WidgetExt on Widget {
             ),
 
             CupertinoButton(
-              child: Text('确定'),
+              child: Text(actionTitles[1]),
               // onPressed: () => Navigator.of(ctx).pop(),
               onPressed: (){
-                callback(dateTime, "确定");
+                callback(dateTime, actionTitles[1]);
                 Navigator.of(context).pop();
               },
             ),
@@ -136,16 +193,41 @@ extension WidgetExt on Widget {
             height: 216,
             color: Colors.white,
             child: CupertinoDatePicker(
-                mode: mode,
+                mode: mode ?? CupertinoDatePickerMode.dateAndTime,
                 initialDateTime: initialDateTime,
                 onDateTimeChanged: (val) {
-                    dateTime = val;
-                    DDLog(val);
+                  dateTime = val;
+                  // DDLog(val);
                 }),
           ),
         ],
       ),
     ).toShowCupertinoModalPopup(context: context);
+  }
+
+
+  /// 列表选择器
+  void showPickerList({
+    required BuildContext context,
+    required List<Widget> children,
+    required void callback(int index, String title)}) {
+
+    int selectedIndex = 0;
+
+    showBottomPicker(context: context,
+        child: CupertinoPicker(
+          backgroundColor: Colors.white,
+          itemExtent: 30,
+          scrollController: FixedExtentScrollController(initialItem: 1),
+          children: children,
+          onSelectedItemChanged: (value) {
+            selectedIndex = value;
+          },
+        ),
+        callback: (title){
+          callback(selectedIndex, title);
+          DDLog([selectedIndex, title]);
+        });
   }
 }
 
