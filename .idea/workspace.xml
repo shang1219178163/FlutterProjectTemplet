@@ -5,32 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f804f77f-22fd-4512-92f9-d14502947443" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/BasicWidget/WebViewPage.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/CupertinoTabScaffoldDemoPage.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/FTRouter.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/PickerDemoPage.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/SnackBarDemoPage.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/demoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fluttertemplet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fluttertemplet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/AlertDialogExamplePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AlertDialogDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/AlertSheetExamplePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/AlertSheetDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/DartExpand/ActionSheet_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DartExpand/ActionSheet_extension.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/DartExpand/AlertDialog_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DartExpand/AlertDialog_extension.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/DartExpand/Widget_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/DartExpand/Widget_extension.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/FirstPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/FirstPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/GridViewExample.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/GridViewDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/PageViewExamplePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/PageViewDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/TabBarDemo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/TabBarDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/WidgetListPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/WidgetListPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ffloatExamplePage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ffloatDemoPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/textlessPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/textlessPage.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/PickerDemoPage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/PickerDemoPage.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,13 +130,13 @@
       <screen x="0" y="25" width="1680" height="952" />
     </state>
     <state x="385" y="73" key="CommitChangelistDialog2/0.25.1680.952@0.25.1680.952" timestamp="1615694535599" />
-    <state width="1658" height="137" key="GridCell.Tab.0.bottom" timestamp="1620975182411">
-      <screen x="0" y="25" width="1920" height="982" />
+    <state width="1305" height="138" key="GridCell.Tab.0.bottom" timestamp="1621053661200">
+      <screen x="0" y="25" width="1680" height="952" />
     </state>
-    <state width="1558" height="359" key="GridCell.Tab.0.bottom/0.25.1680.952@0.25.1680.952" timestamp="1620443336700" />
+    <state width="1305" height="138" key="GridCell.Tab.0.bottom/0.25.1680.952@0.25.1680.952" timestamp="1621053661200" />
     <state width="1652" height="213" key="GridCell.Tab.0.bottom/0.25.1680.953@0.25.1680.953" timestamp="1620446451162" />
     <state width="1383" height="142" key="GridCell.Tab.0.bottom/0.25.1680.954@0.25.1680.954" timestamp="1619838666936" />
-    <state width="1383" height="208" key="GridCell.Tab.0.bottom/0.25.1680.956@0.25.1680.956" timestamp="1619848931374" />
+    <state width="1658" height="315" key="GridCell.Tab.0.bottom/0.25.1680.956@0.25.1680.956" timestamp="1621001146619" />
     <state width="1597" height="389" key="GridCell.Tab.0.bottom/0.25.1680.958@0.25.1680.958" timestamp="1619230383483" />
     <state width="1597" height="251" key="GridCell.Tab.0.bottom/0.25.1680.960@0.25.1680.960" timestamp="1619187785980" />
     <state width="1577" height="246" key="GridCell.Tab.0.bottom/0.25.1680.964@0.25.1680.964" timestamp="1615551617081" />
@@ -165,13 +144,13 @@
     <state width="1658" height="137" key="GridCell.Tab.0.bottom/0.25.1920.982/-1680.0.1680.1050@0.25.1920.982" timestamp="1620975182411" />
     <state width="1597" height="116" key="GridCell.Tab.0.bottom/0.25.1920.984/-1680.0.1680.1050@0.25.1920.984" timestamp="1619662094871" />
     <state width="1577" height="48" key="GridCell.Tab.0.bottom/0.25.1920.985/-1680.0.1680.1050@0.25.1920.985" timestamp="1615543187855" />
-    <state width="1658" height="137" key="GridCell.Tab.0.center" timestamp="1620975182410">
-      <screen x="0" y="25" width="1920" height="982" />
+    <state width="1305" height="138" key="GridCell.Tab.0.center" timestamp="1621053661200">
+      <screen x="0" y="25" width="1680" height="952" />
     </state>
-    <state width="1558" height="359" key="GridCell.Tab.0.center/0.25.1680.952@0.25.1680.952" timestamp="1620443336700" />
+    <state width="1305" height="138" key="GridCell.Tab.0.center/0.25.1680.952@0.25.1680.952" timestamp="1621053661200" />
     <state width="1652" height="213" key="GridCell.Tab.0.center/0.25.1680.953@0.25.1680.953" timestamp="1620446451162" />
     <state width="1383" height="142" key="GridCell.Tab.0.center/0.25.1680.954@0.25.1680.954" timestamp="1619838666936" />
-    <state width="1383" height="208" key="GridCell.Tab.0.center/0.25.1680.956@0.25.1680.956" timestamp="1619848931374" />
+    <state width="1658" height="315" key="GridCell.Tab.0.center/0.25.1680.956@0.25.1680.956" timestamp="1621001146618" />
     <state width="1597" height="389" key="GridCell.Tab.0.center/0.25.1680.958@0.25.1680.958" timestamp="1619230383482" />
     <state width="1597" height="251" key="GridCell.Tab.0.center/0.25.1680.960@0.25.1680.960" timestamp="1619187785980" />
     <state width="1577" height="246" key="GridCell.Tab.0.center/0.25.1680.964@0.25.1680.964" timestamp="1615551617080" />
@@ -179,13 +158,13 @@
     <state width="1658" height="137" key="GridCell.Tab.0.center/0.25.1920.982/-1680.0.1680.1050@0.25.1920.982" timestamp="1620975182410" />
     <state width="1597" height="116" key="GridCell.Tab.0.center/0.25.1920.984/-1680.0.1680.1050@0.25.1920.984" timestamp="1619662094870" />
     <state width="1577" height="48" key="GridCell.Tab.0.center/0.25.1920.985/-1680.0.1680.1050@0.25.1920.985" timestamp="1615543187854" />
-    <state width="1658" height="137" key="GridCell.Tab.0.left" timestamp="1620975182409">
-      <screen x="0" y="25" width="1920" height="982" />
+    <state width="1305" height="138" key="GridCell.Tab.0.left" timestamp="1621053661200">
+      <screen x="0" y="25" width="1680" height="952" />
     </state>
-    <state width="1558" height="359" key="GridCell.Tab.0.left/0.25.1680.952@0.25.1680.952" timestamp="1620443336699" />
+    <state width="1305" height="138" key="GridCell.Tab.0.left/0.25.1680.952@0.25.1680.952" timestamp="1621053661200" />
     <state width="1652" height="213" key="GridCell.Tab.0.left/0.25.1680.953@0.25.1680.953" timestamp="1620446451162" />
     <state width="1383" height="142" key="GridCell.Tab.0.left/0.25.1680.954@0.25.1680.954" timestamp="1619838666936" />
-    <state width="1383" height="208" key="GridCell.Tab.0.left/0.25.1680.956@0.25.1680.956" timestamp="1619848931373" />
+    <state width="1658" height="315" key="GridCell.Tab.0.left/0.25.1680.956@0.25.1680.956" timestamp="1621001146618" />
     <state width="1597" height="389" key="GridCell.Tab.0.left/0.25.1680.958@0.25.1680.958" timestamp="1619230383482" />
     <state width="1597" height="251" key="GridCell.Tab.0.left/0.25.1680.960@0.25.1680.960" timestamp="1619187785980" />
     <state width="1577" height="246" key="GridCell.Tab.0.left/0.25.1680.964@0.25.1680.964" timestamp="1615551617080" />
@@ -193,13 +172,13 @@
     <state width="1658" height="137" key="GridCell.Tab.0.left/0.25.1920.982/-1680.0.1680.1050@0.25.1920.982" timestamp="1620975182409" />
     <state width="1597" height="116" key="GridCell.Tab.0.left/0.25.1920.984/-1680.0.1680.1050@0.25.1920.984" timestamp="1619662094870" />
     <state width="1577" height="48" key="GridCell.Tab.0.left/0.25.1920.985/-1680.0.1680.1050@0.25.1920.985" timestamp="1615543187854" />
-    <state width="1658" height="137" key="GridCell.Tab.0.right" timestamp="1620975182411">
-      <screen x="0" y="25" width="1920" height="982" />
+    <state width="1305" height="138" key="GridCell.Tab.0.right" timestamp="1621053661200">
+      <screen x="0" y="25" width="1680" height="952" />
     </state>
-    <state width="1558" height="359" key="GridCell.Tab.0.right/0.25.1680.952@0.25.1680.952" timestamp="1620443336700" />
+    <state width="1305" height="138" key="GridCell.Tab.0.right/0.25.1680.952@0.25.1680.952" timestamp="1621053661200" />
     <state width="1652" height="213" key="GridCell.Tab.0.right/0.25.1680.953@0.25.1680.953" timestamp="1620446451162" />
     <state width="1383" height="142" key="GridCell.Tab.0.right/0.25.1680.954@0.25.1680.954" timestamp="1619838666936" />
-    <state width="1383" height="208" key="GridCell.Tab.0.right/0.25.1680.956@0.25.1680.956" timestamp="1619848931374" />
+    <state width="1658" height="315" key="GridCell.Tab.0.right/0.25.1680.956@0.25.1680.956" timestamp="1621001146619" />
     <state width="1597" height="389" key="GridCell.Tab.0.right/0.25.1680.958@0.25.1680.958" timestamp="1619230383483" />
     <state width="1597" height="251" key="GridCell.Tab.0.right/0.25.1680.960@0.25.1680.960" timestamp="1619187785980" />
     <state width="1577" height="246" key="GridCell.Tab.0.right/0.25.1680.964@0.25.1680.964" timestamp="1615551617080" />
@@ -223,10 +202,10 @@
       <screen x="0" y="25" width="1680" height="953" />
     </state>
     <state x="567" y="238" key="Vcs.Push.Dialog.v2/0.25.1680.953@0.25.1680.953" timestamp="1619842152758" />
-    <state x="434" y="266" width="824" height="576" key="find.popup" timestamp="1620957746752">
-      <screen x="0" y="25" width="1920" height="982" />
+    <state x="268" y="287" width="721" height="548" key="find.popup" timestamp="1621133513589">
+      <screen x="0" y="25" width="1680" height="952" />
     </state>
-    <state x="638" y="252" width="721" height="548" key="find.popup/0.25.1680.952@0.25.1680.952" timestamp="1620443610040" />
+    <state x="268" y="287" width="721" height="548" key="find.popup/0.25.1680.952@0.25.1680.952" timestamp="1621133513589" />
     <state x="638" y="252" width="721" height="548" key="find.popup/0.25.1680.953@0.25.1680.953" timestamp="1619842347095" />
     <state x="638" y="252" width="721" height="576" key="find.popup/0.25.1680.954@0.25.1680.954" timestamp="1619224583200" />
     <state x="434" y="266" width="824" height="576" key="find.popup/0.25.1920.982/-1680.0.1680.1050@0.25.1920.982" timestamp="1620957746752" />
