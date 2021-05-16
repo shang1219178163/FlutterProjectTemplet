@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/DartExpand/ListView_extension.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
 import 'DartExpand/Widget_extension.dart';
@@ -14,8 +15,8 @@ class PickerDemoPage extends StatefulWidget {
 
 class _PickerDemoPageState extends State<PickerDemoPage> {
 
-  var titles = ["datePicker", "datePicker", "datePicker",
-    "3", "4", "5", "6", "7", "8"];
+  var titles = ["datePicker", "datePicker浅封装", "datePicker封装",
+    "Picker浅封装", "Picker封装", "5", "6", "7", "8"];
 
   @override
   void initState() {
@@ -61,22 +62,26 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
 
   List<Widget> initListWidget(List<String> list) {
     List<Widget> lists = [];
-    for (var item in list) {
+    for (var e in list) {
       lists.add(
         Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("${item}", style: TextStyle(fontSize: 15),),
+              Text("${e}", style: TextStyle(fontSize: 12),),
             ],
           ),
         )
             .border(all: 1, color: Colors.lightBlue,)
             .gestures(onTap: () => {
-              // DDLog("$item")
-          widget.showDatePicker(context: context, mode: CupertinoDatePickerMode.dateAndTime, callback: (datetime, title){
-            DDLog("$datetime, $title");
-          })
+              // DDLog("$e")
+          // widget.showDatePicker(context: context,
+          //     mode: CupertinoDatePickerMode.dateAndTime,
+          //     callback: (datetime, title){
+          //   DDLog("$datetime, $title");
+          // })
+          // DDLog(e)
+          _onPressed(list.indexOf(e))
         }),
       );
     }
@@ -85,24 +90,83 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
 
 
   void _onPressed(int e) {
+    DDLog(e);
+
     switch (e) {
+      case 0:
+        {
+          _showDatePicker(
+              context: context,
+              callback: (DateTime dateTime, String title) {
+                DDLog([dateTime, title]);
+
+              });
+        }
+        break;
       case 1:
-        _onButtonClick(CupertinoDatePickerMode.date);
+       {
+         DateTime dateTime = DateTime.now();
+
+         widget.showBottomPicker(context: context,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.dateAndTime,
+                initialDateTime: dateTime,
+                onDateTimeChanged: (DateTime newDateTime) {
+                  setState(() => dateTime = newDateTime);
+                  DDLog(dateTime);
+                },
+              ),
+              callback: (title){
+                DDLog(title);
+              });
+
+       }
         break;
 
       case 2:
-        _onButtonClick(CupertinoDatePickerMode.time);
+        {
+          widget.showDatePicker(context: context, callback: (dateTime, title){
+            DDLog([dateTime, title]);
+          });
+        }
         break;
 
       case 3:
         {
+          // _showPicker(ctx: context, callBlack: (index){
+          //   DDLog(index);
+          // });
 
+          int _selectedValue = 0;
+
+          widget.showBottomPicker(context: context,
+              child: CupertinoPicker(
+                backgroundColor: Colors.white,
+                itemExtent: 30,
+                scrollController: FixedExtentScrollController(initialItem: 1),
+                children: List.generate(10, (index) =>
+                    Text('选择_$index',
+                  style: TextStyle(fontSize: 16),)
+                ),
+                onSelectedItemChanged: (value) {
+                  setState(() {
+                    _selectedValue = value;
+                  });
+                },
+              ),
+              callback: (title){
+                DDLog([_selectedValue, title]);
+              });
         }
         break;
 
       case 4:
         {
+          widget.showPickerList(context: context,
+              children: List.generate(10, (index) => Text('选择_$index')),
+              callback: (index, title){
 
+              });
         }
         break;
 
@@ -131,93 +195,102 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
         break;
 
       default:
-        // _onButtonClick(CupertinoDatePickerMode.dateAndTime);
+
         break;
     }
-    // CupertinoDatePicker(
-    //   mode: CupertinoDatePickerMode.dateAndTime,
-    //   initialDateTime: dateTime,
-    //   onDateTimeChanged: (DateTime newDateTime) {
-    //     // setState(() => dateTime = newDateTime);
-    //   },
-    // ).show(context);
-    // _showDatePicker(context);
-    DDLog(e);
-    // Navigator.push(context, MaterialPageRoute(builder: (context) {
-    //   return DatePickerPage();
-    // }));
   }
 
-  DateTime dateTime = DateTime.now();
+  void _showDatePicker({
+    required BuildContext context,
+    DateTime? initialDateTime,
+    CupertinoDatePickerMode? mode,
+    required void callback(DateTime dateTime, String title)}) {
 
-  void _showDatePicker(ctx) {
+    DateTime dateTime = initialDateTime ?? DateTime.now();
+
+    final title = "请选择";
+    final actionTitles = ['取消', '确定'];
+
     showCupertinoModalPopup(
-        context: ctx,
+        context: context,
         builder: (_) => Container(
-          height: 500,
-          color: Color.fromARGB(255, 255, 255, 255),
+          height: 300,
+          // color: Color.fromARGB(255, 255, 255, 255),
+          color: Colors.white,
           child: Column(
             children: [
+              Row(children: [
+                // Close the modal
+                CupertinoButton(
+                  child: Text(actionTitles[0]),
+                  // onPressed: () => Navigator.of(ctx).pop(),
+                  onPressed: (){
+                    callback(dateTime, actionTitles[1]);
+                    Navigator.of(context).pop();
+                  },
+                ),
+                Expanded(child: Text(title,
+                  style: TextStyle(fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                      backgroundColor: Colors.white,
+                      decoration: TextDecoration.none),
+                  textAlign: TextAlign.center,)
+                ),
+
+                CupertinoButton(
+                  child: Text(actionTitles[1]),
+                  // onPressed: () => Navigator.of(ctx).pop(),
+                  onPressed: (){
+                    callback(dateTime, actionTitles[1]);
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],),
               Container(
-                height: 400,
+                height: 216,
+                color: Colors.white,
                 child: CupertinoDatePicker(
-                    initialDateTime: DateTime.now(),
+                    mode: mode ?? CupertinoDatePickerMode.dateAndTime,
+                    initialDateTime: dateTime,
                     onDateTimeChanged: (val) {
                       setState(() {
                         dateTime = val;
+                        DDLog(val);
                       });
                     }),
               ),
-              CupertinoButton(
-                child: Text('OK'),
-                onPressed: () => Navigator.of(ctx).pop(),
-              )
             ],
           ),
         ));
   }
 
-  void _onButtonClick(CupertinoDatePickerMode mode) {
-    setState(() {
-      showCupertinoModalPopup<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return _buildBottomPicker(
-            CupertinoDatePicker(
-              mode: mode,
-              initialDateTime: dateTime,
-              onDateTimeChanged: (DateTime newDateTime) {
-                setState(() => dateTime = newDateTime);
-              },
-            ),
-          );
-        },
-      );
-    });
-  }
+  void _showPicker({required BuildContext ctx,
+    required void callBlack(int)}) {
+    // int _selectedValue = 0;
 
-  Widget _buildBottomPicker(Widget picker) {
-    return Container(
-      height: 250,
-      padding: const EdgeInsets.only(top: 6.0),
-      color: CupertinoColors.white,
-      child: DefaultTextStyle(
-          style: const TextStyle(
-          color: CupertinoColors.black,
-          fontSize: 22.0,
-          ),
-          child: GestureDetector(
-          // Blocks taps from propagating to the modal sheet and popping.
-            onTap: () {
-              DDLog("picker");
+    showCupertinoModalPopup(
+        context: ctx,
+        builder: (_) => Container(
+          width: 300,
+          height: 250,
+          child: CupertinoPicker(
+            backgroundColor: Colors.white,
+            itemExtent: 30,
+            scrollController: FixedExtentScrollController(initialItem: 1),
+            children: [
+              Text('0'),
+              Text('1'),
+              Text('2'),
+            ],
+            onSelectedItemChanged: (value) {
+              setState(() {
+                // _selectedValue = value;
+                callBlack(value);
+              });
             },
-            child: SafeArea(
-              top: false,
-              child: picker,
-            ),
           ),
-      ),
-    );
+        ));
   }
 }
 
@@ -272,7 +345,10 @@ class _DatePickerPageState extends State<DatePickerPage> {
 
   ///时间变动
   void _datePickerValueChange(context) {
-    widget.showDatePicker(context: context, mode: CupertinoDatePickerMode.dateAndTime, callback: (datetime, title){
+    widget.showDatePicker(
+        context: context,
+        mode: CupertinoDatePickerMode.dateAndTime,
+        callback: (datetime, title){
       DDLog("$datetime, $title");
       if (title == "取消") {
         return;
