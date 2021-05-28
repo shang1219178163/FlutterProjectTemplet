@@ -9,6 +9,8 @@ import 'BasicWidget/CheckBoxChooseWidget.dart';
 import 'BasicWidget/RadioListChooseWidget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
 import 'DartExpand/Widget_extension.dart';
+import 'APPRouter.dart';
+import 'ShowSearchDemoPage.dart';
 
 
 class AlertSheetDemoPage extends StatefulWidget {
@@ -59,7 +61,9 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       runSpacing: -8.0, // 纵轴（垂直）方向间距
       alignment: WrapAlignment.start, //沿主轴方向居中
         children: titles.map((e) => ActionChip(
-          avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text("${e.characters.first.toUpperCase()}")),
+          avatar: CircleAvatar(backgroundColor: Colors.blue,
+              child: Text("${e.characters.first.toUpperCase()}")
+          ),
           label: Text(e),
           onPressed: (){
             _onPressed(titles.indexOf(e));
@@ -111,7 +115,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
             title: Text(title),
             message: Text(message),
             actions: [
-              CheckListChooseWidget(models: list, indexs: Set.from([0]), containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
+              CheckListChooseWidget(models: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
             ],
             cancelButton: CupertinoActionSheetAction(
               child: Text('取消'),
@@ -119,7 +123,8 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
                 Navigator.pop(context);
               },
             ),
-          ).show(context)
+          )
+              .toShowCupertinoModalPopup(context: context)
           ;
 
       }
@@ -127,12 +132,15 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
       case 6:
         {
-
+          // List<String> list = List.generate(100, (i) => 'item $i');
+          // showSearch(context: context, delegate: CustomSearchDelegate(list: list, select: ""));
+          Navigator.pushNamed(context, APPRouter.showSearchDemoPage, arguments: []);
         }
         break;
 
       case 7:
         {
+          // showSearch(context: context, delegate: SearchBarViewDelegate());
 
         }
         break;
@@ -163,11 +171,14 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       ),).toList(),
       cancelButton: CupertinoActionSheetAction(
         child: Text('取消'),
+        isDestructiveAction: true,
         onPressed: () {
           Navigator.pop(context);
         },
       ),
-    ).show(context)
+    )
+        .toShowCupertinoModalPopup(context: context)
+
     ;
   }
 
@@ -219,7 +230,9 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
             Navigator.pop(context);
           },
         ),
-      ).show(context)
+      )
+          .toShowCupertinoModalPopup(context: context)
+
       ;
     }
 
@@ -234,7 +247,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
         title: Text(title),
         message: Text(message),
         actions: [
-          RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); },),
+          RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); }, canScroll: false,),
         ],
         cancelButton: CupertinoActionSheetAction(
           child: Text('取消'),
@@ -242,7 +255,8 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
             Navigator.pop(context);
           },
         ),
-      ).show(context)
+      )
+          .toShowCupertinoModalPopup(context: context)
       ;
     }
 }

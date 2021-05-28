@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
 
 class RadioListTileModel{
@@ -45,9 +46,12 @@ class RadioListChooseWidget extends StatefulWidget {
   Object index = 0;
   void Function(Object index) callback;
 
+  bool canScroll = false;
+
   RadioListChooseWidget({
     required this.models,
     required this.index,
+    required this.canScroll,
     required this.callback,
   });
 
@@ -66,6 +70,11 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.canScroll ? buildListViewSeparated(context) : buildColumn(context);
+  }
+
+  ///单选 Column
+  Widget buildColumn(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Column(
@@ -82,6 +91,39 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
           selected: widget.index == widget.models.indexOf(e),
         ),).toList(),
       ),
+    );
+  }
+
+
+  ///单选滚动列表
+  Widget buildListViewSeparated(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: ListView.separated(
+        padding: EdgeInsets.all(0),
+        itemCount: widget.models.length,
+        cacheExtent: 10,
+        itemBuilder: (context, index) {
+          final e = widget.models[index];
+          return ListTile(
+            title: e.title,
+            subtitle: e.subtitle,
+            trailing: index == widget.index ? Icon(Icons.check) : null,
+            selected: widget.index == widget.models.indexOf(e),
+            onTap: () {
+              _changeValue(index);
+            },
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider(
+            height: .5,
+            indent: 15,
+            endIndent: 15,
+            color: Color(0xFFDDDDDD),
+          );
+        },
+      ).addCupertinoScrollbar(),
     );
   }
 

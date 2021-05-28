@@ -1,9 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/BasicWidget/RadioListChooseWidget.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
-import 'package:fluttertemplet/DartExpand/ListView_extension.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'BasicWidget/CheckListChooseWidget.dart';
 import 'DartExpand/ActionSheet_extension.dart';
 import 'DartExpand/Widget_extension.dart';
 
@@ -16,7 +17,7 @@ class PickerDemoPage extends StatefulWidget {
 class _PickerDemoPageState extends State<PickerDemoPage> {
 
   var titles = ["datePicker", "datePicker浅封装", "datePicker封装",
-    "Picker浅封装", "Picker封装", "5", "6", "7", "8"];
+    "Picker浅封装", "Picker封装", "自定义", "单选滚动列表", "多选滚动列表", "8"];
 
   @override
   void initState() {
@@ -165,26 +166,92 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
           widget.showPickerList(context: context,
               children: List.generate(10, (index) => Text('选择_$index')),
               callback: (index, title){
-
+                DDLog([index, title]);
               });
         }
         break;
 
       case 5:
         {
-
+          widget.showBottomPicker(context: context,
+              height: 600,
+              child: Container(
+                color: Colors.green,
+                // height: 500,
+                child: TextButton(child: Text("Button"),
+                  onPressed: (){
+                    DDLog("Button");
+                  },
+                ),
+              ), callback: (String title) {
+                DDLog(title);
+            },
+          );
         }
         break;
 
       case 6:
         {
+          final list = [
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
 
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+
+          ];
+
+          widget.showBottomPicker(context: context,
+            height: 500,
+            child: Container(
+              // color: Colors.green,
+              child: RadioListChooseWidget(models: list, index: 1, canScroll: true, callback: (Object index) { DDLog(index); }, ),
+            ).toMaterial(),
+            callback: (String title) {
+              DDLog(title);
+            },
+          );
         }
         break;
 
       case 7:
         {
+          final list = [
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
 
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+
+          ];
+
+          widget.showBottomPicker(context: context,
+            height: 600,
+            child: Container(
+              // color: Colors.green,
+              // height: 500,
+              child: CheckListChooseWidget(models: list, indexs: Set.from([0]), canScroll: true, callback: (Object index) { DDLog(index); }, ),
+            ).toMaterial(),
+            callback: (String title) {
+              DDLog(title);
+            },
+          );
         }
         break;
 
@@ -195,7 +262,6 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
         break;
 
       default:
-
         break;
     }
   }

@@ -1,9 +1,29 @@
+//
+//  Widget_extension.dart
+//  fluttertemplet
+//
+//  Created by shang on 5/17/21 10:43 AM.
+//  Copyright © 5/17/21 shang. All rights reserved.
+//
+
+
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
+
+const double kCupertinoButtonHeight = 56.0;
+
+///默认分割线
+const Divider kDivider = Divider(
+  height: .5,
+  indent: 15,
+  endIndent: 15,
+  color: Color(0xFFDDDDDD),
+);
+
 
 extension WidgetExt on Widget {
 
@@ -68,30 +88,83 @@ extension WidgetExt on Widget {
     child: this,
   );
 
-  toShowCupertinoModalPopup({
-    required BuildContext context,
-    ImageFilter? filter,
-    Color barrierColor = kCupertinoModalBarrierColor,
-    bool barrierDismissible = true,
-    bool useRootNavigator = true,
-    bool? semanticsDismissible,
-    RouteSettings? routeSettings,
-  }) =>
-      showCupertinoModalPopup(
-        context: context,
-        builder: (context) => this,
-        filter: filter,
-        barrierColor: barrierColor,
-        barrierDismissible: barrierDismissible,
-        semanticsDismissible: semanticsDismissible,
-        routeSettings: routeSettings,
-      );
+  // toShowCupertinoDialog({
+  //   required BuildContext context,
+  //   String? barrierLabel,
+  //   bool useRootNavigator = true,
+  //   bool barrierDismissible = false,
+  //   RouteSettings? routeSettings,
+  // }) => showCupertinoDialog(
+  //   context: context,
+  //   builder: (context) => this,
+  //   barrierLabel: barrierLabel,
+  //   useRootNavigator: useRootNavigator,
+  //   barrierDismissible: barrierDismissible,
+  //   routeSettings: routeSettings,
+  // );
 
+  ///底部弹窗
+  void toShowModalBottomSheet({
+    required BuildContext context,
+    Color? backgroundColor,
+    double? elevation,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    Color? barrierColor,
+    bool isScrollControlled = false,
+    bool useRootNavigator = false,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    RouteSettings? routeSettings,
+    AnimationController? transitionAnimationController,
+  }) => showModalBottomSheet(
+    context: context,
+    builder: (context) => this,
+    backgroundColor: backgroundColor,
+    elevation: elevation,
+    shape: shape,
+    clipBehavior: clipBehavior,
+    barrierColor: barrierColor,
+    isScrollControlled: isScrollControlled,
+    useRootNavigator: useRootNavigator,
+    isDismissible: isDismissible,
+    enableDrag: enableDrag,
+    routeSettings: routeSettings,
+    transitionAnimationController: transitionAnimationController,
+  );
+
+  ///正面弹窗
+  void toShowDialog({
+    required BuildContext context,
+    bool barrierDismissible = true,
+    Color? barrierColor = Colors.black54,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
+  }) => showDialog(
+    context: context,
+    builder: (context) => this,
+    barrierColor: barrierColor,
+    barrierDismissible: barrierDismissible,
+    barrierLabel: barrierLabel,
+    useSafeArea: useSafeArea,
+    routeSettings: routeSettings,
+  );
+
+  ConstrainedBox toConstrainedBox({
+    Key? key,
+    required BoxConstraints constraints,
+  }) => ConstrainedBox(
+    key: key,
+    constraints: constraints,
+    child: this,
+  );
 
   /// 时间选择器
   void showBottomPicker({
     required BuildContext context,
-    double? height,
+    double? height = 300,
     required Widget child,
     required void callback(String title)}) {
 
@@ -99,7 +172,7 @@ extension WidgetExt on Widget {
     final actionTitles = ['取消', '确定'];
 
     Container(
-      height: height ?? 300,
+      height: height,
       // color: Color.fromARGB(255, 255, 255, 255),
       color: Colors.white,
       child: Column(
@@ -133,13 +206,16 @@ extension WidgetExt on Widget {
             ),
           ],),
           Container(
-            height: 216,
+            // height: (height ?? 300) - kCupertinoButtonHeight,
             color: Colors.white,
             child: child,
-          ),
+          ).expanded(),
         ],
       ),
-    ).toShowCupertinoModalPopup(context: context);
+    )
+        .toShowModalBottomSheet(context: context)
+    ;
+    
   }
 
   /// 时间选择器
@@ -202,7 +278,7 @@ extension WidgetExt on Widget {
           ),
         ],
       ),
-    ).toShowCupertinoModalPopup(context: context);
+    ).toShowModalBottomSheet(context: context);
   }
 
 
@@ -214,7 +290,8 @@ extension WidgetExt on Widget {
 
     int selectedIndex = 0;
 
-    showBottomPicker(context: context,
+    showBottomPicker(
+        context: context,
         child: CupertinoPicker(
           backgroundColor: Colors.white,
           itemExtent: 30,
@@ -236,3 +313,77 @@ extension DateTimeExt on DateTime {
 
 }
 
+extension ScrollViewExt on ScrollView {
+  CupertinoScrollbar addCupertinoScrollbar({
+    Key? key,
+    ScrollController? controller,
+    bool isAlwaysShown = false,
+    double thickness = CupertinoScrollbar.defaultThickness,
+    thicknessWhileDragging = CupertinoScrollbar.defaultThicknessWhileDragging,
+    Radius radius = CupertinoScrollbar.defaultRadius,
+    radiusWhileDragging = CupertinoScrollbar.defaultRadiusWhileDragging,
+    ScrollNotificationPredicate? notificationPredicate,
+  }) =>
+      CupertinoScrollbar(
+        key: key,
+        child: this,
+        controller: controller,
+        isAlwaysShown: isAlwaysShown,
+        thickness: thickness,
+        radius: radius,
+        notificationPredicate: notificationPredicate ?? defaultScrollNotificationPredicate,
+      );
+}
+
+
+
+extension ConstrainedBoxExt on ConstrainedBox {
+  SingleChildScrollView toSingleChildScrollView({
+    Key? key,
+    scrollDirection,
+    reverse,
+    padding,
+    primary,
+    physics,
+    controller,
+    dragStartBehavior,
+    clipBehavior,
+    restorationId,
+    keyboardDismissBehavior,
+
+  }) => SingleChildScrollView(
+    key: key,
+    scrollDirection: scrollDirection,
+    reverse: reverse,
+    padding: padding,
+    primary: primary,
+    physics: physics,
+    controller: controller,
+    child: this,
+    dragStartBehavior: dragStartBehavior,
+    clipBehavior: clipBehavior,
+    restorationId: restorationId,
+    keyboardDismissBehavior: keyboardDismissBehavior,
+  );
+}
+
+
+extension ListTileExt on ListTile {
+
+  ///添加分割符
+  Widget addBottomSeparator({
+    EdgeInsets inset = const EdgeInsets.symmetric(horizontal:10),
+    double height = 0.5,
+    Color color = const Color(0xffeeeeee),
+  }) {
+    return Container(
+      margin: inset,
+      decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(width: height, color: color),
+          )
+      ),
+      child: this,
+    );
+  }
+}

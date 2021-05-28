@@ -7,6 +7,7 @@ import 'package:fluttertemplet/ThirdPage.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'DartExpand/ActionSheet_extension.dart';
+import 'DartExpand/Widget_extension.dart';
 
 
 class PageViewDemoPage extends StatefulWidget {
@@ -63,6 +64,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
 
   Widget buildPageView(BuildContext context) {
     return PageView(
+      scrollDirection: Axis.horizontal,
       pageSnapping: true,
       onPageChanged: (index){
         print('当前为第$index页');
@@ -120,7 +122,9 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
                 Navigator.pop(context);
               },
             ),
-          ).show(context);
+          )
+              .toShowCupertinoModalPopup(context: context)
+          ;
         }
         break;
     }

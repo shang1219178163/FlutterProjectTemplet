@@ -8,9 +8,8 @@ import 'BasicWidget/CheckBoxChooseWidget.dart';
 import 'BasicWidget/CheckListChooseWidget.dart';
 import 'BasicWidget/RadioBoxChooseWidget.dart';
 import 'BasicWidget/RadioListChooseWidget.dart';
+import 'DartExpand/Widget_extension.dart';
 import 'DartExpand/AlertDialog_extension.dart';
-
-
 
 class AlertDialogDemoPage extends StatefulWidget {
 
@@ -25,7 +24,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
   var titles = ["iOS默认风格", "安卓风格", "进度条",
                 "进度环", "流水布局", "单选列表",
                 "多选列表", "单选菜单", "多选菜单",
-                "性别选择",];
+                "性别选择", "自定义", "aboutDialog",];
 
   final title = "新版本 v${2.1}";
   final message = """
@@ -91,8 +90,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -114,8 +113,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -133,8 +132,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -148,7 +147,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
 
           CupertinoAlertDialog(
             title: Text("支付方式 RadioListChooseWidget"),
-            content: RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); },),
+            content: RadioListChooseWidget(models: list, index: 1, canScroll: false, callback: (Object index) { DDLog(index); }, ),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
@@ -158,8 +157,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -173,7 +172,14 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
 
           CupertinoAlertDialog(
             title: Text("支付方式 CheckListChooseWidget"),
-            content: CheckListChooseWidget(models: list, indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },),
+            content: CheckListChooseWidget(
+              models: list,
+              indexs: Set.from([0]),
+              canScroll: false,
+              callback: (Set<int> indexs) {
+                DDLog(indexs);
+                },
+            ),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
@@ -183,8 +189,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -202,8 +208,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -221,8 +227,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
 
@@ -240,11 +246,73 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               Navigator.pop(context);
             }, child: Text(e),)).toList()
             ,
-          )
-              .show(context);
+          ).toShowCupertinoDialog(context: context);
+              // .toShowDialog(context);
         }
         break;
-      default:
+
+      case 10:
+        {
+          showGeneralDialog(
+              context: context,
+              barrierDismissible:true,
+              barrierLabel: 'barrierLabel',
+              transitionDuration: Duration(milliseconds: 200),
+              pageBuilder: (
+                BuildContext context,
+                Animation<double> animation,
+                Animation<double> secondaryAnimation) {
+              return Center(
+                child: Container(
+                  height: 300,
+                  width: 250,
+                  color: Colors.white,
+                  // child: TextButton(
+                  //   child: Text("button"),
+                  //   onPressed: () { DDLog("button"); },
+                  // ),
+                  child: CheckBoxChooseWidget(titles: titles, indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },)
+
+                )
+                    .decorated(color: Color(0xff7AC1E7), shape: BoxShape.circle)
+                ,
+              );
+            });
+      }
+        break;
+    case 11:
+    {
+      final message = "如果发出声音是危险的，那就保持沉默; "
+          "如果自觉无力发光，那就别去照亮别人。 "
+          "但是——不要习惯了黑暗就为黑暗辩护; "
+          "不要为自己的苟且而得意洋洋; 不要嘲讽那些比自己更勇敢、更有热量的人们。 "
+          "我们可以卑微如尘土，不可扭曲如蛆虫。 "
+          "——曼德拉《漫漫人生路》";
+      showAboutDialog(
+        context: context,
+        // applicationIcon: FlutterLogo(size: 50,),
+        applicationName: '应用程序',
+        applicationVersion: '1.0.0',
+        applicationLegalese: message,
+        children: <Widget>[
+          Container(
+            height: 30,
+            color: Colors.red,
+          ),
+          Container(
+            height: 30,
+            color: Colors.blue,
+          ),
+          Container(
+            height: 30,
+            color: Colors.green,
+          )
+        ],
+      );
+
+    }
+    break;
+    default:
         showCupertinoAlertDialog();
         break;
     }
@@ -262,8 +330,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         Navigator.pop(context);
       }, child: Text(e),)).toList()
       ,
-    )
-        .show(context)
+    ).toShowCupertinoDialog(context: context);
+        // .toShowDialog(context)
     ;
   }
 
@@ -272,15 +340,12 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         title: Text(title),
         content: Text(message).textAlignment(TextAlign.start),
         actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
-          // if (["Cancel", "取消"].contains(e)) {
-          //   Navigator.pop(context);
-          // }
           DDLog(e);
           Navigator.pop(context);
         }, child: Text(e),)).toList()
         ,
-      )
-          .show(context)
+      ).toShowCupertinoDialog(context: context);
+          // .toShowDialog(context: context)
       ;
   }
 

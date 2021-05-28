@@ -51,7 +51,6 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                   // ),
                   // );
                   final snackBar = buildSnackBar(context);
-
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
                 child: Text('显示SnackBar'),

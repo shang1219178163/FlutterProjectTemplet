@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/FTRouter.dart';
+import 'package:fluttertemplet/APPRouter.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/BasicWidget/AppUpgradeWidget.dart';
 import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
+import 'APPDrawerMenuPage.dart';
+import 'APPUserCenterPage.dart';
 import 'CupertinoTabScaffoldDemoPage.dart';
 import 'DartExpand/PopupMenuButton_extension.dart';
 import 'DartExpand/AlertDialog_extension.dart';
@@ -75,8 +77,8 @@ class MyApp extends StatelessWidget {
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       // initialRoute: "/MyHomePage",
       // routes: kRoutes,
-      initialRoute: FTRouter.homePage,
-      routes: FTRouter.routes,
+      initialRoute: APPRouter.homePage,
+      routes: APPRouter.routes,
       // routes: {
     //     "/": (context) => MyHomePage(),
     //     "/TwoPage": (context) => TwoPage(),
@@ -97,7 +99,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
-  final pages = [WidgetListPage(), SecondPage(), TabBarDemo(), ListPageController(), FirstPage()];
+  final pages = [WidgetListPage(), SecondPage(), TabBarDemo(), ListPageController(), APPUserCenterPage()];
 
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(
@@ -148,7 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      // drawer: MyDrawer(),
+      drawer: APPDrawerMenuPage(),
+
       // appBar: buildAppBar(),
       bottomNavigationBar: BottomNavigationBar(
         items: bottomNavItems,

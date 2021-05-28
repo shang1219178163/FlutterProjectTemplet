@@ -1,3 +1,12 @@
+//
+//  AppUpdateItemModel.dart
+//  fluttertemplet
+//
+//  Created by shang on 5/19/21 5:34 PM.
+//  Copyright © 5/19/21 shang. All rights reserved.
+//
+
+
 
 ///升级模型
 class AppUpdateItemModel {

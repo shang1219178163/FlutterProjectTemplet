@@ -8,7 +8,7 @@ import 'BasicWidget/UpdateAppNewCard.dart';
 
 import 'NNListWidgetPage.dart';
 import 'mockData/mock_data.dart';
-import 'package:fluttertemplet/FTRouter.dart';
+import 'package:fluttertemplet/APPRouter.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -46,15 +46,19 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
 
 var list = [
-  [FTRouter.iconsListPage, "flutter 系统 Icons", ],
-  [FTRouter.alertDialogDemoPage, "AlertDialog", ],
-  [FTRouter.alertSheetDemoPage, "AlertSheet", ],
-  [FTRouter.gridViewDemoPage, "GridView", ],
-  [FTRouter.pageViewDemoPage, "PageView", ],
-  [FTRouter.snackBarDemoPage, "SnackBar", ],
-  [FTRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
-  [FTRouter.pickerDemoPage, "pickerDemoPage", ],
-  [FTRouter.datePickerPage, "DatePickerPage", ],
+  [APPRouter.iconsListPage, "flutter 系统 Icons", ],
+  [APPRouter.alertDialogDemoPage, "AlertDialog", ],
+  [APPRouter.alertSheetDemoPage, "AlertSheet", ],
+  [APPRouter.gridViewDemoPage, "GridView", ],
+  [APPRouter.pageViewDemoPage, "PageView", ],
+  [APPRouter.snackBarDemoPage, "SnackBar", ],
+  [APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
+  [APPRouter.pickerDemoPage, "pickerDemoPage", ],
+  [APPRouter.datePickerPage, "DatePickerPage", ],
+  [APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ],
+  [APPRouter.progressHudDemoPage, "progressHudDemoPage", ],
+  [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
+  [APPRouter.flutterSlidableDemoPage, "flutterSlidableDemoPage", ],
 
 ];
 
