@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/BasicWidget/PageControllerWidget.dart';
+import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/mockData/mock_data.dart';
+import 'package:fluttertemplet/routes/APPRouter.dart';
 
-import 'BasicWidget/TableCellWidget.dart';
-import 'BasicWidget/UpdateAppCard.dart';
-import 'BasicWidget/UpdateAppNewCard.dart';
+import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
-import 'NNListWidgetPage.dart';
-import 'mockData/mock_data.dart';
-import 'package:fluttertemplet/APPRouter.dart';
+import 'package:fluttertemplet/mockData/mock_data.dart';
+import 'package:fluttertemplet/routes/APPRouter.dart';
 
 class WidgetListPage extends StatefulWidget {
 

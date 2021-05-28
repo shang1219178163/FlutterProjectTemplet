@@ -1,32 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluttertemplet/BasicWidget/WebViewPage.dart';
-import 'APPNotFoundPage.dart';
-import 'AppSettingsPage.dart';
-import 'CupertinoTabScaffoldDemoPage.dart';
-import 'LocalNotifationDemoPage.dart';
-import 'PickerDemoPage.dart';
-import 'ProgressHudDemoPage.dart';
-import 'ShowSearchDemoPage.dart';
-import 'TextFieldDemoPage.dart';
-import 'TextlessPage.dart';
+import 'package:fluttertemplet/basicWidget/WebViewPage.dart';
+import 'package:fluttertemplet/Pages/APPNotFoundPage.dart';
+import 'package:fluttertemplet/Pages/AppSettingsPage.dart';
+import 'package:fluttertemplet/Pages/FirstPage.dart';
+import 'package:fluttertemplet/Pages/FourthPage.dart';
+import 'package:fluttertemplet/Pages/IconsListPage.dart';
+import 'package:fluttertemplet/Pages/SecondPage.dart';
+import 'package:fluttertemplet/Pages/ThirdPage.dart';
+import 'package:fluttertemplet/Pages/WidgetListPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/AlertDialogDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/AlertSheetDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/CupertinoTabScaffoldDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/GridViewDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/LocalNotifationDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/PageViewDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/SnackBarDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/TextFieldDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/flutterSlidableDemoPage.dart';
+import 'package:fluttertemplet/Pages/textlessPage.dart';
+import 'package:fluttertemplet/main.dart';
 
-import 'flutterSlidableDemoPage.dart';
-import 'main.dart';
-import 'AlertDialogDemoPage.dart';
-import 'AlertSheetDemoPage.dart';
-import 'BasicWidget/WebViewPage.dart';
-import 'FirstPage.dart';
-import 'FourthPage.dart';
-import 'GridViewDemoPage.dart';
-import 'IconsListPage.dart';
-import 'PageViewDemoPage.dart';
-import 'SecondPage.dart';
-import 'SnackBarDemoPage.dart';
-import 'TabBarDemoPage.dart';
-import 'ThirdPage.dart';
-import 'WidgetListPage.dart';
 
 
 ///https://www.jianshu.com/p/b9d6ec92926f

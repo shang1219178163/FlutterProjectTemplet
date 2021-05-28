@@ -5,7 +5,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
   
-part 'notice_model.g.dart';
+
 @JsonSerializable()
   class NoticeModel extends Object with _$NoticeModelSerializerMixin{
 

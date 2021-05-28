@@ -1,58 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/APPRouter.dart';
+import 'package:fluttertemplet/routes/APPRouter.dart';
+import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
+import 'package:fluttertemplet/Pages/SecondPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-import 'package:fluttertemplet/BasicWidget/AppUpgradeWidget.dart';
-import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
-import 'APPDrawerMenuPage.dart';
-import 'APPUserCenterPage.dart';
-import 'CupertinoTabScaffoldDemoPage.dart';
-import 'DartExpand/PopupMenuButton_extension.dart';
-import 'DartExpand/AlertDialog_extension.dart';
+import 'Pages/APPDrawerMenuPage.dart';
+import 'Pages/APPUserCenterPage.dart';
+import 'package:fluttertemplet/dartExpand/PopupMenuButton_extension.dart';
+import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
 
-import 'package:fluttertemplet/FirstPage.dart';
-import 'package:fluttertemplet/SecondPage.dart';
-import 'package:fluttertemplet/ThirdPage.dart';
-import 'package:fluttertemplet/FourthPage.dart';
-import 'package:fluttertemplet/TextlessPage.dart';
+import 'Pages/FirstPage.dart';
+import 'Pages/SecondPage.dart';
+import 'Pages/ThirdPage.dart';
+import 'Pages/FourthPage.dart';
+import 'Pages/TextlessPage.dart';
 
-import 'package:fluttertemplet/TabBarDemoPage.dart';
-import 'package:fluttertemplet/ListPageController.dart';
+import 'Pages/ListPageController.dart';
 
-import 'AlertDialogDemoPage.dart';
-import 'AlertSheetDemoPage.dart';
-import 'DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 
-import 'FButtonPage.dart';
-import 'GridViewDemoPage.dart';
-import 'IconsListPage.dart';
 import 'NNListWidgetPage.dart';
-import 'PageViewDemoPage.dart';
-import 'WidgetListPage.dart';
-import 'SnackBarDemoPage.dart';
-
-
-// var kRoutes = <String, WidgetBuilder>{
-//   "/MyHomePage": (context) => MyHomePage(),
-//   "/FirstPage": (context) => FirstPage(),
-//   "/SecondPage": (context) => SecondPage(),
-//   "/ThirdPage": (context) => ThirdPage(),
-//   "/FourthPage": (context) => FourthPage(),
-//   "/TabBarDemo": (context) => TabBarDemo(),
-//   "/WidgetListPage": (context) => WidgetListPage(),
-//   "/textlessPage": (context) => TextlessPage(),
-//   "/AlertDialogDemoPage": (context) => AlertDialogDemoPage(),
-//   "/AlertSheetDemoPage": (context) => AlertSheetDemoPage(),
-//   "/IconsListPage": (context) => IconsListPage(),
-//   "/GridViewDemoPage": (context) => GridViewDemoPage(),
-//   "/PageViewExample": (context) => PageViewDemoPage(),
-//   "/PageViewTabBarWidget": (context) => PageViewTabBarWidget(),
-//   "/SnackBarDemoPage": (context) => SnackBarDemoPage(),
-//   "/CupertinoTabScaffoldDemoPage": (context) => CupertinoTabScaffoldDemoPage(),
-//
-// };
+import 'Pages/ListPageController.dart';
+import 'Pages/WidgetListPage.dart';
+import 'routes/APPRouter.dart';
 
 
 void main() {

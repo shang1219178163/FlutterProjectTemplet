@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'DartExpand/DDLog.dart';
-import 'DartExpand/Navigator_extension.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/Navigator_extension.dart';
 
 class FirstPage extends StatefulWidget {
 

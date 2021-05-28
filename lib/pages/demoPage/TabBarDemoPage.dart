@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'FirstPage.dart';
-import 'SecondPage.dart';
-import 'ThirdPage.dart';
-import 'FourthPage.dart';
-import 'BatterLevelPage.dart';
+import 'package:fluttertemplet/pages/FirstPage.dart';
+import 'package:fluttertemplet/pages/SecondPage.dart';
+import 'package:fluttertemplet/pages/ThirdPage.dart';
+import 'package:fluttertemplet/pages/FourthPage.dart';
+import 'package:fluttertemplet/pages/BatterLevelPage.dart';
 
 class TabBarDemo extends StatelessWidget {
   @override

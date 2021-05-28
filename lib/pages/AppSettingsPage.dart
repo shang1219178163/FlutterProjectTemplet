@@ -10,7 +10,7 @@
 // 设置
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'DartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
 
 
 class AppSettingsPage extends StatefulWidget{

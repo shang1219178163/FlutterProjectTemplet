@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/BasicWidget/DefaultCellCard.dart';
-import 'BasicWidget/TableCellWidget.dart';
-import 'BasicWidget/UpdateAppCard.dart';
-import 'BasicWidget/UpdateAppNewCard.dart';
+import 'package:fluttertemplet/basicWidget/DefaultCellCard.dart';
+import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
-import 'package:fluttertemplet/Model/UserModel.dart';
-import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
-import 'mockData/mock_data.dart';
+import 'Model/UserModel.dart';
+import 'Model/AppUpdateItemModel.dart';
+import 'package:fluttertemplet/mockData/mock_data.dart';
 
 class NNListWidgetPage extends StatefulWidget {
 

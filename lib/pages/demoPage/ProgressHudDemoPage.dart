@@ -8,11 +8,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/APPRouter.dart';
+import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'DartExpand/DDLog.dart';
+import 'package:fluttertemplet/DartExpand/DDLog.dart';
 
 final GlobalKey _globalKey = GlobalKey();
 
