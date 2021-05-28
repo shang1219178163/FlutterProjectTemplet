@@ -2,10 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluttertemplet/BasicWidget/WebViewPage.dart';
+import 'APPNotFoundPage.dart';
+import 'AppSettingsPage.dart';
 import 'CupertinoTabScaffoldDemoPage.dart';
+import 'LocalNotifationDemoPage.dart';
 import 'PickerDemoPage.dart';
+import 'ProgressHudDemoPage.dart';
+import 'ShowSearchDemoPage.dart';
+import 'TextFieldDemoPage.dart';
 import 'TextlessPage.dart';
 
+import 'flutterSlidableDemoPage.dart';
 import 'main.dart';
 import 'AlertDialogDemoPage.dart';
 import 'AlertSheetDemoPage.dart';
@@ -23,25 +30,35 @@ import 'WidgetListPage.dart';
 
 
 ///https://www.jianshu.com/p/b9d6ec92926f
-class FTRouter {
-  static const homePage = 'app://MyHomePage';
-  static const firstPage = 'app://FirstPage';
-  static const secondPage = 'app://SecondPage';
-  static const thirdPage = 'app://ThirdPage';
-  static const fourthPage = 'app://FourthPage';
-  static const tabBarDemo = 'app://TabBarDemo';
-  static const widgetListPage = 'app://WidgetListPage';
-  static const textlessPage = 'app://TextlessPage';
-  static const alertDialogDemoPage = 'app://AlertDialogDemoPage';
-  static const alertSheetDemoPage = 'app://AlertSheetDemoPage';
-  static const iconsListPage = 'app://IconsListPage';
-  static const gridViewDemoPage = 'app://GridViewDemoPage';
-  static const pageViewDemoPage = 'app://PageViewDemoPage';
-  static const pageViewTabBarWidget = 'app://PageViewTabBarWidget';
-  static const snackBarDemoPage = 'app://SnackBarDemoPage';
-  static const cupertinoTabScaffoldDemo = 'app://CupertinoTabScaffoldDemoPage';
-  static const pickerDemoPage = 'app://PickerDemoPage';
-  static const datePickerPage = 'app://DatePickerPage';
+class APPRouter {
+  static const NotFound = '/APPNotFoundPage';
+
+  static const homePage = '/MyHomePage';
+  static const firstPage = '/FirstPage';
+  static const secondPage = '/SecondPage';
+  static const thirdPage = '/ThirdPage';
+  static const fourthPage = '/FourthPage';
+  static const tabBarDemo = '/TabBarDemo';
+  static const widgetListPage = '/WidgetListPage';
+  static const textlessPage = '/TextlessPage';
+  static const alertDialogDemoPage = '/AlertDialogDemoPage';
+  static const alertSheetDemoPage = '/AlertSheetDemoPage';
+  static const iconsListPage = '/IconsListPage';
+  static const gridViewDemoPage = '/GridViewDemoPage';
+  static const pageViewDemoPage = '/PageViewDemoPage';
+  static const pageViewTabBarWidget = '/PageViewTabBarWidget';
+  static const snackBarDemoPage = '/SnackBarDemoPage';
+  static const cupertinoTabScaffoldDemo = '/CupertinoTabScaffoldDemoPage';
+  static const pickerDemoPage = '/PickerDemoPage';
+  static const datePickerPage = '/DatePickerPage';
+  static const showSearchDemoPage = '/ShowSearchDemoPage';
+  static const localNotifationDemoPage = '/LocalNotifationDemoPage';
+  static const progressHudDemoPage = '/ProgressHudDemoPage';
+  static const toastContext = '/ToastContext';
+  static const toastNoContext = '/ToastNoContext';
+  static const textFieldDemoPage = '/TextFieldDemoPage';
+  static const flutterSlidableDemoPage = '/FlutterSlidableDemoPage';
+  static const settingsPage = '/AppSettingsPage';
 
 
   static final routes = <String, WidgetBuilder>{
@@ -63,6 +80,15 @@ class FTRouter {
     cupertinoTabScaffoldDemo: (context) => CupertinoTabScaffoldDemoPage(),
     pickerDemoPage: (context) => PickerDemoPage(),
     datePickerPage: (context) => DatePickerPage(),
+    localNotifationDemoPage: (context) => LocalNotifationDemoPage(),
+    progressHudDemoPage: (context) => ProgressHudDemoPage(),
+    toastContext: (context) => ToastContext(),
+    toastNoContext: (context) => ToastNoContext(),
+    textFieldDemoPage: (context) => TextFieldDemoPage(),
+    flutterSlidableDemoPage: (context) => FlutterSlidableDemoPage(),
+    NotFound: (context) => APPNotFoundPage(),
+    settingsPage: (context) => AppSettingsPage(),
+
   };
 
 //  Widget _router(String url, dynamic params) {
@@ -145,25 +171,30 @@ class FTRouter {
     return page;
   }
 
+  static int countAs(String string, {Object? args,}) {
+    int total = string.length;
+    int diff = string.replaceAll("A", "").length;
+    return total - diff;
+  }
 
 
+  APPRouter.push(BuildContext context, String url, {Object? args,}) {
+    if (url.startsWith('https://') || url.startsWith('http://')) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return WebViewPage(url: url, params: args);
+      }));
+      return;
+    }
+    
+    if (!APPRouter.routes.keys.contains(url)){
+      Navigator.pushNamed(context, APPRouter.NotFound, arguments: args);
+      return;
+    }
+    Navigator.pushNamed(context, url, arguments: args);
+    return;
 
-//  void push(BuildContext context, String url, dynamic params) {
-//    Navigator.push(context, MaterialPageRoute(builder: (context) {
-//      return _getPage(url, params);
-//    }));
-//  }
-
-  // Router.pushNoParams(BuildContext context, String url) {
-  //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //     return _getPage(url, null);
-  //   }));
-  // }
-
-  // ignore: unnecessary_question_mark
-  FTRouter.push(BuildContext context, String url, dynamic params) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return _getPage(url, params);
-    }));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //   return _getPage(url, args);
+    // }));
   }
 }
