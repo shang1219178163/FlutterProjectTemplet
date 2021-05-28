@@ -8,15 +8,24 @@ import 'package:fluttertemplet/DartExpand/DDLog.dart';
 
 extension NavigatorExt on Navigator{
 
-  static void popPage(BuildContext context, [StackTrace? current]){
+  @optionalTypeArgs
+  static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
     if (!Navigator.canPop(context)) {
-      if (current != null) {
-        DDLog("已经是根页面了！");
-      }
+      DDLog("已经是根页面了！");
       return;
     }
-    Navigator.pop(context);
+    Navigator.of(context).pop<T>(result);
   }
+
+  // static void popPage(BuildContext context, [StackTrace? current]){
+  //   if (!Navigator.canPop(context)) {
+  //     if (current != null) {
+  //       DDLog("已经是根页面了！");
+  //     }
+  //     return;
+  //   }
+  //   Navigator.pop(context);
+  // }
 
   // @optionalTypeArgs
   // static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
@@ -57,77 +66,10 @@ enum ImageAlignment {
 extension TextButtonExt on TextButton{
 
   static TextButton build({
-    required String text,
-    required Widget image,
-    required ImageAlignment imageAlignment,
-    required void callback(String value)}) {
-    switch (imageAlignment) {
-      case ImageAlignment.left:
-        return TextButton(
-          onPressed: () => callback(text),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              image,
-              SizedBox(width: 8),
-              Text(text),
-            ],
-          ),
-        );
-
-      case ImageAlignment.top:
-        return TextButton(
-          onPressed: () => callback(text),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              image,
-              SizedBox(width: 8),
-              Text(text),
-            ],
-          ),
-        );
-
-      case ImageAlignment.right:
-        return TextButton(
-          onPressed: () => callback(text),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(text),
-              SizedBox(width: 8),
-              image,
-            ],
-          ),
-        );
-
-      case ImageAlignment.bottom:
-        return TextButton(
-          onPressed: () => callback(text),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(text),
-              SizedBox(width: 8),
-              image,
-            ],
-          ),
-        );
-    }
-  }
-
-  static TextButton buildNew({
     required Text text,
     required Widget image,
     required ImageAlignment imageAlignment,
+    double? padding = 10,
     required void callback(Text text)}) {
     switch (imageAlignment) {
       case ImageAlignment.left:
@@ -154,7 +96,7 @@ extension TextButtonExt on TextButton{
             mainAxisSize: MainAxisSize.min,
             children: [
               image,
-              SizedBox(width: 8),
+              SizedBox(height: padding),
               text,
             ],
           ),
@@ -184,7 +126,7 @@ extension TextButtonExt on TextButton{
             mainAxisSize: MainAxisSize.min,
             children: [
               text,
-              SizedBox(width: 8),
+              SizedBox(height: padding),
               image,
             ],
           ),

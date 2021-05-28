@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
@@ -7,14 +8,37 @@ import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
 extension ActionSheetExt on BottomSheet{
   ///showModalBottomSheet
-  void show(BuildContext context) {
+  void showModel({
+    required BuildContext context,
+    Color? backgroundColor,
+    double? elevation,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    Color? barrierColor,
+    bool isScrollControlled = false,
+    bool useRootNavigator = false,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    RouteSettings? routeSettings,
+    AnimationController? transitionAnimationController,
+  }) {
     showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) {
-        return this;
-      },
+      builder: (context) => this,
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+      shape: shape,
+      clipBehavior: clipBehavior,
+      barrierColor: barrierColor,
+      isScrollControlled: isScrollControlled,
+      useRootNavigator: useRootNavigator,
+      isDismissible: isDismissible,
+      enableDrag: enableDrag,
+      routeSettings: routeSettings,
+      transitionAnimationController: transitionAnimationController,
     );
   }
+
 
   ///自定义sheet弹窗方法
   static void showModalSheet({
@@ -48,7 +72,7 @@ extension ActionSheetExt on BottomSheet{
             color: Color(0xFFDDDDDD),
           );
         },
-      ),
+      ).addCupertinoScrollbar(),
     );
 
     var list = actionWidgets ?? [listView];
@@ -94,27 +118,43 @@ extension ActionSheetExt on BottomSheet{
 
 extension CupertinoActionSheetExt on CupertinoActionSheet{
   ///showCupertinoModalPopup
-  void show(BuildContext context) {
-    showCupertinoModalPopup(
-      context: context,
-      builder: (BuildContext context) {
-        return this;
-      },
-    );
-  }
-  
+  void toShowCupertinoModalPopup({
+    required BuildContext context,
+    ImageFilter? filter,
+    Color barrierColor = kCupertinoModalBarrierColor,
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+    bool? semanticsDismissible,
+    RouteSettings? routeSettings,
+  }) => showCupertinoModalPopup(
+    context: context,
+    builder: (context) => this,
+    filter: filter,
+    barrierColor: barrierColor,
+    barrierDismissible: barrierDismissible,
+    semanticsDismissible: semanticsDismissible,
+    routeSettings: routeSettings,
+  );
 }
 
 
 extension CupertinoDatePickerExt on CupertinoDatePicker{
   ///showCupertinoModalPopup
-  void show(BuildContext context) {
-    showCupertinoModalPopup(
-      context: context,
-      builder: (BuildContext context) {
-        return this;
-      },
-    );
-  }
-
+  void toShowCupertinoModalPopup({
+    required BuildContext context,
+    ImageFilter? filter,
+    Color barrierColor = kCupertinoModalBarrierColor,
+    bool barrierDismissible = true,
+    bool useRootNavigator = true,
+    bool? semanticsDismissible,
+    RouteSettings? routeSettings,
+  }) => showCupertinoModalPopup(
+    context: context,
+    builder: (context) => this,
+    filter: filter,
+    barrierColor: barrierColor,
+    barrierDismissible: barrierDismissible,
+    semanticsDismissible: semanticsDismissible,
+    routeSettings: routeSettings,
+  );
 }

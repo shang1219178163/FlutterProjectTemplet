@@ -1,3 +1,11 @@
+//
+//  AlertDialog_extension.dart
+//  fluttertemplet
+//
+//  Created by shang on 5/17/21 3:57 PM.
+//  Copyright © 5/17/21 shang. All rights reserved.
+//
+
 
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -6,19 +14,28 @@ import 'package:styled_widget/styled_widget.dart';
 
 
 extension AlertDialogExt on AlertDialog{
+
   ///showDialog
-  void show(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return this;
-      },
-    );
-  }
+  void toShowCupertinoDialog({
+    required BuildContext context,
+    bool barrierDismissible = true,
+    Color? barrierColor = Colors.black54,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
+  }) => showDialog(
+    context: context,
+    builder: (context) => this,
+    barrierColor: barrierColor,
+    barrierDismissible: barrierDismissible,
+    barrierLabel: barrierLabel,
+    useSafeArea: useSafeArea,
+    routeSettings: routeSettings,
+  );
 
   ///按平台弹出不同样式
-  static void showAlert({
+  static void toShowAlert({
     required BuildContext context,
     Widget? title,
     Widget? content,
@@ -35,7 +52,7 @@ extension AlertDialogExt on AlertDialog{
           }, child: Text(e),)).toList()
           ,
         )
-            .show(context);
+        .toShowCupertinoDialog(context: context);
 
         break;
       default:
@@ -48,18 +65,16 @@ extension AlertDialogExt on AlertDialog{
           }, child: Text(e),)).toList()
           ,
         )
-            .show(context);
+            .toShowCupertinoDialog(context: context);
         break;
     }
-
   }
 }
-
 
 extension CupertinoAlertDialogExt on CupertinoAlertDialog{
 
   ///showDialog
-  void show(BuildContext context){
+  void toShowCupertinoDialog({required BuildContext context}){
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -68,6 +83,5 @@ extension CupertinoAlertDialogExt on CupertinoAlertDialog{
       },
     );
   }
-
 }
 

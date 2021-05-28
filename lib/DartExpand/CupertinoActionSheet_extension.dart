@@ -7,58 +7,58 @@ import 'DDLog.dart';
 
 extension CupertinoActionSheetExt on CupertinoActionSheet{
 
-  void show(BuildContext context) {
-    showCupertinoModalPopup(
-      context: context,
-      builder: (BuildContext context) {
-        return this;
-      },
-    );
-  }
+  // void show(BuildContext context) {
+  //   showCupertinoModalPopup(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return this;
+  //     },
+  //   );
+  // }
 
-  static void showModalPopup({
-    required BuildContext context,
-    required String title,
-    String? message,
-    required List<String> actionTitles,
-    List<Widget>? actionWidgets,
-    required void Function(String value) callback}){
-    CupertinoActionSheet(
-        title: Text(title),
-        message: Text(message ?? "", textAlign: TextAlign.center,),
-        actions: actionWidgets ?? actionTitles.map((e) => CupertinoActionSheetAction(onPressed: (){
-          callback(e);
-          Navigator.pop(context);
-        }, child: Text(e),)).toList(),
-        cancelButton: CupertinoActionSheetAction(
-          child: Text('取消'),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+  // static void showModalPopup({
+  //   required BuildContext context,
+  //   required String title,
+  //   String? message,
+  //   required List<String> actionTitles,
+  //   List<Widget>? actionWidgets,
+  //   required void Function(String value) callback}){
+  //   CupertinoActionSheet(
+  //       title: Text(title),
+  //       message: Text(message ?? "", textAlign: TextAlign.center,),
+  //       actions: actionWidgets ?? actionTitles.map((e) => CupertinoActionSheetAction(onPressed: (){
+  //         callback(e);
+  //         Navigator.pop(context);
+  //       }, child: Text(e),)).toList(),
+  //       cancelButton: CupertinoActionSheetAction(
+  //         child: Text('取消'),
+  //         onPressed: () {
+  //           Navigator.pop(context);
+  //         },
+  //       ),
+  //
+  //   ).show(context)
+  //   ;
+  // }
 
-    ).show(context)
-    ;
-  }
-
-  static void showModalPopupWidgets({
-    required BuildContext context,
-    required String title,
-    String? message,
-    required List<Widget> actionWidgets}){
-    CupertinoActionSheet(
-      title: Text(title),
-      message: Text(message ?? "", textAlign: TextAlign.center,),
-      actions: actionWidgets,
-      cancelButton: CupertinoActionSheetAction(
-        child: Text('取消'),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    ).show(context)
-    ;
-  }
+  // static void showModalPopupWidgets({
+  //   required BuildContext context,
+  //   required String title,
+  //   String? message,
+  //   required List<Widget> actionWidgets}){
+  //   CupertinoActionSheet(
+  //     title: Text(title),
+  //     message: Text(message ?? "", textAlign: TextAlign.center,),
+  //     actions: actionWidgets,
+  //     cancelButton: CupertinoActionSheetAction(
+  //       child: Text('取消'),
+  //       onPressed: () {
+  //         Navigator.pop(context);
+  //       },
+  //     ),
+  //   ).show(context)
+  //   ;
+  // }
 
   // static void showModalPopupWidgets({
   //   required BuildContext context,

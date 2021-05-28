@@ -30,7 +30,14 @@ extension PopupMenuButtonExt on PopupMenuButton{
           checked: checkedIdx == list.indexOf(value),
           value: "${list.indexOf(value)}",
         )).toList(),
-        onSelected: callback);
+        onSelected: callback,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: Colors.grey.withAlpha(70)
+          ),
+          borderRadius: BorderRadius.circular(5)
+      ),
+    );
   }
 
   /// itemBuilder: <CheckedPopupMenuItem<String>>[]
@@ -59,6 +66,12 @@ extension PopupMenuButtonExt on PopupMenuButton{
     return PopupMenuButton<String>(
       itemBuilder: (BuildContext context) => items,
       onSelected: callback,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: Colors.grey.withAlpha(70)
+          ),
+          borderRadius: BorderRadius.circular(5)
+      ),
     );
   }
   /// itemBuilder: <PopupMenuEntry<String>>[]
@@ -75,8 +88,14 @@ extension PopupMenuButtonExt on PopupMenuButton{
     }
 
     return PopupMenuButton<String>(
-        itemBuilder: (BuildContext context) => list,
-        onSelected: callback,
+      itemBuilder: (BuildContext context) => list,
+      onSelected: callback,
+      shape: RoundedRectangleBorder(
+          side: BorderSide(
+              color: Colors.grey.withAlpha(70)
+          ),
+          borderRadius: BorderRadius.circular(5)
+      ),
     );
   }
 
