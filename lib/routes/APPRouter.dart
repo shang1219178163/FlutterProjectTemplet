@@ -30,7 +30,7 @@ import 'package:get/get.dart';
 
 ///https://www.jianshu.com/p/b9d6ec92926f
 class APPRouter {
-  static const NotFound = '/APPNotFoundPage';
+  static const notFound = '/APPNotFoundPage';
 
   static const homePage = '/MyHomePage';
   static const firstPage = '/FirstPage';
@@ -56,7 +56,7 @@ class APPRouter {
   static const toastContext = '/ToastContext';
   static const toastNoContext = '/ToastNoContext';
   static const textFieldDemoPage = '/TextFieldDemoPage';
-  static const flutterSlidableDemoPage = '/FlutterSlidableDemoPage';
+  static const slidableDemoPage = '/FlutterSlidableDemoPage';
   static const settingsPage = '/AppSettingsPage';
 
 
@@ -84,8 +84,8 @@ class APPRouter {
     toastContext: (context) => ToastContext(),
     toastNoContext: (context) => ToastNoContext(),
     textFieldDemoPage: (context) => TextFieldDemoPage(),
-    flutterSlidableDemoPage: (context) => FlutterSlidableDemoPage(),
-    NotFound: (context) => APPNotFoundPage(),
+    slidableDemoPage: (context) => FlutterSlidableDemoPage(),
+    notFound: (context) => APPNotFoundPage(),
     settingsPage: (context) => AppSettingsPage(),
 
   };
@@ -170,9 +170,9 @@ class APPRouter {
     return page;
   }
 
-  static int countAs(String string, {Object? args,}) {
-    int total = string.length;
-    int diff = string.replaceAll("A", "").length;
+  static int countAs(String text, {Object? args,}) {
+    int total = text.length;
+    int diff = text.replaceAll("A", "").length;
     return total - diff;
   }
 
@@ -186,10 +186,12 @@ class APPRouter {
     }
     
     if (!APPRouter.routes.keys.contains(url)){
-      Get.toNamed(APPRouter.NotFound, arguments: args);
+      // Navigator.pushNamed(context, APPRouter.NotFound, arguments: args);
+      Get.toNamed(APPRouter.notFound, arguments: args);
       return;
     }
-    Get.toNamed(url, arguments: args);
+    Navigator.pushNamed(context, url, arguments: args);
+    // Get.toNamed(url, arguments: args);
     return;
 
     // Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -204,10 +206,10 @@ class AppPage{
   static const INITIAL = APPRouter.homePage;
 
   static final List<GetPage> routes = [
-     GetPage(
-       name: APPRouter.homePage,
-       page: () => MyHomePage(),
-     ),
+     // GetPage(
+     //   name: APPRouter.homePage,
+     //   page: () => MyHomePage(),
+     // ),
 
      GetPage(
        name: APPRouter.homePage,
@@ -325,12 +327,12 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.flutterSlidableDemoPage,
+       name: APPRouter.slidableDemoPage,
        page: () => FlutterSlidableDemoPage(),
      ),
 
      GetPage(
-       name: APPRouter.NotFound,
+       name: APPRouter.notFound,
        page: () => APPNotFoundPage(),
      ),
 

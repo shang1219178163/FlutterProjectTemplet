@@ -50,20 +50,22 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
 
 var list = [
-  [APPRouter.iconsListPage, "flutter 系统 Icons", ],
-  [APPRouter.alertDialogDemoPage, "AlertDialog", ],
-  [APPRouter.alertSheetDemoPage, "AlertSheet", ],
-  [APPRouter.gridViewDemoPage, "GridView", ],
-  [APPRouter.pageViewDemoPage, "PageView", ],
-  [APPRouter.snackBarDemoPage, "SnackBar", ],
-  [APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
-  [APPRouter.pickerDemoPage, "pickerDemoPage", ],
-  [APPRouter.datePickerPage, "DatePickerPage", ],
-  [APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ],
-  [APPRouter.progressHudDemoPage, "progressHudDemoPage", ],
-  [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
-  [APPRouter.flutterSlidableDemoPage, "flutterSlidableDemoPage", ],
-
+    [APPRouter.iconsListPage, "flutter 系统 Icons", ],
+    [APPRouter.alertDialogDemoPage, "AlertDialog", ],
+    [APPRouter.alertDialogDemoPage, "alertDialogDemoPage"],
+    [APPRouter.alertSheetDemoPage, "AlertSheet", ],
+    [APPRouter.gridViewDemoPage, "GridView", ],
+    [APPRouter.pageViewDemoPage, "PageView", ],
+    [APPRouter.snackBarDemoPage, "SnackBar", ],
+    [APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
+    [APPRouter.pickerDemoPage, "pickerDemoPage", ],
+    [APPRouter.datePickerPage, "DatePickerPage", ],
+    [APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ],
+    [APPRouter.progressHudDemoPage, "progressHudDemoPage", ],
+    [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
+    [APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ],
+    [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
+    [APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ],
 ];
 
 List<PageWidgetModel> pages = [
