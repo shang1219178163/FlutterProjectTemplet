@@ -42,7 +42,7 @@ dependencies:
   flutter_slidable: ^0.6.0
   fluttertoast: ^8.0.7
 
-  flutter_local_notifications: ^5.0.0+4
+#  flutter_local_notifications: ^5.0.0+4
   url_launcher: ^6.0.4
 
   json_serializable: ^4.1.3
