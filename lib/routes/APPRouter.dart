@@ -24,6 +24,7 @@ import 'package:fluttertemplet/Pages/demoPage/TextFieldDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/flutterSlidableDemoPage.dart';
 import 'package:fluttertemplet/Pages/textlessPage.dart';
 import 'package:fluttertemplet/main.dart';
+import 'package:get/get.dart';
 
 
 
@@ -185,14 +186,158 @@ class APPRouter {
     }
     
     if (!APPRouter.routes.keys.contains(url)){
-      Navigator.pushNamed(context, APPRouter.NotFound, arguments: args);
+      Get.toNamed(APPRouter.NotFound, arguments: args);
       return;
     }
-    Navigator.pushNamed(context, url, arguments: args);
+    Get.toNamed(url, arguments: args);
     return;
 
     // Navigator.push(context, MaterialPageRoute(builder: (context) {
     //   return _getPage(url, args);
     // }));
   }
+}
+
+
+class AppPage{
+
+  static const INITIAL = APPRouter.homePage;
+
+  static final List<GetPage> routes = [
+     GetPage(
+       name: APPRouter.homePage,
+       page: () => MyHomePage(),
+     ),
+
+     GetPage(
+       name: APPRouter.homePage,
+       page: () => MyHomePage(),
+     ),
+
+     GetPage(
+       name: APPRouter.firstPage,
+       page: () => FirstPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.secondPage,
+       page: () => SecondPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.thirdPage,
+       page: () => ThirdPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.fourthPage,
+       page: () => FourthPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.tabBarDemo,
+       page: () => TabBarDemo(),
+     ),
+
+     GetPage(
+       name: APPRouter.widgetListPage,
+       page: () => WidgetListPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.textlessPage,
+       page: () => TextlessPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.alertDialogDemoPage,
+       page: () => AlertDialogDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.alertSheetDemoPage,
+       page: () => AlertSheetDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.iconsListPage,
+       page: () => IconsListPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.gridViewDemoPage,
+       page: () => GridViewDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.pageViewDemoPage,
+       page: () => PageViewDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.pageViewTabBarWidget,
+       page: () => PageViewTabBarWidget(),
+     ),
+
+     GetPage(
+       name: APPRouter.snackBarDemoPage,
+       page: () => SnackBarDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.cupertinoTabScaffoldDemo,
+       page: () => CupertinoTabScaffoldDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.pickerDemoPage,
+       page: () => PickerDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.datePickerPage,
+       page: () => DatePickerPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.localNotifationDemoPage,
+       page: () => LocalNotifationDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.progressHudDemoPage,
+       page: () => ProgressHudDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.toastContext,
+       page: () => ToastContext(),
+     ),
+
+     GetPage(
+       name: APPRouter.toastNoContext,
+       page: () => ToastNoContext(),
+     ),
+
+     GetPage(
+       name: APPRouter.textFieldDemoPage,
+       page: () => TextFieldDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.flutterSlidableDemoPage,
+       page: () => FlutterSlidableDemoPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.NotFound,
+       page: () => APPNotFoundPage(),
+     ),
+
+     GetPage(
+       name: APPRouter.settingsPage,
+       page: () => AppSettingsPage(),
+     ),
+  ];
+
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:get/get.dart';
 
 class APPDrawerMenuPage extends StatefulWidget {
 
@@ -79,7 +80,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
             minVerticalPadding: 0,
             onTap: (){
               Navigator.pop(context);
-              Navigator.pushNamed(context, 'notice');
+              Get.toNamed('notice');
             },
           ),
           Divider(),
@@ -93,7 +94,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
             minVerticalPadding: 0,
             onTap: (){
               Navigator.pop(context);
-              Navigator.pushNamed(context, 'setting');
+              Get.toNamed('setting');
             },
           ),
           Divider(),

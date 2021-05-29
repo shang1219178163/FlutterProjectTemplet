@@ -9,6 +9,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -131,7 +132,7 @@ class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
               // Navigator.of(context).push(MaterialPageRoute(
               //   builder: (context) => ToastNoContext(),
               // ));
-              Navigator.pushNamed(context, APPRouter.toastNoContext, arguments: "array");
+              Get.toNamed(APPRouter.toastNoContext, arguments: "array");
             },
             child: Text("Flutter Toast No Context"),
           ),
@@ -143,7 +144,7 @@ class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
               // Navigator.of(context).push(MaterialPageRoute(
               //   builder: (context) => ToastContext(),
               // ));
-              Navigator.pushNamed(context, APPRouter.toastContext, arguments: "array");
+              Get.toNamed(APPRouter.toastContext, arguments: "array");
 
             },
             child: Text("Flutter Toast Context"),

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
+import 'package:get/get.dart';
 
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
@@ -134,7 +135,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
         {
           // List<String> list = List.generate(100, (i) => 'item $i');
           // showSearch(context: context, delegate: CustomSearchDelegate(list: list, select: ""));
-          Navigator.pushNamed(context, APPRouter.showSearchDemoPage, arguments: []);
+          Get.toNamed(APPRouter.showSearchDemoPage, arguments: []);
         }
         break;
 

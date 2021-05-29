@@ -4,6 +4,7 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
 import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'Pages/APPDrawerMenuPage.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your aptplication.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Templet',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -71,7 +72,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
-  final pages = [WidgetListPage(), SecondPage(), TabBarDemo(), ListPageController(), APPUserCenterPage()];
+  final pages = [
+    WidgetListPage(),
+    SecondPage(),
+    TabBarDemo(),
+    ListPageController(),
+    APPUserCenterPage()
+  ];
 
   final List<BottomNavigationBarItem> bottomNavItems = [
     BottomNavigationBarItem(

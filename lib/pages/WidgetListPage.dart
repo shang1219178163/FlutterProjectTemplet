@@ -12,6 +12,7 @@ import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
+import 'package:get/get.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -78,8 +79,9 @@ List<PageWidgetModel> pages = [
         title: Text(array[1]),
         subtitle: Text(array[0]),
         onTap: (){
-          Navigator.pushNamed(context, array[0], arguments: array);
           // DDLog(array);
+          Get.toNamed(array[0], arguments: array);
+          // Get.toNamed(array[0], arguments: array);
         },
       );
     },
@@ -94,30 +96,5 @@ List<PageWidgetModel> pages = [
   ),
   ),
 
-  // PageWidgetModel(title: '功能列表', widget: ListView.separated(
-  //   itemCount: kAliPayList.length,
-  //   itemBuilder: (context, index) {
-  //     final model = kAliPayList[index];
-  //     return ListTile(
-  //       title: Text(model.title),
-  //       subtitle: Text(model.content),
-  //       onTap: (){
-  //         if (model.obj != null) {
-  //           Navigator.pushNamed(context, model.obj!, arguments: model.title);
-  //         }
-  //         DDLog(model.title);
-  //       },
-  //     );
-  //   },
-  //   separatorBuilder: (context, index) {
-  //     return Divider(
-  //       height: .5,
-  //       indent: 15,
-  //       endIndent: 15,
-  //       color: Color(0xFFDDDDDD),
-  //     );
-  //   },
-  // ),
-  // ),
 ];
 

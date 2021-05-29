@@ -4,6 +4,7 @@ import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:fluttertemplet/pages/FirstPage.dart';
 import 'package:fluttertemplet/pages/SecondPage.dart';
 import 'package:fluttertemplet/pages/ThirdPage.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
@@ -113,7 +114,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
               onPressed: () {
                 DDLog(e);
                 Navigator.pop(context);
-                Navigator.pushNamed(context, "/PageViewTabBarWidget", arguments: value);
+                Get.toNamed("/PageViewTabBarWidget", arguments: value);
               },
             ),).toList(),
             cancelButton: CupertinoActionSheetAction(
