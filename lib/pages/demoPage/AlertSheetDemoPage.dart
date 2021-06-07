@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
 
-import 'package:fluttertemplet/basicWidget/CheckListChooseWidget.dart';
-import 'package:fluttertemplet/basicWidget/CheckBoxChooseWidget.dart';
-import 'package:fluttertemplet/basicWidget/RadioListChooseWidget.dart';
+import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
+import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
+import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
 import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 import 'ShowSearchDemoPage.dart';
@@ -107,16 +107,16 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       case 5:
         {
           final list = [
-            RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
-            RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
-            RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+            ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+            ChioceModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
           ];
 
           CupertinoActionSheet(
             title: Text(title),
             message: Text(message),
             actions: [
-              CheckListChooseWidget(models: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
+              MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
             ],
             cancelButton: CupertinoActionSheetAction(
               child: Text('取消'),
@@ -239,16 +239,16 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
   void showModalPopupRadioListChoose(){
       final list = [
-        RadioListTileModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
-        RadioListTileModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
-        RadioListTileModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+        ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
+        ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
+        ChioceModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
       ];
 
       CupertinoActionSheet(
         title: Text(title),
         message: Text(message),
         actions: [
-          RadioListChooseWidget(models: list, index: 1, callback: (Object index) { DDLog(index); }, canScroll: false,),
+          SingleChoiceListWidget(items: list, index: 1, callback: (Object index) { DDLog(index); }, canScroll: false,),
         ],
         cancelButton: CupertinoActionSheetAction(
           child: Text('取消'),
