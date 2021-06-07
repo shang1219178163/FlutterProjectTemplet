@@ -13,6 +13,7 @@ import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
+import 'package:tuple/tuple.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -48,25 +49,38 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   }
 }
 
-
 var list = [
-    [APPRouter.iconsListPage, "flutter 系统 Icons", ],
-    [APPRouter.alertDialogDemoPage, "AlertDialog", ],
-    [APPRouter.alertDialogDemoPage, "alertDialogDemoPage"],
-    [APPRouter.alertSheetDemoPage, "AlertSheet", ],
-    [APPRouter.gridViewDemoPage, "GridView", ],
-    [APPRouter.pageViewDemoPage, "PageView", ],
-    [APPRouter.snackBarDemoPage, "SnackBar", ],
-    [APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ],
-    [APPRouter.pickerDemoPage, "pickerDemoPage", ],
-    [APPRouter.datePickerPage, "DatePickerPage", ],
-    [APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ],
-    [APPRouter.progressHudDemoPage, "progressHudDemoPage", ],
-    [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
-    [APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ],
-    [APPRouter.textFieldDemoPage, "textFieldDemoPage", ],
-    [APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ],
+  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
+  Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
+  Tuple2(APPRouter.alertDialogDemoPage, "alertDialogDemoPage"),
+  Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
+  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+  Tuple2(APPRouter.pageViewDemoPage, "PageView", ),
+  Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
+  Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
+  Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
+  Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
+  Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
+  Tuple2(APPRouter.progressHudDemoPage, "progressHudDemoPage", ),
+  Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
+  Tuple2(APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ),
+  Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
+  Tuple2(APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ),
+  Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
+  Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
+
+  Tuple2(APPRouter.loginPage, "LoginPage", ),
+  Tuple2(APPRouter.loginPage2, "LoginPage2", ),
+  Tuple2(APPRouter.dateTableDemoPage, "dateTableDemoPage", ),
+  Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
+
+  Tuple2(APPRouter.rangerSliderDemoPage, "rangerSliderDemoPage", ),
+  Tuple2(APPRouter.draggableScrollableSheetDemoPage, "draggableScrollableSheetDemoPage", ),
+  Tuple2(APPRouter.progressIndicatorDemoPage, "ProgressIndicatorDemoPage", ),
+
+
 ];
+
 
 List<PageWidgetModel> pages = [
   // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
@@ -76,14 +90,19 @@ List<PageWidgetModel> pages = [
   PageWidgetModel(title: '功能列表', widget: ListView.separated(
     itemCount: list.length,
     itemBuilder: (context, index) {
-      final array = list[index];
+      final e = list[index];
       return ListTile(
-        title: Text(array[1]),
-        subtitle: Text(array[0]),
+        title: Text(e.item2),
+        subtitle: Text(e.item2),
+        trailing: Icon(Icons.keyboard_arrow_right_rounded),
+        dense: true,
         onTap: (){
-          // DDLog(array);
-          Get.toNamed(array[0], arguments: array);
-          // Get.toNamed(array[0], arguments: array);
+          // Get.toNamed(e.item1, arguments: e);
+          if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+            Get.offNamed(e.item1, arguments: e.item1);
+          } else {
+            Get.toNamed(e.item1, arguments: e.item1);
+          }
         },
       );
     },
