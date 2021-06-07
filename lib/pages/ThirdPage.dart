@@ -1,60 +1,141 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
 
-class ThirdPage extends StatelessWidget {
+
+class ThirdPage extends StatefulWidget {
+
+  final String? title;
+  ThirdPage({ Key? key, this.title}) : super(key: key);
+
+  @override
+  _ThirdPageState createState() => _ThirdPageState();
+}
+
+class _ThirdPageState extends State<ThirdPage> {
+
+  final items = List<String>.generate(20, (i) => 'Item ${i}');
+
+  var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             // leading: Icon(Icons.backspace_outlined)
             // // .gestures(onTap: ()=> DDLog("back")
             //     .gestures(onTap: (){ Navigator.pop(context); }),
-            title: Text("$this"),
+            title: Text(widget.title ?? "$widget"),
           ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'You have pushed the button this many times:',
-                ),
-                Text(
-                  '_counter',
-                  style: Theme.of(context).textTheme.headline4,
-                ),
-                Icon(Icons.beach_access, color: Colors.orange)
-                    .padding(all: 10)
-                    .decorated(color: Color(0xff7AC1E7), shape: BoxShape.circle)
-                    .padding(all: 15)
-                    .decorated(color: Color(0xffE8F2F7), shape: BoxShape.circle)
-                    .padding(all: 20)
-                    .card(
-                  elevation: 10,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                )
-                    .alignment(Alignment.center)
-                    .backgroundColor(Color(0xffEBECF1))
-                // .gestures(onTap: () => print('${this}_${DateTime.now()} RaisedButton pressed'))
-                // .gestures(onTap: () => logger.info('${this}_${DateTime.now()} RaisedButton pressed'))
-                // .gestures(onTap: () => print('${DateTime.now()} RaisedButton pressed'))
-                 .gestures(onTap: () => DDLog('RaisedButton pressed'))
+          body: buildListView(context),
+    );
+  }
 
-              ],
-            ),
+
+  Widget buildListView(BuildContext context) {
+
+    return ListView.separated(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+
+        return Dismissible(
+          key: Key(item),
+          child: ListTile(title: Text("$item"),
+            selected: (selectedIndex == index),
+            trailing: selectedIndex == index ? Icon(Icons.check) : null,
+            onTap: (){
+              setState(() {
+                selectedIndex = index;
+              });
+              DDLog([selectedIndex, index]);
+            }
+            ,
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => DDLog('floatingActionButton'),
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
+          onDismissed: (direction) {
+            setState(() {
+              items.removeAt(index);
+            });
+
+            if (direction == DismissDirection.startToEnd) {
+              DDLog("Add to favorite");
+            } else {
+              DDLog('Remove item');
+            }
+          },
+          background: buildFavorite(context),
+          secondaryBackground: buildDelete(context),
+          confirmDismiss: (DismissDirection direction) async {
+              return buildConfirmDismiss(context);
+          },
+        );
+      },
+      separatorBuilder: (context, index) {
+        return Divider(
+          height: .5,
+          indent: 15,
+          endIndent: 15,
+          color: Color(0xFFDDDDDD),
+        );
+      },
+    );
+  }
+
+
+  Widget buildFavorite(BuildContext context) {
+    return
+      Container(
+        color: Colors.green,
+        child: Padding(
+          padding: EdgeInsets.all(15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Icon(Icons.favorite, color: Colors.white),
+              Text('Move to favorites', style: TextStyle(color: Colors.white)),
+            ],
+          ),
+        ),
+      );
+  }
+
+  Widget buildDelete(BuildContext context) {
+    return
+    Container(
+      color: Colors.red,
+      child: Padding(
+        padding: EdgeInsets.all(15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Icon(Icons.delete, color: Colors.white),
+            Text('Move to trash', style: TextStyle(color: Colors.white)),
+          ],
         ),
       ),
+    );
+  }
+
+  Future<bool?> buildConfirmDismiss(BuildContext context) async {
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Delete Confirmation"),
+          content: const Text("Are you sure you want to delete this item?"),
+          actions: <Widget>[
+            TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text("Delete")
+            ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: const Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
