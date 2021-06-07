@@ -1,5 +1,5 @@
 //
-//  RadioListChooseWidget.dart
+//  SingleChoiceListWidget.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/28/21 8:31 PM.
@@ -10,12 +10,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
 
-class RadioListTileModel{
+class ChioceModel{
 
   /// The primary content of the list tile.
   ///
@@ -42,7 +42,7 @@ class RadioListTileModel{
   /// Normally, this property is left to its default value, false.
   final bool selected;
 
-  const RadioListTileModel({
+  const ChioceModel({
     required this.title,
     required this.subtitle,
     required this.secondary,
@@ -51,26 +51,26 @@ class RadioListTileModel{
 }
 
 ///单选列表
-class RadioListChooseWidget extends StatefulWidget {
-  var models = <RadioListTileModel>[];
+class SingleChoiceListWidget extends StatefulWidget {
+  var items = <ChioceModel>[];
   Object index = 0;
   void Function(Object index) callback;
 
-  bool canScroll = false;
+  bool canScroll = true;
 
-  RadioListChooseWidget({
-    required this.models,
+  SingleChoiceListWidget({
+    required this.items,
     required this.index,
     required this.canScroll,
     required this.callback,
   });
 
   @override
-  _RadioListChooseWidgetState createState() => _RadioListChooseWidgetState();
+  _SingleChoiceListWidgetState createState() => _SingleChoiceListWidgetState();
 }
 
 
-class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
+class _SingleChoiceListWidgetState extends State<SingleChoiceListWidget> {
 
   @override
   void initState() {
@@ -82,15 +82,14 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
   Widget build(BuildContext context) {
     return widget.canScroll ? buildListViewSeparated(context) : buildColumn(context);
   }
-
   ///单选 Column
   Widget buildColumn(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: widget.models.map((e) => RadioListTile(
-          value: widget.models.indexOf(e),
+        children: widget.items.map((e) => RadioListTile(
+          value: widget.items.indexOf(e),
           onChanged: (value) {
             _changeValue(value);
           },
@@ -98,31 +97,31 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
           title: e.title,
           subtitle: e.subtitle,
           secondary: e.secondary,
-          selected: widget.index == widget.models.indexOf(e),
+          selected: widget.index == widget.items.indexOf(e),
         ),).toList(),
       ),
     );
   }
 
-
-  ///单选滚动列表
   Widget buildListViewSeparated(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: ListView.separated(
         padding: EdgeInsets.all(0),
-        itemCount: widget.models.length,
+        itemCount: widget.items.length,
         cacheExtent: 10,
         itemBuilder: (context, index) {
-          final e = widget.models[index];
-          return ListTile(
+          final e = widget.items[index];
+          return RadioListTile(
+            value: widget.items.indexOf(e),
+            onChanged: (value) {
+              _changeValue(value);
+            },
+            groupValue: widget.index,
             title: e.title,
             subtitle: e.subtitle,
-            trailing: index == widget.index ? Icon(Icons.check) : null,
-            selected: widget.index == widget.models.indexOf(e),
-            onTap: () {
-              _changeValue(index);
-            },
+            secondary: e.secondary,
+            selected: widget.index == widget.items.indexOf(e),
           );
         },
         separatorBuilder: (context, index) {
@@ -136,6 +135,37 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
       ).addCupertinoScrollbar(),
     );
   }
+  ///单选滚动列表
+  // Widget buildListViewSeparated(BuildContext context) {
+  //   return Material(
+  //     color: Colors.transparent,
+  //     child: ListView.separated(
+  //       padding: EdgeInsets.all(0),
+  //       itemCount: widget.items.length,
+  //       cacheExtent: 10,
+  //       itemBuilder: (context, index) {
+  //         final e = widget.items[index];
+  //         return ListTile(
+  //           title: e.title,
+  //           subtitle: e.subtitle,
+  //           trailing: index == widget.index ? Icon(Icons.check) : null,
+  //           selected: widget.index == widget.items.indexOf(e),
+  //           onTap: () {
+  //             _changeValue(index);
+  //           },
+  //         );
+  //       },
+  //       separatorBuilder: (context, index) {
+  //         return Divider(
+  //           height: .5,
+  //           indent: 15,
+  //           endIndent: 15,
+  //           color: Color(0xFFDDDDDD),
+  //         );
+  //       },
+  //     ).addCupertinoScrollbar(),
+  //   );
+  // }
 
   void _changeValue(Object? value){
     if (value == null) {
@@ -145,6 +175,6 @@ class _RadioListChooseWidgetState extends State<RadioListChooseWidget> {
       widget.index = value;
     });
     widget.callback(widget.index);
-    // DDLog(widget.selectedIndex);
+    // DDLog(widget.index);
   }
 }

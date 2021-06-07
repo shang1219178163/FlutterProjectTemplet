@@ -3,21 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/DartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-import 'RadioListChooseWidget.dart';
+import 'SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
 
-///单选列表
-class CheckListChooseWidget extends StatefulWidget {
+///多选列表
+class MultipleChioceListWidget extends StatefulWidget {
   var indexs = Set<int>();
-  var models = <RadioListTileModel>[];
+  var items = <ChioceModel>[];
   void Function(Set<int> indexs) callback;
 
   final Color? containerColor;
   bool canScroll = false;
 
-  CheckListChooseWidget({
-    required this.models,
+  MultipleChioceListWidget({
+    required this.items,
     required this.indexs,
     required this.canScroll,
     required this.callback,
@@ -25,10 +25,10 @@ class CheckListChooseWidget extends StatefulWidget {
   });
 
   @override
-  _CheckListChooseWidgetState createState() => _CheckListChooseWidgetState();
+  _MultipleChioceListWidgetState createState() => _MultipleChioceListWidgetState();
 }
 
-class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
+class _MultipleChioceListWidgetState extends State<MultipleChioceListWidget> {
 
   @override
   Widget build(BuildContext context) {
@@ -39,17 +39,17 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
     return Material(
         child: Container(
             color: widget.containerColor ?? Colors.black.withAlpha(35),
-            height: 73 * widget.models.length.toDouble(), // Change as per your requirement
+            height: 73 * widget.items.length.toDouble(), // Change as per your requirement
             width: 0, // Change as per your requirement
             child: ListView(
               physics: NeverScrollableScrollPhysics(),//禁止滑动
-              children: widget.models.map((e) => ListTile(
+              children: widget.items.map((e) => ListTile(
                 title: e.title,
                 subtitle: e.subtitle,
-                trailing: widget.indexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : null,
-                selected: widget.indexs.contains(widget.models.indexOf(e)),
+                trailing: widget.indexs.contains(widget.items.indexOf(e)) ? Icon(Icons.check) : null,
+                selected: widget.indexs.contains(widget.items.indexOf(e)),
                 onTap: (){
-                  _changeValue(widget.models.indexOf(e));
+                  _changeValue(widget.items.indexOf(e));
                 },
               ),
               ).toList(),
@@ -63,15 +63,15 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
       color: Colors.transparent,
       child: ListView.separated(
         padding: EdgeInsets.all(0),
-        itemCount: widget.models.length,
+        itemCount: widget.items.length,
         cacheExtent: 10,
         itemBuilder: (context, index) {
-          final e = widget.models[index];
+          final e = widget.items[index];
           return ListTile(
             title: e.title,
             subtitle: e.subtitle,
-            trailing: widget.indexs.contains(widget.models.indexOf(e)) ? Icon(Icons.check) : null,
-            selected: widget.indexs.contains(widget.models.indexOf(e)),
+            trailing: widget.indexs.contains(widget.items.indexOf(e)) ? Icon(Icons.check) : null,
+            selected: widget.indexs.contains(widget.items.indexOf(e)),
             onTap: () {
               DDLog(e);
               _changeValue(index);
@@ -89,6 +89,20 @@ class _CheckListChooseWidgetState extends State<CheckListChooseWidget> {
       ).addCupertinoScrollbar(),
     );
   }
+
+
+  // List<Widget> buildChildren(BuildContext context) {
+  //   return widget.items.map((e) => CheckboxListTile(
+  //     title: e.title,
+  //     subtitle: e.subtitle,
+  //     selected: widget.indexs.contains(widget.items.indexOf(e)),
+  //     value: widget.indexs.contains(widget.items.indexOf(e)),
+  //     secondary: widget.indexs.contains(widget.items.indexOf(e)) ? Icon(Icons.check) : null,
+  //     onChanged: (bool? value) {
+  //       _changeValue(widget.items.indexOf(e));
+  //     },
+  //   )).toList();
+  // }
 
   void _changeValue(int value) {
     setState(() {

@@ -1,5 +1,5 @@
 //
-//  CheckBoxChooseWidget.dart
+//  MultipleChioceWrapWidget.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/17/21 10:42 AM.
@@ -14,25 +14,25 @@ import 'package:styled_widget/styled_widget.dart';
 
 
 
-///单多选菜单
-class CheckBoxChooseWidget extends StatefulWidget {
+///多选菜单
+class MultipleChioceWrapWidget extends StatefulWidget {
 
-  var indexs = Set<int>();
-  var titles = [];
+  Set<int> indexs = Set<int>();
+  List<Widget> titles = [];
   void Function(Set<int> indexs) callback;
 
-  CheckBoxChooseWidget({
+  MultipleChioceWrapWidget({
     required this.titles,
     required this.indexs,
     required this.callback,
   });
 
   @override
-  _CheckBoxChooseWidgetState createState() => _CheckBoxChooseWidgetState();
+  _MultipleChioceWrapWidgetState createState() => _MultipleChioceWrapWidgetState();
 }
 
 
-class _CheckBoxChooseWidgetState extends State<CheckBoxChooseWidget> {
+class _MultipleChioceWrapWidgetState extends State<MultipleChioceWrapWidget> {
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _CheckBoxChooseWidgetState extends State<CheckBoxChooseWidget> {
         },
           // icon: widget.selectedIndexs.contains(widget.titles.indexOf(e)) ? Icon(Icons.radio_button_checked_outlined) : Icon(Icons.radio_button_unchecked_outlined),
           icon: widget.indexs.contains(widget.titles.indexOf(e)) ? Icon(Icons.check_box_outlined) : Icon(Icons.check_box_outline_blank),
-          label: Text(e),
+          label: e,
           // style: OutlinedButton.styleFrom(
           //   backgroundColor: Colors.transparent,
           //   primary: widget.selectedIndexs.contains(widget.titles.indexOf(e)) ? Theme.of(context).primaryColor : Colors.black87,

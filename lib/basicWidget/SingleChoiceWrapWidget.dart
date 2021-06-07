@@ -5,23 +5,23 @@ import 'package:styled_widget/styled_widget.dart';
 
 
 ///单选菜单
-class RadioBoxChooseWidget extends StatefulWidget {
+class SingleChoiceWrapWidget extends StatefulWidget {
   int index = 0;
   var titles = [];
   void Function(int index) callback;
 
-  RadioBoxChooseWidget({
+  SingleChoiceWrapWidget({
     required this.titles,
     required this.index,
     required this.callback,
   });
 
   @override
-  _RadioBoxChooseWidgetState createState() => _RadioBoxChooseWidgetState();
+  _SingleChoiceWrapWidgetState createState() => _SingleChoiceWrapWidgetState();
 }
 
 
-class _RadioBoxChooseWidgetState extends State<RadioBoxChooseWidget> {
+class _SingleChoiceWrapWidgetState extends State<SingleChoiceWrapWidget> {
 
   @override
   Widget build(BuildContext context) {
