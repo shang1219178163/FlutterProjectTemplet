@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/main.dart';
 
 
 ///多页面左右滚动容器模型
@@ -37,6 +38,16 @@ class PageControllerWidget extends StatelessWidget {
           isScrollable: this.tabScrollable,
           tabs: this.pages.map((item) => Tab(text: item.title)).toList(),
         ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+            icon: Icon(Icons.menu, color: Colors.white), //自定义图标
+            onPressed: () {
+              // 打开抽屉菜单
+              // Scaffold.of(context).openDrawer();
+              kScaffoldKey.currentState!.openDrawer();
+            },
+          );
+        }),
       ),
       body: TabBarView(
         controller: this.tabController,
