@@ -1,12 +1,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
-import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/ActionSheet_extension.dart';
+import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+
+import 'ListTileDemoPage.dart';
 
 class PickerDemoPage extends StatefulWidget {
 
@@ -35,7 +38,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments[1]),
+          title: Text("$widget"),
         ),
         // body: buildWrap(context).padding(all: 10)
         body: buildGridView(titles)
@@ -164,7 +167,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
       case 4:
         {
           widget.showPickerList(context: context,
-              children: List.generate(10, (index) => Text('选择_$index')),
+              children: List.generate(10, (index) => Text('item_$index')),
               callback: (index, title){
                 DDLog([index, title]);
               });
@@ -257,6 +260,14 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
 
       case 8:
         {
+          widget.showBottomPicker(context: context,
+            height: 600,
+            child: ListTileDemoPage(),
+            callback: (String title) {
+              DDLog(title);
+            },
+          );
+
 
         }
         break;
@@ -265,6 +276,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
         break;
     }
   }
+
 
   void _showDatePicker({
     required BuildContext context,

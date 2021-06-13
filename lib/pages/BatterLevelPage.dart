@@ -6,9 +6,9 @@ import 'package:fluttertemplet/dartExpand/Navigator_extension.dart';
 
 
 class BatterLevelPage extends StatefulWidget {
-  BatterLevelPage({Key? key, required this.title}) : super(key: key);
+  BatterLevelPage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _BatterLevelPageState createState() => _BatterLevelPageState();
@@ -49,7 +49,7 @@ class _BatterLevelPageState extends State<BatterLevelPage> {
                 }),
           // Here we take the value from the BatterLevelPage object that was created by
         // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+        title: Text(widget.title ?? "$widget"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

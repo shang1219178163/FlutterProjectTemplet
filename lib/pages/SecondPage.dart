@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
 import 'package:fluttertemplet/DartExpand/PopupMenuButton_extension.dart';
 // import 'package:fluttertemplet/navigator_extension.dart';
@@ -44,7 +44,7 @@ class _SecondPageState extends State<SecondPage> {
             //           onPressed: (){ NavigatorExt.popPage(context); }
             //           ),
             // // .gestures(onTap: ()=> DDLog("back")
-            title: Text("$this"),
+            title: Text(widget.title ?? "$widget"),
             actions: [
               PopupMenuButtonExt.fromEntryFromJson(
                   json: {"aa": "0",
@@ -65,6 +65,10 @@ class _SecondPageState extends State<SecondPage> {
           ),
           body: Center(
             child: buildListView(context),
+            // child: ColorFiltered(colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
+            //   child: buildListView(context),
+            // ),
+
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => DDLog('floatingActionButton'),
@@ -202,11 +206,10 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 
+  List<bool> _selecteds = [false, false, true];
 
   buildToggleButtons(BuildContext context) {
-    List<bool> _selecteds = [false, false, true];
-    return
-    ToggleButtons(
+    return ToggleButtons(
       isSelected: _selecteds,
       children: <Widget>[
         Icon(Icons.local_cafe),
@@ -216,9 +219,9 @@ class _SecondPageState extends State<SecondPage> {
       onPressed: (index) {
         _selecteds[index] = !_selecteds[index];
         DDLog(_selecteds);
-        // setState(() {
-        //   _selecteds[index] = !_selecteds[index];
-        // });
+        setState(() {
+          _selecteds[index] = !_selecteds[index];
+        });
        },
     );
   }

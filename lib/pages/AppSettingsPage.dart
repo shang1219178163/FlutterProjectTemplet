@@ -22,9 +22,9 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
 
   final titles = [
     '',
-    '用户名', '真实姓名', '手机号', '微信号', 'QQ号', '银行卡', '会员等级',
+    '用户信息', '手机号', '微信号', 'QQ号', '银行卡', '会员等级',
     '',
-    '服务器线路', '版本更新', '清楚缓存', '上次登录时间',
+    '服务器线路', '版本更新', '清楚缓存',
   ];
 
   @override
@@ -110,7 +110,7 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
         setState(() {
           _dropValue = value;
         });
-        },
+      },
     );
   }
 }

@@ -12,7 +12,7 @@
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:styled_widget/styled_widget.dart';
 //
-// import 'package:fluttertemplet/DartExpand/DDLog.dart';
+// import 'package:fluttertemplet/dartExpand/DDLog.dart';
 //
 // class LocalNotifationDemoPage extends StatefulWidget {
 //
@@ -65,7 +65,7 @@
 //
 //     return Scaffold(
 //         appBar: AppBar(
-//           title: Text(arguments[1]),
+//           title: Text(widget.title ?? "$widget"),
 //         ),
 //         body: buildGridView(titles)
 //     );
@@ -193,7 +193,7 @@ class _LocalNotifationDemoPageState extends State<LocalNotifationDemoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments[1]),
+          title: Text(widget.title ?? "$widget"),
         ),
         body: Text(arguments.toString())
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 
@@ -51,19 +51,25 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
 var list = [
   Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
-  Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
-  Tuple2(APPRouter.alertDialogDemoPage, "alertDialogDemoPage"),
-  Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
-  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+  Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.pageViewDemoPage, "PageView", ),
+
+  Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
+  Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
+  Tuple2(APPRouter.reorderableListViewDemoPage, "reorderableListViewDemoPage", ),
+  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+
   Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
   Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
   Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
   Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
+  Tuple2(APPRouter.expandIconExampleState, "expandIconExampleState", ),
+  Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
+  Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
+
+
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
   Tuple2(APPRouter.progressHudDemoPage, "progressHudDemoPage", ),
-  Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
-  Tuple2(APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ),
   Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
   Tuple2(APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ),
   Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
@@ -77,6 +83,11 @@ var list = [
   Tuple2(APPRouter.rangerSliderDemoPage, "rangerSliderDemoPage", ),
   Tuple2(APPRouter.draggableScrollableSheetDemoPage, "draggableScrollableSheetDemoPage", ),
   Tuple2(APPRouter.progressIndicatorDemoPage, "ProgressIndicatorDemoPage", ),
+  Tuple2(APPRouter.appWebViewDemoPage, "appWebViewDemoPage", ),
+  Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
+
+  Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
+  Tuple2(APPRouter.hudProgressDemoWidget, "HudProgressDemoWidget", ),
 
 
 ];

@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 
 final GlobalKey _globalKey = GlobalKey();
 
@@ -49,7 +49,7 @@ class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
     return Scaffold(
       key: _globalKey,
       appBar: AppBar(
-        title: Text(arguments[1]),
+        title: Text(widget.title ?? "$widget"),
       ),
       // body: buildGridView(titles, context)
       // body: buildProgressHUD(context),

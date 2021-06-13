@@ -1,11 +1,11 @@
 // import 'package:flutter/material.dart';
 //⚠️ 自定义 日志打印方法
 
-extension MyObject on Object {
-  printNew(){
-    print("${DateTime.now()}: _${this}_");
-  }
-}
+// extension MyObject on Object {
+//   printNew(){
+//     print("${DateTime.now()}: _${this}_");
+//   }
+// }
 
 // ignore: non_constant_identifier_names
 void DDLog(dynamic obj){

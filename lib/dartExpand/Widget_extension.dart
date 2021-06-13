@@ -7,11 +7,12 @@
 //
 
 
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 const double kCupertinoButtonHeight = 56.0;
@@ -385,5 +386,16 @@ extension ListTileExt on ListTile {
       ),
       child: this,
     );
+  }
+}
+
+
+extension ColorExt on Color{
+
+  static Color random() {
+    return Color.fromRGBO(
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256), 1);
   }
 }

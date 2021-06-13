@@ -4,6 +4,7 @@ import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:fluttertemplet/pages/FirstPage.dart';
 import 'package:fluttertemplet/pages/SecondPage.dart';
 import 'package:fluttertemplet/pages/ThirdPage.dart';
+import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -29,7 +30,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
 4、修复一些软件在使用时自动退出bug;
 """;
 
-  final rightTitles = ["默认"];
+  final rightTitles = ["默认", "done"];
 
   @override
   void initState() {
@@ -47,7 +48,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments[1]),
+          title: Text("$widget"),
             actions: rightTitles.map((e) => TextButton(onPressed: (){
               // DDLog("e");
               _actionTap(context: context, value: e);
@@ -83,14 +84,14 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
               .center()
           ,
         )
-            .decorated(color: Colors.lightGreen)
+            .decorated(color: Colors.yellow)
         ,
         Container(
           child: Text('第2页')
               .center()
           ,
         )
-            .decorated(color: Colors.lightBlue)
+            .decorated(color: Colors.blue)
         ,
       ],
     );
@@ -114,7 +115,8 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
               onPressed: () {
                 DDLog(e);
                 Navigator.pop(context);
-                Get.toNamed("/PageViewTabBarWidget", arguments: value);
+                // Get.toNamed("/PageViewTabBarWidget", arguments: value);
+                Get.to(APPRouter.pageViewTabBarWidget);
               },
             ),).toList(),
             cancelButton: CupertinoActionSheetAction(

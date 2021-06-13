@@ -7,9 +7,11 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'APPDrawerMenuPage.dart';
 import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
@@ -36,7 +38,8 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
               icon: Icon(Icons.menu, color: Colors.white), //自定义图标
               onPressed: () {
                 // 打开抽屉菜单
-                Scaffold.of(context).openDrawer();
+                // Scaffold.of(context).openDrawer();
+                kScaffoldKey.currentState!.openDrawer();
               },
             );
           }),
@@ -44,12 +47,13 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
             IconButton(icon: Icon(Icons.settings),
               color: Colors.white,
               onPressed: (){
-                APPRouter.push(context, APPRouter.settingsPage, args: "setting",);
+                // APPRouter.push(context, APPRouter.settingsPage, args: "setting",);
+                Get.toNamed(APPRouter.settingsPage, arguments: "setting");
               },
             ),
           ],
         ),
-      drawer: APPDrawerMenuPage(),
+      // drawer: APPDrawerMenuPage(),
 
       body: Center(
           child: ListView(
@@ -86,14 +90,17 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
               TextButton(
                 child: Text('登录', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                 onPressed: (){
-                  APPRouter.push(context, 'login');
+                  // APPRouter.push(context, 'login');
+                  // Get.toNamed(APPRouter.loginPage, arguments: "login");
+                  Get.toNamed(APPRouter.loginPage2, arguments: "login");
                 },
               ),
               Text('/', style: TextStyle(fontSize: 20.0,color: Colors.white)),
               TextButton(
                 child: Text('注册', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                 onPressed: (){
-                  APPRouter.push(context, 'register');
+                  // APPRouter.push(context, 'register');
+                  Get.toNamed(APPRouter.signinPage, arguments: "signin");
                 },
               )
             ],

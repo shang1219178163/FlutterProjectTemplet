@@ -4,7 +4,7 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/DartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/DDLog.dart';
 
 import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
@@ -50,7 +50,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments[1]),
+          title: Text("$widget"),
         ),
         body: buildWrap(context).padding(all: 10)
     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 
 class ThirdPage extends StatefulWidget {
@@ -14,10 +16,19 @@ class ThirdPage extends StatefulWidget {
 }
 
 class _ThirdPageState extends State<ThirdPage> {
+  late EasyRefreshController _controller;
+  late ScrollController _scrollController;
 
-  final items = List<String>.generate(20, (i) => 'Item ${i}');
+  var items = List<String>.generate(20, (i) => 'Item ${i}');
 
   var selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = EasyRefreshController();
+    _scrollController = ScrollController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,26 @@ class _ThirdPageState extends State<ThirdPage> {
             //     .gestures(onTap: (){ Navigator.pop(context); }),
             title: Text(widget.title ?? "$widget"),
           ),
-          body: buildListView(context),
+          // body: buildListView(context),
+      body: EasyRefresh(
+        child: buildListView(context),
+        onRefresh: () async {
+          DDLog("onRefresh");
+        },
+        onLoad: () async {
+          DDLog("onLoad");
+          await Future.delayed(Duration(seconds: 2), () {
+            if (mounted) {
+              setState(() {
+                items.addAll(List<String>.generate(
+                    20, (i) => 'Item ${items.length + i}'));
+              });
+              _controller.finishLoad(noMore: (items.length >= 80));
+            }
+          });
+        },
+      ),
+
     );
   }
 

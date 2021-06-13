@@ -52,7 +52,7 @@ class _TextFieldDemoPageState extends State<TextFieldDemoPage> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(arguments[1]),
+          title: Text(widget.title ?? "$widget"),
         ),
         body: buildListView(context, list),
         floatingActionButton: FloatingActionButton(
