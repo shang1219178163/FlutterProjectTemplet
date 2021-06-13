@@ -78,7 +78,7 @@ class NNListOneWidget extends StatelessWidget {
       cacheExtent: 180,
       itemCount: list.length,
       itemBuilder: (context, index) {
-        final data = list[index] as UserModel;
+        final data = list[index];
         return DefaultCellCard(
           titleText: Text(
             data.title,
@@ -123,60 +123,3 @@ class NNListOneWidget extends StatelessWidget {
   }
 }
 
-
-// class NNListWidget extends StatelessWidget {
-//
-//   final List<UserModel> list;
-//   final Widget Function(UserModel data) itemBlock;
-//
-//   const NNListWidget({
-//     Key? key,
-//     required this.list,
-//     required this.itemBlock}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView.separated(
-//       itemCount: list.length,
-//       itemBuilder:(context, index) {
-//         return itemBlock(list[index]);
-//       },
-//       separatorBuilder: (context, index) {
-//         return Divider(
-//           height: .5,
-//           indent: 15,
-//           endIndent: 15,
-//           color: Color(0xFFDDDDDD),
-//         );
-//       },
-//     );
-//   }
-// }
-
-// class NNListWidget extends StatelessWidget {
-//
-//   final List<dynamic> list;
-//   final IndexedWidgetBuilder itemBuilder;
-//
-//   const NNListWidget({
-//     Key? key,
-//     required this.list,
-//     required this.itemBuilder}) : super(key: key);
-//
-//     @override
-//     Widget build(BuildContext context) {
-//       return ListView.separated(
-//         itemCount: list.length,
-//         itemBuilder: itemBuilder,
-//         separatorBuilder: (context, index) {
-//           return Divider(
-//             height: .5,
-//             indent: 15,
-//             endIndent: 15,
-//             color: Color(0xFFDDDDDD),
-//           );
-//         },
-//       );
-//     }
-// }
-//
