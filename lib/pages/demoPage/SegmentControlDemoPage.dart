@@ -10,6 +10,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/basicWidget/LineSegmentWidget.dart';
 import 'package:fluttertemplet/dartExpand/DDLog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -106,6 +107,16 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
 
         SizedBox(height: 15),
         buildSlidingSegmentedControl3(context).padding(left: 15, right: 15),
+
+        SizedBox(height: 15),
+        buildLineSegmentControl(null, lineColor: Colors.blue),
+
+        SizedBox(height: 15),
+        buildLineSegmentControl(Colors.white, lineColor: Colors.blue),
+
+        SizedBox(height: 15),
+        buildLineSegmentControl(Colors.black87, lineColor: Colors.white),
+
       ],
     );
   }
@@ -141,7 +152,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         DDLog(groupValue);
       },
       groupValue: groupValue,
-      borderColor: Colors.white,
+      // borderColor: Colors.white,
     );
   }
 
@@ -208,4 +219,40 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
     );
   }
 
+  Widget buildLineSegmentControl(Color? backgroundColor, {required Color lineColor}) {
+    final Map<int, Widget> children = const <int, Widget>{
+      0: Text("Item 111", style: TextStyle(fontSize: 15), textAlign: TextAlign.center,),
+      1: Text("Item 222", style: TextStyle(fontSize: 15), textAlign: TextAlign.center,),
+      2: Text("Item 333", style: TextStyle(fontSize: 15), textAlign: TextAlign.center,),
+    };
+
+    if (backgroundColor != null) {
+      return LineSegmentControl(
+        groupValue: groupValue,
+        children: children,
+        backgroundColor: backgroundColor,
+        lineColor: lineColor,
+        onValueChanged: (i){
+          setState(() {
+            groupValue = int.parse("$i");
+          });
+          DDLog(groupValue);
+        },
+      );
+    }
+    return LineSegmentControl(
+      groupValue: groupValue,
+      children: children,
+      // backgroundColor: backgroundColor,
+      lineColor: lineColor,
+      onValueChanged: (i){
+        setState(() {
+          groupValue = int.parse("$i");
+        });
+        DDLog(groupValue);
+      },
+    );
+  }
+
+  
 }
