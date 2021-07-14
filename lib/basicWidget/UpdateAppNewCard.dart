@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
@@ -22,7 +22,7 @@ class _UpdateAppNewCardState extends State<UpdateAppNewCard> {
   void _changeState() {
     setState(() {
       isShowAll = !isShowAll;
-      DDLog(isShowAll);
+      ddlog(isShowAll);
     });
   }
 
@@ -62,7 +62,7 @@ class _UpdateAppNewCardState extends State<UpdateAppNewCard> {
             padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
             //右边距为10，其余均为0 child: FlatButton(//按钮控件
             child: ElevatedButton(
-              onPressed: () => DDLog('Make a Note'),
+              onPressed: () => ddlog('Make a Note'),
               child: Row(
                 children: [
                   Text("更新"),
@@ -100,7 +100,7 @@ class _UpdateAppNewCardState extends State<UpdateAppNewCard> {
           )
           ,
           ElevatedButton(
-            onPressed: () => DDLog('Make a Note'),
+            onPressed: () => ddlog('Make a Note'),
             child: Row(
               children: [
                 Text("更新"),

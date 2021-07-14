@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
-import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -20,7 +21,8 @@ import 'Pages/TextlessPage.dart';
 
 import 'Pages/ListPageController.dart';
 
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
 
 import 'NNListWidgetPage.dart';
 import 'Pages/ListPageController.dart';
@@ -28,30 +30,43 @@ import 'Pages/WidgetListPage.dart';
 import 'routes/APPRouter.dart';
 
 
-void main() {
+Future<void> main() async {
+  await initServices();
+  // AppInit.catchException(() => runApp(MyApp()));
   runApp(MyApp());
-  // runApp(TabBarDemo());
 }
+
+Future<void> initServices() async {
+  print('starting services ...');
+  // await Get.putAsync(() => GlobalConfigService().init());
+  // await Get.putAsync(SettingsService()).init();
+  print('All services started...');
+}
+
+///全局
+final GlobalKey<NavigatorState> navigatorState = GlobalKey();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your aptplication.
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      key: navigatorState,
       title: 'Flutter Templet',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        // brightness: Brightness.dark,//设置明暗模式为暗色
-        // accentColor: Colors.black,//(按钮）Widget前景色为黑色
-        // primaryColor: Colors.lightBlue,//主色调为青色
-        iconTheme:IconThemeData(color: Colors.yellow),//设置icon主题色为黄色
-        // textTheme: TextTheme(body1: TextStyle(color: Colors.red))//设置文本颜色为红色
-    ),
+      // theme: APPThemeSettings.instance.themeData(),
+      // darkTheme: APPThemeSettings.instance.darkThemeData,
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       // initialRoute: "/MyHomePage",
       // routes: kRoutes,
-      initialRoute: APPRouter.homePage,
-      routes: APPRouter.routes,
+      initialRoute: AppPage.INITIAL,
+      getPages: AppPage.routes,
+      unknownRoute: AppPage.unknownRoute,
+      routingCallback: (routing){
+        if (routing != null) {
+          ddlog([routing.previous, routing.current]);
+        }
+      },
       // routes: {
     //     "/": (context) => MyHomePage(),
     //     "/TwoPage": (context) => TwoPage(),
@@ -59,6 +74,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+final GlobalKey<ScaffoldState> kScaffoldKey = GlobalKey<ScaffoldState>();
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({ Key? key, this.title}) : super(key: key);
@@ -75,8 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
   final pages = [
     WidgetListPage(),
     SecondPage(),
-    TabBarDemo(),
-    ListPageController(),
+    TabBarDemoPage(),
+    ThirdPage(),
+    // FourthPage(),
     APPUserCenterPage()
   ];
 
@@ -115,20 +133,30 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         currentIndex = index;
       });
-      DDLog(currentIndex);
+      ddlog(currentIndex);
     }
   }
+
+  // void openDrawer() {
+  //   scaffoldKey.currentState!.openDrawer();
+  // }
+  //
+  // void closeDrawer() {
+  //   Navigator.of(context).pop();
+  // }
 
   //lifecycle
   @override
   void initState() {
     // TODO: implement initState
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: kScaffoldKey,
       // drawer: MyDrawer(),
       drawer: APPDrawerMenuPage(),
 
@@ -170,15 +198,15 @@ class _MyHomePageState extends State<MyHomePage> {
       //导航条左边的组件
       leading: Icon(Icons.arrow_back)
           .opacity(0)
-          .gestures(onTap: () => DDLog("back")),
+          .gestures(onTap: () => ddlog("back")),
       //导航条右边的一组组件
       actions: [
         // Icon(Icons.settings)
         //     .padding(right: 8)
-        //     .gestures(onTap: ()=> DDLog("settings")),
+        //     .gestures(onTap: ()=> ddlog("settings")),
         // Icon(Icons.search)
         //     // .padding(right: 8)
-        //     .gestures(onTap: ()=> DDLog("search")),
+        //     .gestures(onTap: ()=> ddlog("search")),
 
         PopupMenuButtonExt.fromEntryFromJson(
             json: {"aa": "0",
@@ -186,14 +214,14 @@ class _MyHomePageState extends State<MyHomePage> {
               "cc": "2"},
             checkedString: "aa",
             callback: (value) {
-              setState(() => DDLog(value));
+              setState(() => ddlog(value));
             }),
 
         PopupMenuButtonExt.fromCheckList(
             list: ["a", "b", "c"],
             checkedIdx: 1,
             callback: (value) {
-              setState(() => DDLog(value));
+              setState(() => ddlog(value));
             }),
       ],
     );
@@ -204,11 +232,11 @@ class _MyHomePageState extends State<MyHomePage> {
     var b = 488.236;
     var c = 488.3;
 
-    DDLog(a.toStringAsExponential(2));
-    DDLog(a.toStringAsFixed(2));
-    DDLog(a.toStringAsPrecision(2));
+    ddlog(a.toStringAsExponential(2));
+    ddlog(a.toStringAsFixed(2));
+    ddlog(a.toStringAsPrecision(2));
 
-    "1111".printNew();
+    // "1111".printNew();
   }
 
   Widget buildUpdateAlert(BuildContext context) {
@@ -232,13 +260,13 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 TextButton(
                   onPressed: () {
-                    DDLog("以后再说");
+                    ddlog("以后再说");
                   },
                   child: Text("以后再说").fontSize(14),
                 ),
                 TextButton(
                   onPressed: () {
-                    DDLog("立即升级");
+                    ddlog("立即升级");
                   },
                   child: Text("立即升级").fontSize(14)
                       .textColor(Colors.white)
@@ -271,11 +299,11 @@ class MyDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 38.0),
+              padding: EdgeInsets.only(top: 38.0),
               child: Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
                       // child: Image.asset(
                       //   "images/avatar.png",
@@ -299,7 +327,7 @@ class MyDrawer extends StatelessWidget {
                     title: Text('Add account'),
                     trailing: Icon(Icons.add_a_photo),
                     onTap: (){
-                      DDLog(context);
+                      ddlog(context);
                     },
                   ),
                   Divider(
@@ -312,7 +340,7 @@ class MyDrawer extends StatelessWidget {
                     leading: Icon(Icons.settings),
                     title: Text('Manage accounts'),
                     onTap: (){
-                      DDLog(Icons.title);
+                      ddlog(Icons.title);
                     },
                   ),
                   ListTile(

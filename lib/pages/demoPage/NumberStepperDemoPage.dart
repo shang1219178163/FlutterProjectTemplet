@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/NumberStepper.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 class NumberStepperDemoPage extends StatelessWidget {
   
@@ -39,7 +39,7 @@ class NumberStepperDemoPage extends StatelessWidget {
                     minimumSize: MaterialStateProperty.all(Size(44, 44)),
                   ),
                   child: Icon(Icons.security, color: Colors.white,),
-                  onPressed: () { DDLog("onPressed"); },
+                  onPressed: () { ddlog("onPressed"); },
                 ),
               ),
               Spacer(),
@@ -52,10 +52,9 @@ class NumberStepperDemoPage extends StatelessWidget {
                 color: Colors.blue,
                 style: NumberStepperStyle.system,
                 block: (value){
-                  DDLog(value);
+                  ddlog(value);
                 },
               ),
-
               SizedBox(height: 20,),
               NumberStepper(
                 minValue: 1,
@@ -66,9 +65,23 @@ class NumberStepperDemoPage extends StatelessWidget {
                 color: Colors.blue,
                 style: NumberStepperStyle.outlined,
                 block: (value){
-                  DDLog(value);
+                  ddlog(value);
                 },
-            ),
+              ),
+              Spacer(),
+              NumberStepper(
+                minValue: 1,
+                maxValue: 1000,
+                stepValue: 100,
+                iconSize: 30,
+                value: 1000,
+                color: Colors.blue,
+                style: NumberStepperStyle.textfield,
+                block: (value){
+                  ddlog(value);
+                },
+              ),
+
               Spacer(),
 
             ],
@@ -138,7 +151,7 @@ class NumberStepperDemoPage extends StatelessWidget {
                     value: 1000,
                     color: Colors.red,
                     block: (value){
-                      DDLog(value);
+                      ddlog(value);
                     },
                   )
                 ],
@@ -149,4 +162,6 @@ class NumberStepperDemoPage extends StatelessWidget {
         ),
       ));
   }
+
+
 }

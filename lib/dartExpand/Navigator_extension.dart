@@ -4,14 +4,14 @@
 // import 'package:flutter/cupertino.dart' show BuildContext, Navigator;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 extension NavigatorExt on Navigator{
 
   @optionalTypeArgs
   static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
     if (!Navigator.canPop(context)) {
-      DDLog("已经是根页面了！");
+      ddlog("已经是根页面了！");
       return;
     }
     Navigator.of(context).pop<T>(result);
@@ -20,7 +20,7 @@ extension NavigatorExt on Navigator{
   // static void popPage(BuildContext context, [StackTrace? current]){
   //   if (!Navigator.canPop(context)) {
   //     if (current != null) {
-  //       DDLog("已经是根页面了！");
+  //       ddlog("已经是根页面了！");
   //     }
   //     return;
   //   }
@@ -31,7 +31,7 @@ extension NavigatorExt on Navigator{
   // static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
   //   if (!Navigator.canPop(context)) {
   //     // if (StackTrace.current != null) {
-  //       DDLog("已经是根页面了！");
+  //       ddlog("已经是根页面了！");
   //     // }
   //     return;
   //   }
@@ -41,7 +41,7 @@ extension NavigatorExt on Navigator{
   // static void popPage(BuildContext context, Dynamic? obj, [StackTrace? current]){
   //   if (!Navigator.canPop(context)) {
   //     if (current != null) {
-  //       DDLog("已经是根页面了！", current);
+  //       ddlog("已经是根页面了！", current);
   //     }
   //     return;
   //   }

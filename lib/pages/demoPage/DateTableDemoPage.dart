@@ -10,7 +10,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:tuple/tuple.dart';
 
 class DateTableDemoPage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
         setState(() {
           groupValue = newValue;
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
       },
       groupValue: groupValue,
     );
@@ -159,7 +159,7 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
               setState(() {
                 e.isSelected = value;
               });
-              DDLog(models.where((e) => e.isSelected == true).map((e) => "${e.name}_${e.isSelected}").toList());
+              ddlog(models.where((e) => e.isSelected == true).map((e) => "${e.name}_${e.isSelected}").toList());
             },
           )).toList(),
         ),
@@ -201,7 +201,7 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
   //               setState(() {
   //                 selected[models.indexOf(e)] = value!;
   //               });
-  //               DDLog(selected.where((element) => element == true).toList());
+  //               ddlog(selected.where((element) => element == true).toList());
   //             },
   //           )).toList(),
   //         ),

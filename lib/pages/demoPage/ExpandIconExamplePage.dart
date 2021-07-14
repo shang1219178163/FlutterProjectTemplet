@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 
 class ExpandIconExamplePage extends StatefulWidget {
@@ -64,7 +64,7 @@ class ExpandIconExamplePageState extends State<ExpandIconExamplePage> {
                 onPressed: (bool isExpanded) {
                   setState(() {
                     _isExpanded = !isExpanded;
-                    DDLog(isExpanded);
+                    ddlog(isExpanded);
                   });
                 },
               ),

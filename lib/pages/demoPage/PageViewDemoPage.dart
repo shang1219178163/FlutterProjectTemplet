@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/pages/FirstPage.dart';
 import 'package:fluttertemplet/pages/SecondPage.dart';
 import 'package:fluttertemplet/pages/ThirdPage.dart';
@@ -50,7 +50,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
         appBar: AppBar(
           title: Text("$widget"),
             actions: rightTitles.map((e) => TextButton(onPressed: (){
-              // DDLog("e");
+              // ddlog("e");
               _actionTap(context: context, value: e);
 
             }, child: Text(e,
@@ -113,10 +113,9 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
             actions: titles.map((e) => CupertinoActionSheetAction(
               child: Text(e),
               onPressed: () {
-                DDLog(e);
+                ddlog(e);
                 Navigator.pop(context);
-                // Get.toNamed("/PageViewTabBarWidget", arguments: value);
-                Get.to(APPRouter.pageViewTabBarWidget);
+                Get.toNamed(APPRouter.pageViewTabBarWidget);
               },
             ),).toList(),
             cancelButton: CupertinoActionSheetAction(
@@ -193,6 +192,7 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
       ),
       bottomNavigationBar: buildBottomNavigationBar(context),
       body: buildPageView(context),
+
     );
   }
 
@@ -211,7 +211,7 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
       unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
       elevation: 10,
       onTap: (index) {
-        DDLog('onTap: $index');
+        ddlog('onTap: $index');
         widget.index = index;
         setState(() {
           if (widget.isAnimateToPage) {
@@ -230,7 +230,7 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
       children: widget.pageWidgetList,
       controller: _pageController,
       onPageChanged: (index) {
-        DDLog('onPageChanged: $index');
+        ddlog('onPageChanged: $index');
         widget.index = index;
         setState(() {});
       },

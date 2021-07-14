@@ -10,8 +10,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/LineSegmentWidget.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/basicWidget/LineSegmentControl.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SegmentControlDemoPage extends StatefulWidget {
@@ -74,8 +74,8 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
                     groupValue: groupValue,
                     onValueChanged: (value) {
                       // TODO: - fix it
-                      DDLog(value.runtimeType);
-                      DDLog(value.toString());
+                      ddlog(value.runtimeType);
+                      ddlog(value.toString());
                       setState(() {
                         groupValue = int.parse("$value");
                       });
@@ -149,7 +149,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         setState(() {
           groupValue = newValue;
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
       },
       groupValue: groupValue,
       // borderColor: Colors.white,
@@ -170,7 +170,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         setState(() {
           groupValue = int.parse("$i");
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
       },
       // backgroundColor: Colors.transparent,
     );
@@ -191,7 +191,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         setState(() {
           groupValue = int.parse("$i");
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
       },
       thumbColor: Colors.orangeAccent,
       // backgroundColor: Colors.transparent,
@@ -212,7 +212,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         setState(() {
           groupValue = int.parse("$i");
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
       },
       // thumbColor: Colors.orangeAccent,
       backgroundColor: Colors.transparent,
@@ -236,7 +236,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
           setState(() {
             groupValue = int.parse("$i");
           });
-          DDLog(groupValue);
+          ddlog(groupValue);
         },
       );
     }
@@ -249,10 +249,9 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         setState(() {
           groupValue = int.parse("$i");
         });
-        DDLog(groupValue);
+        ddlog(groupValue);
+
       },
     );
   }
-
-  
 }

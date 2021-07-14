@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
@@ -42,7 +42,7 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
 
 
   void _onPressed(int e) {
-    DDLog(e);
+    ddlog(e);
   }
 
   Widget buildGridView(List<String> list) {
@@ -96,7 +96,7 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
         )
             .border(all: 1, color: Colors.lightBlue,)
             .gestures(onTap: () => {
-          DDLog("item")
+          ddlog("item")
         }),
 
         Card(
@@ -146,12 +146,12 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
               children: <Widget>[
                 TextButton(
                   child: Text('YES'),
-                  onPressed: () { DDLog('YES'); },
+                  onPressed: () { ddlog('YES'); },
                 ),
                 SizedBox(width: 8),
                 TextButton(
                   child: Text('NO'),
-                  onPressed: () { DDLog('NO'); },
+                  onPressed: () { ddlog('NO'); },
                 ),
                 SizedBox(width: 8),
               ],

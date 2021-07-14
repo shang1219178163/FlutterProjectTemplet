@@ -12,11 +12,12 @@
 // ignore: must_be_immutable
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 enum NumberStepperStyle {
 system,
 outlined,
+textfield,
 }
 
 ///自定义数值增减 Stepper
@@ -54,6 +55,21 @@ class NumberStepper extends StatefulWidget {
 
 class _NumberStepperState extends State<NumberStepper> {
 
+  // 控制器
+  final _textController = TextEditingController();
+  // 焦点
+  final focusNode1 = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    _textController.text = "${widget.value}";
+
+    ddlog(_textController.text);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // return buildOther(context);
@@ -61,6 +77,8 @@ class _NumberStepperState extends State<NumberStepper> {
       case NumberStepperStyle.outlined:
         return buildOutlinedStyle(context);
         break;
+      case NumberStepperStyle.textfield:
+        return buildTexfieldStyle(context);
       default:
         break;
     }
@@ -186,16 +204,73 @@ class _NumberStepperState extends State<NumberStepper> {
     );
   }
 
+  Widget buildTexfieldStyle(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: TextField(
+            enableInteractiveSelection: false,
+            toolbarOptions: ToolbarOptions(
+              copy:false,
+              paste: false,
+              cut: false,
+              selectAll: false,
+              //by default all are disabled 'false'
+            ),
+            controller: _textController,
+            decoration: InputDecoration(
+                // labelText: "请输入内容",//输入框内无文字时提示内容，有内容时会自动浮在内容上方
+                // helperText: "随便输入文字或数字", //输入框底部辅助性说明文字
+                prefixIcon:IconButton(
+                  icon: Icon(
+                    Icons.remove,
+                    size: widget.iconSize,
+                  ),
+                  onPressed: (){
+                    // go(-widget.stepValue);
+                    setState(() {
+                      go(-widget.stepValue);
+                      _textController.text = "${widget.value}";
+                    });
+                  },
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4.0) //圆角大小
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.add,
+                    size: widget.iconSize,
+                  ),
+                  onPressed: (){
+                    // go(widget.stepValue);
+                    setState(() {
+                      // FocusScope.of(context).requestFocus(FocusNode());
+                      go(widget.stepValue);
+                      _textController.text = "${widget.value}";
+                    });
+                  },
+                ),
+                contentPadding: const EdgeInsets.only(bottom:8)
+            ),
+            keyboardType: TextInputType.number,
+          ),
+        ),
+    ],
+    );
+  }
+
   void go(int stepValue) {
     setState(() {
       if (stepValue < 0 && (widget.value == widget.minValue || widget.value + stepValue < widget.minValue)) {
-        DDLog("已经是最小值了");
+        ddlog("it's minValue!");
         if (widget.wraps) widget.value = widget.maxValue;
         widget.block(widget.value);
         return;
       }
       if (stepValue > 0 && (widget.value == widget.maxValue || widget.value + stepValue > widget.maxValue)) {
-        DDLog("已经是最大值了");
+        ddlog("it's maxValue!");
         if (widget.wraps) widget.value = widget.minValue;
         widget.block(widget.value);
         return;

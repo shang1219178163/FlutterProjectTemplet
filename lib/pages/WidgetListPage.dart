@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 
@@ -14,6 +14,8 @@ import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
+
+import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -28,6 +30,34 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   void initState() {
     super.initState();
     this.tabController = TabController(length: pages.length, vsync: this);
+
+    final String? a = null;
+    ddlog(a.runtimeType);
+
+    final String? a1 = "a1";
+    ddlog(a1.runtimeType);
+
+    final List<String>? array = null;
+    ddlog(array.runtimeType);
+
+    ddlog(a.isBlank);
+    // ddlog(a.or(block: (){
+    //   return "123";
+    // }));
+    ddlog(a.or(() => "456"));
+    ddlog(a.or((){
+      return "111";
+    }));
+
+    // array.or(() => null)
+
+    final List<String>? array1 = List.generate(9, (index) => "$index");
+    final array11 = array1!.reduce((value, element) => value + element);
+    ddlog(array11);
+
+    ddlog(array.or(() => array1));
+
+    // Iterable<T> map<T>(T f(E e)) => MappedIterable<E, T>(this, f);
   }
 
   @override
@@ -53,6 +83,7 @@ var list = [
   Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.pageViewDemoPage, "PageView", ),
+  Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
 
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
   Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
@@ -63,10 +94,10 @@ var list = [
   Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
   Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
   Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
-  Tuple2(APPRouter.expandIconExampleState, "expandIconExampleState", ),
+  Tuple2(APPRouter.expandIconExamplePage, "expandIconExamplePage", ),
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
+  Tuple2(APPRouter.stepperCustomeDemoPage, "StepperCustomeDemoPage", ),
   Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
-
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
   Tuple2(APPRouter.progressHudDemoPage, "progressHudDemoPage", ),
@@ -88,7 +119,10 @@ var list = [
 
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
   Tuple2(APPRouter.hudProgressDemoWidget, "HudProgressDemoWidget", ),
+  Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
 
+  Tuple2(APPRouter.tabBarDemoPage, " tabBarDemoPage", ),
+  Tuple2(APPRouter.tableViewDemoPage, " tableViewDemoPage", ),
 
 ];
 
@@ -101,7 +135,10 @@ List<PageWidgetModel> pages = [
   PageWidgetModel(title: '功能列表', widget: ListView.separated(
     itemCount: list.length,
     itemBuilder: (context, index) {
+      // final e = list[index];
+      list.sort((a, b) => a.item1.compareTo(b.item1));
       final e = list[index];
+
       return ListTile(
         title: Text(e.item2),
         subtitle: Text(e.item2),

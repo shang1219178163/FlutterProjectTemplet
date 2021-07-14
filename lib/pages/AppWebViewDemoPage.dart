@@ -10,7 +10,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 
@@ -75,11 +75,11 @@ class _AppWebViewDemoPageState extends State<AppWebViewDemoPage> {
                 _controller.complete(webViewController);
               },
               onProgress: (int progress) {
-                DDLog("WebView is loading(progress: $progress%_${progress*0.01})");
+                ddlog("WebView is loading(progress: $progress%_${progress*0.01})");
                 setState(() {
                   _progress = progress*0.01;
                 });
-                // DDLog(_progress);
+                // ddlog(_progress);
               },
               javascriptChannels: <JavascriptChannel>{
                 _toasterJavascriptChannel(context),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
 import 'package:fluttertemplet/DartExpand/PopupMenuButton_extension.dart';
 // import 'package:fluttertemplet/navigator_extension.dart';
@@ -34,16 +34,13 @@ class _SecondPageState extends State<SecondPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
+    return Scaffold(
           appBar: AppBar(
             // leading: BackButton(
             //           color: Colors.white,
             //           onPressed: (){ NavigatorExt.popPage(context); }
             //           ),
-            // // .gestures(onTap: ()=> DDLog("back")
+            // // .gestures(onTap: ()=> ddlog("back")
             title: Text(widget.title ?? "$widget"),
             actions: [
               PopupMenuButtonExt.fromEntryFromJson(
@@ -52,14 +49,14 @@ class _SecondPageState extends State<SecondPage> {
                     "cc": "2"},
                   checkedString: "aa",
                   callback: (value) {
-                    setState(() => DDLog(value));
+                    setState(() => ddlog(value));
                   }),
 
               PopupMenuButtonExt.fromCheckList(
                   list: ["a", "b", "c"],
                   checkedIdx: 1,
                   callback: (value) {
-                    setState(() => DDLog(value));
+                    setState(() => ddlog(value));
                   }),
             ],
           ),
@@ -71,12 +68,10 @@ class _SecondPageState extends State<SecondPage> {
 
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => DDLog('floatingActionButton'),
+            onPressed: () => ddlog('floatingActionButton'),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ), // This trailing comma makes auto-formatting nicer for build methods.
-        ),
-      ),
     );
   }
 
@@ -94,7 +89,7 @@ class _SecondPageState extends State<SecondPage> {
             ElevatedButton.icon(
               icon: Icon(Icons.send),
               label: Text("发送"),
-              // onPressed: () => DDLog('pressed'),
+              // onPressed: () => ddlog('pressed'),
               onPressed: () => {
                 // test();
               },
@@ -103,11 +98,11 @@ class _SecondPageState extends State<SecondPage> {
             OutlinedButton.icon(
               icon: Icon(Icons.add),
               label: Text("添加"),
-              onPressed: () => DDLog('pressed'),
+              onPressed: () => ddlog('pressed'),
             ),
 
             TextButton(
-              onPressed: () => DDLog('$this'),
+              onPressed: () => ddlog('$this'),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +118,7 @@ class _SecondPageState extends State<SecondPage> {
                 .decorated(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(5))),
 
             TextButton(
-              onPressed: () => DDLog('Make a Note'),
+              onPressed: () => ddlog('Make a Note'),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +139,7 @@ class _SecondPageState extends State<SecondPage> {
                 image: Icon(Icons.person),
                 imageAlignment: ImageAlignment.right,
                 callback: (value) {
-                  DDLog(value.data);
+                  ddlog(value.data);
                 }),
 
             TextButtonExt.build(
@@ -152,7 +147,7 @@ class _SecondPageState extends State<SecondPage> {
                 image: Icon(Icons.info),
                 imageAlignment: ImageAlignment.left,
                 callback: (value) {
-                  DDLog(value.data);
+                  ddlog(value.data);
                 })
                 .decorated(color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -163,7 +158,7 @@ class _SecondPageState extends State<SecondPage> {
                 image: Icon(Icons.info),
                 imageAlignment: ImageAlignment.right,
                 callback: (value) {
-                  DDLog(value.data);
+                  ddlog(value.data);
 
                 }).decorated(color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -174,7 +169,7 @@ class _SecondPageState extends State<SecondPage> {
                 image: Icon(Icons.info),
                 imageAlignment: ImageAlignment.top,
                 callback: (value) {
-                  DDLog(value.data);
+                  ddlog(value.data);
 
                 }).decorated(color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -185,7 +180,7 @@ class _SecondPageState extends State<SecondPage> {
                 image: Icon(Icons.info),
                 imageAlignment: ImageAlignment.bottom,
                 callback: (value) {
-                  DDLog(value.data);
+                  ddlog(value.data);
 
                 }).decorated(color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(5)),
@@ -196,7 +191,7 @@ class _SecondPageState extends State<SecondPage> {
               icon: Icon(Icons.person), iconSize: 30,
               color: Colors.red,
               onPressed: () {
-                DDLog("这是一个图标按钮");
+                ddlog("这是一个图标按钮");
               },
             ),
             buildToggleButtons(context),
@@ -218,7 +213,7 @@ class _SecondPageState extends State<SecondPage> {
       ],
       onPressed: (index) {
         _selecteds[index] = !_selecteds[index];
-        DDLog(_selecteds);
+        ddlog(_selecteds);
         setState(() {
           _selecteds[index] = !_selecteds[index];
         });
@@ -233,9 +228,9 @@ class _SecondPageState extends State<SecondPage> {
 
     var list = _emap["a"];
     list!.remove("1");
-    // DDLog(list);
-    // DDLog(_emap);
+    // ddlog(list);
+    // ddlog(_emap);
 
-    DDLog([list, _emap]);
+    ddlog([list, _emap]);
   }
 }

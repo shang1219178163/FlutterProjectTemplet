@@ -8,7 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 class ListTileDemoPage extends StatefulWidget {
 
@@ -47,7 +47,7 @@ class _ListTileDemoPageState extends State<ListTileDemoPage> {
                 subtitle: Text("subtitle"),
                 trailing: Icon(Icons.arrow_forward_ios),
                 onTap: (){
-                  DDLog("ListTile");
+                  ddlog("ListTile");
                 },
               ),
               CheckboxListTile(
@@ -55,7 +55,7 @@ class _ListTileDemoPageState extends State<ListTileDemoPage> {
                   subtitle: Text("subtitle"),
                   value: _value,
                   onChanged: (value){
-                    DDLog(["CheckboxListTile", value]);
+                    ddlog(["CheckboxListTile", value]);
                     if (value == null) {
                       return;
                     }
@@ -68,7 +68,7 @@ class _ListTileDemoPageState extends State<ListTileDemoPage> {
                   subtitle: Text("subtitle"),
                   value: _value,
                   onChanged: (value){
-                    DDLog(["SwitchListTile", value]);
+                    ddlog(["SwitchListTile", value]);
                     setState(() {
                       _value = value;
                     });
@@ -81,7 +81,7 @@ class _ListTileDemoPageState extends State<ListTileDemoPage> {
                   controlAffinity: ListTileControlAffinity.trailing,
                   toggleable: true,
                   onChanged: (value){
-                    DDLog(["RadioListTile", value]);
+                    ddlog(["RadioListTile", value]);
                     if (value == null) {
                       return;
                     }

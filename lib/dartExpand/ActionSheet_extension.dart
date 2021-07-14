@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
@@ -90,13 +90,13 @@ extension ActionSheetExt on BottomSheet{
           children:[
             Row(children: [
               TextButton(onPressed: (){
-                    DDLog("Done");
+                    ddlog("Done");
                   },
                   child: Text("取消", style: TextStyle(color: Colors.black87),)
               ),
               Text(title, style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600), textAlign: TextAlign.center,).expanded(),
               TextButton(onPressed: (){
-                    DDLog("Done");
+                    ddlog("Done");
                   },
                   child: Text("确定", style: TextStyle(color: Colors.black87,)),
                   // child: IconButton(onPressed: () {  },

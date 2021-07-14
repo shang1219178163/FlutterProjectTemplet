@@ -5,7 +5,7 @@ import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceWrapWidget.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
 import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
 import 'package:popover/popover.dart';
@@ -66,7 +66,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         body: Flow(
           delegate: TestFlowDelegate(margin: EdgeInsets.all(10.0), spacing: 5, flowHeight: double.infinity),
           children: titles.map((e) => OutlinedButton(onPressed: (){
-            // DDLog(e);
+            // ddlog(e);
             _onPressed(titles.indexOf(e));
 
           }, child: Text(e))).toList(),
@@ -92,7 +92,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -115,7 +115,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -134,7 +134,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -154,12 +154,12 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
 
           CupertinoAlertDialog(
             title: Text("支付方式 SingleChoiceListWidget"),
-            content: SingleChoiceListWidget(items: list, index: 1, canScroll: false, callback: (Object index) { DDLog(index); }, ),
+            content: SingleChoiceListWidget(items: list, index: 1, canScroll: false, callback: (Object index) { ddlog(index); }, ),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -173,12 +173,12 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         {
           CupertinoAlertDialog(
             title: Text("单选  SingleChoiceWrapWidget"),
-            content: SingleChoiceWrapWidget(titles: titles, index: 0, callback: (int index) { DDLog(index); },),
+            content: SingleChoiceWrapWidget(titles: titles, index: 0, callback: (int index) { ddlog(index); },),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -204,14 +204,14 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               indexs: Set.from([0]),
               canScroll: false,
               callback: (Set<int> indexs) {
-                DDLog([indexs.runtimeType, indexs]);
+                ddlog([indexs.runtimeType, indexs]);
               },
             ),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -225,12 +225,12 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         {
           CupertinoAlertDialog(
             title: Text("多选 MultipleChioceWrapWidget"),
-            content: MultipleChioceWrapWidget(titles: titles.map((e) => Text(e)).toList(), indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },),
+            content: MultipleChioceWrapWidget(titles: titles.map((e) => Text(e)).toList(), indexs: Set.from([0]), callback: (Set<int> indexs) { ddlog(indexs); },),
             actions: ["确定", ].map((e) => TextButton(onPressed: (){
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -249,7 +249,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
               // if (["Cancel", "取消"].contains(e)) {
               //   Navigator.pop(context);
               // }
-              DDLog(e);
+              ddlog(e);
 
               Navigator.pop(context);
             }, child: Text(e),)).toList()
@@ -277,9 +277,9 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
                   color: Colors.white,
                   // child: TextButton(
                   //   child: Text("button"),
-                  //   onPressed: () { DDLog("button"); },
+                  //   onPressed: () { ddlog("button"); },
                   // ),
-                  child: MultipleChioceWrapWidget(titles: titles.map((e) => Text(e)).toList(), indexs: Set.from([0]), callback: (Set<int> indexs) { DDLog(indexs); },)
+                  child: MultipleChioceWrapWidget(titles: titles.map((e) => Text(e)).toList(), indexs: Set.from([0]), callback: (Set<int> indexs) { ddlog(indexs); },)
 
                 )
                     .decorated(color: Color(0xff7AC1E7), shape: BoxShape.circle)
@@ -332,9 +332,9 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
           child: TextButton(
             child: Text("Button"),
             onPressed: (){
-              DDLog("Button");
-              DDLog(widget);
-              DDLog(this);
+              ddlog("Button");
+              ddlog(widget);
+              ddlog(this);
             },
           ),
         ),
@@ -368,7 +368,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
       title: Text(title),
       content: Text(message).textAlignment(TextAlign.start),
       actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
-        DDLog(e);
+        ddlog(e);
         Navigator.pop(context);
       }, child: Text(e),)).toList()
       ,
@@ -382,7 +382,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
         title: Text(title),
         content: Text(message).textAlignment(TextAlign.start),
         actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
-          DDLog(e);
+          ddlog(e);
           Navigator.pop(context);
         }, child: Text(e),)).toList()
         ,
@@ -398,7 +398,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
       runSpacing: -8.0, // 纵轴（垂直）方向间距
       alignment: WrapAlignment.start, //沿主轴方向居中
       children: titles.map((e) => TextButton.icon(onPressed: (){
-        DDLog(titles.indexOf(e));
+        ddlog(titles.indexOf(e));
       // }, icon: Icon(Icons.check_circle_outline), label: Text("Button"))).toList(),
       }, icon: Icon(Icons.radio_button_unchecked_outlined),
         label: Text(e),

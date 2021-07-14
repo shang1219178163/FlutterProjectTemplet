@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 final GlobalKey _globalKey = GlobalKey();
 
@@ -89,7 +89,7 @@ class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
         )
             .border(all: 1, color: Colors.lightBlue,)
             .gestures(onTap: () => {
-          // DDLog("$e")
+          // ddlog("$e")
           _onPressed(list.indexOf(e), context)
         }),
       );
@@ -98,7 +98,7 @@ class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
   }
 
   void _onPressed(int e, BuildContext context) {
-    DDLog(e);
+    ddlog(e);
 
     switch (e) {
       case 0:
@@ -190,7 +190,7 @@ class _ToastContextState extends State<ToastContext> {
     super.initState();
 
     Future.delayed(const Duration(milliseconds: 100), () {
-      DDLog(_globalKey.currentState);
+      ddlog(_globalKey.currentState);
       fToast.init(_globalKey.currentState!.context);
     });
 

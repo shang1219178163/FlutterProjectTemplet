@@ -8,6 +8,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:intl/intl.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -237,9 +238,9 @@ class _TextFieldDemoPageState extends State<TextFieldDemoPage> {
 
   actionRegister(BuildContext context) {
     final datetimeStr = DateFormat.yMMMd().format(selectedDate);
-
     setState(() {
-      list.insert(0, datetimeStr);
+      // list.insert(0, datetimeStr);
+      list.insert(0, editingController.text);
     });
     Navigator.pop(context);
   }

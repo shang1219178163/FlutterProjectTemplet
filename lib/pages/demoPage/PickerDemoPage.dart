@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
@@ -78,13 +78,13 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
         )
             .border(all: 1, color: Colors.lightBlue,)
             .gestures(onTap: () => {
-              // DDLog("$e")
+              // ddlog("$e")
           // widget.showDatePicker(context: context,
           //     mode: CupertinoDatePickerMode.dateAndTime,
           //     callback: (datetime, title){
-          //   DDLog("$datetime, $title");
+          //   ddlog("$datetime, $title");
           // })
-          // DDLog(e)
+          // ddlog(e)
           _onPressed(list.indexOf(e))
         }),
       );
@@ -94,7 +94,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
 
 
   void _onPressed(int e) {
-    DDLog(e);
+    ddlog(e);
 
     switch (e) {
       case 0:
@@ -102,7 +102,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
           _showDatePicker(
               context: context,
               callback: (DateTime dateTime, String title) {
-                DDLog([dateTime, title]);
+                ddlog([dateTime, title]);
 
               });
         }
@@ -117,11 +117,11 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
                 initialDateTime: dateTime,
                 onDateTimeChanged: (DateTime newDateTime) {
                   setState(() => dateTime = newDateTime);
-                  DDLog(dateTime);
+                  ddlog(dateTime);
                 },
               ),
               callback: (title){
-                DDLog(title);
+                ddlog(title);
               });
 
        }
@@ -130,7 +130,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
       case 2:
         {
           widget.showDatePicker(context: context, callback: (dateTime, title){
-            DDLog([dateTime, title]);
+            ddlog([dateTime, title]);
           });
         }
         break;
@@ -138,7 +138,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
       case 3:
         {
           // _showPicker(ctx: context, callBlack: (index){
-          //   DDLog(index);
+          //   ddlog(index);
           // });
 
           int _selectedValue = 0;
@@ -159,7 +159,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
                 },
               ),
               callback: (title){
-                DDLog([_selectedValue, title]);
+                ddlog([_selectedValue, title]);
               });
         }
         break;
@@ -169,7 +169,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
           widget.showPickerList(context: context,
               children: List.generate(10, (index) => Text('item_$index')),
               callback: (index, title){
-                DDLog([index, title]);
+                ddlog([index, title]);
               });
         }
         break;
@@ -183,11 +183,11 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
                 // height: 500,
                 child: TextButton(child: Text("Button"),
                   onPressed: (){
-                    DDLog("Button");
+                    ddlog("Button");
                   },
                 ),
               ), callback: (String title) {
-                DDLog(title);
+                ddlog(title);
             },
           );
         }
@@ -216,10 +216,10 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
             height: 500,
             child: Container(
               // color: Colors.green,
-              child: SingleChoiceListWidget(items: list, index: 1, canScroll: true, callback: (Object index) { DDLog(index); }, ),
+              child: SingleChoiceListWidget(items: list, index: 1, canScroll: true, callback: (Object index) { ddlog(index); }, ),
             ).toMaterial(),
             callback: (String title) {
-              DDLog(title);
+              ddlog(title);
             },
           );
         }
@@ -249,10 +249,10 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
             child: Container(
               // color: Colors.green,
               // height: 500,
-              child: MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: true, callback: (Object index) { DDLog(index); }, ),
+              child: MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: true, callback: (Object index) { ddlog(index); }, ),
             ).toMaterial(),
             callback: (String title) {
-              DDLog(title);
+              ddlog(title);
             },
           );
         }
@@ -264,7 +264,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
             height: 600,
             child: ListTileDemoPage(),
             callback: (String title) {
-              DDLog(title);
+              ddlog(title);
             },
           );
 
@@ -334,7 +334,7 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
                     onDateTimeChanged: (val) {
                       setState(() {
                         dateTime = val;
-                        DDLog(val);
+                        ddlog(val);
                       });
                     }),
               ),
@@ -427,7 +427,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
         context: context,
         mode: CupertinoDatePickerMode.dateAndTime,
         callback: (datetime, title){
-      DDLog("$datetime, $title");
+      ddlog("$datetime, $title");
       if (title == "取消") {
         return;
       }
@@ -487,7 +487,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
   //                   onDateTimeChanged: (val) {
   //                     setState(() {
   //                       widget.dateTime = val;
-  //                       DDLog(val);
+  //                       ddlog(val);
   //                     });
   //                   }),
   //             ),

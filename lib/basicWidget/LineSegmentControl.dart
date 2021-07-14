@@ -11,7 +11,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 
 enum LineSegmentStyle {
@@ -88,7 +88,7 @@ class _LineSegmentControlState extends State<LineSegmentControl> {
                   child: TextButton(
                     child: e,
                     onPressed: (){
-                      DDLog(e);
+                      ddlog(e);
                       setState(() {
                         widget.groupValue = widget.children.values.toList().indexOf(e);
                       });

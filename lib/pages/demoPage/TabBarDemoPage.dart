@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/pages/FirstPage.dart';
 import 'package:fluttertemplet/pages/SecondPage.dart';
@@ -31,12 +34,14 @@ class _TabBarDemoPageState extends State<TabBarDemoPage> with AutomaticKeepAlive
     super.build(context);//必须添加
 
     return MaterialApp(
+      // theme: APPThemeSettings.instance.themeData(),
+      theme: Get.isDarkMode ? ThemeData.dark(): ThemeData.light(),
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
           appBar: AppBar(
             // leading: Icon(Icons.arrow_back)
-            //         // .gestures(onTap: ()=> DDLog("back")
+            //         // .gestures(onTap: ()=> ddlog("back")
             //           .gestures(onTap: (){ Navigator.pop(context); }),
             bottom: TabBar(
               tabs: [

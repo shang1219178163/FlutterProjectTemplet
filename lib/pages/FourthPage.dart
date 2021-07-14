@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 class FourthPage extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class FourthPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             leading: Icon(Icons.arrow_back)
-            // .gestures(onTap: ()=> DDLog("back")
+            // .gestures(onTap: ()=> ddlog("back")
                 .gestures(onTap: (){ Navigator.pop(context); }),
             title: Text("$this"),
           ),
@@ -43,13 +43,13 @@ class FourthPage extends StatelessWidget {
                 // .gestures(onTap: () => print('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => logger.info('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => print('${DateTime.now()} RaisedButton pressed'))
-                 .gestures(onTap: () => DDLog('RaisedButton pressed'))
+                 .gestures(onTap: () => ddlog('RaisedButton pressed'))
 
               ],
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => DDLog('floatingActionButton'),
+            onPressed: () => ddlog('floatingActionButton'),
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ), // This trailing comma makes auto-formatting nicer for build methods.

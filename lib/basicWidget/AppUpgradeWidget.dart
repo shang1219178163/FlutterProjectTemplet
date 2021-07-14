@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 ///
@@ -237,7 +237,7 @@ class _AppUpgradeWidget extends State<AppUpgradeWidget> {
                   style: widget.okTextStyle ?? TextStyle(color: Colors.white)),
             ),
             onTap: () {
-              DDLog(widget.okText ?? '立即体验');
+              ddlog(widget.okText ?? '立即体验');
               // _clickOk();
             },
           ),

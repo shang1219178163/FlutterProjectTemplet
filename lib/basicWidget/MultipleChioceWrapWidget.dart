@@ -9,7 +9,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 
@@ -69,7 +69,7 @@ class _MultipleChioceWrapWidgetState extends State<MultipleChioceWrapWidget> {
         widget.indexs.add(value);
       }
       widget.callback(widget.indexs);
-      // DDLog(widget.indexs);
+      // ddlog(widget.indexs);
     });
   }
 }

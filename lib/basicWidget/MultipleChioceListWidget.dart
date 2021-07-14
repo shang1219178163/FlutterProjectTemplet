@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'SingleChoiceListWidget.dart';
@@ -73,7 +73,7 @@ class _MultipleChioceListWidgetState extends State<MultipleChioceListWidget> {
             trailing: widget.indexs.contains(widget.items.indexOf(e)) ? Icon(Icons.check) : null,
             selected: widget.indexs.contains(widget.items.indexOf(e)),
             onTap: () {
-              DDLog(e);
+              ddlog(e);
               _changeValue(index);
             },
           );
@@ -112,7 +112,7 @@ class _MultipleChioceListWidgetState extends State<MultipleChioceListWidget> {
         widget.indexs.add(value);
       }
       widget.callback(widget.indexs);
-      // DDLog(widget.indexs);
+      // ddlog(widget.indexs);
     });
   }
 }

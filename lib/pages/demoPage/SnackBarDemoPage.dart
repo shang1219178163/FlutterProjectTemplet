@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 final kUpdateContent = """
@@ -46,7 +46,7 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                   //     label: '撤消',
                   //     onPressed: () {
                   //       // do something to undo
-                  //       DDLog('撤消');
+                  //       ddlog('撤消');
                   //     }
                   // ),
                   // );
@@ -86,7 +86,7 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
             // .backgroundColor(Colors.yellow)
       ,
       ).gestures(onTap: (){
-        DDLog(kUpdateContent);
+        ddlog(kUpdateContent);
       }),
 
       padding: EdgeInsets.only(left: 13, right: 13),

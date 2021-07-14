@@ -9,7 +9,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class APPNotFoundPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class APPNotFoundPage extends StatelessWidget {
           TextButton(
             child: Text('立即捉它回家!', style: TextStyle(fontSize: 17.0)),
             onPressed: (){
-              DDLog('哎呀, 你的页面跑路了!');
+              ddlog('哎呀, 你的页面跑路了!');
             },
           ),
         ],

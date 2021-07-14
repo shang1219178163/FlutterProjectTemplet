@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/Navigator_extension.dart';
 
 class FirstPage extends StatefulWidget {
@@ -29,12 +29,12 @@ class _FirstPageState extends State<FirstPage> {
         child: Scaffold(
           appBar: _hiddenAppBar ? null : AppBar(
             // leading: Icon(Icons.arrow_back)
-            //       // .gestures(onTap: ()=> DDLog("back")
+            //       // .gestures(onTap: ()=> ddlog("back")
             //         .gestures(onTap: (){
             //           NavigatorExt.popPage(context);
             //           // Navigator.popPage(context);
             //           // if (!Navigator.canPop(context)) {
-            //           //   DDLog("已经是根页面了！");
+            //           //   ddlog("已经是根页面了！");
             //           //   return;
             //           // }
             //           // Navigator.pop(context);
@@ -71,8 +71,8 @@ class _FirstPageState extends State<FirstPage> {
                 // .gestures(onTap: () => print('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => logger.info('${this}_${DateTime.now()} RaisedButton pressed'))
                 // .gestures(onTap: () => print('${DateTime.now()} RaisedButton pressed'))
-                //  .gestures(onTap: () => DDLog('RaisedButton pressed'))
-                //  .gestures(onTap: () => DDLog('RaisedButton pressed'))
+                //  .gestures(onTap: () => ddlog('RaisedButton pressed'))
+                //  .gestures(onTap: () => ddlog('RaisedButton pressed'))
                     .gestures(onTap: _changeAppBarState)
 
               ],
@@ -81,7 +81,7 @@ class _FirstPageState extends State<FirstPage> {
           floatingActionButton: FloatingActionButton(
             tooltip: 'Increment',
             child: Icon(Icons.add),
-            onPressed: () => DDLog('floatingActionButton'),
+            onPressed: () => ddlog('floatingActionButton'),
           ), // This trailing comma makes auto-formatting nicer for build methods.
         ),
       ),

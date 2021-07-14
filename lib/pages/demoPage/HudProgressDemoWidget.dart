@@ -8,7 +8,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/hud/ToastDialog.dart';
 import 'package:fluttertemplet/basicWidget/hud/CirclePulseLoadingWidget.dart';
@@ -68,9 +68,9 @@ class HudProgressDemoWidget extends StatelessWidget {
             )
         )
             .decorated(color: Colors.blue)
-              // .gestures( onTap: () => DDLog(e)
+              // .gestures( onTap: () => ddlog(e)
             .gestures(onTap: (){
-              DDLog(e);
+              ddlog(e);
               // showToast(context);
             _onPressed(context: context, e: e);
             }
@@ -80,7 +80,7 @@ class HudProgressDemoWidget extends StatelessWidget {
   }
 
   void _onPressed({required BuildContext context, required String e}) {
-    DDLog(e);
+    ddlog(e);
     switch (titles.indexOf(e)) {
       case 1:
         {

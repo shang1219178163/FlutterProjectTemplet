@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
@@ -59,7 +59,7 @@ class _IconsListPageState extends State<IconsListPage> {
     return TextField(
         onChanged: _changeValue,
       //   onChanged: (value) {
-      //   DDLog(value);
+      //   ddlog(value);
       // },
       controller: editingController,
       decoration: InputDecoration(
@@ -86,7 +86,7 @@ class _IconsListPageState extends State<IconsListPage> {
             title: Text("$item"),
             // subtitle: Text(array[0]),
             onTap: (){
-              DDLog(item);
+              ddlog(item);
               // Clipboard.setData(ClipboardData(text: "$item"));
               editingController.text = item.split('.').last;
               _changeValue(editingController.text);
@@ -106,13 +106,13 @@ class _IconsListPageState extends State<IconsListPage> {
   }
 
   void _changeValue(String value) {
-    // DDLog(value);
+    // ddlog(value);
     setState(() {
       if (value.isEmpty) {
         list = titles;
       } else {
         list = titles.where((element) => element.contains(value)).toList();
-        DDLog(list.length);
+        ddlog(list.length);
       }
     });
   }

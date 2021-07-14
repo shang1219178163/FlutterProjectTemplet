@@ -10,7 +10,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
 
@@ -175,6 +175,6 @@ class _SingleChoiceListWidgetState extends State<SingleChoiceListWidget> {
       widget.index = value;
     });
     widget.callback(widget.index);
-    // DDLog(widget.index);
+    // ddlog(widget.index);
   }
 }

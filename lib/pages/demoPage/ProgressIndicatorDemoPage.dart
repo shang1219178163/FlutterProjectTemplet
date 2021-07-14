@@ -10,7 +10,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 class ProgressIndicatorDemoPage extends StatefulWidget {
 
@@ -32,7 +32,7 @@ class _ProgressIndicatorDemoPageState extends State<ProgressIndicatorDemoPage> w
     controller = AnimationController(vsync: this, duration: Duration(seconds: 3),)
     ..addListener(() {
       setState(() {
-        // DDLog("${controller.value}");
+        // ddlog("${controller.value}");
       });
     });
     controller.repeat(reverse: true);

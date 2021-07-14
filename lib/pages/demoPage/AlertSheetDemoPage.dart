@@ -4,7 +4,7 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
@@ -91,7 +91,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
               message: message,
               actionTitles: titles,
               callback: (value){
-                DDLog(value);
+                ddlog(value);
               }
           );
         }
@@ -116,7 +116,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
             title: Text(title),
             message: Text(message),
             actions: [
-              MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { DDLog(indexs); },),
+              MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { ddlog(indexs); },),
             ],
             cancelButton: CupertinoActionSheetAction(
               child: Text('取消'),
@@ -156,7 +156,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
           showAlertSheet();
         break;
     }
-    // DDLog(e);
+    // ddlog(e);
   }
 
   void showAlertSheet() {
@@ -166,7 +166,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       actions: ["选择 1", "选择 2", "选择 3",].map((e) => CupertinoActionSheetAction(
         child: Text(e),
         onPressed: () {
-          DDLog(e);
+          ddlog(e);
           Navigator.pop(context);
         },
       ),).toList(),
@@ -190,7 +190,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
           title: Text('Add account'),
           trailing: Icon(Icons.check),
           onTap: () {
-            DDLog("account");
+            ddlog("account");
             Navigator.pop(context);
 
           },
@@ -199,7 +199,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
           leading: Icon(Icons.settings),
           title: Text('Manage accounts'),
           onTap: () {
-            DDLog("accounts");
+            ddlog("accounts");
             Navigator.pop(context);
 
           },
@@ -210,7 +210,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
             "Your Profile",
           ),
           onTap: () {
-            DDLog("Profile");
+            ddlog("Profile");
             Navigator.pop(context);
           },
         ),
@@ -248,7 +248,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
         title: Text(title),
         message: Text(message),
         actions: [
-          SingleChoiceListWidget(items: list, index: 1, callback: (Object index) { DDLog(index); }, canScroll: false,),
+          SingleChoiceListWidget(items: list, index: 1, callback: (Object index) { ddlog(index); }, canScroll: false,),
         ],
         cancelButton: CupertinoActionSheetAction(
           child: Text('取消'),
@@ -385,7 +385,7 @@ class _RadioTileSexWidgetState extends State<RadioTileSexWidget> {
     setState(() {
       widget.selectedIndex = value;
     });
-    DDLog(widget.selectedIndex);
+    ddlog(widget.selectedIndex);
   }
 }
 

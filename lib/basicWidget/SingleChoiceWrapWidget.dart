@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 
@@ -32,7 +32,7 @@ class _SingleChoiceWrapWidgetState extends State<SingleChoiceWrapWidget> {
         runSpacing: -8.0, // 纵轴（垂直）方向间距
         alignment: WrapAlignment.start, //沿主轴方向居中
         children: widget.titles.map((e) => TextButton.icon(onPressed: (){
-          // DDLog(widget.titles.indexOf(e));
+          // ddlog(widget.titles.indexOf(e));
           _changeValue(widget.titles.indexOf(e));
         },
           icon: widget.titles.indexOf(e) == widget.index ? Icon(Icons.radio_button_checked_outlined) : Icon(Icons.radio_button_unchecked_outlined),
@@ -51,6 +51,6 @@ class _SingleChoiceWrapWidgetState extends State<SingleChoiceWrapWidget> {
       widget.index = index;
     });
     widget.callback(widget.index);
-    // DDLog(widget.index);
+    // ddlog(widget.index);
   }
 }

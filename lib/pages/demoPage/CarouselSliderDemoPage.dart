@@ -10,7 +10,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -86,6 +86,6 @@ final List<Widget> imageSliders = imgList.map((item) => Container(
         )
     ),
   )
-      .gestures(onTap: () => DDLog("No. ${imgList.indexOf(item)} image"))
+      .gestures(onTap: () => ddlog("No. ${imgList.indexOf(item)} image"))
     ,
 ).toList();

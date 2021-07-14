@@ -11,7 +11,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 class ShowSearchDemoPage extends StatefulWidget {
 
@@ -52,7 +52,7 @@ class _ShowSearchDemoPageState extends State<ShowSearchDemoPage> {
                   showSearch<String>(
                     context: context,
                     delegate: CustomSearchDelegate(list: _list, select: '', callback: (String query) {
-                      DDLog(query);
+                      ddlog(query);
                       setState(() {
                         if (query.isEmpty) {
                           _list = List.generate(100, (i) => 'item $i');

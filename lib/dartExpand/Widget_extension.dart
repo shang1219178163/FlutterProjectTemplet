@@ -12,7 +12,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 const double kCupertinoButtonHeight = 56.0;
@@ -274,7 +274,7 @@ extension WidgetExt on Widget {
                 initialDateTime: initialDateTime,
                 onDateTimeChanged: (val) {
                   dateTime = val;
-                  // DDLog(val);
+                  // ddlog(val);
                 }),
           ),
         ],
@@ -304,7 +304,7 @@ extension WidgetExt on Widget {
         ),
         callback: (title){
           callback(selectedIndex, title);
-          DDLog([selectedIndex, title]);
+          ddlog([selectedIndex, title]);
         });
   }
 }
@@ -399,3 +399,42 @@ extension ColorExt on Color{
         Random().nextInt(256), 1);
   }
 }
+
+extension GetDynamicExt<T> on T {
+
+  /// 返回可选值或者 `else` 闭包返回的值
+  /// 例如. nullable.or(else: {
+  /// ... code
+  /// })
+  T or(T Function() block) {
+    return this ?? block();
+  }
+}
+
+extension ListExtensions<T> on Iterable<T> {
+  double sum(double Function(T) extract) {
+    double result = 0.0;
+    for (T element in this) {
+      result += extract(element);
+    }
+    return result;
+  }
+}
+
+// extension on dynamic{
+//
+//   dynamic or({required dynamic callback()}) async {
+//     return this ?? callback();
+//   }
+//
+// }
+
+// extension NullExt on Null{
+//
+//   dynamic or({required dynamic callback()}) async {
+//     return
+//   }
+//
+// }
+
+

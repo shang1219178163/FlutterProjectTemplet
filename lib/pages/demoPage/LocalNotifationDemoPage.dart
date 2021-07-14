@@ -12,7 +12,7 @@
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:styled_widget/styled_widget.dart';
 //
-// import 'package:fluttertemplet/dartExpand/DDLog.dart';
+// import 'package:fluttertemplet/dartExpand/ddlog.dart';
 //
 // class LocalNotifationDemoPage extends StatefulWidget {
 //
@@ -103,7 +103,7 @@
 //         )
 //             .border(all: 1, color: Colors.lightBlue,)
 //             .gestures(onTap: () => {
-//           // DDLog("$e")
+//           // ddlog("$e")
 //           _onPressed(list.indexOf(e))
 //         }),
 //       );
@@ -112,7 +112,7 @@
 //   }
 //
 //   void _onPressed(int e) {
-//     DDLog(e);
+//     ddlog(e);
 //
 //     showNotification();
 //   }
