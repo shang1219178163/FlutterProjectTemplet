@@ -96,7 +96,6 @@ var list = [
   Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
   Tuple2(APPRouter.expandIconExamplePage, "expandIconExamplePage", ),
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
-  Tuple2(APPRouter.stepperCustomeDemoPage, "StepperCustomeDemoPage", ),
   Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),

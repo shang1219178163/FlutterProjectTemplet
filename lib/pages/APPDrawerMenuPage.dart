@@ -50,8 +50,13 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                 shrinkWrap: true,
                 padding: EdgeInsets.zero, //去掉顶部灰色部分
                 children: <Widget>[
+                  // UserAccountsDrawerHeader(
+                  //     accountName: Text("accountName"),
+                  //     accountEmail: Text("accountEmail"),
+                  //     currentAccountPicture: FlutterLogo(),
+                  // ),
                   DrawerHeader(
-                    // decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+                    decoration: BoxDecoration(color: Theme.of(context).primaryColor),
                     child: UnconstrainedBox( //解除父级的大小限制
                       child: CircleAvatar(
                           radius: 48,

@@ -21,39 +21,6 @@ class APPThemeSettings{
   static final APPThemeSettings instance = APPThemeSettings._internal();
 
 
-  List<ThemeData> _themes = [
-    ThemeData(
-      primarySwatch: Colors.blue,
-      // brightness: Brightness.dark,//设置明暗模式为暗色
-      // accentColor: Colors.black,//(按钮）Widget前景色为黑色
-      // primaryColor: Colors.lightBlue,//主色调为青色
-      splashColor: Colors.transparent, // 点击时的高亮效果设置为透明
-      highlightColor: Colors.transparent, // 长按时的扩散效果设置为透明
-      iconTheme:IconThemeData(color: Colors.yellow),//设置icon主题色为黄色
-      // textTheme: TextTheme(body1: TextStyle(color: Colors.red))//设置文本颜色为红色
-      textButtonTheme: TextButtonThemeData(
-          style: ButtonStyle(),
-        ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        // style: ButtonStyle(
-        //   foregroundColor: MaterialStateProperty.resolveWith((states) {
-        //     ddlog(states);
-        //     return states.contains(MaterialState.pressed)
-        //         ? Colors.blue
-        //         : Colors.red;
-        //   }),
-        // )
-        ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-          style: ButtonStyle()
-        ),
-    ),
-  ];
-
-  int _index = 0;
-
-  // Color? primaryColor;
-
   ThemeData themeData = ThemeData(
     primarySwatch: Colors.blue,
     // brightness: Brightness.dark,//设置明暗模式为暗色
@@ -161,31 +128,6 @@ class APPThemeSettings{
   void changeTheme() {
     // Get.changeTheme(Get.isDarkMode? ThemeData.light() : ThemeData.dark());
     Get.changeTheme(Get.isDarkMode? themeData : darkThemeData);
-    return;
-    Get.changeTheme(Get.isDarkMode? ThemeData.light().copyWith(
-        floatingActionButtonTheme: ThemeData.light().floatingActionButtonTheme.copyWith(
-          backgroundColor: Colors.orange,
-        ),
-        splashColor: Colors.transparent, // 点击时的高亮效果设置为透明
-        highlightColor: Colors.transparent, // 长按时的扩散效果设置为透明
-        // accentColor: Colors.white,
-        buttonColor: Colors.blue,
-        iconTheme: ThemeData.light().iconTheme.copyWith(
-            color: Colors.blue
-        ),
-
-    ) : ThemeData.dark().copyWith(
-        floatingActionButtonTheme: ThemeData.dark().floatingActionButtonTheme.copyWith(
-          backgroundColor: Colors.green,
-        ),
-        splashColor: Colors.transparent, // 点击时的高亮效果设置为透明
-        highlightColor: Colors.transparent, // 长按时的扩散效果设置为透明
-        // accentColor: Colors.red
-        iconTheme: ThemeData.dark().iconTheme.copyWith(
-            color: Colors.white60
-        )
-      )
-    );
   }
 
   void changeThemeLight(Color e) {
