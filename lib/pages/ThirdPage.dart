@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -35,7 +35,7 @@ class _ThirdPageState extends State<ThirdPage> {
     return Scaffold(
           appBar: AppBar(
             // leading: Icon(Icons.backspace_outlined)
-            // // .gestures(onTap: ()=> DDLog("back")
+            // // .gestures(onTap: ()=> ddlog("back")
             //     .gestures(onTap: (){ Navigator.pop(context); }),
             title: Text(widget.title ?? "$widget"),
           ),
@@ -43,10 +43,10 @@ class _ThirdPageState extends State<ThirdPage> {
       body: EasyRefresh(
         child: buildListView(context),
         onRefresh: () async {
-          DDLog("onRefresh");
+          ddlog("onRefresh");
         },
         onLoad: () async {
-          DDLog("onLoad");
+          ddlog("onLoad");
           await Future.delayed(Duration(seconds: 2), () {
             if (mounted) {
               setState(() {
@@ -79,7 +79,7 @@ class _ThirdPageState extends State<ThirdPage> {
               setState(() {
                 selectedIndex = index;
               });
-              DDLog([selectedIndex, index]);
+              ddlog([selectedIndex, index]);
             }
             ,
           ),
@@ -89,9 +89,9 @@ class _ThirdPageState extends State<ThirdPage> {
             });
 
             if (direction == DismissDirection.startToEnd) {
-              DDLog("Add to favorite");
+              ddlog("Add to favorite");
             } else {
-              DDLog('Remove item');
+              ddlog('Remove item');
             }
           },
           background: buildFavorite(context),
