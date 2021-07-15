@@ -6,10 +6,14 @@
 //	Copyright © 2021 Bin Shang. All rights reserved.
 //
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:tuple/tuple.dart';
+import 'enhance_stepper.dart';
 
+import 'package:fluttertemplet/dartExpand/ButtonExt.dart';
 
 ///步骤一二三
 class StepperDemoPage extends StatefulWidget {
@@ -23,7 +27,15 @@ class StepperDemoPage extends StatefulWidget {
 class _StepperDemoPageState extends State<StepperDemoPage> {
   StepperType _type = StepperType.vertical;
 
-  List titles = List.generate(3, (index) => "Step $index");
+  int groupValue = 0;
+
+  List<Tuple2> tuples = [
+    Tuple2(Icons.directions_bike, StepState.indexed, ),
+    Tuple2(Icons.directions_bus, StepState.editing, ),
+    Tuple2(Icons.directions_railway, StepState.complete, ),
+    Tuple2(Icons.directions_boat, StepState.disabled, ),
+    Tuple2(Icons.directions_car, StepState.error, ),
+  ];
 
   int _index = 0;
 
@@ -34,31 +46,76 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
           title: Text("$widget"),
           actions: [
             TextButton(onPressed: (){
-              DDLog("change");
+              ddlog("change");
               setState(() {
-                if (_type == StepperType.vertical) {
-                  _type = StepperType.horizontal;
-                } else {
-                  _type = StepperType.vertical;
-                }
+                _type = _type == StepperType.vertical ? StepperType.horizontal : StepperType.vertical;
               });
             }, child: Icon(Icons.change_circle_outlined, color: Colors.white,)),
           ],
+          bottom: buildPreferredSize(context),
         ),
-        body: buildStepper(context),
-      // body: buildStepperSystem(context),
+        // body: buildStepper(context),
+        body: groupValue == 0 ? buildStepper(context) : buildStepperCustom(context),
+      //   body: Theme(
+      //     data: ThemeData(
+      //     accentColor: Colors.orange,
+      //     primarySwatch: Colors.orange,
+      //     colorScheme: ColorScheme.light(
+      //     primary: Colors.orange
+      //     )
+      //   ),
+      //     child: buildStepperCustom(context),
+      // ),
     );
+  }
 
+  PreferredSizeWidget buildPreferredSize(BuildContext context) {
+    return
+      PreferredSize(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(width: 24),
+                Expanded(
+                  child: CupertinoSegmentedControl(
+                    children: const <int, Widget>{
+                      0: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('Stepper', style: TextStyle(fontSize: 15))),
+                      1: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('enhance_stepper', style: TextStyle(fontSize: 15))),
+                    },
+                    groupValue: groupValue,
+                    onValueChanged: (value) {
+                      // TODO: - fix it
+                      ddlog(value.toString());
+                      setState(() {
+                        groupValue = int.parse("$value");
+                      });
+                    },
+                    borderColor: Colors.white,
+                    // selectedColor: Theme.of(context).primaryColor,
+                    // unselectedcolor: Colors.white,
+                  ),
+                ),
+                SizedBox(width: 24)
+              ],
+            ),
+          ),
+          preferredSize: Size(double.infinity, 48));
   }
 
   void go(int index) {
     if (index == -1 && _index <= 0 ) {
-      DDLog("已经是第一个 Step了,无法再后退了");
+      ddlog("it's first Step!");
       return;
     }
 
-    if (index == 1 && _index >= titles.length - 1) {
-      DDLog("已经是最后一个 Step了,无法再前进了");
+    if (index == 1 && _index >= tuples.length - 1) {
+      ddlog("it's last Step!");
       return;
     }
 
@@ -69,21 +126,17 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
 
   Widget buildStepper(BuildContext context) {
     return Stepper(
-      type: _type,
-      currentStep: _index,
-      physics: ClampingScrollPhysics(),
-      steps: titles.map((e) => Step(
-        isActive: _index == titles.indexOf(e),
-        isStepperTypeHorizontalBottom: true,
-        isStepperTypeHorizontalBottomLineFollowIconMidY: true,
-        title: Text(e,),
-        subtitle: Text("subtitle${titles.indexOf(e)}",),
-        content: Container(
-            height: 300,
-            color: ColorExt.random(),
-            // alignment: Alignment.centerLeft,
-            child: Text("Content for Step ${titles.indexOf(e)}")
-        ),
+        type: _type,
+        currentStep: _index,
+        physics: ClampingScrollPhysics(),
+        steps: tuples.map((e) => Step(
+          state: StepState.values[tuples.indexOf(e)],
+          isActive: _index == tuples.indexOf(e),
+          isStepperTypeHorizontalBottom: true,
+          isStepperTypeHorizontalBottomLineFollowIconMidY: true,
+          title: Text("step ${tuples.indexOf(e)}"),
+          subtitle: Text("${e.item2.toString().split(".").last}",),
+          content: Text("Content for Step ${tuples.indexOf(e)}"),
       )).toList(),
       onStepCancel: () {
         go(-1);
@@ -92,7 +145,7 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
         go(1);
       },
       onStepTapped: (index) {
-        DDLog(index);
+        ddlog(index);
         setState(() {
           _index = index;
         });
@@ -101,16 +154,68 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
         return Row(
           children: [
             SizedBox(height: 30,),
-            ElevatedButton(
+            if (_index != tuples.length - 1) ElevatedButton(
               onPressed: onStepContinue,
-              child: Text("Next"),
+              child: Text("Continue"),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)),
             ),
             SizedBox(width: 8,),
-            TextButton(onPressed: onStepCancel, child: Text("Back"), ),
-
+            if (_index != 0)  ElevatedButton(
+              onPressed: onStepCancel,
+              child: Text("Cancel"),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)),
+            ),
           ],
         );
       }
+    );
+  }
+
+  Widget buildStepperCustom(BuildContext context) {
+    return EnhanceStepper(
+        stepIconSize: 30,
+        type: _type,
+        currentStep: _index,
+        physics: ClampingScrollPhysics(),
+        steps: tuples.map((e) => EnhanceStep(
+          circleChild: Icon(e.item1, color: Theme.of(context).primaryColor, size: 30,),
+          state: StepState.values[tuples.indexOf(e)],
+          isActive: _index == tuples.indexOf(e),
+          isStepperTypeHorizontalBottom: true,
+          isStepperTypeHorizontalBottomLineFollowIconMidY: true,
+          title: Text("step ${tuples.indexOf(e)}"),
+          subtitle: Text("${e.item2.toString().split(".").last}",),
+          content: Text("Content for Step ${tuples.indexOf(e)}"),
+        )).toList(),
+        onStepCancel: () {
+          go(-1);
+        },
+        onStepContinue: () {
+          go(1);
+        },
+        onStepTapped: (index) {
+          ddlog(index);
+          setState(() {
+            _index = index;
+          });
+        },
+        controlsBuilder: (BuildContext context, { VoidCallback? onStepContinue, VoidCallback? onStepCancel }){
+          return Row(
+            children: [
+              SizedBox(height: 30,),
+              ElevatedButton(
+                onPressed: onStepContinue,
+                child: Text("Next"),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)),
+              ),
+              SizedBox(width: 8,),
+              TextButton(onPressed: onStepCancel,
+                child: Text("Back"),
+                style: ButtonStyle(foregroundColor: MaterialStateProperty.all(Theme.of(context).primaryColor)),
+              ),
+            ],
+          );
+        }
     );
   }
 

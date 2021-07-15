@@ -24,12 +24,12 @@ class WidgetListPage extends StatefulWidget {
 }
 
 class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProviderStateMixin {
-  late TabController tabController;
+  late TabController tabController = TabController(length: pages.length, vsync: this);
 
   @override
   void initState() {
     super.initState();
-    this.tabController = TabController(length: pages.length, vsync: this);
+    // this.tabController = TabController(length: pages.length, vsync: this);
 
     final String? a = null;
     ddlog(a.runtimeType);

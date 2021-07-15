@@ -8,41 +8,45 @@
 
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 /// This is the main application widget.
-class RangerSliderDemoPage extends StatelessWidget {
-  RangerSliderDemoPage({Key? key}) : super(key: key);
+class RangerSliderDemoPage extends StatefulWidget {
 
-  static String _title = 'Flutter Code Sample';
+  final String? title;
+  RangerSliderDemoPage({ Key? key, this.title}) : super(key: key);
+
+  @override
+  _RangerSliderDemoPageState createState() => _RangerSliderDemoPageState();
+}
+
+class _RangerSliderDemoPageState extends State<RangerSliderDemoPage> {
+
+  RangeValues _currentRangeValues = RangeValues(40, 80);
+
+  var sliderValue = 5.0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      title: widget.title ?? "$widget",
       home: Scaffold(
-        appBar: AppBar(title: Text(_title)),
-        body: MyStatefulWidget(),
-      ),
+        appBar: AppBar(title: Text(widget.title ?? "$widget"),),
+        body: SafeArea(
+          child: Column(
+            children: [
+              buildRangeSlider(context),
+              buildSlider(context),
+            ],
+          ),
+        )
+      )
     );
   }
-}
 
-
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  RangeValues _currentRangeValues = RangeValues(40, 80);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget buildRangeSlider(BuildContext context) {
     return RangeSlider(
       values: _currentRangeValues,
       min: 0,
@@ -59,4 +63,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       },
     );
   }
+
+  Widget buildSlider(BuildContext context) {
+    return Slider(
+      inactiveColor: Color(0xffC0C0C0),
+      activeColor: Color(0xff21BA45),
+      onChangeStart: (double value) {
+        print('Start value is ' + value.toString());
+      },
+      onChangeEnd: (double value) {
+        print('Finish value is ' + value.toString());
+      },
+      //onChanged: (double value) {},
+      divisions: 5,
+      //label: 'Admitida',
+      value: sliderValue,
+      min: 0.0,
+      max: 9.0,
+      onChanged: (double value) {
+        setState(() {
+          sliderValue = value;
+        });
+      },
+    );
+  }
 }
+
