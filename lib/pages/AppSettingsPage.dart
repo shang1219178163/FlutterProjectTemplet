@@ -10,6 +10,7 @@
 // 设置
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
 
 
@@ -22,9 +23,9 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
 
   final titles = [
     '',
-    '用户信息', '手机号', '微信号', 'QQ号', '银行卡', '会员等级',
+    '用户信息', '手机号', '微信号', '会员等级',
     '',
-    '服务器线路', '版本更新', '清楚缓存',
+    '应用信息', '清除缓存',
   ];
 
   @override
@@ -33,9 +34,16 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),//修改返回按钮颜色
           centerTitle: true,
-          title: Text('设置',style: TextStyle(color: Colors.white)),
+          title: Text('设置', style: TextStyle(color: Colors.white)),
           actions: [
-            _buildDropdownButton()
+            TextButton(onPressed: (){
+                APPThemeSettings.instance.showThemePicker(context: context, callback: (){
+                  Navigator.of(context).pop();
+                });
+              },
+                child: Text("主题色", style: TextStyle(color: Colors.white))
+            ),
+            _buildDropdownButton(),
           ],
         ),
         body: Container(
@@ -59,8 +67,8 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
   //         child: Text(title, style: TextStyle(color: Color(0xff666666), fontSize: 15, fontWeight: FontWeight.w600)),
   //         decoration: BoxDecoration(
   //             border: Border(
-  //                 top: BorderSide(width: 10,color: Color(0xfff2f2f2)),
-  //                 bottom: BorderSide(width: 10,color: Color(0xfff2f2f2))
+  //                 top: BorderSide(width: 10, color: Color(0xfff2f2f2)),
+  //                 bottom: BorderSide(width: 10, color: Color(0xfff2f2f2))
   //             )
   //         ),
   //     );
@@ -78,7 +86,6 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
     }
 
     return Container(
-      color: Colors.white,
       child: ListTile(
         // contentPadding: EdgeInsets.only(left: 15,right: 15),
         title: Text(title,
@@ -87,7 +94,9 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
           ),
         ),
         trailing: Icon(Icons.chevron_right),
-        onTap: (){ print(title); }, )
+        onTap: (){ print(title);
+        },
+      )
           .addBottomSeparator(height: 1, color: Colors.black.withAlpha(10)),
     );
   }
