@@ -67,7 +67,7 @@ class HudProgressDemoWidget extends StatelessWidget {
               child: Text("$e"),
             )
         )
-            .decorated(color: Colors.blue)
+            .decorated(color: Theme.of(context).primaryColor)
               // .gestures( onTap: () => ddlog(e)
             .gestures(onTap: (){
               ddlog(e);

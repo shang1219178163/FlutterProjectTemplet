@@ -1038,7 +1038,7 @@
 //         onPressed: () {},
 //         clickEffect: true,
 //         highlightColor: Colors.red,
-//         hoverColor: Colors.blue,
+//         hovercolor: Theme.of(context).primaryColor,
 //         corner: FCorner.all(6.0),
 //       ),
 //     );

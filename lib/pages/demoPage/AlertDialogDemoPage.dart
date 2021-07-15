@@ -309,7 +309,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> {
           ),
           Container(
             height: 30,
-            color: Colors.blue,
+            color: Theme.of(context).primaryColor,
           ),
           Container(
             height: 30,

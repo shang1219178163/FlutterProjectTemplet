@@ -90,7 +90,7 @@ class _DraggableScrollableSheetDemoPageState extends State<DraggableScrollableSh
     return DraggableScrollableSheet(
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
-          color: Colors.blue[100],
+          color: Theme.of(context).primaryColor,
           child: ListView.builder(
             controller: scrollController,
             itemCount: 25,

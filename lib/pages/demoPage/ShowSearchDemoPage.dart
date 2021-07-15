@@ -127,7 +127,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
           ListTile(
             leading: Icon(
               Icons.message,
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
             ),
             title: Text(
               item,
@@ -255,7 +255,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
 //               title: RichText(
 //                 text: TextSpan(
 //                   text: suggest[index].substring(0, query.length),
-//                   style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),
+//                   style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold),
 //                   children: [
 //                     TextSpan(
 //                       text: suggest[index].substring(query.length),

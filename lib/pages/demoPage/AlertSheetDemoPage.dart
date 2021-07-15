@@ -62,7 +62,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       runSpacing: -8.0, // 纵轴（垂直）方向间距
       alignment: WrapAlignment.start, //沿主轴方向居中
         children: titles.map((e) => ActionChip(
-          avatar: CircleAvatar(backgroundColor: Colors.blue,
+          avatar: CircleAvatar(backgroundColor: Theme.of(context).primaryColor,
               child: Text("${e.characters.first.toUpperCase()}")
           ),
           label: Text(e),

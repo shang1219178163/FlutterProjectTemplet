@@ -151,7 +151,7 @@ class _NumberStepperState extends State<NumberStepper> {
         Container(
           width: widget.iconSize,
           height: widget.iconSize,
-          // color: Colors.blue,
+          // color: Theme.of(context).primaryColor,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(widget.radius),
@@ -182,7 +182,7 @@ class _NumberStepperState extends State<NumberStepper> {
         Container(
           width: widget.iconSize,
           height: widget.iconSize,
-          // color: Colors.blue,
+          // color: Theme.of(context).primaryColor,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(widget.radius),

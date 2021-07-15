@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:get/get.dart';
 
@@ -43,25 +44,30 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
         child: Container(
           height: MediaQuery.of(context).size.height,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ListView(
                 shrinkWrap: true,
                 padding: EdgeInsets.zero, //去掉顶部灰色部分
                 children: <Widget>[
                   DrawerHeader(
-                    decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+                    // decoration: BoxDecoration(color: Theme.of(context).primaryColor),
                     child: UnconstrainedBox( //解除父级的大小限制
                       child: CircleAvatar(
                           radius: 48,
-                          backgroundColor: Colors.transparent,
+                          // backgroundColor: Colors.transparent,
                           backgroundImage: AssetImage('assets/images/avatar.png')
                       ),
                     ),
                   ),
-                  Text('设置在主页面,否则底部按钮无法挡住!', style: TextStyle(fontSize: 12.0, color: Colors.lightBlue), textAlign: TextAlign.center,),
+                  Text('设置在主页面,否则底部按钮无法挡住!',
+                    style: TextStyle(fontSize: 12.0,
+                        // color: Theme.of(context).primaryColor
+                    ),
+                    textAlign: TextAlign.center,),
                   ListTile(
-                    leading: Icon(Icons.person,color: Colors.blue),
+                    leading: Icon(Icons.person, color: Theme.of(context).accentColor),
+                    // leading: Icon(Icons.person, color: Theme.of(context).iconTheme.color),
                     title: Text("我的",style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
@@ -77,7 +83,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                   ),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.volume_up,color: Colors.blue),
+                    leading: Icon(Icons.volume_up, color: Theme.of(context).accentColor),
                     title: Text("消息",style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
@@ -91,7 +97,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                   ),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.settings,color: Colors.blue),
+                    leading: Icon(Icons.settings, color: Theme.of(context).accentColor),
                     title: Text("设置",style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
@@ -105,7 +111,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                   ),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.share,color: Colors.blue),
+                    leading: Icon(Icons.share, color: Theme.of(context).accentColor),
                     title: Text("分享",style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
@@ -118,7 +124,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                   ),
                   Divider(),
                   ListTile(
-                    leading: Icon(Icons.open_in_new,color: Colors.blue),
+                    leading: Icon(Icons.open_in_new, color: Theme.of(context).accentColor),
                     title: Text("退出",style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
@@ -132,9 +138,27 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                 ],
               ),
 
-              TextButton(onPressed: (){
-                Get.changeTheme(Get.isDarkMode? ThemeData.light(): ThemeData.dark());
-              }, child: Text("主题切换")),
+              Row(children: [
+                TextButton(onPressed: (){
+                  setState(() {
+                    APPThemeSettings.instance.changeTheme();
+                  });
+                }, child: Text("主题切换",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                  )
+                ),
+                
+                TextButton(onPressed: (){
+                  APPThemeSettings.instance.showThemePicker(context: context, callback: (){
+                    Navigator.of(context).pop();
+                  });
+                }, child: Text("light主题切换",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                  )
+                ),
+              ],
+              ),
+              SizedBox(height: 15,)
             ],
           ),
         ),

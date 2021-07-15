@@ -131,7 +131,7 @@ class _FlutterSlidableDemoPageState extends State<FlutterSlidableDemoPage> {
       actions: <Widget>[
         IconSlideAction(
           caption: 'Archive',
-          color: Colors.blue,
+          color: Theme.of(context).primaryColor,
           icon: Icons.archive,
           onTap: () => _showSnackBar(context, 'Archive'),
         ),

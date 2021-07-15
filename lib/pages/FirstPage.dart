@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/Navigator_extension.dart';
@@ -24,6 +26,7 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Get.isDarkMode ? APPThemeSettings.instance.darkThemeData : APPThemeSettings.instance.themeData,
       home: DefaultTabController(
         length: 4,
         child: Scaffold(

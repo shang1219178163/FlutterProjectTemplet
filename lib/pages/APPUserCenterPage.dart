@@ -7,9 +7,10 @@
 //
 
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
-import 'package:fluttertemplet/dartExpand/DDLog.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -32,18 +33,26 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),//修改返回按钮颜色
           centerTitle: true,
-          title: Text('设置',style: TextStyle(color: Colors.white)),
+          title: Text('设置', style: TextStyle(color: Colors.white)),
           leading: Builder(builder: (context) {
             return IconButton(
               icon: Icon(Icons.menu, color: Colors.white), //自定义图标
               onPressed: () {
                 // 打开抽屉菜单
                 // Scaffold.of(context).openDrawer();
-                kScaffoldKey.currentState!.openDrawer();
+                kScaffoldKey.currentState?.openDrawer();
               },
             );
           }),
           actions: [
+            IconButton(icon: Icon(Icons.change_circle_outlined),
+              color: Colors.white,
+              onPressed: (){
+                // Get.changeTheme(Get.isDarkMode? ThemeData.light(): ThemeData.dark());
+                APPThemeSettings.instance.changeTheme();
+
+              },
+            ),
             IconButton(icon: Icon(Icons.settings),
               color: Colors.white,
               onPressed: (){
@@ -60,8 +69,8 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
             children: <Widget>[
               buildTop(context),
               buildMid(context),
-              Container(height: 15, color: Color(0xfff2f2f2)),
-              // Container(height: 15,color: Colors.red),
+              Container(height: 15, color: Get.isDarkMode ? Colors.black45 : Color(0xfff2f2f2)),
+              // Container(height: 15, color: Colors.red),
               buildBom(context)
             ],
           ),
@@ -74,13 +83,13 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 160.0,
-      color: Colors.blue,
+      color: Theme.of(context).primaryColor,
       child: Column(
         children: <Widget>[
           SizedBox(height: 10),
           Hero(
             tag: 'avatar',
-            child: Image.asset('assets/images/avatar.png',width:90),
+            child: Image.asset('assets/images/avatar.png', width:90),
           ),
           SizedBox(height: 10),
           Row(
@@ -95,7 +104,7 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
                   Get.toNamed(APPRouter.loginPage2, arguments: "login");
                 },
               ),
-              Text('/', style: TextStyle(fontSize: 20.0,color: Colors.white)),
+              Text('/', style: TextStyle(fontSize: 20.0, color: Colors.white)),
               TextButton(
                 child: Text('注册', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                 onPressed: (){
@@ -121,10 +130,11 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
         childAspectRatio: 1.0,
         children: serviceList.map((e) => TextButtonExt.build(
             text: e.item1,
-            image: e.item2,
+            // image: (e.item2 as Icon).copyWith(color: Theme.of(context).iconTheme.color),
+            image: (e.item2 as Icon).copyWith(color: Theme.of(context).accentColor),
             imageAlignment: ImageAlignment.top,
             callback: (value){
-          DDLog(value);
+          ddlog(value);
         })).toList(),
       ),
     );
@@ -132,11 +142,11 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
 
   Widget buildBom(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal:10,vertical:8),
+      padding: EdgeInsets.symmetric(horizontal:10, vertical:8),
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: Icon(Icons.mail,color: Colors.blue),
+            leading: Icon(Icons.mail, color: Theme.of(context).accentColor,),
             title: Text("我的消息",style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
@@ -144,56 +154,56 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.share,color: Colors.blue),
-            title: Text("分享应用",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.share, color: Theme.of(context).accentColor,),
+            title: Text("分享应用", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.save,color: Colors.blue),
-            title: Text("我的收藏",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.save, color: Theme.of(context).accentColor,),
+            title: Text("我的收藏", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.date_range,color: Colors.blue),
-            title: Text("我的点评",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.date_range, color: Theme.of(context).accentColor,),
+            title: Text("我的点评", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.scanner,color: Colors.blue),
-            title: Text("我的书架",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.scanner, color: Theme.of(context).accentColor,),
+            title: Text("我的书架", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.table_chart,color: Colors.blue),
-            title: Text("设置主题",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.table_chart, color: Theme.of(context).accentColor,),
+            title: Text("设置主题", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.language,color: Colors.blue),
-            title: Text("语言切换",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.language, color: Theme.of(context).accentColor,),
+            title: Text("语言切换", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.history,color: Colors.blue),
-            title: Text("历史记录",style: TextStyle(fontSize: 16.0)),
+            leading: Icon(Icons.history, color: Theme.of(context).accentColor,),
+            title: Text("历史记录", style: TextStyle(fontSize: 16.0)),
             trailing: Icon(Icons.chevron_right),
             dense:true,
             onTap: (){},

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
 import 'package:fluttertemplet/DartExpand/PopupMenuButton_extension.dart';
@@ -12,25 +13,13 @@ import 'package:flutter/material.dart';
 class SecondPage extends StatefulWidget {
 
   final String? title;
-
   SecondPage({ Key? key, this.title}) : super(key: key);
-
 
   @override
   _SecondPageState createState() => _SecondPageState();
 }
 
 class _SecondPageState extends State<SecondPage> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +57,9 @@ class _SecondPageState extends State<SecondPage> {
 
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => ddlog('floatingActionButton'),
+            onPressed: () {
+              APPThemeSettings.instance.changeTheme();
+            },
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -107,15 +98,15 @@ class _SecondPageState extends State<SecondPage> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('呼叫', style: TextStyle(color: Theme.of(context).accentColor))
+                  Text('呼叫',)
                       .padding(right: 5),
                   // SizedBox(width: 30),
                   Icon(Icons.call),
                 ],
               )
-                  .decorated(color: Colors.yellow, borderRadius: BorderRadius.all(Radius.circular(0))),
+                  .decorated(borderRadius: BorderRadius.all(Radius.circular(0))),
             )
-                .decorated(color: Colors.green, borderRadius: BorderRadius.all(Radius.circular(5))),
+                .decorated(borderRadius: BorderRadius.all(Radius.circular(5))),
 
             TextButton(
               onPressed: () => ddlog('Make a Note'),
@@ -129,9 +120,9 @@ class _SecondPageState extends State<SecondPage> {
                   Icon(Icons.send),
                 ],
               ),
-            ).decorated(color: Colors.white,
+            ).decorated(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                border: Border.all(width: 1.0, color: Colors.red)),
+                border: Border.all(width: 1.0, color: Theme.of(context).buttonColor)),
 
             // WidgetExt.buildBtn("菜单", Icon(Icons.send), ImageAlignment.right),
             TextButtonExt.build(
@@ -149,10 +140,11 @@ class _SecondPageState extends State<SecondPage> {
                 callback: (value) {
                   ddlog(value.data);
                 })
-                .decorated(color: Colors.white,
+                .decorated(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Colors.red),),
+              border: Border.all(width: 1.0, color: Theme.of(context).primaryColor),),
 
+            SizedBox(height: 10,),
             TextButtonExt.build(
                 text: Text("菜单right"),
                 image: Icon(Icons.info),
@@ -160,9 +152,10 @@ class _SecondPageState extends State<SecondPage> {
                 callback: (value) {
                   ddlog(value.data);
 
-                }).decorated(color: Colors.white,
+                }).decorated(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                border: Border.all(width: 1.0, color: Colors.red)),
+                border: Border.all(width: 1.0, color: Theme.of(context).primaryColor)),
+            SizedBox(height: 10,),
 
             TextButtonExt.build(
                 text: Text("菜单top"),
@@ -171,9 +164,10 @@ class _SecondPageState extends State<SecondPage> {
                 callback: (value) {
                   ddlog(value.data);
 
-                }).decorated(color: Colors.white,
+                }).decorated(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Colors.red),),
+              border: Border.all(width: 1.0, color: Theme.of(context).buttonColor),),
+            SizedBox(height: 10,),
 
             TextButtonExt.build(
                 text: Text("菜单bottom"),
@@ -182,14 +176,16 @@ class _SecondPageState extends State<SecondPage> {
                 callback: (value) {
                   ddlog(value.data);
 
-                }).decorated(color: Colors.white,
+                }).decorated(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Colors.red),),
+              border: Border.all(width: 1.0, color: Theme.of(context).buttonColor),
+            ),
+            SizedBox(height: 10,),
 
             IconButton(
               tooltip: '这是一个图标按钮',
               icon: Icon(Icons.person), iconSize: 30,
-              color: Colors.red,
+              color: Theme.of(context).accentColor,
               onPressed: () {
                 ddlog("这是一个图标按钮");
               },

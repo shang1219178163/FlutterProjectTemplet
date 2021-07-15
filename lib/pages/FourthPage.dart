@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/APPThemeSettings.dart';
+import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
@@ -6,6 +8,7 @@ class FourthPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: Get.isDarkMode ? APPThemeSettings.instance.darkThemeData : APPThemeSettings.instance.themeData,
       home: DefaultTabController(
         length: 4,
         child: Scaffold(

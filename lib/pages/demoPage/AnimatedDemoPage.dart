@@ -82,7 +82,7 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
               .center()
           ,
         )
-            .decorated(color: Colors.blue)
+            .decorated(color: Theme.of(context).primaryColor)
         ,
       ],
     );

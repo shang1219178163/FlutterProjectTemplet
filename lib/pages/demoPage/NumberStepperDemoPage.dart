@@ -29,9 +29,9 @@ class NumberStepperDemoPage extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(5.0),
-                  // border: Border.all(color: Colors.blue, width: 1), // 边色与边宽度
+                  // border: Border.all(color: Theme.of(context).primaryColor, width: 1), // 边色与边宽度
                 ),
                 child: OutlinedButton(
                   style: ButtonStyle(
@@ -49,7 +49,7 @@ class NumberStepperDemoPage extends StatelessWidget {
                 stepValue: 100,
                 iconSize: 60,
                 value: 1000,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 style: NumberStepperStyle.system,
                 block: (value){
                   ddlog(value);
@@ -62,7 +62,7 @@ class NumberStepperDemoPage extends StatelessWidget {
                 stepValue: 100,
                 iconSize: 40,
                 value: 1000,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 style: NumberStepperStyle.outlined,
                 block: (value){
                   ddlog(value);
@@ -75,7 +75,7 @@ class NumberStepperDemoPage extends StatelessWidget {
                 stepValue: 100,
                 iconSize: 30,
                 value: 1000,
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 style: NumberStepperStyle.textfield,
                 block: (value){
                   ddlog(value);

@@ -91,7 +91,7 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
               .center()
           ,
         )
-            .decorated(color: Colors.blue)
+            .decorated(color: Theme.of(context).primaryColor)
         ,
       ],
     );
@@ -202,8 +202,8 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.index,
       selectedFontSize: 14,
-      selectedItemColor: Colors.blue,
-      selectedIconTheme: IconThemeData(color: Colors.blue, size: 28),
+      selectedItemColor: Theme.of(context).primaryColor,
+      selectedIconTheme: IconThemeData(color: Theme.of(context).primaryColor, size: 28),
       selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
       unselectedFontSize: 12,
       unselectedItemColor: Colors.black,

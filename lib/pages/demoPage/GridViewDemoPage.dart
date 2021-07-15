@@ -74,7 +74,7 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
                 child: Text("GridTileBar"),
               )
           )
-              .decorated(color: Colors.blue)
+              .decorated(color: Theme.of(context).primaryColor)
           ,
           footer: Text('footer', textAlign: TextAlign.center,)
               .decorated(color: Colors.green),
@@ -100,7 +100,7 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
         }),
 
         Card(
-          color: Colors.blueAccent,
+          color: Theme.of(context).primaryColor,
           //z轴的高度，设置card的阴影
           elevation: 20.0,
           //设置shape，这里设置成了R角

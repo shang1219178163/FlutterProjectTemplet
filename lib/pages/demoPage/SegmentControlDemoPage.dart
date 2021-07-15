@@ -109,10 +109,10 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         buildSlidingSegmentedControl3(context).padding(left: 15, right: 15),
 
         SizedBox(height: 15),
-        buildLineSegmentControl(null, lineColor: Colors.blue),
+        buildLineSegmentControl(null, lineColor: Theme.of(context).primaryColor),
 
         SizedBox(height: 15),
-        buildLineSegmentControl(Colors.white, lineColor: Colors.blue),
+        buildLineSegmentControl(Colors.white, lineColor: Theme.of(context).primaryColor),
 
         SizedBox(height: 15),
         buildLineSegmentControl(Colors.black87, lineColor: Colors.white),

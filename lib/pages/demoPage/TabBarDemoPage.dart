@@ -34,8 +34,8 @@ class _TabBarDemoPageState extends State<TabBarDemoPage> with AutomaticKeepAlive
     super.build(context);//必须添加
 
     return MaterialApp(
-      // theme: APPThemeSettings.instance.themeData(),
-      theme: Get.isDarkMode ? ThemeData.dark(): ThemeData.light(),
+      // theme: Get.isDarkMode ? ThemeData.dark(): ThemeData.light(),
+      theme: Get.isDarkMode ? APPThemeSettings.instance.darkThemeData : APPThemeSettings.instance.themeData,
       home: DefaultTabController(
         length: 5,
         child: Scaffold(
