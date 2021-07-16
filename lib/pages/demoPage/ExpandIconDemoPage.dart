@@ -15,11 +15,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 
-class ExpandIconExamplePage extends StatefulWidget {
-  ExpandIconExamplePageState createState() => ExpandIconExamplePageState();
+class ExpandIconDemoPage extends StatefulWidget {
+  ExpandIconDemoPageState createState() => ExpandIconDemoPageState();
 }
 
-class ExpandIconExamplePageState extends State<ExpandIconExamplePage> {
+class ExpandIconDemoPageState extends State<ExpandIconDemoPage> {
 
   late bool _isExpanded = false;
 
@@ -39,7 +39,6 @@ class ExpandIconExamplePageState extends State<ExpandIconExamplePage> {
 
     );
   }
-
 
   Widget buildExpandIcon(BuildContext context) {
     return Column(
