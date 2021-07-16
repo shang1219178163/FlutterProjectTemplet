@@ -11,7 +11,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/APPThemeSettings.dart';
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 
 class AppSettingsPage extends StatefulWidget{

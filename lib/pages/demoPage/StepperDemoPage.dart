@@ -9,11 +9,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 import 'package:tuple/tuple.dart';
 import '../../basicWidget/enhance_stepper.dart';
 
-import 'package:fluttertemplet/dartExpand/ButtonExt.dart';
+import 'package:fluttertemplet/dartExpand/button_extension.dart';
 
 ///步骤一二三
 class StepperDemoPage extends StatefulWidget {

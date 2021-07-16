@@ -7,11 +7,12 @@ import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
+import 'package:tuple/tuple.dart';
 
 import 'Pages/APPDrawerMenuPage.dart';
 import 'Pages/APPUserCenterPage.dart';
-import 'package:fluttertemplet/dartExpand/PopupMenuButton_extension.dart';
-import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
+import 'package:fluttertemplet/dartExpand/popupMenuButton_extension.dart';
+import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
 
 import 'Pages/FirstPage.dart';
 import 'Pages/SecondPage.dart';
@@ -22,7 +23,7 @@ import 'Pages/TextlessPage.dart';
 import 'Pages/ListPageController.dart';
 
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 import 'NNListWidgetPage.dart';
 import 'Pages/ListPageController.dart';
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       key: navigatorState,
       title: 'Flutter Templet',
-      // theme: APPThemeSettings.instance.themeData(),
+      debugShowCheckedModeBanner: false,
+      theme: APPThemeSettings.instance.themeData,
       // darkTheme: APPThemeSettings.instance.darkThemeData,
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       // initialRoute: "/MyHomePage",
@@ -89,43 +91,44 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
-  final pages = [
-    WidgetListPage(),
-    SecondPage(),
-    TabBarDemoPage(),
-    ThirdPage(),
-    // FourthPage(),
-    APPUserCenterPage()
+  final List<Tuple2<Widget, BottomNavigationBarItem>> items = [
+    Tuple2(WidgetListPage(),
+      BottomNavigationBarItem(
+        // backgroundColor: Colors.white,
+        icon: Icon(Icons.home),
+        label: "首页",
+      )
+    ),
+    Tuple2(SecondPage(),
+      BottomNavigationBarItem(
+        // backgroundColor: Colors.white,
+        icon: Icon(Icons.merge_type_sharp),
+        label: "按钮",
+      ),
+    ),
+    Tuple2(TabBarDemoPage(),
+      BottomNavigationBarItem(
+        // backgroundColor: Colors.white,
+        icon: Icon(Icons.message),
+        label: "消息",
+      ),
+    ),
+    Tuple2(ThirdPage(),
+      BottomNavigationBarItem(
+        // backgroundColor: Colors.amber,
+        icon: Icon(Icons.shopping_cart),
+        label: "购物车",
+      ),
+    ),
+    Tuple2(APPUserCenterPage(),
+      BottomNavigationBarItem(
+        // backgroundColor: Colors.red,
+        icon: Icon(Icons.person),
+        label: "个人中心",
+      ),
+    ),
   ];
 
-  final List<BottomNavigationBarItem> bottomNavItems = [
-    BottomNavigationBarItem(
-      // backgroundColor: Colors.white,
-      icon: Icon(Icons.home),
-      label: "首页",
-    ),
-    BottomNavigationBarItem(
-      // backgroundColor: Colors.white,
-      icon: Icon(Icons.merge_type_sharp),
-      label: "按钮",
-    ),
-    BottomNavigationBarItem(
-      // backgroundColor: Colors.white,
-      icon: Icon(Icons.message),
-      label: "消息",
-    ),
-    BottomNavigationBarItem(
-      // backgroundColor: Colors.amber,
-      icon: Icon(Icons.shopping_cart),
-      label: "购物车",
-    ),
-    BottomNavigationBarItem(
-      // backgroundColor: Colors.red,
-      icon: Icon(Icons.person),
-      label: "个人中心",
-    ),
-  ];
-  
   /*切换页面*/
   void _changePage(int index) {
     /*如果点击的导航项不是当前项  切换 */
@@ -159,18 +162,16 @@ class _MyHomePageState extends State<MyHomePage> {
       key: kScaffoldKey,
       // drawer: MyDrawer(),
       drawer: APPDrawerMenuPage(),
-
       // appBar: buildAppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        items: bottomNavItems,
+        items: items.map((e) => e.item2).toList(),
         currentIndex: currentIndex,
-
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.lightBlue,
-        unselectedItemColor: Colors.black54,
-
-        selectedIconTheme: IconThemeData(color: Colors.lightBlue),
-        unselectedIconTheme: IconThemeData(color: Colors.black54),
+        // selectedItemColor: Colors.lightBlue,
+        // unselectedItemColor: Colors.black45,
+        //
+        // selectedIconTheme: IconThemeData(color: Colors.lightBlue),
+        // unselectedIconTheme: IconThemeData(color: Colors.black45),
 
         selectedLabelStyle: TextStyle(fontSize: 12),
         unselectedLabelStyle: TextStyle(fontSize: 12),
@@ -178,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
           _changePage(index);
         },
       ),
-      body: pages[currentIndex],
+      body: items.map((e) => e.item1).toList()[currentIndex],
       // body: PageView(onPageChanged: (index){
       //     _changePage(index);
       //   },
@@ -235,8 +236,6 @@ class _MyHomePageState extends State<MyHomePage> {
     ddlog(a.toStringAsExponential(2));
     ddlog(a.toStringAsFixed(2));
     ddlog(a.toStringAsPrecision(2));
-
-    // "1111".printNew();
   }
 
   Widget buildUpdateAlert(BuildContext context) {
@@ -279,7 +278,6 @@ class _MyHomePageState extends State<MyHomePage> {
           .padding(top: 100, left: 15, bottom: 100, right: 15),
     );
   }
-
 }
 
 ///左侧抽屉菜单

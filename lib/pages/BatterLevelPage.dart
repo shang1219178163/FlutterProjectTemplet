@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/Navigator_extension.dart';
+import 'package:fluttertemplet/dartExpand/navigator_extension.dart';
 
 
 class BatterLevelPage extends StatefulWidget {
@@ -39,13 +39,11 @@ class _BatterLevelPageState extends State<BatterLevelPage> {
       appBar: AppBar(
           leading: Icon(Icons.arrow_back)
                     .gestures(onTap: (){
-                  NavigatorExt.popPage(context);
-                  // Navigator.popPage(context);
-                  // if (!Navigator.canPop(context)) {
-                  //   ddlog("已经是根页面了！");
-                  //   return;
-                  // }
-                  // Navigator.pop(context);
+                  if (!Navigator.canPop(context)) {
+                    ddlog("已经是根页面了！");
+                    return;
+                  }
+                  Navigator.pop(context);
                 }),
           // Here we take the value from the BatterLevelPage object that was created by
         // the App.build method, and use it to set our appbar title.

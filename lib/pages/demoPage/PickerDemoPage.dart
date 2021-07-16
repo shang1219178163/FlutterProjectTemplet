@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
-import 'package:fluttertemplet/dartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/actionSheet_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 import 'ListTileDemoPage.dart';
 

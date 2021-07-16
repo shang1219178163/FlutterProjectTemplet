@@ -6,8 +6,8 @@ import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceWrapWidget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
-import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
 import 'package:popover/popover.dart';
 
 import 'package:styled_widget/styled_widget.dart';

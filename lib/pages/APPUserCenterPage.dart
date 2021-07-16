@@ -11,11 +11,11 @@ import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/DartExpand/Navigator_extension.dart';
+import 'package:fluttertemplet/DartExpand/navigator_extension.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'APPDrawerMenuPage.dart';
-import 'package:fluttertemplet/dartExpand/AlertDialog_extension.dart';
+import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
 import 'package:tuple/tuple.dart';
 
 

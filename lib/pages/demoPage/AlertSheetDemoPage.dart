@@ -9,8 +9,8 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
 import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
 import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
-import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/DartExpand/actionSheet_extension.dart';
+import 'package:fluttertemplet/DartExpand/widget_extension.dart';
 import 'ShowSearchDemoPage.dart';
 
 
@@ -31,17 +31,6 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 3、更简洁更流畅，使用起来更快;
 4、修复一些软件在使用时自动退出bug;
 """;
-
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
 
   @override

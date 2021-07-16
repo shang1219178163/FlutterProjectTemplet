@@ -8,45 +8,15 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 extension NavigatorExt on Navigator{
 
-  @optionalTypeArgs
-  static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
-    if (!Navigator.canPop(context)) {
-      ddlog("已经是根页面了！");
-      return;
-    }
-    Navigator.of(context).pop<T>(result);
-  }
-
-  // static void popPage(BuildContext context, [StackTrace? current]){
-  //   if (!Navigator.canPop(context)) {
-  //     if (current != null) {
-  //       ddlog("已经是根页面了！");
-  //     }
-  //     return;
-  //   }
-  //   Navigator.pop(context);
-  // }
-
   // @optionalTypeArgs
   // static void popPage<T extends Object?>(BuildContext context, [ T? result ]) {
   //   if (!Navigator.canPop(context)) {
-  //     // if (StackTrace.current != null) {
-  //       ddlog("已经是根页面了！");
-  //     // }
+  //     ddlog("已经是根页面了！");
   //     return;
   //   }
   //   Navigator.of(context).pop<T>(result);
   // }
 
-  // static void popPage(BuildContext context, Dynamic? obj, [StackTrace? current]){
-  //   if (!Navigator.canPop(context)) {
-  //     if (current != null) {
-  //       ddlog("已经是根页面了！", current);
-  //     }
-  //     return;
-  //   }
-  //   Navigator.pop(context, obj);
-  // }
 }
 
 enum ImageAlignment {
@@ -134,77 +104,3 @@ extension TextButtonExt on TextButton{
     }
   }
 }
-
-// extension WidgetExt on Widget{
-//
-//   // ignore: non_constant_identifier_names, missing_return
-//   static Widget buildBtn(String text, Widget image, ImageAlignment imageAlignment) {
-//     if (image == null) {
-//       return Text(text ?? "",);
-//     }
-//
-//     switch (imageAlignment) {
-//       case ImageAlignment.left:
-//         return Row(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           mainAxisSize: MainAxisSize.min,
-//           children: <Widget>[
-//             image,
-//             SizedBox(width: 8),
-//             Text(text ?? "",),
-//           ],
-//         );
-//       case ImageAlignment.top:
-//         return Column(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           mainAxisSize: MainAxisSize.min,
-//           children: <Widget>[
-//             image,
-//             SizedBox(width: 8),
-//             Text(text ?? "",),
-//           ],
-//         );
-//       case ImageAlignment.right:
-//         return Row(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           mainAxisSize: MainAxisSize.min,
-//           children: <Widget>[
-//             Text(text ?? "",),
-//             SizedBox(width: 8),
-//             image,
-//           ],
-//         );
-//       case ImageAlignment.bottom:
-//         return Column(
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           mainAxisSize: MainAxisSize.min,
-//           children: <Widget>[
-//             Text(text ?? "",),
-//             SizedBox(width: 8),
-//             image,
-//           ],
-//         );
-//     }
-//   }
-//
-// }
-
-
-// class OutlinedButton extends ButtonStyleButton {
-//
-//
-// }
-
-
-// extension on TextStyle {
-//
-//   TextStyle colorChain(Color? color){
-//     this.color = color;
-//     return this;
-//   }
-//
-// }

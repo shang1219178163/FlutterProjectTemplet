@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
-import 'package:fluttertemplet/pages/demoPage/ExpandIconExamplePage.dart';
+import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemoWidget.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
@@ -99,7 +100,8 @@ class APPRouter {
   static const sliverAppBarDemoPage = '/SliverAppBarDemoPage';
   static const hudProgressDemoWidget = '/HudProgressDemoWidget';
   static const reorderableListViewDemoPage = '/ReorderableListViewDemoPage';
-  static const expandIconExamplePage = '/ExpandIconExamplePage';
+  static const expandIconDemoPage = '/ExpandIconDemoPage';
+  static const expandIconDemo = '/ExpandIconDemo';
   static const stepperDemoPage = '/StepperDemoPage';
   static const numberStepperDemoPage = '/NumberStepperDemoPage';
   static const tableViewDemoPage = '/TableViewDemoPage';
@@ -461,8 +463,13 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.expandIconExamplePage,
-      page: () => ExpandIconExamplePage(),
+      name: APPRouter.expandIconDemoPage,
+      page: () => ExpandIconDemoPage(),
+    ),
+
+    GetPage(
+      name: APPRouter.expandIconDemo,
+      page: () => ExpandIconDemo(),
     ),
 
     GetPage(

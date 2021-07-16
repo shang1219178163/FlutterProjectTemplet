@@ -8,8 +8,8 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 
-import 'package:fluttertemplet/DartExpand/ActionSheet_extension.dart';
-import 'package:fluttertemplet/DartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/DartExpand/actionSheet_extension.dart';
+import 'package:fluttertemplet/DartExpand/widget_extension.dart';
 
 
 class PageViewDemoPage extends StatefulWidget {

@@ -15,7 +15,7 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
-import 'package:fluttertemplet/dartExpand/Widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -29,8 +29,29 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    // this.tabController = TabController(length: pages.length, vsync: this);
 
+    testData();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    this.tabController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    this.tabController.index = pages.length - 1;
+
+    return PageControllerWidget(
+      title: '基础组件列表',
+      pages: pages,
+      tabController: this.tabController,
+      tabScrollable: true,
+    );
+  }
+
+  void testData() {
     final String? a = null;
     ddlog(a.runtimeType);
 
@@ -59,24 +80,6 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
     // Iterable<T> map<T>(T f(E e)) => MappedIterable<E, T>(this, f);
   }
-
-  @override
-  void dispose() {
-    super.dispose();
-    this.tabController.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    this.tabController.index = pages.length - 1;
-
-    return PageControllerWidget(
-      title: '基础组件列表',
-      pages: pages,
-      tabController: this.tabController,
-      tabScrollable: true,
-    );
-  }
 }
 
 var list = [
@@ -94,7 +97,9 @@ var list = [
   Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
   Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
   Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
-  Tuple2(APPRouter.expandIconExamplePage, "expandIconExamplePage", ),
+  Tuple2(APPRouter.expandIconDemoPage, "expandIconDemoPage", ),
+  Tuple2(APPRouter.expandIconDemo, "expandIconDemo", ),
+
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
   Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
 

@@ -73,7 +73,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                   ListTile(
                     leading: Icon(Icons.person, color: Theme.of(context).accentColor),
                     // leading: Icon(Icons.person, color: Theme.of(context).iconTheme.color),
-                    title: Text("我的",style: TextStyle(fontSize: 16.0)),
+                    title: Text("我的", style: TextStyle(fontSize: 16.0)),
                     trailing: Icon(Icons.chevron_right),
                     dense: true,
                     // horizontalTitleGap: 0,

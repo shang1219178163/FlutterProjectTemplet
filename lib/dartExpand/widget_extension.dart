@@ -1,5 +1,5 @@
 //
-//  Widget_extension.dart
+//  widget_extension.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/17/21 10:43 AM.
@@ -389,16 +389,6 @@ extension ListTileExt on ListTile {
   }
 }
 
-
-extension ColorExt on Color{
-
-  static Color random() {
-    return Color.fromRGBO(
-        Random().nextInt(256),
-        Random().nextInt(256),
-        Random().nextInt(256), 1);
-  }
-}
 
 extension GetDynamicExt<T> on T {
 
