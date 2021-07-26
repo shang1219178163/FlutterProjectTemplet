@@ -27,7 +27,7 @@ import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/SnackBarDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TextFieldDemoPage.dart';
-import 'package:fluttertemplet/Pages/demoPage/flutterSlidableDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/SlidableDemoPage.dart';
 import 'package:fluttertemplet/pages/AppWebViewDemoPage.dart';
 import 'package:fluttertemplet/pages/ForgetPasswordPage.dart';
 import 'package:fluttertemplet/pages/LoginPage.dart';
@@ -131,7 +131,7 @@ class APPRouter {
   //   toastContext: (context) => ToastContext(),
   //   toastNoContext: (context) => ToastNoContext(),
   //   textFieldDemoPage: (context) => TextFieldDemoPage(),
-  //   slidableDemoPage: (context) => FlutterSlidableDemoPage(),
+  //   slidableDemoPage: (context) => SlidableDemoPage(),
   //   notFound: (context) => APPNotFoundPage(),
   //   settingsPage: (context) => AppSettingsPage(),
   //   draggableDemoPage: (context) => DraggableDemoPage(),
@@ -399,7 +399,7 @@ class AppPage{
 
      GetPage(
        name: APPRouter.slidableDemoPage,
-       page: () => FlutterSlidableDemoPage(),
+       page: () => SlidableDemoPage(),
      ),
 
      GetPage(

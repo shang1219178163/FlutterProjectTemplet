@@ -9,6 +9,7 @@
 
 
 import 'dart:io';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 
@@ -17,8 +18,11 @@ import 'package:get_storage/get_storage.dart';
 
 import 'fileManager.dart';
 
-class RequestManager{
-  RequestManager._internal();
+
+
+
+class httpManager{
+  httpManager._internal();
 
   static final Dio dio = Dio(BaseOptions(
     baseUrl: "https://www.wanandroid.com",
@@ -32,7 +36,7 @@ class RequestManager{
     // final cookieManager = CookieManager(cookieJar);
     // dio.interceptors.add(cookieManager);
 
-    FileManager.getDocumentsDirPath().then((value) => {
+    FileManager.getDocumentsDirPath().then((value) {
         var cookieJar = PersistCookieJar(storage: FileStorage(value + "/.cookies/"));
         dio.interceptors.add(CookieManager(cookieJar));
     });
@@ -75,13 +79,10 @@ class RequestManager{
         print("未知错误");
         break;
     }
+  }
 
 
-
-}
-
-
-  static Future get(String url, [Map<String, dynamic>? params, ProgressCallback? onReceiveProgress]) async {
+  static Future get(String url, Map<String, dynamic>? params, ProgressCallback? onReceiveProgress) async {
     Response response = await dio.get(url, queryParameters: params, onReceiveProgress: onReceiveProgress);
     // Response response;
     // if (params != null) {
@@ -103,30 +104,100 @@ class RequestManager{
   }
 
   ///post body请求(data: FormData)
-  static Future post(String url, [data, Map<String, dynamic>? params, ProgressCallback? onReceiveProgress]) async {
-    Response response = await dio.post(url, data: data, queryParameters: params, onReceiveProgress: onReceiveProgress);
+  static Future post(String url, Map<String, dynamic>? params) async {
+    Response response = await dio.post(url, queryParameters: params);
+    return response.data;
+  }
+
+  ///post body请求(data: FormData)
+  static Future upload(String url, data, ProgressCallback? onReceiveProgress) async {
+    Response response = await dio.post(url, data: data, onReceiveProgress: onReceiveProgress);
     return response.data;
   }
 
   ///下载文件
-  static Future download(String urlPath, String savePath, [ProgressCallback? onReceiveProgress]) async {
-    Response response;
+  static Future download(String urlPath, String savePath, ProgressCallback? onReceiveProgress) async {
+    Response response = await dio.download(urlPath, savePath, onReceiveProgress: onReceiveProgress);
+    return response.data;
+
     try {
-      response = await dio.download(urlPath, savePath, onReceiveProgress: onReceiveProgress);
-      // response = await dio.download(urlPath, savePath, onReceiveProgress: (int count, int total) {
+      Response response = await dio.download(urlPath, savePath, onReceiveProgress: onReceiveProgress);
+      //Response  response = await dio.download(urlPath, savePath, onReceiveProgress: (int count, int total) {
       //   //进度
       //   print("$count $total");
       // });
+      return response.data;
+
     } on DioError catch (e) {
       handleError(e);
+      return null;
     }
-    return response.data;
+    return null;
   }
 
 }
 
+///请求基类
+abstract class BaseRequestManager implements httpManager {
 
-// class BaseRequestManager extends RequestManager {
-//
-//
-// }
+  String requestURI();
+
+  String requestType();
+
+  Map<String, dynamic> requestParams();
+
+  bool validateParams();
+
+  bool shouldCache();
+
+  bool needLogin();
+
+  bool printLog();
+}
+
+
+class LoginApi extends BaseRequestManager{
+  @override
+  String requestURI() {
+    // TODO: implement requestURI
+    throw UnimplementedError();
+  }
+
+  @override
+  bool validateParams() {
+    // TODO: implement validateParams
+    throw UnimplementedError();
+  }
+
+  @override
+  bool needLogin() {
+    // TODO: implement needLogin
+    throw UnimplementedError();
+  }
+
+  @override
+  bool printLog() {
+    // TODO: implement printLog
+    throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> requestParams() {
+    // TODO: implement requestParams
+    throw UnimplementedError();
+  }
+
+  @override
+  String requestType() {
+    // TODO: implement requestType
+    throw UnimplementedError();
+  }
+
+  @override
+  bool shouldCache() {
+    // TODO: implement shouldCache
+    throw UnimplementedError();
+  }
+
+
+}

@@ -1,5 +1,5 @@
 //
-//  FlutterSlidableDemoPage.dart
+//  SlidableDemoPage.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/20/21 10:26 AM.
@@ -14,16 +14,16 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 
-class FlutterSlidableDemoPage extends StatefulWidget {
-  FlutterSlidableDemoPage({Key? key, this.title}) : super(key: key);
+class SlidableDemoPage extends StatefulWidget {
+  SlidableDemoPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _FlutterSlidableDemoPageState createState() => _FlutterSlidableDemoPageState();
+  _SlidableDemoPageState createState() => _SlidableDemoPageState();
 }
 
-class _FlutterSlidableDemoPageState extends State<FlutterSlidableDemoPage> {
+class _SlidableDemoPageState extends State<SlidableDemoPage> {
   late final SlidableController slidableController;
   final List<_HomeItem> items = List.generate(20, (i) => _HomeItem(
       i,
