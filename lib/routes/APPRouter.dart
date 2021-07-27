@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemoWidget.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/ProgressHUDDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/SliverAppBarDemoPage.dart';
 
@@ -105,7 +107,8 @@ class APPRouter {
   static const stepperDemoPage = '/StepperDemoPage';
   static const numberStepperDemoPage = '/NumberStepperDemoPage';
   static const tableViewDemoPage = '/TableViewDemoPage';
-
+  static const githubRepoDemo = '/GithubRepoDemo';
+  static const progressHUDDemo = '/ProgressHUDDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -137,94 +140,6 @@ class APPRouter {
   //   draggableDemoPage: (context) => DraggableDemoPage(),
   //
   // };
-
-//  Widget _router(String url, dynamic params) {
-//    String pageId = _pageIdMap[url];
-//    return _getPage(pageId, params);
-//  }
-//
-//  Map<String, dynamic> _pageIdMap = <String, dynamic>{
-//    'app/': 'ContainerPageWidget',
-//    detailPage: 'DetailPage',
-//  };
-
-  // Widget _getPage(String url, dynamic params) {
-  //   if (url.startsWith('https://') || url.startsWith('http://')) {
-  //     return WebViewPage(url: url, params: params,);
-  //   }
-  //
-  //   dynamic page = Container(child: Text("404, 页面休假了!"),);
-  //   switch (url) {
-  //     case homePage:
-  //       page = MyHomePage();
-  //       break;
-  //
-  //     case firstPage:
-  //       page = FirstPage();
-  //       break;
-  //
-  //     case secondPage:
-  //       page = SecondPage();
-  //       break;
-  //
-  //     case thirdPage:
-  //       page = ThirdPage();
-  //       break;
-  //
-  //     case fourthPage:
-  //       page = FourthPage();
-  //       break;
-  //
-  //     case tabBarDemo:
-  //       page = TabBarDemo();
-  //       break;
-  //
-  //     case widgetListPage:
-  //       page = WidgetListPage();
-  //       break;
-  //
-  //     case textlessPage:
-  //       page = TextlessPage();
-  //       break;
-  //
-  //     case alertDialogDemoPage:
-  //       page = AlertDialogDemoPage();
-  //       break;
-  //
-  //     case alertSheetDemoPage:
-  //       page = AlertSheetDemoPage();
-  //       break;
-  //
-  //     case iconsListPage:
-  //       page = IconsListPage();
-  //       break;
-  //
-  //     case gridViewDemoPage:
-  //       page = GridViewDemoPage();
-  //       break;
-  //
-  //     case pageViewDemoPage:
-  //       page = PageViewDemoPage();
-  //       break;
-  //
-  //     case pageViewTabBarWidget:
-  //       page = PageViewTabBarWidget();
-  //       break;
-  //
-  //     case snackBarDemoPage:
-  //       page = SnackBarDemoPage();
-  //       break;
-  //   }
-  //   return page;
-  // }
-
-  // static int countAs(String text, {Object? arguments,}) {
-  //   int total = text.length;
-  //   int diff = text.replaceAll("A", "").length;
-  //   return total - diff;
-  // }
-  //
-  //
   // APPRouter.push(BuildContext context, String url, {Object? arguments,}) {
   //   if (url.startsWith('https://') || url.startsWith('http://')) {
   //     Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -490,6 +405,16 @@ class AppPage{
     GetPage(
       name: APPRouter.tableViewDemoPage,
       page: () => TableViewDemoPage(),
+    ),
+
+    GetPage(
+      name: APPRouter.githubRepoDemo,
+      page: () => GithubRepoDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.progressHUDDemo,
+      page: () => ProgressHUDDemo(),
     ),
 
   ];

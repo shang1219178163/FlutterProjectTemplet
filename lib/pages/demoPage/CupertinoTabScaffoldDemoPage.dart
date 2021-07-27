@@ -4,6 +4,7 @@ import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/DartExpand/widget_extension.dart';
+import 'package:tuple/tuple.dart';
 
 class CupertinoTabScaffoldDemoPage extends StatefulWidget {
 
@@ -12,6 +13,31 @@ class CupertinoTabScaffoldDemoPage extends StatefulWidget {
 }
 
 class _CupertinoTabScaffoldDemoPageState extends State {
+
+  final List<Tuple2<BottomNavigationBarItem, Widget>> items = [
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.home, size: 24),
+        label: '首⻚',
+      ),
+      OnePage(),
+    ),
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.shopping_cart, size: 24),
+        label: '第二⻚',
+      ),
+      TwoPage(),
+    ),
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.conversation_bubble, size: 24),
+        label: '第三页',
+      ),
+      ThreePage(),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
 //最外层导航选项卡
@@ -19,37 +45,12 @@ class _CupertinoTabScaffoldDemoPageState extends State {
       tabBar: CupertinoTabBar(
         activeColor: Color(0xffff0000),
         backgroundColor: CupertinoColors.lightBackgroundGray, //选项卡背景色 items: [
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home, size: 24),
-              label: '首⻚',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.shopping_cart, size: 24),
-              label: '第二⻚',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.conversation_bubble, size: 24),
-              label: '第三页',
-            ),
-          ],
+          items: items.map((e) => e.item1).toList(),
     ),
     tabBuilder: (context, index) {//选项卡绑定的视图
       return CupertinoTabView(
         builder: (context) {
-          switch (index) {
-            case 0:
-              return OnePage();
-              break;
-            case 1:
-              return TwoPage();
-              break;
-            default:
-              return ThreePage();
-              break;
-          }
+          return items.map((e) => e.item2).toList()[index];
         });
       },
     );
