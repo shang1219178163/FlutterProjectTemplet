@@ -94,8 +94,11 @@ class _UpdateAppNewCardState extends State<UpdateAppNewCard> {
                               .width(MediaQuery.of(context).size.width - 30)
                           ,
                           InkWell(
-                              child: Text(isShowAll ? '收起' : "展开", style: TextStyle(color: Theme.of(context).primaryColor),)
-                                  .backgroundColor(Colors.white60),
+                              child: Text(isShowAll ? '收起' : "展开",
+                                style: TextStyle(color: Theme.of(context).accentColor),
+                              )
+                                  // .backgroundColor(Colors.white60)
+                            ,
                               onTap: _changeState,
                             ).positioned(right: 0, bottom: 0),
                         ],
@@ -123,7 +126,9 @@ class _UpdateAppNewCardState extends State<UpdateAppNewCard> {
                   .width(MediaQuery.of(context).size.width - 30)
               ,
               InkWell(
-                child: Text(isShowAll ? '收起' : "展开", style: TextStyle(color: Theme.of(context).primaryColor),),
+                child: Text(isShowAll ? '收起' : "展开",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
                 onTap: _changeState,
               )
                   .positioned(right: 0, bottom: 0)

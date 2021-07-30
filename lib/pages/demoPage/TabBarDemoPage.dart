@@ -12,6 +12,7 @@ import 'package:fluttertemplet/pages/BatterLevelPage.dart';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
 class TabBarDemoPage extends StatefulWidget {
 
@@ -25,9 +26,32 @@ class TabBarDemoPage extends StatefulWidget {
 
 class _TabBarDemoPageState extends State<TabBarDemoPage> with AutomaticKeepAliveClientMixin{
 
+  final List<Tuple2<Tab, Widget>> items = [
+    Tuple2(
+      Tab(icon: Icon(Icons.directions_railway)),
+      FirstPage(),
+    ),
+    Tuple2(
+      Tab(icon: Icon(Icons.directions_car)),
+      SecondPage(),
+    ),
+    Tuple2(
+      Tab(icon: Icon(Icons.directions_bus)),
+      ThirdPage(),
+    ),
+    Tuple2(
+      Tab(icon: Icon(Icons.directions_bike)),
+      FourthPage(),
+    ),
+    Tuple2(
+      Tab(icon: Icon(Icons.directions_boat)),
+      BatterLevelPage(),
+    ),
+  ];
+
+
   @override
   bool get wantKeepAlive => true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,27 +68,12 @@ class _TabBarDemoPageState extends State<TabBarDemoPage> with AutomaticKeepAlive
             //         // .gestures(onTap: ()=> ddlog("back")
             //           .gestures(onTap: (){ Navigator.pop(context); }),
             bottom: TabBar(
-              tabs: [
-                Tab(icon: Icon(Icons.directions_railway)),
-                Tab(icon: Icon(Icons.directions_car)),
-                Tab(icon: Icon(Icons.directions_bus)),
-                Tab(icon: Icon(Icons.directions_bike)),
-                Tab(icon: Icon(Icons.directions_boat)),
-              ],
+              tabs: items.map((e) => e.item1).toList(),
             ),
             title: Text('Tabs Demo'),
           ),
           body: TabBarView(
-            children: [
-              FirstPage().center(),
-              SecondPage().center(),
-              ThirdPage().center(),
-              FourthPage().center(),
-              BatterLevelPage().center(),
-              // Center(child: SecondPage()),
-              // Center(child: ThirdPage()),
-              // Center(child: FourthPage()),
-            ],
+            children: items.map((e) => e.item2).toList(),
           ),
         ),
       ),

@@ -10,10 +10,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
+import 'package:fluttertemplet/dartExpand/button_extension.dart';
+import 'package:fluttertemplet/dartExpand/color_extension.dart';
+
 import 'package:tuple/tuple.dart';
 import '../../basicWidget/enhance_stepper.dart';
 
-import 'package:fluttertemplet/dartExpand/button_extension.dart';
 
 ///步骤一二三
 class StepperDemoPage extends StatefulWidget {
@@ -97,8 +99,8 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
                       });
                     },
                     borderColor: Colors.white,
-                    // selectedColor: Theme.of(context).primaryColor,
-                    // unselectedcolor: Colors.white,
+                    selectedColor: Theme.of(context).primaryColor,
+                    unselectedColor: Colors.white,
                   ),
                 ),
                 SizedBox(width: 24)
@@ -132,8 +134,6 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
         steps: tuples.map((e) => Step(
           state: StepState.values[tuples.indexOf(e)],
           isActive: _index == tuples.indexOf(e),
-          isStepperTypeHorizontalBottom: true,
-          isStepperTypeHorizontalBottomLineFollowIconMidY: true,
           title: Text("step ${tuples.indexOf(e)}"),
           subtitle: Text("${e.item2.toString().split(".").last}",),
           content: Text("Content for Step ${tuples.indexOf(e)}"),
@@ -175,17 +175,25 @@ class _StepperDemoPageState extends State<StepperDemoPage> {
     return EnhanceStepper(
         stepIconSize: 30,
         type: _type,
+        horizontalTitlePosition: HorizontalTitlePosition.bottom,
+        horizontalLinePosition: HorizontalLinePosition.top,
         currentStep: _index,
         physics: ClampingScrollPhysics(),
         steps: tuples.map((e) => EnhanceStep(
-          circleChild: Icon(e.item1, color: Theme.of(context).primaryColor, size: 30,),
+          icon: Icon(e.item1, color: Theme.of(context).primaryColor, size: 30,),
           state: StepState.values[tuples.indexOf(e)],
           isActive: _index == tuples.indexOf(e),
-          isStepperTypeHorizontalBottom: true,
-          isStepperTypeHorizontalBottomLineFollowIconMidY: true,
           title: Text("step ${tuples.indexOf(e)}"),
           subtitle: Text("${e.item2.toString().split(".").last}",),
-          content: Text("Content for Step ${tuples.indexOf(e)}"),
+          // content: Text("Content for Step ${tuples.indexOf(e)}"),
+          content: Container(
+            width: MediaQuery.of(context).size.width,
+            // height: MediaQuery.of(context).size.height/tuples.length,
+            height: MediaQuery.of(context).size.height*0.55,
+            child: Text("Content for Step ${tuples.indexOf(e)}"),
+            color: Colors.green.randomOpacity(),
+          ),
+          
         )).toList(),
         onStepCancel: () {
           go(-1);
