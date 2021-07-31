@@ -13,29 +13,33 @@ import 'package:flutter/material.dart';
 
 
 extension RichTextExt on RichText{
-  /// List<TextSpan> by [String text], [Map<String, String> linkMap]
-  static List<TextSpan> createTextSpans(BuildContext context, {required String text, required Map<String, String> linkMap, TextStyle? style, TextStyle? linkStyle, required void onTap(String key, String value)}) {
+  /// List<TextSpan> by [String text], [Map<String, String> linkMap], prefix = "《", suffix = "》"
+  static List<TextSpan> createTextSpans(BuildContext context, {
+    String prefix = "《",
+    String suffix = "》",
+    required String text,
+    required Map<String, String> linkMap,
+    TextStyle? style,
+    TextStyle? linkStyle,
+    required void onTap(String key, String value)}) {
     assert(text.isNotEmpty && linkMap.isNotEmpty);
+
     linkMap.forEach((key, value) {
-      assert(key.startsWith("《") && key.endsWith("》") && text.contains(key));
+      assert(key.startsWith(prefix) && key.endsWith("$suffix") && text.contains(key));
     });
 
     final titles = linkMap.keys;
-    final key = titles.join("|");
-    // ddlog(key);
-    final list = text.split(RegExp('《|》'));
-    // ddlog(list.length);
+    final list = text.split(RegExp('$prefix|$suffix'));
 
     List<TextSpan> textSpans = list
-        .map((e) => !titles.contains("《$e》")
+        .map((e) => !titles.contains("$prefix$e$suffix")
         ? TextSpan(text: e, style: style)
         : TextSpan(
-      text: "《$e》",
+      text: "$prefix$e$suffix",
       style: linkStyle ?? TextStyle(color: Theme.of(context).primaryColor),
-      // style: TextStyle(color: Colors.blue),
       recognizer: TapGestureRecognizer()
         ..onTap = () {
-            onTap("《$e》", linkMap["《$e》"] ?? "");
+          onTap("$prefix$e$suffix", linkMap["$prefix$e$suffix"] ?? "");
         },
     ))
         .toList();
