@@ -21,25 +21,50 @@ class AttributedString{
 
   final Map<String, String> linkMap;
 
+  final String prefix;
+
+  final String suffix;
+
   final TextStyle? style;
 
   final TextStyle? linkStyle;
 
   final void Function(String key, String value) onTap;
   /// List<TextSpan> by [String text], [Map<String, String> linkMap]
-  List<TextSpan>? get textSpans => _createTextSpans(context, text: text, linkMap: linkMap, style: style, linkStyle: linkStyle, onTap: onTap);
+  List<TextSpan>? get textSpans => _createTextSpans(context,
+      text: text,
+      linkMap: linkMap,
+      style: style,
+      linkStyle: linkStyle,
+      prefix: prefix,
+      suffix: suffix,
+      onTap: onTap);
 
   AttributedString({
     required this.context,
     required this.text,
     required this.linkMap,
+    this.prefix = "《",
+    this.suffix = "》",
     this.style,
     this.linkStyle,
     required this.onTap
   });
 
   /// List<TextSpan> by [String text], [Map<String, String> linkMap]
-  List<TextSpan> _createTextSpans(BuildContext context, {required String text, required Map<String, String> linkMap, TextStyle? style, TextStyle? linkStyle, required void onTap(String key, String value)}) {
-    return RichTextExt.createTextSpans(context, text: text, linkMap: linkMap, onTap: onTap);
+  List<TextSpan> _createTextSpans(BuildContext context, {
+    required String text,
+    required Map<String, String> linkMap,
+    String prefix = "《",
+    String suffix = "》",
+    TextStyle? style,
+    TextStyle? linkStyle,
+    required void onTap(String key, String value)}) {
+    return RichTextExt.createTextSpans(context,
+        text: text,
+        linkMap: linkMap,
+        prefix: prefix,
+        suffix: suffix,
+        onTap: onTap);
   }
 }

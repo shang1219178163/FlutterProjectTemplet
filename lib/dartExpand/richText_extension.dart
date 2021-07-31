@@ -15,10 +15,10 @@ import 'package:flutter/material.dart';
 extension RichTextExt on RichText{
   /// List<TextSpan> by [String text], [Map<String, String> linkMap], prefix = "《", suffix = "》"
   static List<TextSpan> createTextSpans(BuildContext context, {
-    String prefix = "《",
-    String suffix = "》",
     required String text,
     required Map<String, String> linkMap,
+    String prefix = "《",
+    String suffix = "》",
     TextStyle? style,
     TextStyle? linkStyle,
     required void onTap(String key, String value)}) {
