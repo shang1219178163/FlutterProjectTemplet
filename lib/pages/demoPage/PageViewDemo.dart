@@ -10,15 +10,16 @@ import 'package:styled_widget/styled_widget.dart';
 
 import 'package:fluttertemplet/DartExpand/actionSheet_extension.dart';
 import 'package:fluttertemplet/DartExpand/widget_extension.dart';
+import 'package:tuple/tuple.dart';
 
 
-class PageViewDemoPage extends StatefulWidget {
+class PageViewDemo extends StatefulWidget {
 
   @override
-  _PageViewDemoPageState createState() => _PageViewDemoPageState();
+  _PageViewDemoState createState() => _PageViewDemoState();
 }
 
-class _PageViewDemoPageState extends State<PageViewDemoPage> {
+class _PageViewDemoState extends State<PageViewDemo> {
 
   var titles = ["PageViewTabBarWidget", "2", "3"];
 
@@ -138,25 +139,27 @@ class _PageViewDemoPageState extends State<PageViewDemoPage> {
 
 class PageViewTabBarWidget extends StatefulWidget {
 
-  //定义三个页面
-  final pageWidgetList = [
-    FirstPage(),
-    SecondPage(),
-    ThirdPage(),
-  ];
-
-  final barItems = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: '首页',
+  final List<Tuple2<BottomNavigationBarItem, Widget>> items = [
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: '首页',
+      ),
+      FirstPage()
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.mail),
-      label: '邮件',
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(Icons.mail),
+        label: '邮件',
+      ),
+      SecondPage()
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.people),
-      label: '我的',
+    Tuple2(
+      BottomNavigationBarItem(
+        icon: Icon(Icons.people),
+        label: '我的',
+      ),
+      ThirdPage()
     ),
   ];
 
@@ -170,7 +173,7 @@ class PageViewTabBarWidget extends StatefulWidget {
 }
 
 class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
-  late PageController _pageController;
+  late PageController _pageController = PageController();
 
   @override
   void dispose() {
@@ -181,7 +184,6 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
   }
 
   @override
@@ -192,13 +194,12 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
       ),
       bottomNavigationBar: buildBottomNavigationBar(context),
       body: buildPageView(context),
-
     );
   }
 
   BottomNavigationBar buildBottomNavigationBar(BuildContext context) {
     return BottomNavigationBar(
-      items: widget.barItems,
+      items: widget.items.map((e) => e.item1).toList(),
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.index,
       selectedFontSize: 14,
@@ -227,7 +228,7 @@ class _PageViewTabBarWidgetState extends State<PageViewTabBarWidget> {
   PageView buildPageView(BuildContext context) {
     return PageView(
       scrollDirection: Axis.horizontal,
-      children: widget.pageWidgetList,
+      children: widget.items.map((e) => e.item2).toList(),
       controller: _pageController,
       onPageChanged: (index) {
         ddlog('onPageChanged: $index');
