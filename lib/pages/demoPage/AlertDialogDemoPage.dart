@@ -43,7 +43,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
                 "单选菜单", "多选列表", "多选菜单",
                 "性别选择", "自定义", "aboutDialog",
                 "Popover", "NNPopupRoute", "NNPopupRoute Alert",
-    "NNPopupRoute 自定义", "NNPopupRoute 顶部消息", "隐私协议", "隐私协议映射", "富文本封装",
+    "NNPopupRoute 自定义", "NNPopupRoute 顶部消息", "隐私协议",
 
   ];
 
@@ -70,47 +70,11 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
 
   Object? sex = 1;
 
-  ScrollController _scrollController = ScrollController();
-
-  bool isScrollBottom = false;
-  // late AnimationController controller;
-  // late Animation<Offset> animation;
-
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    //监听滚动事件，打印滚动位置
-    _scrollController.addListener(() {
-      // ddlog(_scrollController.offset); //打印滚动位置
-      // ddlog(_scrollController.position.maxScrollExtent); //打印滚动位置
-
-      setState(() {
-        isScrollBottom = (_scrollController.offset >= _scrollController.position.maxScrollExtent);
-        ddlog(isScrollBottom);
-      });
-    });
-
-//     controller =
-//         AnimationController(duration: Duration(milliseconds: 2000), vsync: this);
-//     controller.addStatusListener((status) {
-//       if (status == AnimationStatus.completed) {
-//         //AnimationStatus.completed 动画在结束时停止的状态
-//         // debugPrint('完成');
-//         controller.reverse();
-//       } else if (status == AnimationStatus.dismissed) {
-//         //AnimationStatus.dismissed 表示动画在开始时就停止的状态
-//         // debugPrint('消失');
-//         controller.forward();
-// //        controller.dispose();
-//       }
-//     });
-//     animation =
-//         Tween(begin: Offset.zero, end: Offset(1.0, 0.0)).animate(controller);
-//     //开始执行动画
-//     controller.forward();
   }
 
   @override
@@ -532,7 +496,12 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
         break;
       case 17:
         {
-          String content = """
+          var linkMap = {
+            '《用户协议》': 'https://flutter.dev',
+            '《隐私政策》': 'https://flutter.dev',
+          };
+
+          String text = """
 亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
 xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
 1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
@@ -542,141 +511,57 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
 5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
 请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
 """;
+          final textRich = Text.rich(
+            TextSpan(
+                text: '登录即代表同意并阅读，',
+                // style: TextStyle(fontSize: 14),
+                // children: AttributedString(
+                //     context: context,
+                //     text: text,
+                //     linkMap: protocolMap,
+                //     onTap: (key, value){
+                //       ddlog(key);
+                //       ddlog(value);
+                //     }
+                // ).textSpans,
+                children: RichTextExt.createTextSpans(context,
+                    text: text,
+                    linkMap: linkMap,
+                    onTap: (key, value){
+                      ddlog(key);
+                      ddlog(value);
+                    }
+                )
+            ),
+          );
 
           showGeneralDialog(context: context,
               pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) {
                 return NNUserPrivacy(
                   title: "用户隐私及协议",
-                  content: Text.rich(
-                    TextSpan(text: content,),
-                  ),
+                  content: textRich,
                   onClickCancel: (){
                     ddlog("Cancel");
                     Navigator.of(context).pop();
-
                   },
                   onClickConfirm: (){
                     ddlog("Confirm");
                     Navigator.of(context).pop();
-
                   },
                 );
               }
-              );
+          );
         }
         break;
       case 18:
         {
-          var protocolMap = {
-            '《用户协议》': 'https://flutter.dev',
-            '《隐私政策》': 'https://flutter.dev',
-          };
 
-          String text = """
-亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
-xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
-1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
-2.基于您的明示授权，我们可能会获取设备号信息、包括：设备型号、操作系统版本、设备设置、设备标识符、MAC（媒体访问控制）地址、IMEI（移动设备国际身份码）、广告标识符（“IDFA”与“IDFV”）、集成电路卡识别码（“ICCD”）、软件安装列表。我们将使用三方产品（友盟、极光等）统计使用我们产品的设备数量并进行设备机型数据分析与设备适配性分析。（以保障您的账号与交易安全），且您有权拒绝或取消授权；
-3.您可灵活设置伴伴账号的功能内容和互动权限，您可在《隐私政策》中了解到权限的详细应用说明；
-4.未经您同意，我们不会从第三方获取、共享或向其提供您的信息；
-5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
-请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
-""";
-          final textRich = Text.rich(
-            TextSpan(
-              text: '登录即代表同意并阅读，',
-              // style: TextStyle(fontSize: 14),
-              children: createTextSpans(context,
-                  text: text,
-                  protocolMap: protocolMap,
-                  // onTap: (key, value){
-                  //   ddlog(key);
-                  //   ddlog(value);
-                  // }
-              ),
-            ),
-          );
-
-          showGeneralDialog(context: context,
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return NNUserPrivacy(
-                  title: "用户隐私及协议",
-                  content: textRich,
-                  onClickCancel: (){
-                    ddlog("Cancel");
-                    Navigator.of(context).pop();
-                  },
-                  onClickConfirm: (){
-                    ddlog("Confirm");
-                    Navigator.of(context).pop();
-                  },
-                );
-              }
-          );
         }
         break;
       case 19:
         {
-          var protocolMap = {
-            '《用户协议》': 'https://flutter.dev',
-            '《隐私政策》': 'https://flutter.dev',
-          };
 
-          String text = """
-亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
-xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
-1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
-2.基于您的明示授权，我们可能会获取设备号信息、包括：设备型号、操作系统版本、设备设置、设备标识符、MAC（媒体访问控制）地址、IMEI（移动设备国际身份码）、广告标识符（“IDFA”与“IDFV”）、集成电路卡识别码（“ICCD”）、软件安装列表。我们将使用三方产品（友盟、极光等）统计使用我们产品的设备数量并进行设备机型数据分析与设备适配性分析。（以保障您的账号与交易安全），且您有权拒绝或取消授权；
-3.您可灵活设置伴伴账号的功能内容和互动权限，您可在《隐私政策》中了解到权限的详细应用说明；
-4.未经您同意，我们不会从第三方获取、共享或向其提供您的信息；
-5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
-请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
-""";
-          final textRich = Text.rich(
-            TextSpan(
-              text: '登录即代表同意并阅读，',
-              // style: TextStyle(fontSize: 14),
-              // children: AttributedString(
-              //     context: context,
-              //     text: text,
-              //     linkMap: protocolMap,
-              //     onTap: (key, value){
-              //       ddlog(key);
-              //       ddlog(value);
-              //     }
-              // ).textSpans,
-              children: RichTextExt.createTextSpans(context,
-                  text: text,
-                  linkMap: protocolMap,
-                  onTap: (key, value){
-                    ddlog(key);
-                    ddlog(value);
-                  }
-              )
-            ),
-          );
-
-
-
-          showGeneralDialog(context: context,
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                return NNUserPrivacy(
-                  title: "用户隐私及协议",
-                  content: textRich,
-                  onClickCancel: (){
-                    ddlog("Cancel");
-                    Navigator.of(context).pop();
-                  },
-                  onClickConfirm: (){
-                    ddlog("Confirm");
-                    Navigator.of(context).pop();
-                  },
-                );
-              }
-          );
         }
         break;
     default:
@@ -827,117 +712,6 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
     );
   }
 
-  void showUserPrivacy(BuildContext context) {
-    var map = {
-      '《用户协议》': 'https://flutter.dev',
-      '《隐私政策》': 'https://flutter.dev',
-    };
-
-    String text = """
-亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
-xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
-1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
-2.基于您的明示授权，我们可能会获取设备号信息、包括：设备型号、操作系统版本、设备设置、设备标识符、MAC（媒体访问控制）地址、IMEI（移动设备国际身份码）、广告标识符（“IDFA”与“IDFV”）、集成电路卡识别码（“ICCD”）、软件安装列表。我们将使用三方产品（友盟、极光等）统计使用我们产品的设备数量并进行设备机型数据分析与设备适配性分析。（以保障您的账号与交易安全），且您有权拒绝或取消授权；
-3.您可灵活设置伴伴账号的功能内容和互动权限，您可在《隐私政策》中了解到权限的详细应用说明；
-4.未经您同意，我们不会从第三方获取、共享或向其提供您的信息；
-5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
-请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
-""";
-
-    final key = map.keys.join("|");
-    ddlog(key);
-    final list = text.split(RegExp('${key}'));
-    ddlog(list.length);
-
-    List<TextSpan> textSpans = list.map((e) =>
-      !map.keys.contains(e) ? TextSpan(text: e)
-          : TextSpan(
-        text: e,
-        // style: TextStyle(color: Theme.of(context).primaryColor),
-        style: TextStyle(color: Colors.blue),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () {
-            Navigator.of(context).pop();
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) {
-                return NNWebView(initialUrl: 'https://flutter.dev');
-              }
-            )
-          );
-        },
-      )
-    ).toList();
-
-    final textRich = Text.rich(
-        TextSpan(
-            text: '登录即代表同意并阅读',
-            style: TextStyle(fontSize: 14, color: Color(0xFF999999)),
-            children: textSpans
-        ),
-    );
-
-    showGeneralDialog(context: context,
-        pageBuilder: (BuildContext context, Animation<double> animation,
-            Animation<double> secondaryAnimation) {
-          return Center(
-            child: Material(
-              child: Container(
-                padding: EdgeInsets.all(12),
-                height: MediaQuery.of(context).size.height * .6,
-                width: MediaQuery.of(context).size.width * .8,
-                // child: content,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  child: textRich,
-                ),
-              ),
-            ),
-          );
-        });
-  }
-
-  /// List<TextSpan> by [String text], [Map<String, String> protocolMap]
-  List<TextSpan> createTextSpans(BuildContext context, {required String text, required Map<String, String> protocolMap, TextStyle? style, TextStyle? linkStyle, void onTap(String key, String value)?}) {
-    assert(text.isNotEmpty);
-    assert(protocolMap.isNotEmpty);
-    protocolMap.forEach((key, value) {
-      assert(text.contains(key));
-    });
-    
-    final titles = protocolMap.keys;
-    final key = titles.join("|");
-    // ddlog(key);
-    final list = text.split(RegExp('《|》'));
-    // ddlog(list.length);
-
-    List<TextSpan> textSpans = list
-        .map((e) => !titles.contains("《$e》")
-            ? TextSpan(text: e, style: style)
-            : TextSpan(
-                text: "《$e》",
-                style:
-                    style ?? TextStyle(color: Theme.of(context).primaryColor),
-                // style: TextStyle(color: Colors.blue),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    if (onTap != null) {
-                      onTap("《$e》", protocolMap["《$e》"] ?? "");
-                      return;
-                    }
-                    Navigator.of(context).pop();
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                          return buildWebView(context, initialUrl: protocolMap["《$e》"] ?? 'https://flutter.dev');
-                      // return NNWebView(
-                      //     initialUrl:
-                      //         protocolMap["《$e》"] ?? 'https://flutter.dev');
-                    }));
-                  },
-              ))
-        .toList();
-    return textSpans;
-  }
-
   ///创建 WebView
   Widget buildWebView(BuildContext context, {required String initialUrl}) {
     return Scaffold(
@@ -973,138 +747,6 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
       body: WebView(initialUrl: initialUrl));
   }
 
-//   Text buildUserPrivacyContentNew1(BuildContext context) {
-//     var privacyMap = {
-//       '《用户协议》': 'https://flutter.dev',
-//       '《隐私政策》': 'https://flutter.dev',
-//     };
-//    
-//     String text = """
-// 亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
-// xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
-// 1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
-// 2.基于您的明示授权，我们可能会获取设备号信息、包括：设备型号、操作系统版本、设备设置、设备标识符、MAC（媒体访问控制）地址、IMEI（移动设备国际身份码）、广告标识符（“IDFA”与“IDFV”）、集成电路卡识别码（“ICCD”）、软件安装列表。我们将使用三方产品（友盟、极光等）统计使用我们产品的设备数量并进行设备机型数据分析与设备适配性分析。（以保障您的账号与交易安全），且您有权拒绝或取消授权；
-// 3.您可灵活设置伴伴账号的功能内容和互动权限，您可在《隐私政策》中了解到权限的详细应用说明；
-// 4.未经您同意，我们不会从第三方获取、共享或向其提供您的信息；
-// 5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
-// 请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
-// """;
-//
-//     final privacys = privacyMap.keys;
-//     final key = privacys.join("|");
-//     ddlog(key);
-//     final list = text.split(RegExp('《|》'));
-//     ddlog(list.length);
-//
-//     List<TextSpan> textSpans = list
-//         .map((e) => !privacys.contains("《$e》")
-//         ? TextSpan(text: e)
-//         : TextSpan(
-//       text: "《$e》",
-//       style: TextStyle(color: Theme.of(context).primaryColor),
-//       // style: TextStyle(color: Colors.blue),
-//       recognizer: TapGestureRecognizer()
-//         ..onTap = () {
-//           Navigator.of(context).pop();
-//           Navigator.of(context)
-//               .push(MaterialPageRoute(builder: (context) {
-//             return NNWebView(initialUrl: privacyMap["《$e》"] ?? 'https://flutter.dev');
-//           }));
-//         },
-//     ))
-//         .toList();
-//
-//     final textRich = Text.rich(
-//       TextSpan(
-//         text: '登录即代表同意并阅读，',
-//         // style: TextStyle(fontSize: 14),
-//         children: textSpans,
-//       ),
-//     );
-//     return textRich;
-//   }
-//   Text buildUserPrivacyContentNew1(BuildContext context) {
-//     var privacyMap = {
-//       '《用户协议》': 'https://flutter.dev',
-//       '《隐私政策》': 'https://flutter.dev',
-//     };
-//
-//     var privacyTextSpans = [
-//       TextSpan(
-//         text: '《用户协议》',
-//         style: TextStyle(color: Theme
-//             .of(context)
-//             .primaryColor),
-//         recognizer: TapGestureRecognizer()
-//           ..onTap = () {
-//             Navigator.of(context).pop();
-//
-//             Navigator.of(context)
-//                 .push(MaterialPageRoute(builder: (context) {
-//               return NNWebView(initialUrl: 'https://flutter.dev');
-//             }));
-//           },
-//       ),
-//       TextSpan(
-//         text: '《隐私政策》',
-//         style: TextStyle(color: Theme
-//             .of(context)
-//             .primaryColor),
-//         recognizer: TapGestureRecognizer()
-//           ..onTap = () {
-//             Navigator.of(context).pop();
-//
-//             Navigator.of(context)
-//                 .push(MaterialPageRoute(builder: (context) {
-//               return NNWebView(initialUrl: 'https://flutter.dev');
-//             }));
-//           },
-//       ),
-//     ];
-//     String text = """
-// 亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
-// xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
-// 1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
-// 2.基于您的明示授权，我们可能会获取设备号信息、包括：设备型号、操作系统版本、设备设置、设备标识符、MAC（媒体访问控制）地址、IMEI（移动设备国际身份码）、广告标识符（“IDFA”与“IDFV”）、集成电路卡识别码（“ICCD”）、软件安装列表。我们将使用三方产品（友盟、极光等）统计使用我们产品的设备数量并进行设备机型数据分析与设备适配性分析。（以保障您的账号与交易安全），且您有权拒绝或取消授权；
-// 3.您可灵活设置伴伴账号的功能内容和互动权限，您可在《隐私政策》中了解到权限的详细应用说明；
-// 4.未经您同意，我们不会从第三方获取、共享或向其提供您的信息；
-// 5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
-// 请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
-// """;
-//
-//     final privacys = privacyTextSpans.map((e) => e.text);
-//     final key = privacys.join("|");
-//     ddlog(key);
-//     final list = text.split(RegExp('《|》'));
-//     ddlog(list.length);
-//
-//     List<TextSpan> textSpans = list
-//         .map((e) => !privacys.contains("《$e》")
-//         ? TextSpan(text: e)
-//         : TextSpan(
-//       text: "《$e》",
-//       style: TextStyle(color: Theme.of(context).primaryColor),
-//       // style: TextStyle(color: Colors.blue),
-//       recognizer: TapGestureRecognizer()
-//         ..onTap = () {
-//           Navigator.of(context).pop();
-//           Navigator.of(context)
-//               .push(MaterialPageRoute(builder: (context) {
-//             return NNWebView(initialUrl: 'https://flutter.dev');
-//           }));
-//         },
-//     ))
-//         .toList();
-//
-//     final textRich = Text.rich(
-//       TextSpan(
-//         text: '登录即代表同意并阅读，',
-//         // style: TextStyle(fontSize: 14),
-//         children: textSpans,
-//       ),
-//     );
-//     return textRich;
-//   }
 }
 
 
