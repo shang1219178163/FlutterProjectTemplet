@@ -1,14 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:fluttertemplet/APPThemeSettings.dart';
-import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/DartExpand/navigator_extension.dart';
-import 'package:fluttertemplet/DartExpand/popupMenuButton_extension.dart';
-// import 'package:fluttertemplet/navigator_extension.dart';
-import 'package:styled_widget/styled_widget.dart';
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluttertemplet/APPThemeSettings.dart';
+import 'package:fluttertemplet/basicWidget/NNPopupRoute.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/navigator_extension.dart';
+import 'package:fluttertemplet/dartExpand/popupMenuButton_extension.dart';
+import 'package:fluttertemplet/dartExpand/globalKey_extension.dart';
+import 'package:fluttertemplet/dartExpand/navigator_extension.dart';
+
+import 'package:fluttertemplet/network/fileManager.dart';
+import 'package:fluttertemplet/network/httpManager.dart';
+
+import 'package:fluttertemplet/basicWidget/hud/progresshud.dart';
+
+import 'package:styled_widget/styled_widget.dart';
+
 
 class SecondPage extends StatefulWidget {
 
@@ -37,6 +44,7 @@ class _SecondPageState extends State<SecondPage> {
                     "bb": "1",
                     "cc": "2"},
                   checkedString: "aa",
+                  offset: Offset(0, 60),
                   callback: (value) {
                     setState(() => ddlog(value));
                   }),
@@ -44,6 +52,7 @@ class _SecondPageState extends State<SecondPage> {
               PopupMenuButtonExt.fromCheckList(
                   list: ["a", "b", "c"],
                   checkedIdx: 1,
+                  offset: Offset(0, 60),
                   callback: (value) {
                     setState(() => ddlog(value));
                   }),
@@ -66,7 +75,12 @@ class _SecondPageState extends State<SecondPage> {
     );
   }
 
+  GlobalKey _globalKey = GlobalKey();
+  GlobalKey _globalKey1 = GlobalKey();
+  // late RenderBox renderBox;
+
   buildListView(BuildContext context) {
+
     return ListView(
       children: [
         Column(
@@ -81,7 +95,11 @@ class _SecondPageState extends State<SecondPage> {
               icon: Icon(Icons.send),
               label: Text("发送"),
               // onPressed: () => ddlog('pressed'),
-              onPressed: () => {
+              key: _globalKey,
+              onPressed: (){
+                // _showCustomPopView();
+                ddlog(_globalKey.globalOffset());
+                ddlog(_globalKey.globalSize());
                 // test();
               },
             ),
@@ -89,7 +107,12 @@ class _SecondPageState extends State<SecondPage> {
             OutlinedButton.icon(
               icon: Icon(Icons.add),
               label: Text("添加"),
-              onPressed: () => ddlog('pressed'),
+              key: _globalKey1,
+              onPressed: (){
+                // ddlog(_globalKey1.globalOffset());
+                // ddlog(_globalKey1.globalSize());
+                // test();
+              },
             ),
 
             TextButton(
@@ -98,15 +121,13 @@ class _SecondPageState extends State<SecondPage> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('呼叫',)
-                      .padding(right: 5),
+                  Text('呼叫',
+                  ).padding(right: 5),
                   // SizedBox(width: 30),
                   Icon(Icons.call),
                 ],
-              )
-                  .decorated(borderRadius: BorderRadius.all(Radius.circular(0))),
-            )
-                .decorated(borderRadius: BorderRadius.all(Radius.circular(5))),
+              ).decorated(borderRadius: BorderRadius.all(Radius.circular(0))),
+            ).decorated(borderRadius: BorderRadius.all(Radius.circular(5))),
 
             TextButton(
               onPressed: () => ddlog('Make a Note'),
@@ -122,7 +143,8 @@ class _SecondPageState extends State<SecondPage> {
               ),
             ).decorated(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
-                border: Border.all(width: 1.0, color: Theme.of(context).buttonColor)),
+                border: Border.all(
+                    width: 1.0, color: Theme.of(context).buttonColor)),
 
             // WidgetExt.buildBtn("菜单", Icon(Icons.send), ImageAlignment.right),
             TextButtonExt.build(
@@ -139,23 +161,29 @@ class _SecondPageState extends State<SecondPage> {
                 imageAlignment: ImageAlignment.left,
                 callback: (value) {
                   ddlog(value.data);
-                })
-                .decorated(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Theme.of(context).primaryColor),),
-
-            SizedBox(height: 10,),
-            TextButtonExt.build(
-                text: Text("菜单right"),
-                image: Icon(Icons.info),
-                imageAlignment: ImageAlignment.right,
-                callback: (value) {
-                  ddlog(value.data);
-
                 }).decorated(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                border: Border.all(width: 1.0, color: Theme.of(context).primaryColor)),
-            SizedBox(height: 10,),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              border:
+                  Border.all(width: 1.0, color: Theme.of(context).primaryColor),
+            ),
+
+            SizedBox(
+              height: 10,
+            ),
+            TextButtonExt.build(
+                    text: Text("菜单right"),
+                    image: Icon(Icons.info),
+                    imageAlignment: ImageAlignment.right,
+                    callback: (value) {
+                      ddlog(value.data);
+                    })
+                .decorated(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                    border: Border.all(
+                        width: 1.0, color: Theme.of(context).primaryColor)),
+            SizedBox(
+              height: 10,
+            ),
 
             TextButtonExt.build(
                 text: Text("菜单top"),
@@ -163,11 +191,14 @@ class _SecondPageState extends State<SecondPage> {
                 imageAlignment: ImageAlignment.top,
                 callback: (value) {
                   ddlog(value.data);
-
                 }).decorated(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Theme.of(context).buttonColor),),
-            SizedBox(height: 10,),
+              border:
+                  Border.all(width: 1.0, color: Theme.of(context).buttonColor),
+            ),
+            SizedBox(
+              height: 10,
+            ),
 
             TextButtonExt.build(
                 text: Text("菜单bottom"),
@@ -175,16 +206,19 @@ class _SecondPageState extends State<SecondPage> {
                 imageAlignment: ImageAlignment.bottom,
                 callback: (value) {
                   ddlog(value.data);
-
                 }).decorated(
               borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(width: 1.0, color: Theme.of(context).buttonColor),
+              border:
+                  Border.all(width: 1.0, color: Theme.of(context).buttonColor),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
 
             IconButton(
               tooltip: '这是一个图标按钮',
-              icon: Icon(Icons.person), iconSize: 30,
+              icon: Icon(Icons.person),
+              iconSize: 30,
               color: Theme.of(context).accentColor,
               onPressed: () {
                 ddlog("这是一个图标按钮");
@@ -213,9 +247,59 @@ class _SecondPageState extends State<SecondPage> {
         setState(() {
           _selecteds[index] = !_selecteds[index];
         });
-       },
+      },
     );
   }
+
+  _showCustomPopView() {
+    Navigator.push(
+      context,
+      NNPopupRoute(
+        child: Container(
+          color: Colors.red,
+          width: 91,
+          height: 36,
+          child: TextButton.icon(
+            onPressed: () {
+              ddlog("刷新");
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.refresh),
+            label: Text("刷新"),
+          ),
+        ),
+        onClick: () {
+          print("exit");
+        },
+      ),
+    );
+  }
+
+  // testPageRouteBuilder(){
+  // Navigator.of(context).push(
+  //     PageRouteBuilder(
+  //         barrierDismissible:true,
+  //         opaque:false,
+  //         barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+  //         barrierColor: Colors.black54,
+  //         transitionDuration: const Duration(milliseconds: 150),
+  //         pageBuilder: (p1, p2, p3) {
+  //           return Container(
+  //             padding: EdgeInsets.all(80),
+  //             color: Colors.black.withOpacity(0.3),
+  //             child: Container(
+  //               color: Colors.green,
+  //               child: TextButton(child: Text("button"),
+  //               onPressed: (){
+  //                   Navigator.of(context).pop();
+  //                 },
+  //               ),
+  //             ),
+  //           );
+  //         }
+  //     )
+  // ),
+  // }
 
   test() {
     var _emap = Map<String, List<String>>();
@@ -229,4 +313,5 @@ class _SecondPageState extends State<SecondPage> {
 
     ddlog([list, _emap]);
   }
+
 }

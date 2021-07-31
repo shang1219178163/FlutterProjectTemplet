@@ -51,20 +51,13 @@ class _AppWebViewDemoPageState extends State<AppWebViewDemoPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_currentTitle, style: TextStyle(fontSize: 16,), textAlign: TextAlign.center,),
-        // automaticallyImplyLeading: false, // Don't show the leading button
         leadingWidth: 100,
-        // leading: buildLeading(context),
         leading: buildRight(context),
-
         actions: [
-          // NavigationControls(_controller.future),
           buildRefresh(),
-
           SampleMenu(_controller.future),
         ],
       ),
-      // We're using a Builder here so we have a context that is below the Scaffold
-      // to allow calling Scaffold.of(context) so we can show a snackbar.
       body: Builder(builder: (BuildContext context) {
         return Stack(
           children: [
@@ -75,7 +68,7 @@ class _AppWebViewDemoPageState extends State<AppWebViewDemoPage> {
                 _controller.complete(webViewController);
               },
               onProgress: (int progress) {
-                ddlog("WebView is loading(progress: $progress%_${progress*0.01})");
+                // ddlog("WebView is loading(progress: $progress%_${progress*0.01})");
                 setState(() {
                   _progress = progress*0.01;
                 });

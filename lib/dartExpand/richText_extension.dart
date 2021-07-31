@@ -15,10 +15,9 @@ import 'package:flutter/material.dart';
 extension RichTextExt on RichText{
   /// List<TextSpan> by [String text], [Map<String, String> linkMap]
   static List<TextSpan> createTextSpans(BuildContext context, {required String text, required Map<String, String> linkMap, TextStyle? style, TextStyle? linkStyle, required void onTap(String key, String value)}) {
-    assert(text.isNotEmpty);
-    assert(linkMap.isNotEmpty);
+    assert(text.isNotEmpty && linkMap.isNotEmpty);
     linkMap.forEach((key, value) {
-      assert(text.contains(key));
+      assert(key.startsWith("《") && key.endsWith("》") && text.contains(key));
     });
 
     final titles = linkMap.keys;
