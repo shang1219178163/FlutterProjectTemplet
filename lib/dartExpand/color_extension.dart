@@ -21,6 +21,10 @@ extension ColorExt on Color{
         Random().nextInt(256), 1);
   }
 
+  Color randomOpacity() {
+    return this.withOpacity(Random().nextInt(100)/100);
+  }
+
   String get nameDes{
     if (this == Colors.white) {
       return "white";

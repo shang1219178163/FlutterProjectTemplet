@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
-import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoNew.dart';
 import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
-import 'package:fluttertemplet/pages/demoPage/HudProgressDemoWidget.dart';
+import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
-import 'package:fluttertemplet/pages/demoPage/ProgressHUDDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/ProgressHudDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/RichTextDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/SliverAppBarDemoPage.dart';
 
 import 'package:fluttertemplet/Pages/APPNotFoundPage.dart';
@@ -26,9 +27,9 @@ import 'package:fluttertemplet/Pages/demoPage/AlertSheetDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/CupertinoTabScaffoldDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/GridViewDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/LocalNotifationDemoPage.dart';
-import 'package:fluttertemplet/Pages/demoPage/PageViewDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/PageViewDemo.dart';
 import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
-import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoNew.dart';
 import 'package:fluttertemplet/Pages/demoPage/SnackBarDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TextFieldDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/SlidableDemoPage.dart';
@@ -47,7 +48,7 @@ import 'package:fluttertemplet/pages/demoPage/SegmentControlDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/StepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TabBarDemoPage.dart';
 
-import 'package:fluttertemplet/Pages/textlessPage.dart';
+import 'package:fluttertemplet/Pages/textlessDemo.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
 import 'package:get/get.dart';
@@ -77,7 +78,7 @@ class APPRouter {
   static const alertSheetDemoPage = '/AlertSheetDemoPage';
   static const iconsListPage = '/IconsListPage';
   static const gridViewDemoPage = '/GridViewDemoPage';
-  static const pageViewDemoPage = '/PageViewDemoPage';
+  static const pageViewDemo = '/PageViewDemo';
   static const pageViewTabBarWidget = '/PageViewTabBarWidget';
   static const snackBarDemoPage = '/SnackBarDemoPage';
   static const cupertinoTabScaffoldDemo = '/CupertinoTabScaffoldDemoPage';
@@ -85,7 +86,7 @@ class APPRouter {
   static const datePickerPage = '/DatePickerPage';
   static const showSearchDemoPage = '/ShowSearchDemoPage';
   static const localNotifationDemoPage = '/LocalNotifationDemoPage';
-  static const progressHudDemoPage = '/ProgressHudDemoPage';
+  static const ProgressHudDemoNew = '/ProgressHudDemoNew';
   static const toastContext = '/ToastContext';
   static const toastNoContext = '/ToastNoContext';
   static const textFieldDemoPage = '/TextFieldDemoPage';
@@ -102,18 +103,18 @@ class APPRouter {
   static const appWebViewDemoPage = '/AppWebViewDemoPage';
   static const enlargeStrategyDemo = '/EnlargeStrategyDemo';
   static const sliverAppBarDemoPage = '/SliverAppBarDemoPage';
-  static const hudProgressDemoWidget = '/HudProgressDemoWidget';
+  static const HudProgressDemo = '/HudProgressDemo';
   static const reorderableListViewDemoPage = '/ReorderableListViewDemoPage';
-  static const expandIconDemoPage = '/ExpandIconDemoPage';
+  static const ExpandIconDemoNew = '/ExpandIconDemoNew';
   static const expandIconDemo = '/ExpandIconDemo';
   static const stepperDemoPage = '/StepperDemoPage';
   static const numberStepperDemoPage = '/NumberStepperDemoPage';
   static const tableViewDemoPage = '/TableViewDemoPage';
   static const githubRepoDemo = '/GithubRepoDemo';
-  static const progressHUDDemo = '/ProgressHUDDemo';
+  static const ProgressHudDemo = '/ProgressHudDemo';
   static const locationPopView = '/LocationPopView';
   static const backdropFilterDemo = '/BackdropFilterDemo';
-
+  static const richTextDemo = '/richTextDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -128,14 +129,14 @@ class APPRouter {
   //   alertSheetDemoPage: (context) => AlertSheetDemoPage(),
   //   iconsListPage: (context) => IconsListPage(),
   //   gridViewDemoPage: (context) => GridViewDemoPage(),
-  //   pageViewDemoPage: (context) => PageViewDemoPage(),
+  //   PageViewDemo: (context) => PageViewDemo(),
   //   pageViewTabBarWidget: (context) => PageViewTabBarWidget(),
   //   snackBarDemoPage: (context) => SnackBarDemoPage(),
   //   cupertinoTabScaffoldDemo: (context) => CupertinoTabScaffoldDemoPage(),
   //   pickerDemoPage: (context) => PickerDemoPage(),
   //   datePickerPage: (context) => DatePickerPage(),
   //   localNotifationDemoPage: (context) => LocalNotifationDemoPage(),
-  //   progressHudDemoPage: (context) => ProgressHudDemoPage(),
+  //   ProgressHudDemoNew: (context) => ProgressHudDemoNew(),
   //   toastContext: (context) => ToastContext(),
   //   toastNoContext: (context) => ToastNoContext(),
   //   textFieldDemoPage: (context) => TextFieldDemoPage(),
@@ -239,7 +240,7 @@ class AppPage{
 
      GetPage(
        name: APPRouter.textlessDemo,
-       page: () => TextlessPage(),
+       page: () => TextlessDemo(),
      ),
 
      GetPage(
@@ -263,8 +264,8 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.pageViewDemoPage,
-       page: () => PageViewDemoPage(),
+       name: APPRouter.pageViewDemo,
+       page: () => PageViewDemo(),
      ),
 
      GetPage(
@@ -298,8 +299,8 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.progressHudDemoPage,
-       page: () => ProgressHudDemoPage(),
+       name: APPRouter.ProgressHudDemoNew,
+       page: () => ProgressHudDemoNew(),
      ),
 
      GetPage(
@@ -373,8 +374,8 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.hudProgressDemoWidget,
-      page: () => HudProgressDemoWidget(),
+      name: APPRouter.HudProgressDemo,
+      page: () => HudProgressDemo(),
     ),
 
     GetPage(
@@ -383,8 +384,8 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.expandIconDemoPage,
-      page: () => ExpandIconDemoPage(),
+      name: APPRouter.ExpandIconDemoNew,
+      page: () => ExpandIconDemoNew(),
     ),
 
     GetPage(
@@ -418,8 +419,8 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.progressHUDDemo,
-      page: () => ProgressHUDDemo(),
+      name: APPRouter.ProgressHudDemo,
+      page: () => ProgressHudDemo(),
     ),
 
     GetPage(
@@ -430,6 +431,11 @@ class AppPage{
     GetPage(
       name: APPRouter.backdropFilterDemo,
       page: () => BackdropFilterDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.richTextDemo,
+      page: () => RichTextDemo(),
     ),
 
   ];

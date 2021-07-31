@@ -85,7 +85,7 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 var list = [
   Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
-  Tuple2(APPRouter.pageViewDemoPage, "PageView", ),
+  Tuple2(APPRouter.pageViewDemo, "PageViewDemo", ),
   Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
 
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
@@ -97,14 +97,14 @@ var list = [
   Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
   Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
   Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
-  Tuple2(APPRouter.expandIconDemoPage, "expandIconDemoPage", ),
+  Tuple2(APPRouter.ExpandIconDemoNew, "ExpandIconDemoNew", ),
   Tuple2(APPRouter.expandIconDemo, "expandIconDemo", ),
 
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
   Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
-  Tuple2(APPRouter.progressHudDemoPage, "progressHudDemoPage", ),
+  Tuple2(APPRouter.ProgressHudDemoNew, "ProgressHudDemoNew", ),
   Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
   Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
   Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
@@ -122,19 +122,22 @@ var list = [
   Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
 
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
-  Tuple2(APPRouter.hudProgressDemoWidget, "HudProgressDemoWidget", ),
+  Tuple2(APPRouter.HudProgressDemo, "HudProgressDemo", ),
   Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
 
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
-  Tuple2(APPRouter.progressHUDDemo, "progressHUDDemo", ),
+  Tuple2(APPRouter.ProgressHudDemo, "ProgressHudDemo", ),
 
   Tuple2(APPRouter.locationPopView, "locationPopView", ),
 
   Tuple2(APPRouter.backdropFilterDemo, "backdropFilterDemo", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
+
+  Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
+
 
 ];
 

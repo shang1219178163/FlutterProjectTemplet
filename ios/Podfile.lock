@@ -14,8 +14,6 @@ PODS:
     - Flutter
   - "permission_handler (5.1.0+2)":
     - Flutter
-  - print_color (0.0.1):
-    - Flutter
   - share (0.0.1):
     - Flutter
   - sqflite (0.0.2):
@@ -34,7 +32,6 @@ DEPENDENCIES:
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
-  - print_color (from `.symlinks/plugins/print_color/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
@@ -58,8 +55,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
-  print_color:
-    :path: ".symlinks/plugins/print_color/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   sqflite:
@@ -77,7 +72,6 @@ SPEC CHECKSUMS:
   integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
-  print_color: 786fead0bca1f4bb22b961b51bed5313c610b99c
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196

@@ -18,7 +18,7 @@ import 'Pages/FirstPage.dart';
 import 'Pages/SecondPage.dart';
 import 'Pages/ThirdPage.dart';
 import 'Pages/FourthPage.dart';
-import 'Pages/TextlessPage.dart';
+import 'Pages/TextlessDemo.dart';
 
 import 'Pages/ListPageController.dart';
 
@@ -65,9 +65,9 @@ class MyApp extends StatelessWidget {
       getPages: AppPage.routes,
       unknownRoute: AppPage.unknownRoute,
       routingCallback: (routing){
-        if (routing != null) {
-          ddlog([routing.previous, routing.current]);
-        }
+        // if (routing != null) {
+        //   ddlog([routing.previous, routing.current]);
+        // }
       },
       // routes: {
     //     "/": (context) => MyHomePage(),
@@ -91,41 +91,46 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentIndex = 0;
 
-  final List<Tuple2<Widget, BottomNavigationBarItem>> items = [
-    Tuple2(WidgetListPage(),
+  final List<Tuple2<BottomNavigationBarItem, Widget>> items = [
+    Tuple2(
       BottomNavigationBarItem(
         // backgroundColor: Colors.white,
         icon: Icon(Icons.home),
         label: "首页",
-      )
+      ),
+      WidgetListPage(),
     ),
-    Tuple2(SecondPage(),
+    Tuple2(
       BottomNavigationBarItem(
         // backgroundColor: Colors.white,
         icon: Icon(Icons.merge_type_sharp),
         label: "按钮",
       ),
+      SecondPage(),
     ),
-    Tuple2(TabBarDemoPage(),
+    Tuple2(
       BottomNavigationBarItem(
         // backgroundColor: Colors.white,
         icon: Icon(Icons.message),
         label: "消息",
       ),
+      TabBarDemoPage(),
     ),
-    Tuple2(ThirdPage(),
+    Tuple2(
       BottomNavigationBarItem(
         // backgroundColor: Colors.amber,
         icon: Icon(Icons.shopping_cart),
         label: "购物车",
       ),
+      ThirdPage(),
     ),
-    Tuple2(APPUserCenterPage(),
+    Tuple2(
       BottomNavigationBarItem(
         // backgroundColor: Colors.red,
         icon: Icon(Icons.person),
         label: "个人中心",
       ),
+      APPUserCenterPage(),
     ),
   ];
 
@@ -164,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: APPDrawerMenuPage(),
       // appBar: buildAppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        items: items.map((e) => e.item2).toList(),
+        items: items.map((e) => e.item1).toList(),
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         // selectedItemColor: Colors.lightBlue,
@@ -179,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
           _changePage(index);
         },
       ),
-      body: items.map((e) => e.item1).toList()[currentIndex],
+      body: items.map((e) => e.item2).toList()[currentIndex],
       // body: PageView(onPageChanged: (index){
       //     _changePage(index);
       //   },

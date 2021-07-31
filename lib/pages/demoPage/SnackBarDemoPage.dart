@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/basicWidget/DashLine.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
@@ -38,23 +39,32 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
           return RepaintBoundary(
             key: globalKey,
             child: Center(
-              child: GestureDetector(
-                onTap: () {
-                  // final snackBar = SnackBar(
-                  //     content: Text('这是一个SnackBar'),
-                  //     action: SnackBarAction(
-                  //     label: '撤消',
-                  //     onPressed: () {
-                  //       // do something to undo
-                  //       ddlog('撤消');
-                  //     }
-                  // ),
-                  // );
-                  final snackBar = buildSnackBar(context);
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                },
-                child: Text('显示SnackBar'),
-              ),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        // final snackBar = SnackBar(
+                        //     content: Text('这是一个SnackBar'),
+                        //     action: SnackBarAction(
+                        //     label: '撤消',
+                        //     onPressed: () {
+                        //       // do something to undo
+                        //       ddlog('撤消');
+                        //     }
+                        // ),
+                        // );
+                        final snackBar = buildSnackBar(context);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      child: Text('显示SnackBar'),
+                    ),
+
+                    DashLine(color: Colors.red,),
+                  ],
+                ),
+              )
             ),
           );
         })
