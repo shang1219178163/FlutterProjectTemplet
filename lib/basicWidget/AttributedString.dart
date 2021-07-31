@@ -8,15 +8,13 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/richText_extension.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 
 ///富文本处理
 class AttributedString{
-  ///  BuildContext context
+
   final BuildContext context;
 
   final String text;
