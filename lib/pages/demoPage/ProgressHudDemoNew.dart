@@ -1,5 +1,5 @@
 //
-//  ProgressHudDemoPage.dart
+//  ProgressHudDemoNew.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/19/21 3:50 PM.
@@ -17,18 +17,18 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 final GlobalKey _globalKey = GlobalKey();
 
-class ProgressHudDemoPage extends StatefulWidget {
+class ProgressHudDemoNew extends StatefulWidget {
 
   final String? title;
 
-  ProgressHudDemoPage({ Key? key, this.title}) : super(key: key);
+  ProgressHudDemoNew({ Key? key, this.title}) : super(key: key);
 
 
   @override
-  _ProgressHudDemoPageState createState() => _ProgressHudDemoPageState();
+  _ProgressHudDemoNewState createState() => _ProgressHudDemoNewState();
 }
 
-class _ProgressHudDemoPageState extends State<ProgressHudDemoPage> {
+class _ProgressHudDemoNewState extends State<ProgressHudDemoNew> {
   var titles = ["0", "1", "2",
     "3", "4", "5", "6", "7", "8"];
 
@@ -434,6 +434,7 @@ class _ToastNoContextState extends State<ToastNoContext> {
     Fluttertoast.showToast(
       msg: "This is Long Toast",
       toastLength: Toast.LENGTH_LONG,
+      backgroundColor: Colors.black54,
       fontSize: 18.0,
     );
   }
@@ -444,6 +445,7 @@ class _ToastNoContextState extends State<ToastNoContext> {
       toastLength: Toast.LENGTH_SHORT,
       webBgColor: "#e74c3c",
       textColor: Colors.white,
+      backgroundColor: Colors.black54,
       timeInSecForIosWeb: 5,
     );
   }
@@ -460,6 +462,7 @@ class _ToastNoContextState extends State<ToastNoContext> {
     Fluttertoast.showToast(
         msg: "This is Short Toast",
         toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: Colors.black54,
         timeInSecForIosWeb: 1);
   }
 
@@ -467,6 +470,7 @@ class _ToastNoContextState extends State<ToastNoContext> {
     Fluttertoast.showToast(
         msg: "This is Top Short Toast",
         toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: Colors.black54,
         gravity: ToastGravity.TOP,
         timeInSecForIosWeb: 1);
   }
@@ -475,6 +479,7 @@ class _ToastNoContextState extends State<ToastNoContext> {
     Fluttertoast.showToast(
         msg: "This is Center Short Toast",
         toastLength: Toast.LENGTH_SHORT,
+        backgroundColor: Colors.black54,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1);
   }

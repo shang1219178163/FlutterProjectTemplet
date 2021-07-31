@@ -1,5 +1,5 @@
 //
-//  HudProgressDemoWidget.dart
+//  HudProgressDemo.dart
 //  fluttertemplet
 //
 //  Created by shang on 6/10/21 4:27 PM.
@@ -13,13 +13,13 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/hud/ToastDialog.dart';
 import 'package:fluttertemplet/basicWidget/hud/CirclePulseLoadingWidget.dart';
 
-class HudProgressDemoWidget extends StatelessWidget {
+class HudProgressDemo extends StatelessWidget {
 
   var titles = List.generate(10, (index) => "item$index");
 
   final String? title;
 
-  HudProgressDemoWidget({
+  HudProgressDemo({
   	Key? key,
   	this.title,
   }) : super(key: key);

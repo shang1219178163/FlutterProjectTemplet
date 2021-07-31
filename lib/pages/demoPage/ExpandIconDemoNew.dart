@@ -1,5 +1,5 @@
 //
-//	ExpandIconDemoPage.dart
+//	ExpandIconDemoNew.dart
 //	MacTemplet
 //
 //	Created by Bin Shang on 2021/06/11 16:13
@@ -15,11 +15,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 
-class ExpandIconDemoPage extends StatefulWidget {
-  ExpandIconDemoPageState createState() => ExpandIconDemoPageState();
+class ExpandIconDemoNew extends StatefulWidget {
+  ExpandIconDemoNewState createState() => ExpandIconDemoNewState();
 }
 
-class ExpandIconDemoPageState extends State<ExpandIconDemoPage> {
+class ExpandIconDemoNewState extends State<ExpandIconDemoNew> {
 
   late bool _isExpanded = false;
 
