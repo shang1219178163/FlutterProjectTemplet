@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:textless/textless.dart';
 
-class TextlessPage extends StatefulWidget {
+class TextlessDemo extends StatefulWidget {
 
   final String? title;
-  TextlessPage({Key? key, this.title}) : super(key: key);
+  TextlessDemo({Key? key, this.title}) : super(key: key);
 
   @override
-  _TextlessPageState createState() => _TextlessPageState();
+  _TextlessDemoState createState() => _TextlessDemoState();
 }
 
-class _TextlessPageState extends State<TextlessPage> {
+class _TextlessDemoState extends State<TextlessDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

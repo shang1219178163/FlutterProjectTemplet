@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemoWidget.dart';
+import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ProgressHUDDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
@@ -70,7 +72,7 @@ class APPRouter {
   static const widgetListPage = '/WidgetListPage';
   static const animatedDemoPage = '/AnimatedDemoPage';
 
-  static const textlessPage = '/TextlessPage';
+  static const textlessDemo = '/textlessDemo';
   static const alertDialogDemoPage = '/AlertDialogDemoPage';
   static const alertSheetDemoPage = '/AlertSheetDemoPage';
   static const iconsListPage = '/IconsListPage';
@@ -109,6 +111,9 @@ class APPRouter {
   static const tableViewDemoPage = '/TableViewDemoPage';
   static const githubRepoDemo = '/GithubRepoDemo';
   static const progressHUDDemo = '/ProgressHUDDemo';
+  static const locationPopView = '/LocationPopView';
+  static const backdropFilterDemo = '/BackdropFilterDemo';
+
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -233,7 +238,7 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.textlessPage,
+       name: APPRouter.textlessDemo,
        page: () => TextlessPage(),
      ),
 
@@ -415,6 +420,16 @@ class AppPage{
     GetPage(
       name: APPRouter.progressHUDDemo,
       page: () => ProgressHUDDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.locationPopView,
+      page: () => LocationPopView(),
+    ),
+
+    GetPage(
+      name: APPRouter.backdropFilterDemo,
+      page: () => BackdropFilterDemo(),
     ),
 
   ];

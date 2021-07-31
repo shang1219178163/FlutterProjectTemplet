@@ -106,7 +106,7 @@ var list = [
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
   Tuple2(APPRouter.progressHudDemoPage, "progressHudDemoPage", ),
   Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
-  Tuple2(APPRouter.slidableDemoPage, "flutterSlidableDemoPage", ),
+  Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
   Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
   Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
 
@@ -125,8 +125,16 @@ var list = [
   Tuple2(APPRouter.hudProgressDemoWidget, "HudProgressDemoWidget", ),
   Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
 
-  Tuple2(APPRouter.tabBarDemoPage, " tabBarDemoPage", ),
-  Tuple2(APPRouter.tableViewDemoPage, " tableViewDemoPage", ),
+  Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
+  Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
+
+  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
+  Tuple2(APPRouter.progressHUDDemo, "progressHUDDemo", ),
+
+  Tuple2(APPRouter.locationPopView, "locationPopView", ),
+
+  Tuple2(APPRouter.backdropFilterDemo, "backdropFilterDemo", ),
+  Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
 
 ];
 
