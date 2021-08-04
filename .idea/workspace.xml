@@ -4,7 +4,11 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f804f77f-22fd-4512-92f9-d14502947443" name="Default Changelist" comment="" />
+    <list default="true" id="f804f77f-22fd-4512-92f9-d14502947443" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/lib/dartExpand/richText_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dartExpand/richText_extension.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/dartExpand/string_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/dartExpand/string_extension.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/pages/demoPage/RichTextDemo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/demoPage/RichTextDemo.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

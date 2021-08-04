@@ -77,7 +77,7 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
         // ).textSpans,
           children: RichTextExt.createTextSpans(context,
               text: text,
-              // linkMap: linkMap,
+              linkMap: linkMap,
               onTap: (key, value){
                 ddlog(key);
                 ddlog(value);

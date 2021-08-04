@@ -30,10 +30,9 @@ extension RichTextExt on RichText{
 
     final origin = '$prefix[^$prefix$suffix]+$suffix';
     final reg = RegExp(origin, multiLine: true).allMatches(text);
-    List<String?> matchTitles = reg.map((e) => e.group(0)).toList();
-    final List<String>matchTitlesNew = matchTitles.whereType<String>().toList();
+    List<String> matchTitles = reg.map((e) => e.group(0)).whereType<String>().toList();
 
-    final titles = linkMap?.keys ?? matchTitlesNew;
+    final titles = linkMap?.keys ?? matchTitles;
     final list = text.split(RegExp('$prefix|$suffix'));
 
     List<TextSpan> textSpans = list
