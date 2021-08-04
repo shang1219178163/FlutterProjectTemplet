@@ -66,7 +66,7 @@ class _LoginRouteState extends State<LoginRoute> {
                 obscureText: !pwdShow,
                 //校验密码（不能为空）
                 validator: (v) {
-                  return v.trim().isNotEmpty ? null : gm.passwordRequired;
+                  return v!.trim().isNotEmpty ? null : gm.passwordRequired;
                 },
               ),
               Padding(

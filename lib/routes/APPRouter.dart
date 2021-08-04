@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/DateTimeDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoNew.dart';
 import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
+import 'package:fluttertemplet/pages/demoPage/NumberFormatDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ProgressHudDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
@@ -86,7 +88,7 @@ class APPRouter {
   static const datePickerPage = '/DatePickerPage';
   static const showSearchDemoPage = '/ShowSearchDemoPage';
   static const localNotifationDemoPage = '/LocalNotifationDemoPage';
-  static const ProgressHudDemoNew = '/ProgressHudDemoNew';
+  static const progressHudDemoNew = '/ProgressHudDemoNew';
   static const toastContext = '/ToastContext';
   static const toastNoContext = '/ToastNoContext';
   static const textFieldDemoPage = '/TextFieldDemoPage';
@@ -103,7 +105,7 @@ class APPRouter {
   static const appWebViewDemoPage = '/AppWebViewDemoPage';
   static const enlargeStrategyDemo = '/EnlargeStrategyDemo';
   static const sliverAppBarDemoPage = '/SliverAppBarDemoPage';
-  static const HudProgressDemo = '/HudProgressDemo';
+  static const hudProgressDemo = '/HudProgressDemo';
   static const reorderableListViewDemoPage = '/ReorderableListViewDemoPage';
   static const ExpandIconDemoNew = '/ExpandIconDemoNew';
   static const expandIconDemo = '/ExpandIconDemo';
@@ -111,10 +113,12 @@ class APPRouter {
   static const numberStepperDemoPage = '/NumberStepperDemoPage';
   static const tableViewDemoPage = '/TableViewDemoPage';
   static const githubRepoDemo = '/GithubRepoDemo';
-  static const ProgressHudDemo = '/ProgressHudDemo';
+  static const progressHudDemo = '/ProgressHudDemo';
   static const locationPopView = '/LocationPopView';
   static const backdropFilterDemo = '/BackdropFilterDemo';
   static const richTextDemo = '/richTextDemo';
+  static const numberFormatDemo = '/NumberFormatDemo';
+  static const dateTimeDemo = '/DateTimeDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -299,7 +303,7 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.ProgressHudDemoNew,
+       name: APPRouter.progressHudDemoNew,
        page: () => ProgressHudDemoNew(),
      ),
 
@@ -374,7 +378,7 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.HudProgressDemo,
+      name: APPRouter.hudProgressDemo,
       page: () => HudProgressDemo(),
     ),
 
@@ -419,7 +423,7 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.ProgressHudDemo,
+      name: APPRouter.progressHudDemo,
       page: () => ProgressHudDemo(),
     ),
 
@@ -436,6 +440,16 @@ class AppPage{
     GetPage(
       name: APPRouter.richTextDemo,
       page: () => RichTextDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.numberFormatDemo,
+      page: () => NumberFormatDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.dateTimeDemo,
+      page: () => DateTimeDemo(),
     ),
 
   ];

@@ -9,6 +9,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/AttributedString.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/richText_extension.dart';
+import 'package:fluttertemplet/dartExpand/string_extension.dart';
 
 class RichTextDemo extends StatefulWidget {
 
@@ -23,26 +25,12 @@ class RichTextDemo extends StatefulWidget {
 
 class _RichTextDemoState extends State<RichTextDemo> {
 
-  @override
-  Widget build(BuildContext context) {
-    dynamic arguments = ModalRoute.of(context)!.settings.arguments;
+  var linkMap = {
+    '《用户协议》': 'https://flutter.dev',
+    '《隐私政策》': 'https://flutter.dev',
+  };
 
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title ?? "$widget"),
-        ),
-        body: buildRichText(context),
-    );
-  }
-
-  Widget buildRichText(BuildContext context) {
-
-    var linkMap = {
-      '《用户协议》': 'https://flutter.dev',
-      '《隐私政策》': 'https://flutter.dev',
-    };
-
-    String text = """
+  String text = """
         亲爱的xxxx用户，感谢您信任并使用xxxxAPP！
 xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的要求，对《用户协议》和《隐私政策》进行了更新,特向您说明如下：
         1.为向您提供更优质的服务，我们会收集、使用必要的信息，并会采取业界先进的安全措施保护您的信息安全；
@@ -52,21 +40,49 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
         5.您可以查询、更正、删除您的个人信息，我们也提供账户注销的渠道。
         请您仔细阅读并充分理解相关条款，其中重点条款已为您黑体加粗标识，方便您了解自己的权利。如您点击“同意”，即表示您已仔细阅读并同意本《用户协议》及《隐私政策》，将尽全力保障您的合法权益并继续为您提供优质的产品和服务。如您点击“不同意”，将可能导致您无法继续使用我们的产品和服务。
 """;
+
+  @override
+  Widget build(BuildContext context) {
+    dynamic arguments = ModalRoute.of(context)!.settings.arguments;
+
+    return Scaffold(
+        appBar: AppBar(
+          title: Text(widget.title ?? "$widget"),
+          actions: [
+            TextButton(onPressed: (){
+              matchRegExp();
+            }, child: Text("done", style: TextStyle(color: Colors.white),)),
+          ],
+        ),
+        body: buildRichText(context),
+    );
+  }
+
+  Widget buildRichText(BuildContext context) {
+
     final textRich = Text.rich(
       TextSpan(
-        children: AttributedString(
-            context: context,
-            text: text,
-            linkMap: linkMap,
-            // style: TextStyle(
-            //     fontSize: 13,
-            // ),
-            // linkStyle: TextStyle(fontSize: 15),
-            onTap: (key, value){
-              ddlog(key);
-              ddlog(value);
-            }
-        ).textSpans,
+        // children: AttributedString(
+        //     context: context,
+        //     text: text,
+        //     linkMap: linkMap,
+        //     // style: TextStyle(
+        //     //     fontSize: 13,
+        //     // ),
+        //     // linkStyle: TextStyle(fontSize: 15),
+        //     onTap: (key, value){
+        //       ddlog(key);
+        //       ddlog(value);
+        //     }
+        // ).textSpans,
+          children: RichTextExt.createTextSpans(context,
+              text: text,
+              // linkMap: linkMap,
+              onTap: (key, value){
+                ddlog(key);
+                ddlog(value);
+              }
+          )
       ),
       // style: TextStyle(
       //   wordSpacing: 12
@@ -82,4 +98,20 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
     );
   }
 
+  void matchRegExp() {
+    final reg = RegExp(r'《[^《》]+》', multiLine: true).allMatches(text);
+    final list = reg.map((e) => e.group(0)).toList();
+    ddlog(list);
+
+    final result = text.allMatchesByReg(RegExp(r'《[^《》]+》', multiLine: true));
+    ddlog(result);
+
+    String prefix = "《";
+    String suffix = "》";
+    final origin = '$prefix[^$prefix$suffix]+$suffix';
+    ddlog(text.allMatchesByReg(RegExp(origin)));
+  }
+
 }
+
+

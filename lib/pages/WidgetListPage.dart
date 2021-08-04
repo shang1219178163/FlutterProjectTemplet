@@ -104,7 +104,8 @@ var list = [
   Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
-  Tuple2(APPRouter.ProgressHudDemoNew, "ProgressHudDemoNew", ),
+  Tuple2(APPRouter.progressHudDemo, "ProgressHudDemo", ),
+  Tuple2(APPRouter.progressHudDemoNew, "ProgressHudDemoNew", ),
   Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
   Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
   Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
@@ -122,14 +123,13 @@ var list = [
   Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
 
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
-  Tuple2(APPRouter.HudProgressDemo, "HudProgressDemo", ),
+  Tuple2(APPRouter.hudProgressDemo, "HudProgressDemo", ),
   Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
 
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
-  Tuple2(APPRouter.ProgressHudDemo, "ProgressHudDemo", ),
 
   Tuple2(APPRouter.locationPopView, "locationPopView", ),
 
@@ -137,7 +137,8 @@ var list = [
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
 
   Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
-
+  Tuple2(APPRouter.dateTimeDemo, "dateTimeDemo", ),
+  Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
 
 ];
 
@@ -145,7 +146,7 @@ var list = [
 List<PageWidgetModel> pages = [
   // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
   PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
-  PageWidgetModel(title: '升级列表New', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
+  PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
 
   PageWidgetModel(title: '功能列表', widget: ListView.separated(
     itemCount: list.length,
