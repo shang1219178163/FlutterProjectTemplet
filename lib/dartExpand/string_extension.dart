@@ -12,7 +12,6 @@ extension StringExt on String{
   List<String> allMatchesByReg(RegExp regExp) {
     final reg = regExp.allMatches(this);
     final list = reg.map((e) => e.group(0)).whereType<String>().toList();
-    // final List<String> titles = list.whereType<String>().toList();
     return list;
   }
 }

@@ -43,7 +43,7 @@ class AttributedString{
   AttributedString({
     required this.context,
     required this.text,
-    required this.linkMap,
+    this.linkMap,
     this.prefix = "《",
     this.suffix = "》",
     this.style,
