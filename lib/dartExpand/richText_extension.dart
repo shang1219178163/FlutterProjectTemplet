@@ -7,28 +7,33 @@
 //
 
 
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 extension RichTextExt on RichText{
+
   /// List<TextSpan> by [String text], [Map<String, String> linkMap], prefix = "《", suffix = "》"
   static List<TextSpan> createTextSpans(BuildContext context, {
     required String text,
-    required Map<String, String> linkMap,
+    Map<String, String>? linkMap,
     String prefix = "《",
     String suffix = "》",
     TextStyle? style,
     TextStyle? linkStyle,
-    required void onTap(String key, String value)}) {
-    assert(text.isNotEmpty && linkMap.isNotEmpty);
+    required void onTap(String key, String? value)}) {
+    assert(text.isNotEmpty && prefix.isNotEmpty && suffix.isNotEmpty);
 
-    linkMap.forEach((key, value) {
+    linkMap?.forEach((key, value) {
       assert(key.startsWith(prefix) && key.endsWith("$suffix") && text.contains(key));
     });
 
-    final titles = linkMap.keys;
+    final origin = '$prefix[^$prefix$suffix]+$suffix';
+    final reg = RegExp(origin, multiLine: true).allMatches(text);
+    List<String?> matchTitles = reg.map((e) => e.group(0)).toList();
+    final List<String>matchTitlesNew = matchTitles.whereType<String>().toList();
+
+    final titles = linkMap?.keys ?? matchTitlesNew;
     final list = text.split(RegExp('$prefix|$suffix'));
 
     List<TextSpan> textSpans = list
@@ -36,13 +41,15 @@ extension RichTextExt on RichText{
         ? TextSpan(text: e, style: style)
         : TextSpan(
       text: "$prefix$e$suffix",
-      style: linkStyle ?? TextStyle(color: Theme.of(context).primaryColor),
+      style: linkStyle ??
+          TextStyle(color: Theme.of(context).primaryColor),
       recognizer: TapGestureRecognizer()
         ..onTap = () {
-          onTap("$prefix$e$suffix", linkMap["$prefix$e$suffix"] ?? "");
+          onTap("$prefix$e$suffix", linkMap?["$prefix$e$suffix"]);
         },
     ))
         .toList();
     return textSpans;
   }
+
 }

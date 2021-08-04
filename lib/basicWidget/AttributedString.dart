@@ -19,7 +19,7 @@ class AttributedString{
 
   final String text;
 
-  final Map<String, String> linkMap;
+  final Map<String, String>? linkMap;
 
   final String prefix;
 
@@ -29,7 +29,7 @@ class AttributedString{
 
   final TextStyle? linkStyle;
 
-  final void Function(String key, String value) onTap;
+  final void Function(String key, String? value) onTap;
   /// List<TextSpan> by [String text], [Map<String, String> linkMap]
   List<TextSpan>? get textSpans => _createTextSpans(context,
       text: text,
@@ -54,12 +54,12 @@ class AttributedString{
   /// List<TextSpan> by [String text], [Map<String, String> linkMap]
   List<TextSpan> _createTextSpans(BuildContext context, {
     required String text,
-    required Map<String, String> linkMap,
+    Map<String, String>? linkMap,
     String prefix = "《",
     String suffix = "》",
     TextStyle? style,
     TextStyle? linkStyle,
-    required void onTap(String key, String value)}) {
+    required void onTap(String key, String? value)}) {
     return RichTextExt.createTextSpans(context,
         text: text,
         linkMap: linkMap,
