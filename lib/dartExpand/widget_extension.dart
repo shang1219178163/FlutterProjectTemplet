@@ -162,7 +162,7 @@ extension WidgetExt on Widget {
     child: this,
   );
 
-  /// 时间选择器
+  /// 底部选择器
   void showBottomPicker({
     required BuildContext context,
     double? height = 300,

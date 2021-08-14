@@ -95,7 +95,6 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
     );
   }
 
-
   final Map<int, Widget> children = <int, Widget>{
     0: Container(
       padding: EdgeInsets.all(8),
@@ -166,48 +165,6 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
       ),
     );
   }
-
-  // static int numItems = 24;
-  // List<bool> selected = List<bool>.generate(this.models.length, (int index) => false);
-  //
-  // Widget buildExcel(BuildContext context) {
-  //   return SingleChildScrollView(
-  //     scrollDirection: Axis.vertical,
-  //     child: SingleChildScrollView(
-  //       scrollDirection: Axis.horizontal,
-  //       child: DataTable(
-  //           sortColumnIndex: _sortColumnIndex,
-  //           sortAscending: _sortAscending,
-  //           showBottomBorder: true,
-  //           showCheckboxColumn: true,
-  //           columns: titles.map((e) => DataColumn(
-  //             label: Text(e.item1),
-  //             onSort: (int columnIndex, bool ascending) {
-  //               _changeSort(columnIndex: columnIndex, ascending: ascending);
-  //             },
-  //
-  //           )).toList(),
-  //
-  //           rows: models.map((e) => DataRow(
-  //             cells: [
-  //               DataCell(Text('${e.name}')),
-  //               DataCell(Text('${e.age}')),
-  //               DataCell(Text('${e.sex}')),
-  //               DataCell(Text('${e.birdthYear}')),
-  //               DataCell(Text('${e.birdthMonth}')),
-  //             ],
-  //             selected: selected[models.indexOf(e)],
-  //             onSelectChanged: (bool? value) {
-  //               setState(() {
-  //                 selected[models.indexOf(e)] = value!;
-  //               });
-  //               ddlog(selected.where((element) => element == true).toList());
-  //             },
-  //           )).toList(),
-  //         ),
-  //       ),
-  //   );
-  // }
 
   
   void _changeSort({required int columnIndex, required bool ascending}) {
