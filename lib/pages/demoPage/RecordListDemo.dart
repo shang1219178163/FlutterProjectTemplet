@@ -1,5 +1,5 @@
 //
-//  TextFieldDemoPage.dart
+//  RecordListDemo.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/19/21 6:32 PM.
@@ -14,18 +14,18 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 
-class TextFieldDemoPage extends StatefulWidget {
+class RecordListDemo extends StatefulWidget {
 
   final String? title;
 
-  TextFieldDemoPage({ Key? key, this.title}) : super(key: key);
+  RecordListDemo({ Key? key, this.title}) : super(key: key);
 
   
   @override
-  _TextFieldDemoPageState createState() => _TextFieldDemoPageState();
+  _RecordListDemoState createState() => _RecordListDemoState();
 }
 
-class _TextFieldDemoPageState extends State<TextFieldDemoPage> {
+class _RecordListDemoState extends State<RecordListDemo> {
   final editingController = TextEditingController();
   var selectedDate = DateTime.now();
 
