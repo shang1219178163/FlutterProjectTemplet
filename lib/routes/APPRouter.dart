@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/CupertinoFormDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/DateTimeDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoNew.dart';
@@ -11,6 +12,7 @@ import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberFormatDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ProgressHudDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/RecordListDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ReorderableListViewDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/RichTextDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/SliverAppBarDemoPage.dart';
@@ -33,13 +35,8 @@ import 'package:fluttertemplet/Pages/demoPage/PageViewDemo.dart';
 import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoNew.dart';
 import 'package:fluttertemplet/Pages/demoPage/SnackBarDemoPage.dart';
-import 'package:fluttertemplet/Pages/demoPage/TextFieldDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/TextFieldDemo.dart';
 import 'package:fluttertemplet/Pages/demoPage/SlidableDemoPage.dart';
-import 'package:fluttertemplet/pages/AppWebViewDemoPage.dart';
-import 'package:fluttertemplet/pages/ForgetPasswordPage.dart';
-import 'package:fluttertemplet/pages/LoginPage.dart';
-import 'package:fluttertemplet/pages/LoginPage2.dart';
-import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/pages/demoPage/CarouselSliderDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/DateTableDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/DraggableDemoPage.dart';
@@ -49,12 +46,16 @@ import 'package:fluttertemplet/pages/demoPage/RangerSliderDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/SegmentControlDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/StepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TabBarDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
 
+import 'package:fluttertemplet/pages/AppWebViewDemoPage.dart';
+import 'package:fluttertemplet/pages/ForgetPasswordPage.dart';
+import 'package:fluttertemplet/pages/LoginPage.dart';
+import 'package:fluttertemplet/pages/LoginPage2.dart';
+import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/Pages/textlessDemo.dart';
 import 'package:fluttertemplet/main.dart';
-import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
 import 'package:get/get.dart';
-
 
 
 ///https://www.jianshu.com/p/b9d6ec92926f
@@ -91,7 +92,7 @@ class APPRouter {
   static const progressHudDemoNew = '/ProgressHudDemoNew';
   static const toastContext = '/ToastContext';
   static const toastNoContext = '/ToastNoContext';
-  static const textFieldDemoPage = '/TextFieldDemoPage';
+  static const recordListDemo = '/RecordListDemo';
   static const slidableDemoPage = '/FlutterSlidaableDemoPage';
   static const settingsPage = '/AppSettingsPage';
   static const draggableDemoPage = '/DraggableDemoPage';
@@ -119,6 +120,8 @@ class APPRouter {
   static const richTextDemo = '/richTextDemo';
   static const numberFormatDemo = '/NumberFormatDemo';
   static const dateTimeDemo = '/DateTimeDemo';
+  static const textFieldDemo = '/TextFieldDemo';
+  static const cupertinoFormDemo = '/CupertinoFormDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -318,8 +321,8 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.textFieldDemoPage,
-       page: () => TextFieldDemoPage(),
+       name: APPRouter.recordListDemo,
+       page: () => RecordListDemo(),
      ),
 
      GetPage(
@@ -450,6 +453,16 @@ class AppPage{
     GetPage(
       name: APPRouter.dateTimeDemo,
       page: () => DateTimeDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.textFieldDemo,
+      page: () => TextFieldDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.cupertinoFormDemo,
+      page: () => CupertinoFormDemo(),
     ),
 
   ];
