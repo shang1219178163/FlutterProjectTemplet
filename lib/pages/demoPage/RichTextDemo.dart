@@ -110,8 +110,26 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
     String suffix = "》";
     final origin = '$prefix[^$prefix$suffix]+$suffix';
     ddlog(text.allMatchesByReg(RegExp(origin)));
-  }
 
+    var str3 = '''
+  Multi
+  Line
+  String
+  ''';
+
+    final result1 = str3.splitMapJoin(
+        RegExp(r'^', multiLine: true), // Matches the beginning of the line
+        onMatch: (m) => '** ${m.group(0)}', // Adds asterisk to match
+        onNonMatch: (n) => n); // Just return non-matches
+    print(result1);
+
+    String s = 'bezkoder';
+    ddlog(s.padLeft(10));       // '  bezkoder'
+    ddlog(s.padLeft(10, ' '));  // '==bezkoder'
+
+    ddlog(s.padRight(12));      // 'bezkoder  '
+    ddlog(s.padRight(12, '=')); // 'bezkoder=='
+  }
 }
 
 

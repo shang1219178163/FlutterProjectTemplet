@@ -77,69 +77,72 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     ddlog(array11);
 
     ddlog(array.or(() => array1));
-
-    // Iterable<T> map<T>(T f(E e)) => MappedIterable<E, T>(this, f);
   }
 }
 
 var list = [
-  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
-  Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
-  Tuple2(APPRouter.pageViewDemo, "PageViewDemo", ),
+  Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
   Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
-
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
   Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
-  Tuple2(APPRouter.reorderableListViewDemoPage, "reorderableListViewDemoPage", ),
-  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+  Tuple2(APPRouter.appWebViewDemoPage, "appWebViewDemoPage", ),
 
-  Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
+  Tuple2(APPRouter.backdropFilterDemo, "backdropFilterDemo", ),
+
   Tuple2(APPRouter.cupertinoTabScaffoldDemo, "CupertinoTabScaffoldDemoPage", ),
-  Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
-  Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
-  Tuple2(APPRouter.ExpandIconDemoNew, "ExpandIconDemoNew", ),
-  Tuple2(APPRouter.expandIconDemo, "expandIconDemo", ),
+  Tuple2(APPRouter.cupertinoFormDemo, "cupertinoFormDemo", ),
+  Tuple2(APPRouter.contextMenuActionDemo, "cupertinoFormDemo", ),
 
-  Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
-  Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
+  Tuple2(APPRouter.dateTableDemoPage, "dateTableDemoPage", ),
+  Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
+  Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
+  Tuple2(APPRouter.draggableScrollableSheetDemoPage, "draggableScrollableSheetDemoPage", ),
+  Tuple2(APPRouter.dateTimeDemo, "dateTimeDemo", ),
+
+  Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
+  Tuple2(APPRouter.expandIconDemo, "expandIconDemo", ),
+  Tuple2(APPRouter.expandIconDemoNew, "ExpandIconDemoNew", ),
+
+  Tuple2(APPRouter.hudProgressDemo, "HudProgressDemo", ),
+
+  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
+
+  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
-  Tuple2(APPRouter.progressHudDemo, "ProgressHudDemo", ),
-  Tuple2(APPRouter.progressHudDemoNew, "ProgressHudDemoNew", ),
-  Tuple2(APPRouter.textFieldDemoPage, "textFieldDemoPage", ),
-  Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
-  Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
-  Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
+  Tuple2(APPRouter.locationPopView, "locationPopView", ),
 
   Tuple2(APPRouter.loginPage, "LoginPage", ),
   Tuple2(APPRouter.loginPage2, "LoginPage2", ),
-  Tuple2(APPRouter.dateTableDemoPage, "dateTableDemoPage", ),
-  Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
 
-  Tuple2(APPRouter.rangerSliderDemoPage, "rangerSliderDemoPage", ),
-  Tuple2(APPRouter.draggableScrollableSheetDemoPage, "draggableScrollableSheetDemoPage", ),
+  Tuple2(APPRouter.menuDemo, "MenuDemo", ),
+
+  Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
+  Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
+
+  Tuple2(APPRouter.pageViewDemo, "PageViewDemo", ),
+  Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
+  Tuple2(APPRouter.progressHudDemo, "ProgressHudDemo", ),
+  Tuple2(APPRouter.progressHudDemoNew, "ProgressHudDemoNew", ),
   Tuple2(APPRouter.progressIndicatorDemoPage, "ProgressIndicatorDemoPage", ),
-  Tuple2(APPRouter.appWebViewDemoPage, "appWebViewDemoPage", ),
-  Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
-
-  Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
-  Tuple2(APPRouter.hudProgressDemo, "HudProgressDemo", ),
   Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
+
+  Tuple2(APPRouter.reorderableListViewDemoPage, "reorderableListViewDemoPage", ),
+  Tuple2(APPRouter.recordListDemo, "textFieldDemoPage", ),
+  Tuple2(APPRouter.rangerSliderDemoPage, "rangerSliderDemoPage", ),
+  Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
+
+  Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
+  Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
+  Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
+  Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
+  Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
-
-  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
-
-  Tuple2(APPRouter.locationPopView, "locationPopView", ),
-
-  Tuple2(APPRouter.backdropFilterDemo, "backdropFilterDemo", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
-
-  Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
-  Tuple2(APPRouter.dateTimeDemo, "dateTimeDemo", ),
-  Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
-
+  Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
 ];
 
 
@@ -151,7 +154,6 @@ List<PageWidgetModel> pages = [
   PageWidgetModel(title: '功能列表', widget: ListView.separated(
     itemCount: list.length,
     itemBuilder: (context, index) {
-      // final e = list[index];
       list.sort((a, b) => a.item1.compareTo(b.item1));
       final e = list[index];
 
@@ -180,6 +182,5 @@ List<PageWidgetModel> pages = [
     },
   ),
   ),
-
 ];
 

@@ -32,9 +32,27 @@ import 'routes/APPRouter.dart';
 
 
 Future<void> main() async {
+  setCustomErrorPage();
   await initServices();
   // AppInit.catchException(() => runApp(MyApp()));
   runApp(MyApp());
+}
+
+void setCustomErrorPage(){
+  ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails){
+    print(flutterErrorDetails.toString());
+    return Center(
+      // child: Text("Flutter 走神了"),
+      child: Container(
+        child: Row(
+          children: [
+            Icon(Icons.error),
+            Text("Flutter 走神了"),
+          ],
+        ),
+      ),
+    );
+  };
 }
 
 Future<void> initServices() async {

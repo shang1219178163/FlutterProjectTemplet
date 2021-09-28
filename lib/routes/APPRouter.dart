@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/ContextMenuActionDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/CupertinoFormDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/DateTimeDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
@@ -9,6 +10,7 @@ import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoNew.dart';
 import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
+import 'package:fluttertemplet/pages/demoPage/MenuDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberFormatDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ProgressHudDemo.dart';
@@ -108,7 +110,7 @@ class APPRouter {
   static const sliverAppBarDemoPage = '/SliverAppBarDemoPage';
   static const hudProgressDemo = '/HudProgressDemo';
   static const reorderableListViewDemoPage = '/ReorderableListViewDemoPage';
-  static const ExpandIconDemoNew = '/ExpandIconDemoNew';
+  static const expandIconDemoNew = '/ExpandIconDemoNew';
   static const expandIconDemo = '/ExpandIconDemo';
   static const stepperDemoPage = '/StepperDemoPage';
   static const numberStepperDemoPage = '/NumberStepperDemoPage';
@@ -122,6 +124,8 @@ class APPRouter {
   static const dateTimeDemo = '/DateTimeDemo';
   static const textFieldDemo = '/TextFieldDemo';
   static const cupertinoFormDemo = '/CupertinoFormDemo';
+  static const contextMenuActionDemo = '/ContextMenuActionDemo';
+  static const menuDemo = '/MenuDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -391,7 +395,7 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.ExpandIconDemoNew,
+      name: APPRouter.expandIconDemoNew,
       page: () => ExpandIconDemoNew(),
     ),
 
@@ -463,6 +467,16 @@ class AppPage{
     GetPage(
       name: APPRouter.cupertinoFormDemo,
       page: () => CupertinoFormDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.contextMenuActionDemo,
+      page: () => ContextMenuActionDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.menuDemo,
+      page: () => MenuDemo(),
     ),
 
   ];

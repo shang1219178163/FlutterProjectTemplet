@@ -2,6 +2,11 @@
 
 A Flutter project.
 
+achive：
+```
+flutter build ios --release --dart-define=CHANNEL=GSY --dart-define=LANGUAGE=Dart
+```
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

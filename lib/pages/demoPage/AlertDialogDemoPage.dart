@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -27,24 +26,34 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import 'AlertSheetDemoPage.dart';
 
-
 class AlertDialogDemoPage extends StatefulWidget {
-
   @override
   _AlertDialogDemoPageState createState() => _AlertDialogDemoPageState();
 }
 
-class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTickerProviderStateMixin {
-
+class _AlertDialogDemoPageState extends State<AlertDialogDemoPage>
+    with SingleTickerProviderStateMixin {
   var itemSize = Size(70, 70);
 
-  var titles = ["iOS默认风格", "安卓风格", "进度条",
-                "进度环", "流水布局", "单选列表",
-                "单选菜单", "多选列表", "多选菜单",
-                "性别选择", "自定义", "aboutDialog",
-                "Popover", "NNPopupRoute", "NNPopupRoute Alert",
-    "NNPopupRoute 自定义", "NNPopupRoute 顶部消息", "隐私协议",
-
+  var titles = [
+    "iOS默认风格",
+    "安卓风格",
+    "进度条",
+    "进度环",
+    "流水布局",
+    "单选列表",
+    "单选菜单",
+    "多选列表",
+    "多选菜单",
+    "性别选择",
+    "自定义",
+    "aboutDialog",
+    "Popover",
+    "NNPopupRoute",
+    "NNPopupRoute Alert",
+    "NNPopupRoute 自定义",
+    "NNPopupRoute 顶部消息",
+    "隐私协议",
   ];
 
   final title = "新版本 v${2.1}";
@@ -55,7 +64,6 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
 4、修复一些软件在使用时自动退出bug;
 5、新增加了分类查看功能;
           """;
-
 
   final title1 = "曼德拉《漫漫人生路》";
   final message1 = """
@@ -69,7 +77,6 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
 """;
 
   Object? sex = 1;
-
 
   @override
   void initState() {
@@ -85,26 +92,36 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
         appBar: AppBar(
           title: Text("$widget"),
           actions: [
-            TextButton(onPressed: (){
-              ddlog(Icons.extension);
-
-              }, child: Icon(Icons.extension, color: Colors.white,)
-            )
+            TextButton(
+                onPressed: () {
+                  ddlog(Icons.extension);
+                },
+                child: Icon(
+                  Icons.extension,
+                  color: Colors.white,
+                ))
           ],
         ),
         body: Flow(
-          delegate: TestFlowDelegate(margin: EdgeInsets.all(10.0), spacing: 5, flowHeight: double.infinity),
-          children: titles.map((e) => OutlinedButton(onPressed: (){
-            // ddlog(e);
-            _onPressed(titles.indexOf(e));
-
-          }, child: Text(e))).toList(),
+          delegate: TestFlowDelegate(
+              margin: EdgeInsets.all(10.0),
+              spacing: 5,
+              flowHeight: double.infinity),
+          children: titles
+              .map((e) => OutlinedButton(
+                  onPressed: () {
+                    // ddlog(e);
+                    _onPressed(titles.indexOf(e));
+                  },
+                  child: Text(e)))
+              .toList(),
         ));
   }
 
   void _onPressed(int e) {
     final screenSize = MediaQuery.of(context).size;
 
+    ddlog(screenSize);
     switch (e) {
       case 1:
         showAlertDialog();
@@ -119,17 +136,23 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
               valueColor: AlwaysStoppedAnimation(Colors.blue),
               value: .5,
             ).padding(top: 15),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
@@ -142,17 +165,23 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
               valueColor: AlwaysStoppedAnimation(Colors.blue),
               value: .7,
             ).padding(top: 15),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
@@ -161,42 +190,73 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
           CupertinoAlertDialog(
             title: Text(title),
             content: buildWrap(context),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
       case 5:
         {
           final list = [
-            ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
-            ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
-            ChioceModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            ChioceModel(
+                title: Text("微信支付"),
+                subtitle: Text("微信支付，不止支付"),
+                secondary: Icon(Icons.camera),
+                selected: true),
+            ChioceModel(
+                title: Text("阿里支付"),
+                subtitle: Text("支付就用支付宝"),
+                secondary: Icon(Icons.palette),
+                selected: true),
+            ChioceModel(
+                title: Text("银联支付"),
+                subtitle: Text("不打开APP就支付"),
+                secondary: Icon(Icons.payment),
+                selected: true),
           ];
 
           CupertinoAlertDialog(
             title: Text("支付方式 SingleChoiceListWidget"),
-            content: SingleChoiceListWidget(items: list, index: 1, canScroll: false, callback: (Object index) { ddlog(index); }, ),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            content: SingleChoiceListWidget(
+              items: list,
+              index: 1,
+              canScroll: false,
+              callback: (Object index) {
+                ddlog(index);
+              },
+            ),
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
@@ -204,16 +264,28 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
         {
           CupertinoAlertDialog(
             title: Text("单选  SingleChoiceWrapWidget"),
-            content: SingleChoiceWrapWidget(titles: titles, index: 0, callback: (int index) { ddlog(index); },),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            content: SingleChoiceWrapWidget(
+              titles: titles,
+              index: 0,
+              callback: (int index) {
+                ddlog(index);
+              },
+            ),
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
           // .toShowDialog(context);
 
@@ -223,9 +295,21 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
       case 7:
         {
           final list = [
-            ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
-            ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
-            ChioceModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
+            ChioceModel(
+                title: Text("微信支付"),
+                subtitle: Text("微信支付，不止支付"),
+                secondary: Icon(Icons.camera),
+                selected: true),
+            ChioceModel(
+                title: Text("阿里支付"),
+                subtitle: Text("支付就用支付宝"),
+                secondary: Icon(Icons.palette),
+                selected: true),
+            ChioceModel(
+                title: Text("银联支付"),
+                subtitle: Text("不打开APP就支付"),
+                secondary: Icon(Icons.payment),
+                selected: true),
           ];
 
           CupertinoAlertDialog(
@@ -238,15 +322,21 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
                 ddlog([indexs.runtimeType, indexs]);
               },
             ),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowDialog(context: context);
           // .toShowDialog(context);
         }
@@ -256,18 +346,30 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
         {
           CupertinoAlertDialog(
             title: Text("多选 MultipleChioceWrapWidget"),
-            content: MultipleChioceWrapWidget(titles: titles.map((e) => Text(e)).toList(), indexs: Set.from([0]), callback: (Set<int> indexs) { ddlog(indexs); },),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            content: MultipleChioceWrapWidget(
+              titles: titles.map((e) => Text(e)).toList(),
+              indexs: Set.from([0]),
+              callback: (Set<int> indexs) {
+                ddlog(indexs);
+              },
+            ),
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
@@ -275,18 +377,26 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
         {
           CupertinoAlertDialog(
             title: Text("性别"),
-            content: RadioTileSexWidget(selectedIndex: 0,),
-            actions: ["确定", ].map((e) => TextButton(onPressed: (){
-              // if (["Cancel", "取消"].contains(e)) {
-              //   Navigator.pop(context);
-              // }
-              ddlog(e);
+            content: RadioTileSexWidget(
+              selectedIndex: 0,
+            ),
+            actions: [
+              "确定",
+            ]
+                .map((e) => TextButton(
+                      onPressed: () {
+                        // if (["Cancel", "取消"].contains(e)) {
+                        //   Navigator.pop(context);
+                        // }
+                        ddlog(e);
 
-              Navigator.pop(context);
-            }, child: Text(e),)).toList()
-            ,
+                        Navigator.pop(context);
+                      },
+                      child: Text(e),
+                    ))
+                .toList(),
           ).toShowCupertinoDialog(context: context);
-              // .toShowDialog(context);
+          // .toShowDialog(context);
         }
         break;
 
@@ -321,84 +431,82 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
               });
         }
         break;
-    case 11:
-    {
-      showAboutDialog(
-        context: context,
-        // applicationIcon: FlutterLogo(size: 50,),
-        applicationName: '应用程序',
-        applicationVersion: '1.0.0',
-        applicationLegalese: message1,
-        children: <Widget>[
-          Container(
-            height: 30,
-            color: Colors.red,
-          ),
-          Container(
-            height: 30,
-            color: Theme.of(context).primaryColor,
-          ),
-          Container(
-            height: 30,
-            color: Colors.green,
-          )
-        ],
-      );
+      case 11:
+        {
+          showAboutDialog(
+            context: context,
+            // applicationIcon: FlutterLogo(size: 50,),
+            applicationName: '应用程序',
+            applicationVersion: '1.0.0',
+            applicationLegalese: message1,
+            children: <Widget>[
+              Container(
+                height: 30,
+                color: Colors.red,
+              ),
+              Container(
+                height: 30,
+                color: Theme.of(context).primaryColor,
+              ),
+              Container(
+                height: 30,
+                color: Colors.green,
+              )
+            ],
+          );
+        }
+        break;
+      case 12:
+        {
+          showPopover(
+            context: context,
+            transitionDuration: Duration(milliseconds: 150),
+            bodyBuilder: (context) => Container(
+              height: 50,
+              width: 100,
+              color: Colors.green,
+              child: TextButton(
+                child: Text("Button"),
+                onPressed: () {
+                  ddlog("Button");
+                  ddlog(widget);
+                  ddlog(this);
+                },
+              ),
+            ),
+            onPop: () => print('Popover was popped!'),
+            direction: PopoverDirection.bottom,
+            width: 200,
+            height: 400,
+            arrowHeight: 15,
+            arrowWidth: 30,
+          );
+        }
+        break;
 
-    }
-    break;
-    case 12:
-    {
-      showPopover(
-        context: context,
-        transitionDuration: Duration(milliseconds: 150),
-        bodyBuilder: (context) => Container(
-          height: 50,
-          width: 100,
-          color: Colors.green,
-          child: TextButton(
-            child: Text("Button"),
-            onPressed: (){
-              ddlog("Button");
-              ddlog(widget);
-              ddlog(this);
-            },
-          ),
-        ),
-        onPop: () => print('Popover was popped!'),
-        direction: PopoverDirection.bottom,
-        width: 200,
-        height: 400,
-        arrowHeight: 15,
-        arrowWidth: 30,
-      );
-
-    }
-    break;
-
-    case 13:
-      {
-        Size size = Size(120, 120);
-        Navigator.push(
+      case 13:
+        {
+          Size size = Size(120, 120);
+          Navigator.push(
             context,
             NNPopupRoute(
-                onClick: () {
-                  print("exit");
-                },
-                child: Container(
-                  color: Colors.red,
-                  width: size.width,
-                  height: size.height,
-                  child: TextButton.icon(
-                    onPressed: () {
-                      ddlog("刷新");
-                      Navigator.of(context).pop();
-                    },
-                    icon: Icon(Icons.refresh),
-                    label: Text("刷新"),
-                  ),
+              onClick: () {
+                print("exit");
+              },
+              child: Container(
+                color: Colors.red,
+                width: size.width,
+                height: size.height,
+                child: TextButton.icon(
+                  onPressed: () {
+                    ddlog("刷新");
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(Icons.refresh),
+                  label: Text("刷新"),
                 ),
               ),
+            ),
           );
         }
         break;
@@ -435,7 +543,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
           // final list = [null, "aaa"];
           // ddlog(list);
 
-          Navigator.push(context,
+          Navigator.push(
+            context,
             NNPopupRoute(
               alignment: Alignment.bottomCenter,
               onClick: () {
@@ -446,13 +555,19 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
               // child: buildAlertColumn(context, marginHor: 15),
               child: NNAlertDialog(
                 marginHor: 10,
-                title: Text(title1, style: TextStyle(fontWeight: FontWeight.w500),),
-                content: Text(message1, style: TextStyle(fontWeight: FontWeight.w300),),
+                title: Text(
+                  title1,
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+                content: Text(
+                  message1,
+                  style: TextStyle(fontWeight: FontWeight.w300),
+                ),
                 actionCancell: TextButton(
                   onPressed: () {
                     ddlog("取消");
                     Navigator.of(context).pop();
-                    },
+                  },
                   child: Text("取消"),
                 ),
                 actionConfirm: TextButton(
@@ -476,7 +591,8 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
           double spacingVer = 8;
           double spacingHor = 15;
 
-          Navigator.push(context,
+          Navigator.push(
+            context,
             NNPopupRoute(
               alignment: Alignment.topCenter,
               onClick: () {
@@ -485,7 +601,7 @@ class _AlertDialogDemoPageState extends State<AlertDialogDemoPage> with SingleTi
                 Navigator.of(context).pop();
               },
               // child: buildAlertColumn(context, marginHor: 15),
-                child: buildNoticationView(context),
+              child: buildNoticationView(context),
               // child: SlideTransition(
               //   position: animation,
               //   child: buildNoticationView(context),
@@ -525,77 +641,77 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
                 //     }
                 // ).textSpans,
                 children: RichTextExt.createTextSpans(context,
-                    text: text,
-                    linkMap: linkMap,
-                    onTap: (key, value){
-                      ddlog(key);
-                      ddlog(value);
-                    }
-                )
-            ),
+                    text: text, linkMap: linkMap, onTap: (key, value) {
+                  ddlog(key);
+                  ddlog(value);
+                })),
           );
 
-          showGeneralDialog(context: context,
+          showGeneralDialog(
+              context: context,
               pageBuilder: (BuildContext context, Animation<double> animation,
                   Animation<double> secondaryAnimation) {
                 return NNUserPrivacy(
                   title: "用户隐私及协议",
                   content: textRich,
-                  onClickCancel: (){
+                  onClickCancel: () {
                     ddlog("Cancel");
                     Navigator.of(context).pop();
                   },
-                  onClickConfirm: (){
+                  onClickConfirm: () {
                     ddlog("Confirm");
                     Navigator.of(context).pop();
                   },
                 );
-              }
-          );
+              });
         }
         break;
       case 18:
-        {
-
-        }
+        {}
         break;
       case 19:
-        {
-
-        }
+        {}
         break;
-    default:
+      default:
         showCupertinoAlertDialog();
         break;
     }
-
   }
 
-  void showCupertinoAlertDialog(){
+  void showCupertinoAlertDialog() {
     CupertinoAlertDialog(
       title: Text(title),
       content: Text(message).textAlignment(TextAlign.start),
-      actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
-        ddlog(e);
-        Navigator.pop(context);
-      }, child: Text(e),)).toList(),
+      actions: ["取消", "确定"]
+          .map((e) => TextButton(
+                onPressed: () {
+                  ddlog(e);
+                  Navigator.pop(context);
+                },
+                child: Text(e),
+              ))
+          .toList(),
     ).toShowCupertinoDialog(context: context);
-        // .toShowDialog(context)
+    // .toShowDialog(context)
     ;
   }
 
-  void showAlertDialog(){
-      AlertDialog(
-        title: Text(title),
-        content: Text(message).textAlignment(TextAlign.start),
-        actions: ["取消", "确定"].map((e) => TextButton(onPressed: (){
-          ddlog(e);
-          Navigator.pop(context);
-        }, child: Text(e),)).toList()
-        ,
-      ).toShowCupertinoDialog(context: context);
-          // .toShowDialog(context: context)
-      ;
+  void showAlertDialog() {
+    AlertDialog(
+      title: Text(title),
+      content: Text(message).textAlignment(TextAlign.start),
+      actions: ["取消", "确定"]
+          .map((e) => TextButton(
+                onPressed: () {
+                  ddlog(e);
+                  Navigator.pop(context);
+                },
+                child: Text(e),
+              ))
+          .toList(),
+    ).toShowCupertinoDialog(context: context);
+    // .toShowDialog(context: context)
+    ;
   }
 
   Wrap buildWrap(BuildContext context) {
@@ -603,17 +719,20 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
       spacing: 8.0, // 主轴(水平)方向间距
       runSpacing: -8.0, // 纵轴（垂直）方向间距
       alignment: WrapAlignment.start, //沿主轴方向居中
-      children: titles.map((e) => TextButton.icon(onPressed: (){
-        ddlog(titles.indexOf(e));
-      // }, icon: Icon(Icons.check_circle_outline), label: Text("Button"))).toList(),
-      }, icon: Icon(Icons.radio_button_unchecked_outlined),
-        label: Text(e),
-        style: OutlinedButton.styleFrom(
-          primary: Colors.black87,
-          side: BorderSide(width: 1, color: Colors.transparent),
-        ),
-
-      )).toList(),
+      children: titles
+          .map((e) => TextButton.icon(
+                onPressed: () {
+                  ddlog(titles.indexOf(e));
+                  // }, icon: Icon(Icons.check_circle_outline), label: Text("Button"))).toList(),
+                },
+                icon: Icon(Icons.radio_button_unchecked_outlined),
+                label: Text(e),
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.black87,
+                  side: BorderSide(width: 1, color: Colors.transparent),
+                ),
+              ))
+          .toList(),
     );
   }
 
@@ -623,21 +742,26 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
 
     double spacingVer = 8;
     double spacingHor = 15;
-    double width = screenSize.width - spacingHor*2;
+    double width = screenSize.width - spacingHor * 2;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: EdgeInsets.only(top: spacingVer, left: spacingHor, bottom: spacingVer, right: spacingHor),
+          padding: EdgeInsets.only(
+              top: spacingVer,
+              left: spacingHor,
+              bottom: spacingVer,
+              right: spacingHor),
           child: Text(title1),
         ),
         Padding(
-          padding: EdgeInsets.only(left: spacingHor, bottom: spacingVer, right: spacingHor),
+          padding: EdgeInsets.only(
+              left: spacingHor, bottom: spacingVer, right: spacingHor),
           child: Text(message1),
         ),
         Container(
-          width: MediaQuery.of(context).size.width - spacingHor*2,
+          width: MediaQuery.of(context).size.width - spacingHor * 2,
           height: 0.5,
           color: Colors.grey[400],
         ),
@@ -656,7 +780,8 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
                   label: Text("取消"),
                 ),
               ),
-              Container(height: 55, child: VerticalDivider(color: Colors.grey[400])),
+              Container(
+                  height: 55, child: VerticalDivider(color: Colors.grey[400])),
               Expanded(
                 child: TextButton.icon(
                   onPressed: () {
@@ -680,7 +805,7 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
     double spacingHor = 15;
 
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         ddlog("tap Container");
       },
       child: Container(
@@ -694,12 +819,23 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: spacingVer, left: spacingHor, bottom: spacingVer, right: spacingHor),
-              child: Text(title1, style: TextStyle(fontWeight: FontWeight.w600),),
+              padding: EdgeInsets.only(
+                  top: spacingVer,
+                  left: spacingHor,
+                  bottom: spacingVer,
+                  right: spacingHor),
+              child: Text(
+                title1,
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: spacingHor, bottom: spacingVer, right: spacingHor),
-              child: Text(message1, style: TextStyle(fontWeight: FontWeight.w300),),
+              padding: EdgeInsets.only(
+                  left: spacingHor, bottom: spacingVer, right: spacingHor),
+              child: Text(
+                message1,
+                style: TextStyle(fontWeight: FontWeight.w300),
+              ),
             ),
             // Container(
             //   width: MediaQuery.of(context).size.width - spacingHor*2,
@@ -715,47 +851,52 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
   ///创建 WebView
   Widget buildWebView(BuildContext context, {required String initialUrl}) {
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: 100,
-        leading: Container(
-          child: Row(
-            children: [Icons.chevron_left, Icons.close]
-                .map(
-                  (e) => IconButton(
-                    icon: Icon(e),
-                    iconSize: 30,
-                    // color: Theme.of(context).accentColor,
-                    onPressed: () {
-                      if (e == Icons.chevron_left) {
-                        Navigator.of(context).pop();
-                      } else if (e == Icons.close) {
-                        Navigator.of(context).pop();
-                      }
-                    },
-                  ),
-                )
-                .toList(),
+        appBar: AppBar(
+          leadingWidth: 100,
+          leading: Container(
+            child: Row(
+              children: [Icons.chevron_left, Icons.close]
+                  .map(
+                    (e) => IconButton(
+                      icon: Icon(e),
+                      iconSize: 30,
+                      // color: Theme.of(context).accentColor,
+                      onPressed: () {
+                        if (e == Icons.chevron_left) {
+                          Navigator.of(context).pop();
+                        } else if (e == Icons.close) {
+                          Navigator.of(context).pop();
+                        }
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
+          actions: [
+            Icons.refresh,
+          ]
+              .map(
+                (e) => IconButton(
+                  icon: Icon(e),
+                  iconSize: 30,
+                  // color: Theme.of(context).accentColor,
+                  onPressed: () {},
+                ),
+              )
+              .toList(),
         ),
-        actions: [Icons.refresh,].map((e) => IconButton(
-          icon: Icon(e),
-          iconSize: 30,
-          // color: Theme.of(context).accentColor,
-          onPressed: () {},
-        ),).toList(),
-      ),
-      body: WebView(initialUrl: initialUrl));
+        body: WebView(initialUrl: initialUrl));
   }
-
 }
-
 
 class TestFlowDelegate extends FlowDelegate {
   EdgeInsets margin = EdgeInsets.zero;
   double spacing = 8.0;
   double flowHeight = double.infinity;
 
-  TestFlowDelegate({required this.margin, required this.spacing, required this.flowHeight});
+  TestFlowDelegate(
+      {required this.margin, required this.spacing, required this.flowHeight});
 
   @override
   void paintChildren(FlowPaintingContext context) {
@@ -765,24 +906,20 @@ class TestFlowDelegate extends FlowDelegate {
     for (int i = 0; i < context.childCount; i++) {
       var w = context.getChildSize(i)!.width + x + margin.right;
       if (w < context.size.width) {
-        context.paintChild(i,
-            transform: Matrix4.translationValues(x, y, 0.0)
-        );
+        context.paintChild(i, transform: Matrix4.translationValues(x, y, 0.0));
         x = w + margin.left;
       } else {
         x = margin.left;
         y += context.getChildSize(i)!.height + spacing;
         //绘制子widget(有优化)
-        context.paintChild(i,
-            transform: Matrix4.translationValues(x, y, 0.0)
-        );
+        context.paintChild(i, transform: Matrix4.translationValues(x, y, 0.0));
         x += context.getChildSize(i)!.width + margin.left + margin.right;
       }
     }
   }
 
   @override
-  getSize(BoxConstraints constraints){
+  getSize(BoxConstraints constraints) {
     //指定Flow的大小
     // return Size(double.infinity, 250.0);
     return Size(double.infinity, flowHeight);
@@ -793,5 +930,3 @@ class TestFlowDelegate extends FlowDelegate {
     return oldDelegate != this;
   }
 }
-
-

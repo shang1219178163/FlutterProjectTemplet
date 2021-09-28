@@ -43,7 +43,6 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
               },
                 child: Text("主题色", style: TextStyle(color: Colors.white))
             ),
-            _buildDropdownButton(),
           ],
         ),
         body: Container(
@@ -101,25 +100,4 @@ class _AppSettingsPageState extends State<AppSettingsPage>{
     );
   }
 
-
-  final items = [
-    DropdownMenuItem(child: Text('语文'), value: 0,),
-    DropdownMenuItem(child: Text('数学'),value: 1),
-    DropdownMenuItem(child: Text('英语'),value: 2),
-  ];
-
-  Object? _dropValue = 0;
-
-  _buildDropdownButton() {
-    return DropdownButton(
-      hint: Text('请选择'),
-      value: _dropValue,
-      items: items,
-      onChanged: (value){
-        setState(() {
-          _dropValue = value;
-        });
-      },
-    );
-  }
 }

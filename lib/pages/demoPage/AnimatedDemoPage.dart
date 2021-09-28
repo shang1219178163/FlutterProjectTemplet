@@ -145,12 +145,9 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
         ),
         onTap: () {
           ddlog("AnimatedCrossFade");
-
           setState(() {
             _crossFadeState = _crossFadeState == CrossFadeState.showFirst ?  CrossFadeState.showSecond : CrossFadeState.showFirst;
-
           });
-
         },
       ),
     );
