@@ -65,11 +65,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  flutter_boost: 48ff0ee838b9313e1442061b6c1dd82cd309e0d9
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  flutter_boost: 1b5f53a54ba73726829691db891e85f40b4f6494
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
+  integration_test: 7db6d89f336f671dcbc7563ee27a5b08f6f8aee1
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
