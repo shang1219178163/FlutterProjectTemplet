@@ -8,6 +8,9 @@ import 'package:fluttertemplet/pages/demoPage/DateTimeDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ExpandIconDemoNew.dart';
 import 'package:fluttertemplet/pages/demoPage/GithubRepoDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/GridViewDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/GridPaperDemo.dart';
+
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/MenuDemo.dart';
@@ -31,7 +34,7 @@ import 'package:fluttertemplet/Pages/WidgetListPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/AlertDialogDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/AlertSheetDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/CupertinoTabScaffoldDemoPage.dart';
-import 'package:fluttertemplet/Pages/demoPage/GridViewDemoPage.dart';
+// import 'package:fluttertemplet/Pages/demoPage/GridViewDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/LocalNotifationDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/PageViewDemo.dart';
 import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
@@ -57,6 +60,7 @@ import 'package:fluttertemplet/pages/LoginPage2.dart';
 import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/Pages/textlessDemo.dart';
 import 'package:fluttertemplet/main.dart';
+import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
 import 'package:get/get.dart';
 
 
@@ -83,6 +87,8 @@ class APPRouter {
   static const alertSheetDemoPage = '/AlertSheetDemoPage';
   static const iconsListPage = '/IconsListPage';
   static const gridViewDemoPage = '/GridViewDemoPage';
+  static const gridPaperDemo = '/GridPaperDemo';
+
   static const pageViewDemo = '/PageViewDemo';
   static const pageViewTabBarWidget = '/PageViewTabBarWidget';
   static const snackBarDemoPage = '/SnackBarDemoPage';
@@ -126,6 +132,8 @@ class APPRouter {
   static const cupertinoFormDemo = '/CupertinoFormDemo';
   static const contextMenuActionDemo = '/ContextMenuActionDemo';
   static const menuDemo = '/MenuDemo';
+  static const providerRoute = '/ProviderRoute';
+
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -477,6 +485,16 @@ class AppPage{
     GetPage(
       name: APPRouter.menuDemo,
       page: () => MenuDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.gridPaperDemo,
+      page: () => GridPaperDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.providerRoute,
+      page: () => ProviderRoute(),
     ),
 
   ];

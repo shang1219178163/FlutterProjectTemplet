@@ -33,6 +33,11 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text("$widget"),
+          actions: [
+            TextButton(onPressed: (){
+
+            }, child: Text("done")),
+          ],
         ),
         // body: buildWrap(context).padding(all: 10)
         body: buildGridView(titles)
@@ -105,12 +110,12 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
           elevation: 20.0,
           //设置shape，这里设置成了R角
           shape: RoundedRectangleBorder(
-          // borderRadius: BorderRadius.all(Radius.circular(20.0)),),
-          borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.zero,
-          bottomLeft: Radius.zero,
-          bottomRight: Radius.circular(20.0)),
+            // borderRadius: BorderRadius.all(Radius.circular(20.0)),),
+            borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.zero,
+            bottomLeft: Radius.zero,
+            bottomRight: Radius.circular(20.0)),
           ),
           //对Widget截取的行为，比如这里 Clip.antiAlias 指抗锯齿
           clipBehavior: Clip.antiAlias,
@@ -163,4 +168,5 @@ class _GridViewDemoPageState extends State<GridViewDemoPage> {
   }
 
 }
+
 

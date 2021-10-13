@@ -107,7 +107,9 @@ var list = [
 
   Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
 
-  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
+  Tuple2(APPRouter.gridViewDemoPage, "gridView", ),
+  Tuple2(APPRouter.gridPaperDemo, "gridPaperDemo", ),
+
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
 
   Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
@@ -143,6 +145,8 @@ var list = [
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
   Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
+  Tuple2(APPRouter.providerRoute, "providerRoute", ),
+
 ];
 
 
