@@ -15,7 +15,7 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/model/order_model.dart';
 
 /// ChangeNotifier(不推荐使用,麻烦)
-class ChangeNotifierOrderModels extends ChangeNotifier {
+class CartModel extends ChangeNotifier {
   final List<OrderModel> _items = []; // 购物车内容, 设为private
   // 只读的购物车内容(getter)
   UnmodifiableListView<OrderModel> get items => UnmodifiableListView(_items);
@@ -109,9 +109,9 @@ class ValueNotifierOrderModels extends ValueNotifier<List<OrderModel>> {
 }
 
 /// 泛型数组监听
-class ValueNotifierItems<T> extends ValueNotifier<List<T>> {
+class ValueNotifierList<T> extends ValueNotifier<List<T>> {
 
-  ValueNotifierItems(List<T> initValue) : super(initValue);
+  ValueNotifierList(List<T> initValue) : super(initValue);
 
   void add(T item) {
     value.add(item);
@@ -162,9 +162,26 @@ class ValueNotifierItems<T> extends ValueNotifier<List<T>> {
 /// ValueNotifier<int>
 class ValueNotifierInt extends ValueNotifier<int> {
 
-  ValueNotifierInt(int initValue) : super(initValue);
+  int initValue = 0;
+
+  int minValue = 0;
+
+  int maxValue = 100000;
+
+  void Function(int minValue, int maxValue)? block;
+
+  ValueNotifierInt({required this.initValue, required this.minValue, required this.maxValue, this.block}) : super(initValue);
 
   void add(int val) {
+    if (val < 0 && value <= minValue) {
+      if (block != null) block!(minValue, maxValue);
+      return;
+    }
+
+    if (val > 0 && value >= maxValue) {
+      if (block != null) block!(minValue, maxValue);
+      return;
+    }
     value += val;
   }
 

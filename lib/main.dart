@@ -6,6 +6,7 @@ import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:tuple/tuple.dart';
 
@@ -27,7 +28,8 @@ import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 import 'NNListWidgetPage.dart';
 import 'Pages/ListPageController.dart';
-import 'Pages/WidgetListPage.dart';
+import 'pages/WidgetListPage.dart';
+import 'provider/notifier_demo.dart';
 import 'routes/APPRouter.dart';
 
 
@@ -35,7 +37,15 @@ Future<void> main() async {
   setCustomErrorPage();
   await initServices();
   // AppInit.catchException(() => runApp(MyApp()));
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CartModel()),
+        // Provider(create: (context) => SomeOtherClass()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 void setCustomErrorPage(){

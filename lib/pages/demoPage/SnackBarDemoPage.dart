@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/DashLine.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/buildContext_extension.dart';
+
 import 'package:styled_widget/styled_widget.dart';
 
 final kUpdateContent = """
@@ -22,7 +24,9 @@ class SnackBarDemoPage extends StatefulWidget {
 class SnackBarDemoPageState extends State<SnackBarDemoPage> {
 
   GlobalKey globalKey = GlobalKey();
-  
+
+  final _globalKey = GlobalKey<ScaffoldMessengerState>();
+
 
   @override
   void initState() {
@@ -45,23 +49,30 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        // final snackBar = SnackBar(
-                        //     content: Text('这是一个SnackBar'),
-                        //     action: SnackBarAction(
-                        //     label: '撤消',
-                        //     onPressed: () {
-                        //       // do something to undo
-                        //       ddlog('撤消');
-                        //     }
-                        // ),
-                        // );
                         final snackBar = buildSnackBar(context);
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        showSnackBar(buildSnackBar(context));
                       },
-                      child: Text('显示SnackBar'),
+                      child: Text('显示SnackBar, 不覆盖'),
                     ),
 
                     DashLine(color: Colors.red,),
+
+                    GestureDetector(
+                      onTap: () {
+                        // ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
+                        showSnackBar(buildSnackBar(context), true);
+                      },
+                      child: Text('显示SnackBar, 覆盖'),
+                    ),
+
+                    GestureDetector(
+                      onTap: () {
+                        // ScaffoldMessenger.of(context).showSnackBar(buildSnackBar(context));
+                        showSnackBar(buildSnackBar2(context), true);
+                      },
+                      child: Text('显示SnackBar, 覆盖'),
+                    ),
                   ],
                 ),
               )
@@ -102,6 +113,30 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
       padding: EdgeInsets.only(left: 13, right: 13),
       // backgroundColor: Colors.green,
       elevation: 1000,
-      behavior: SnackBarBehavior.fixed,);
-    }
+      behavior: SnackBarBehavior.fixed,
+    );
   }
+
+  SnackBar buildSnackBar2(BuildContext context) {
+    return SnackBar(
+      onVisible: () {
+        print("显示SnackBar");
+      },
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(50))
+      ),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.orange,
+      content: Text('断网了？'),
+      action: SnackBarAction(
+        ///配置action的字体颜色为绿色
+        textColor: Colors.green,
+        label: '点击重试',
+        onPressed: () {
+          //执行相关逻辑
+        },
+      ),
+    );
+  }
+
+}

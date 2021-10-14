@@ -8,11 +8,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/buildContext_extension.dart';
+import 'package:fluttertemplet/dartExpand/string_extension.dart';
+
 import 'package:fluttertemplet/model/order_model.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:tuple/tuple.dart';
 import 'notifier_demo.dart';
-
 
 class ProviderListDemo extends StatefulWidget {
 
@@ -26,17 +28,23 @@ class ProviderListDemo extends StatefulWidget {
 
 class _ProviderListDemoState extends State<ProviderListDemo> {
   /// ChangeNotifier
-  static ChangeNotifierOrderModels changeNotifierOrderModels = ChangeNotifierOrderModels();
+  static CartModel changeNotifierCartModel = CartModel();
   /// ValueNotifier
   static ValueNotifierOrderModels valueNotifierOrderModels = ValueNotifierOrderModels();
   /// ValueNotifier
-  static ValueNotifierInt valueNotifierInt = ValueNotifierInt(6);
+  static ValueNotifierInt valueNotifierInt = ValueNotifierInt(initValue: 6, minValue: 0, maxValue: 9, block: (int minValue, int maxValue){
+    ddlog("数值必须在${minValue} - ${maxValue} 之间");
+  });
+  // static ValueNotifierInt valueNotifierInt = ValueNotifierInt(initValue: 6, minValue: 0, maxValue: 9);
+
+  static ValueNotifier<int> valueNotifierIntOrigin = ValueNotifier(3);
+
   /// ValueNotifier
   static ValueNotifierDouble valueNotifierDouble = ValueNotifierDouble(8.8);
 
-  static ValueNotifierItems valueNotifierItems = ValueNotifierItems(<OrderModel>[]);
+  static ValueNotifierList valueNotifierList = ValueNotifierList(<OrderModel>[]);
 
-  // static ValueNotifierItems valueNotifierItems = ValueNotifierItems(<OrderModel>[]);
+  static ValueNotifier<List<OrderModel>> valueNotifierListOrigin = ValueNotifier(<OrderModel>[]);
 
   @override
   void initState() {
@@ -44,10 +52,27 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
 
     // valueNotifierInt.value = 6;
     // valueNotifierDouble.value = 9.9;
+
+    valueNotifierInt.maxValue = 12;
+
+    valueNotifierIntOrigin.addListener(update);
+    valueNotifierInt.addListener(update);
+    valueNotifierDouble.addListener(update);
+
+    valueNotifierOrderModels.addListener(update);
+    valueNotifierList.addListener(update);
+    valueNotifierListOrigin.addListener(update);
   }
 
   @override
   void dispose() {
+    valueNotifierInt.removeListener(update);
+    valueNotifierIntOrigin.removeListener(update);
+    valueNotifierDouble.removeListener(update);
+
+    valueNotifierOrderModels.removeListener(update);
+    valueNotifierList.removeListener(update);
+    valueNotifierListOrigin.removeListener(update);
     super.dispose();
   }
 
@@ -60,11 +85,12 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
           title: Text(widget.title ?? "$widget"),
           actions: [
             IconButton(onPressed: (){
-              updateChangeNotifier(model: changeNotifierOrderModels, value: 1);
+              updateChangeNotifier(model: changeNotifierCartModel, value: 1);
 
             }, icon: Icon(Icons.add_circle_outline,)),
+
             IconButton(onPressed: (){
-              updateChangeNotifier(model: changeNotifierOrderModels, value: -1);
+              updateChangeNotifier(model: changeNotifierCartModel, value: -1);
 
             }, icon: Icon(Icons.remove_circle_outline,)),
 
@@ -114,45 +140,39 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
     );
   }
 
+  void update() {
+    ddlog("数据变化监听回调, 刷新重建界面");
+    setState(() {});
+
+  }
 
   void handleActionNum({required ValueNotifierModel e, required int value, required int idx}) {
     switch (e.name) {
       case "valueNotifierIntKey":
         {
           valueNotifierInt.add(value);
-          setState(() {
-
-          });
-          // ddlog(cartCountKey.toString());
-          ddlog("${valueNotifierInt.value}");
         }
         break;
       case "valueNotifierDoubleKey":
         {
           ddlog("${value.toDouble()}");
           valueNotifierDouble.add(value.toDouble());
-          setState(() {
 
-          });
           // ddlog(cartCountKey.toString());
           ddlog("${valueNotifierDouble.value}");
         }
         break;
 
-
       case "changeNotifierOrderModels":
         {
           final e = OrderModel(name: '商品', id: 99, pirce: 1.00);
           if (value > 0) {
-            changeNotifierOrderModels.add(e);
+            changeNotifierCartModel.add(e);
           } else {
-            changeNotifierOrderModels.removeLast();
+            changeNotifierCartModel.removeLast();
           }
 
-          setState(() {
-
-          });
-          ddlog(changeNotifierOrderModels.toString());
+          ddlog(changeNotifierCartModel.toString());
           // ddlog("${cartModelKey.totalPrice}");
         }
         break;
@@ -165,36 +185,55 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
             valueNotifierOrderModels.removeLast();
           }
 
-          setState(() {
+          update();
 
-          });
           ddlog(valueNotifierOrderModels.toString());
           // ddlog("${cartModelOneKey.totalPrice}");
         }
         break;
-      case "valueNotifierItems":
+      case "valueNotifierList":
         {
           final e = OrderModel(name: '商品', id: 99, pirce: 1.00);
           if (value > 0) {
-            valueNotifierItems.add(e);
+            valueNotifierList.add(e);
           } else {
-            valueNotifierItems.removeLast();
+            valueNotifierList.removeLast();
           }
+          // update();
 
-          setState(() {
-
-          });
-          ddlog(valueNotifierItems.toString());
+          ddlog(valueNotifierList.toString());
           // ddlog("${cartModelOneKey.totalPrice}");
         }
         break;
 
+      case "valueNotifierIntOrigin":
+        {
+          valueNotifierIntOrigin.value += value;
+
+          // ddlog(cartCountKey.toString());
+          ddlog("${valueNotifierIntOrigin.value}");
+        }
+        break;
+
+      case "valueNotifierListOrigin":
+        {
+          final e = OrderModel(name: '商品', id: 99, pirce: 1.00);
+          if (value > 0) {
+            valueNotifierListOrigin.value.add(e);
+          } else {
+            valueNotifierListOrigin.value.removeLast();
+          }
+
+          ddlog(valueNotifierListOrigin.value.length.toString());
+          // ddlog("${cartModelOneKey.totalPrice}");
+        }
+        break;
       default:
         break;
     }
   }
 
-  void updateChangeNotifier({required ChangeNotifierOrderModels model, required int value}) {
+  void updateChangeNotifier({required CartModel model, required int value}) {
     final e = OrderModel(name: '商品', id: 99, pirce: 1.00);
     if (value > 0) {
       model.add(e);
@@ -205,14 +244,30 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
 
     });
     ddlog(model.toString());
+
+    if (value > 0) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('CartModel num\'s +1')));
+
+    } else {
+      showSnackBar(SnackBar(content: Text('CartModel num\'s -1')), true);
+    }
+
   }
 
   var list = [
-    ValueNotifierModel(name: "valueNotifierIntKey", notifier: valueNotifierInt),
-    ValueNotifierModel(name: "valueNotifierDoubleKey", notifier: valueNotifierDouble),
+    // ValueNotifierModel(name: "valueNotifierIntKey", notifier: valueNotifierInt),
+    // ValueNotifierModel(name: "valueNotifierDoubleKey", notifier: valueNotifierDouble),
     ValueNotifierModel(name: "valueNotifierOrderModels", notifier: valueNotifierOrderModels),
-    ValueNotifierModel(name: "valueNotifierItems", notifier: valueNotifierItems),
+    ValueNotifierModel(name: "valueNotifierList", notifier: valueNotifierList),
+
+    // ValueNotifierModel(name: "valueNotifierIntOrigin", notifier: valueNotifierIntOrigin),
+    // ValueNotifierModel(name: "valueNotifierListOrigin", notifier: valueNotifierListOrigin),
+
   ];
+
+
+
 
 }
 
