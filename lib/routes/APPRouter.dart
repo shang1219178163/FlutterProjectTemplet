@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/Provider/provider_list_demo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ContextMenuActionDemo.dart';
@@ -49,6 +50,7 @@ import 'package:fluttertemplet/pages/demoPage/DraggableScrollableSheetDemoPage.d
 import 'package:fluttertemplet/pages/demoPage/ProgressIndicatorDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/RangerSliderDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/SegmentControlDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/SliverPersistentHeaderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/StepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TabBarDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
@@ -133,6 +135,8 @@ class APPRouter {
   static const contextMenuActionDemo = '/ContextMenuActionDemo';
   static const menuDemo = '/MenuDemo';
   static const providerRoute = '/ProviderRoute';
+  static const providerListDemo = '/providerListDemo';
+  static const sliverPersistentHeaderDemo = '/sliverPersistentHeaderDemo';
 
 
   // static final routes = <String, WidgetBuilder>{
@@ -493,9 +497,20 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.providerRoute,
-      page: () => ProviderRoute(),
+      name: APPRouter.sliverPersistentHeaderDemo,
+      page: () => SliverPersistentHeaderDemo(),
     ),
+
+    GetPage(
+      name: APPRouter.providerListDemo,
+      page: () => ProviderListDemo(),
+    ),
+
+
+    // GetPage(
+    //   name: APPRouter.providerRoute,
+    //   page: () => ProviderRoute(),
+    // ),
 
   ];
 
