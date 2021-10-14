@@ -33,6 +33,8 @@ class LineSegmentControl<T> extends StatefulWidget {
 
   final Color? backgroundColor;
   final Color lineColor;
+  final double? lineWidth;
+  final double lineHeight;
 
   final double height;
 
@@ -47,11 +49,14 @@ class LineSegmentControl<T> extends StatefulWidget {
     this.style = LineSegmentStyle.bottom,
     this.backgroundColor = CupertinoColors.tertiarySystemFill,
     this.lineColor = Colors.blue,
+    this.lineWidth,
+    this.lineHeight = 2,
     this.height = 36,
     this.padding = const EdgeInsets.symmetric(horizontal: 0),
     this.margin = const EdgeInsets.symmetric(horizontal: 15),
     this.radius = const Radius.circular(4),
     required this.onValueChanged,
+
   }) : super(key: key);
 
 
@@ -88,7 +93,7 @@ class _LineSegmentControlState extends State<LineSegmentControl> {
                   child: TextButton(
                     child: e,
                     onPressed: (){
-                      ddlog(e);
+                      // ddlog(e);
                       setState(() {
                         widget.groupValue = widget.children.values.toList().indexOf(e);
                       });
@@ -102,11 +107,11 @@ class _LineSegmentControlState extends State<LineSegmentControl> {
           ),
           AnimatedPositioned(
             duration: Duration(milliseconds: 200),
-            top: widget.style == LineSegmentStyle.top ? 0 : widget.height - 2,
-            left: widget.groupValue*itemWidth,
+            top: widget.style == LineSegmentStyle.top ? 0 : widget.height - widget.lineHeight,
+            left: widget.lineWidth != null ? widget.groupValue*itemWidth + (itemWidth - widget.lineWidth!)*0.5 : widget.groupValue*itemWidth,
             child: Container(
-              height: 2,
-              width: itemWidth,
+              height: widget.lineHeight,
+              width: widget.lineWidth ?? itemWidth,
               color: widget.lineColor,
               // decoration: BoxDecoration(
               //   borderRadius: BorderRadius.circular(4),

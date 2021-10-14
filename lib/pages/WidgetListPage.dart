@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
@@ -29,25 +30,60 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
+    this.tabController.index = pages.length - 1;
 
     testData();
   }
 
   @override
   void dispose() {
-    super.dispose();
     this.tabController.dispose();
+    super.dispose();
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   this.tabController.index = pages.length - 1;
+  //   return PageControllerWidget(
+  //     title: '基础组件列表',
+  //     pages: pages,
+  //     tabController: this.tabController,
+  //     tabScrollable: true,
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
-    this.tabController.index = pages.length - 1;
-
-    return PageControllerWidget(
-      title: '基础组件列表',
-      pages: pages,
-      tabController: this.tabController,
-      tabScrollable: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('基础组件列表'),
+        bottom: TabBar(
+          controller: this.tabController,
+          isScrollable: true,
+          tabs: pages.map((item) => Tab(text: item.title)).toList(),
+        ),
+        leading: Builder(builder: (context) {
+          return IconButton(
+            icon: Icon(Icons.menu, color: Colors.white), //自定义图标
+            onPressed: () {
+              // 打开抽屉菜单
+              // Scaffold.of(context).openDrawer();
+              kScaffoldKey.currentState!.openDrawer();
+            },
+          );
+        }),
+        actions: [
+          TextButton(onPressed: (){
+              ddlog("provider");
+              Get.toNamed(APPRouter.providerListDemo, arguments: "状态管理");
+            }, child: Text("状态管理", style: TextStyle(color: Colors.white),),
+          ),
+        ],
+      ),
+      body: TabBarView(
+        controller: this.tabController,
+        children: pages.map((item) => item.widget).toList(),
+      ),
     );
   }
 
@@ -107,7 +143,7 @@ var list = [
 
   Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
 
-  Tuple2(APPRouter.gridViewDemoPage, "gridView", ),
+  Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
   Tuple2(APPRouter.gridPaperDemo, "gridPaperDemo", ),
 
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
@@ -145,10 +181,16 @@ var list = [
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
   Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
+  Tuple2(APPRouter.sliverPersistentHeaderDemo, "sliverPersistentHeaderDemo", ),
   Tuple2(APPRouter.providerRoute, "providerRoute", ),
 
 ];
 
+
+var providers = [
+  Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
+
+];
 
 List<PageWidgetModel> pages = [
   // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),

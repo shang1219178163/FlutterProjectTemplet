@@ -11,7 +11,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/LineSegmentControl.dart';
+import 'package:fluttertemplet/basicWidget/ListViewSegmentControl.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/color_extension.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class SegmentControlDemoPage extends StatefulWidget {
@@ -112,11 +114,19 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         buildLineSegmentControl(null, lineColor: Theme.of(context).primaryColor),
 
         SizedBox(height: 15),
-        buildLineSegmentControl(Colors.white, lineColor: Theme.of(context).primaryColor),
+        buildLineSegmentControl(Colors.transparent, lineColor: Theme.of(context).primaryColor),
 
         SizedBox(height: 15),
         buildLineSegmentControl(Colors.black87, lineColor: Colors.white),
 
+        SizedBox(height: 15),
+        buildLineSegmentControl(Colors.white, lineColor: Colors.transparent),
+
+        SizedBox(height: 15),
+        buildListViewHorizontal(),
+
+        SizedBox(height: 15),
+        buildListViewHorizontal1(),
       ],
     );
   }
@@ -172,7 +182,8 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         });
         ddlog(groupValue);
       },
-      // backgroundColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      thumbColor: Colors.transparent,
     );
   }
 
@@ -245,6 +256,8 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
       children: children,
       // backgroundColor: backgroundColor,
       lineColor: lineColor,
+      // lineHeight: 5,
+      // lineWidth: 50,
       onValueChanged: (i){
         setState(() {
           groupValue = int.parse("$i");
@@ -253,5 +266,38 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
 
       },
     );
+  }
+
+  late ScrollController _scrollController = ScrollController();
+
+  ///设置单个宽度
+  Widget buildListViewHorizontal() {
+    var items = List.generate(8, (index) => "item_$index");
+    List<double> itemWiths = [60, 70, 80, 90, 100, 110, 120, 130];
+
+    return ListViewSegmentControl(
+        items: items,
+        // itemWidths: itemWiths,
+        selectedIndex: 0,
+        onValueChanged: (index){
+          ddlog(index);
+        });
+  }
+
+  ///默认宽度
+  Widget buildListViewHorizontal1() {
+    var items = List.generate(4, (index) => "item_$index");
+
+    return ListViewSegmentControl(
+        items: items,
+        selectedIndex: 0,
+        itemBgColor: Colors.transparent,
+        itemSelectedBgColor: Colors.transparent,
+        itemWidth: 70,
+        itemRadius: 0,
+        itemSelectedTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        onValueChanged: (index){
+          ddlog(index);
+        });
   }
 }

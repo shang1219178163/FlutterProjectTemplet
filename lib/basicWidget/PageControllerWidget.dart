@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/main.dart';
 
 
@@ -48,6 +49,13 @@ class PageControllerWidget extends StatelessWidget {
             },
           );
         }),
+        actions: [
+          TextButton(onPressed: (){
+            ddlog("provider");
+            // Get.toNamed(e.item1, arguments: e);
+          }, child: Text("状态管理", style: TextStyle(color: Colors.white),),
+          ),
+        ],
       ),
       body: TabBarView(
         controller: this.tabController,
