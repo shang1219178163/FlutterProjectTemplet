@@ -4,9 +4,10 @@ import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
-import 'Model/UserModel.dart';
 import 'Model/AppUpdateItemModel.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
+
+import 'model/user_model.dart';
 
 class NNListWidgetPage extends StatefulWidget {
 

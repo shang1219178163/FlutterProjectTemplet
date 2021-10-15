@@ -25,15 +25,18 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
 
 extension StatefulWidgetExt<T extends StatefulWidget> on State<T> {
-  ///扩展属性
+  /// 扩展属性 ScaffoldMessenger.of(this.context);
   get scaffoldMessenger => ScaffoldMessenger.of(this.context);
-  ///扩展方法
+  /// 扩展方法
   void showSnackBar(SnackBar snackBar, [bool isReplace = false]) {
     if (isReplace) {
       scaffoldMessenger.hideCurrentSnackBar();
     }
     scaffoldMessenger.showSnackBar(snackBar);
   }
+
+  /// 扩展属性 Theme.of(this.context)
+  get theme => Theme.of(this.context);
 
 }
 

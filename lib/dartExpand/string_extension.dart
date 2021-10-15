@@ -14,4 +14,8 @@ extension StringExt on String{
     final list = reg.map((e) => e.group(0)).whereType<String>().toList();
     return list;
   }
+  ///首字母大写
+  String toCapitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
 }

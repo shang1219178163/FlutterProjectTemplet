@@ -4,7 +4,6 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 
-import 'package:fluttertemplet/Model/UserModel.dart';
 import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
 
 class UpdateAppNewCard extends StatefulWidget {

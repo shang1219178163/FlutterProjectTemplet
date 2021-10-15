@@ -47,6 +47,7 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Spacer(flex: 2),
                     GestureDetector(
                       onTap: () {
                         final snackBar = buildSnackBar(context);
@@ -55,8 +56,10 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                       },
                       child: Text('显示SnackBar, 不覆盖'),
                     ),
+                    Spacer(),
 
                     DashLine(color: Colors.red,),
+                    Spacer(),
 
                     GestureDetector(
                       onTap: () {
@@ -65,6 +68,7 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                       },
                       child: Text('显示SnackBar, 覆盖'),
                     ),
+                    Spacer(),
 
                     GestureDetector(
                       onTap: () {
@@ -73,6 +77,8 @@ class SnackBarDemoPageState extends State<SnackBarDemoPage> {
                       },
                       child: Text('显示SnackBar, 覆盖'),
                     ),
+                    Spacer(flex: 2),
+
                   ],
                 ),
               )

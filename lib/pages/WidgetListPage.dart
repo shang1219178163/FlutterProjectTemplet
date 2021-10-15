@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
+import 'package:fluttertemplet/pages/widget_demo_list.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 
 import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
@@ -17,6 +19,8 @@ import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
+
+import 'demoPage/SliverPersistentHeaderDemo.dart';
 
 class WidgetListPage extends StatefulWidget {
 
@@ -40,17 +44,6 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     this.tabController.dispose();
     super.dispose();
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   this.tabController.index = pages.length - 1;
-  //   return PageControllerWidget(
-  //     title: '基础组件列表',
-  //     pages: pages,
-  //     tabController: this.tabController,
-  //     tabScrollable: true,
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +79,50 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
       ),
     );
   }
+
+  List<PageWidgetModel> pages = [
+    // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
+    PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
+    PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
+
+    PageWidgetModel(title: '升级列表(新)', widget: WidgetDemoList(
+      sectionTitles: ["Section0", "Section1"],
+      sectionList: [list, list],
+      hiddenAppBar: true,)),
+
+    PageWidgetModel(title: '功能列表', widget: ListView.separated(
+      itemCount: list.length,
+      itemBuilder: (context, index) {
+        list.sort((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()));
+        final e = list[index];
+
+        return ListTile(
+          title: Text(e.item2),
+          subtitle: Text(e.item2.toCapitalize()),
+          trailing: Icon(Icons.keyboard_arrow_right_rounded),
+          dense: true,
+          onTap: (){
+            // Get.toNamed(e.item1, arguments: e);
+            if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+              Get.offNamed(e.item1, arguments: e.item1);
+            } else {
+              Get.toNamed(e.item1, arguments: e.item1);
+            }
+          },
+        );
+      },
+      separatorBuilder: (context, index) {
+        return Divider(
+          height: .5,
+          indent: 15,
+          endIndent: 15,
+          color: Color(0xFFDDDDDD),
+        );
+      },
+    ),
+    ),
+  ];
+
 
   void testData() {
     final String? a = null;
@@ -160,11 +197,12 @@ var list = [
   Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
 
   Tuple2(APPRouter.pageViewDemo, "PageViewDemo", ),
+  Tuple2(APPRouter.pageViewTabBarWidget, "PageViewTabBarWidget", ),
+
   Tuple2(APPRouter.pickerDemoPage, "pickerDemoPage", ),
   Tuple2(APPRouter.progressHudDemo, "ProgressHudDemo", ),
   Tuple2(APPRouter.progressHudDemoNew, "ProgressHudDemoNew", ),
   Tuple2(APPRouter.progressIndicatorDemoPage, "ProgressIndicatorDemoPage", ),
-  Tuple2(APPRouter.pageViewTabBarWidget, " PageViewTabBarWidget", ),
 
   Tuple2(APPRouter.reorderableListViewDemoPage, "reorderableListViewDemoPage", ),
   Tuple2(APPRouter.recordListDemo, "textFieldDemoPage", ),
@@ -176,6 +214,8 @@ var list = [
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
   Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
+  Tuple2(APPRouter.sliverFamilyDemo, "SliverFamilyDemo", ),
+  Tuple2(APPRouter.sliverFamilyPageViewDemo, "sliverFamilyPageViewDemo", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
@@ -183,6 +223,11 @@ var list = [
   Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
   Tuple2(APPRouter.sliverPersistentHeaderDemo, "sliverPersistentHeaderDemo", ),
   Tuple2(APPRouter.providerRoute, "providerRoute", ),
+
+  Tuple2(APPRouter.layoutBuilderDemo, "layoutBuilderDemo", ),
+  Tuple2(APPRouter.tableDemo, "tableDemo", ),
+  Tuple2(APPRouter.widgetDemoList, "widgetDemoList", ),
+
 
 ];
 
@@ -192,41 +237,4 @@ var providers = [
 
 ];
 
-List<PageWidgetModel> pages = [
-  // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
-  PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
-  PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
-
-  PageWidgetModel(title: '功能列表', widget: ListView.separated(
-    itemCount: list.length,
-    itemBuilder: (context, index) {
-      list.sort((a, b) => a.item1.compareTo(b.item1));
-      final e = list[index];
-
-      return ListTile(
-        title: Text(e.item2),
-        subtitle: Text(e.item2),
-        trailing: Icon(Icons.keyboard_arrow_right_rounded),
-        dense: true,
-        onTap: (){
-          // Get.toNamed(e.item1, arguments: e);
-          if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
-            Get.offNamed(e.item1, arguments: e.item1);
-          } else {
-            Get.toNamed(e.item1, arguments: e.item1);
-          }
-        },
-      );
-    },
-    separatorBuilder: (context, index) {
-      return Divider(
-        height: .5,
-        indent: 15,
-        endIndent: 15,
-        color: Color(0xFFDDDDDD),
-      );
-    },
-  ),
-  ),
-];
 

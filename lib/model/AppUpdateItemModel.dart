@@ -7,7 +7,6 @@
 //
 
 
-
 ///升级模型
 class AppUpdateItemModel {
   final String? appIcon;//App图标
@@ -18,7 +17,7 @@ class AppUpdateItemModel {
   final String? appVersion;//App版本
   final bool isShowAll;//App更新文案
 
-  //构造函数语法糖，为属性赋值
+
   const AppUpdateItemModel({
     this.appIcon = "-",
     this.appSize = "-",

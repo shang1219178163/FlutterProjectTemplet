@@ -7,7 +7,6 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/DashLine.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/buildContext_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
@@ -30,7 +29,7 @@ class ProviderListDemo extends StatefulWidget {
 class _ProviderListDemoState extends State<ProviderListDemo> {
   /// ChangeNotifier
   static CartModel changeNotifierCartModel = CartModel();
-  /// ValueNotifier
+  /// ValueNotifier(addListener无效)
   static ValueNotifierOrderModels valueNotifierOrderModels = ValueNotifierOrderModels();
   /// ValueNotifier
   static ValueNotifierInt valueNotifierInt = ValueNotifierInt(initValue: 6, minValue: 0, maxValue: 9, block: (int minValue, int maxValue){
@@ -42,9 +41,9 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
 
   /// ValueNotifier
   static ValueNotifierDouble valueNotifierDouble = ValueNotifierDouble(8.8);
-  /// ValueNotifier
+  /// ValueNotifier(addListener无效)
   static ValueNotifierList valueNotifierList = ValueNotifierList(<OrderModel>[]);
-  /// ValueNotifier(addListener无效 因为数组地址未发生改变, 推荐使用 ValueNotifierList)
+
   static ValueNotifier<List<OrderModel>> valueNotifierListOrigin = ValueNotifier(<OrderModel>[]);
 
   @override
@@ -98,70 +97,37 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
           ],
         ),
         // body: Text("当前数量${cartCountKey.value}")
-        body: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Container(
-                height: 100,
-                color: Colors.green,
-                child: Text("SliverToBoxAdapter"),
-              ),
-            ),
-            buildSliverList(context),
-            SliverToBoxAdapter(
-              child: Container(
-                height: 10,
-                color: Colors.red,
-                child: Text("SliverToBoxAdapter"),
-              ),
-            ),
-            // buildListView(context),
+        body: Column(
+          children: [
+            buildList(context),
+            // Column(
+            //   children: [
+            //     Container(
+            //       height: 70,
+            //       child: Text("data"),
+            //     )
+            //   ],
+            // )
           ],
         ),
     );
   }
-
-  Widget buildSliverList(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-          return buildListCell(context, index);
-        },
-          childCount: list.length,
-        )
-    );
-  }
-
-  Widget buildListView(BuildContext context) {
-    return SliverFillRemaining(
-      child: ListView.separated(
-        itemCount:list.length,
-        //shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        //padding: EdgeInsets.all(0),
-        separatorBuilder: (BuildContext context, int index){
-          return Divider();
-        },
-        itemBuilder: (BuildContext context, int index) {
-          //widget return
-          return buildListCell(context, index);
-        }),
-    );
-  }
-
-  Widget buildListCell(BuildContext context, int index) {
-    final e = list[index];
-    return Column(
-      children: [
-        Container(
-          height: 60,
+  
+  Widget buildList(BuildContext context) {
+    return ListView.separated(
+      itemBuilder: (ctx, idx) {
+        // list.sort((a, b) => a.item1.compareTo(b.item1));
+        final e = list[idx];
+        return Container(
+          height: 70,
           child: Row(
             children: [
               IconButton(onPressed: (){
-                handleActionNum(e: e, value: 1, idx: index);
+                handleActionNum(e: e, value: 1, idx: idx);
 
               }, icon: Icon(Icons.add_circle_outline, color: Theme.of(context).primaryColor,)),
               IconButton(onPressed: (){
-                handleActionNum(e: e, value: -1, idx: index);
+                handleActionNum(e: e, value: -1, idx: idx);
 
               }, icon: Icon(Icons.remove_circle_outline, color: Theme.of(context).primaryColor,)),
               // SizedBox(width: 8,),
@@ -176,15 +142,22 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
               // Text("${e.notifier.toString()}", style: TextStyle(),),
             ],
           ),
-        ),
-        Divider(),
-      ],
+        );
+      },
+      itemCount: list.length,
+      separatorBuilder: (context, index) {
+        return Divider(
+          height: .5,
+          indent: 15,
+          endIndent: 15,
+          color: Color(0xFFDDDDDD),
+        );
+      },
     );
   }
 
   void update() {
-    showSnackBar(SnackBar(content: Text("数据变化监听回调, 刷新重建界面",)), true);
-    // ddlog("数据变化监听回调, 刷新重建界面");
+    ddlog("数据变化监听回调, 刷新重建界面");
     setState(() {});
   }
 
@@ -227,6 +200,8 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
             valueNotifierOrderModels.removeLast();
           }
 
+          update();
+
           ddlog(valueNotifierOrderModels.toString());
           // ddlog("${cartModelOneKey.totalPrice}");
         }
@@ -239,6 +214,7 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
           } else {
             valueNotifierList.removeLast();
           }
+          update();
 
           ddlog(valueNotifierList.toString());
           // ddlog("${cartModelOneKey.totalPrice}");
@@ -262,8 +238,6 @@ class _ProviderListDemoState extends State<ProviderListDemo> {
           } else {
             valueNotifierListOrigin.value.removeLast();
           }
-
-          update();///监听无效,需要手动调整
 
           ddlog(valueNotifierListOrigin.value.length.toString());
           // ddlog("${cartModelOneKey.totalPrice}");

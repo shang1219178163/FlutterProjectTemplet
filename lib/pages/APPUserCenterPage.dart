@@ -89,8 +89,10 @@ class _APPUserCenterPageState extends State<APPUserCenterPage>{
           SizedBox(height: 10),
           Hero(
             tag: 'avatar',
-            child: Image.asset('assets/images/avatar.png', width:90),
+            child: Image.asset('images/avatar.png', width:90),
+            // child: Image.asset('images/bg.png', width:90),
           ),
+          // Container(child: Image.asset('images/icon_appbar_back.png', width:90),),
           SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

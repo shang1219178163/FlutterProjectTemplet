@@ -80,6 +80,7 @@ class ValueNotifierOrderModels extends ValueNotifier<List<OrderModel>> {
 
   void add(OrderModel item) {
     value.add(item);
+    _copyValue();
   }
 
   /// 删除
@@ -88,6 +89,7 @@ class ValueNotifierOrderModels extends ValueNotifier<List<OrderModel>> {
       return;
     }
     value.removeAt(index);
+    _copyValue();
   }
 
   /// 删除最后商品
@@ -96,10 +98,17 @@ class ValueNotifierOrderModels extends ValueNotifier<List<OrderModel>> {
       return;
     }
     value.removeLast();
+    _copyValue();
   }
 
   void removeAll() {
     value.clear();
+    _copyValue();
+  }
+
+  /// 进行深copy(原理与iOS的kvo原理类似.list添加元素,未改变地址,所以无法触发监听,利用深copy 重新赋值,就触发监听了)
+  void _copyValue() {
+    value = [...value];
   }
 
   @override
@@ -115,6 +124,7 @@ class ValueNotifierList<T> extends ValueNotifier<List<T>> {
 
   void add(T item) {
     value.add(item);
+    _copyValue();
   }
 
   /// 删除
@@ -123,6 +133,7 @@ class ValueNotifierList<T> extends ValueNotifier<List<T>> {
       return;
     }
     value.removeAt(index);
+    _copyValue();
   }
 
   /// 删除最后
@@ -131,10 +142,16 @@ class ValueNotifierList<T> extends ValueNotifier<List<T>> {
       return;
     }
     value.removeLast();
+    _copyValue();
   }
 
   void removeAll() {
     value.clear();
+    _copyValue();
+  }
+  /// 进行深copy(原理与iOS的kvo原理类似.list添加元素,未改变地址,所以无法触发监听,利用深copy 重新赋值,就触发监听了)
+  void _copyValue() {
+    value = [...value];
   }
 
   @override

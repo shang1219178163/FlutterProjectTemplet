@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/Model/UserModel.dart';
+
 import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
+import 'package:fluttertemplet/model/user_model.dart';
 
 
 /// 好友列表模拟数据

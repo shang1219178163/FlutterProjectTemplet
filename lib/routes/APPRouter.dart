@@ -13,6 +13,7 @@ import 'package:fluttertemplet/pages/demoPage/GridViewDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/GridPaperDemo.dart';
 
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/LayoutBuilderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/MenuDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberFormatDemo.dart';
@@ -53,6 +54,7 @@ import 'package:fluttertemplet/pages/demoPage/SegmentControlDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/SliverPersistentHeaderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/StepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TabBarDemoPage.dart';
+import 'package:fluttertemplet/pages/demoPage/TableDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
 
 import 'package:fluttertemplet/pages/AppWebViewDemoPage.dart';
@@ -62,6 +64,8 @@ import 'package:fluttertemplet/pages/LoginPage2.dart';
 import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/Pages/textlessDemo.dart';
 import 'package:fluttertemplet/main.dart';
+import 'package:fluttertemplet/pages/sliver_demo/sliver_family_demo.dart';
+import 'package:fluttertemplet/pages/widget_demo_list.dart';
 import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
 import 'package:get/get.dart';
 
@@ -116,6 +120,9 @@ class APPRouter {
   static const appWebViewDemoPage = '/AppWebViewDemoPage';
   static const enlargeStrategyDemo = '/EnlargeStrategyDemo';
   static const sliverAppBarDemoPage = '/SliverAppBarDemoPage';
+  static const sliverFamilyDemo = '/SliverFamilyDemo';
+  static const sliverFamilyPageViewDemo = '/sliverFamilyPageViewDemo';
+
   static const hudProgressDemo = '/HudProgressDemo';
   static const reorderableListViewDemoPage = '/ReorderableListViewDemoPage';
   static const expandIconDemoNew = '/ExpandIconDemoNew';
@@ -127,7 +134,7 @@ class APPRouter {
   static const progressHudDemo = '/ProgressHudDemo';
   static const locationPopView = '/LocationPopView';
   static const backdropFilterDemo = '/BackdropFilterDemo';
-  static const richTextDemo = '/richTextDemo';
+  static const richTextDemo = '/RichTextDemo';
   static const numberFormatDemo = '/NumberFormatDemo';
   static const dateTimeDemo = '/DateTimeDemo';
   static const textFieldDemo = '/TextFieldDemo';
@@ -136,7 +143,10 @@ class APPRouter {
   static const menuDemo = '/MenuDemo';
   static const providerRoute = '/ProviderRoute';
   static const providerListDemo = '/providerListDemo';
-  static const sliverPersistentHeaderDemo = '/sliverPersistentHeaderDemo';
+  static const sliverPersistentHeaderDemo = '/SliverPersistentHeaderDemo';
+  static const layoutBuilderDemo = '/LayoutBuilderDemo';
+  static const tableDemo = '/TableDemo';
+  static const widgetDemoList = '/WidgetDemoList';
 
 
   // static final routes = <String, WidgetBuilder>{
@@ -505,6 +515,33 @@ class AppPage{
       name: APPRouter.providerListDemo,
       page: () => ProviderListDemo(),
     ),
+
+    GetPage(
+      name: APPRouter.layoutBuilderDemo,
+      page: () => LayoutBuilderDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.tableDemo,
+      page: () => TableDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.sliverFamilyDemo,
+      page: () => SliverFamilyDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.sliverFamilyPageViewDemo,
+      page: () => SliverFamilyPageViewDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.widgetDemoList,
+      page: () => WidgetDemoList(),
+    ),
+
+
 
 
     // GetPage(
