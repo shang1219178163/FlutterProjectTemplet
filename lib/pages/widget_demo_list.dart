@@ -35,7 +35,7 @@ class WidgetDemoList extends StatefulWidget {
     this.hiddenAppBar = false,
   }) :  assert(sectionList.length == sectionTitles.length),
         super(key: key);
-  
+
   @override
   _WidgetDemoListState createState() => _WidgetDemoListState();
 }
@@ -72,13 +72,7 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
     return
       CustomScrollView(
         slivers: slivers,
-        // slivers: [
-        //   _buildHeader(section: 0, child: Text("Section0", style: TextStyle(fontSize: 18),)),
-        //   _buildSliverList(section: 0, list: list),
-        //
-        //   _buildHeader(section: 1, child: Text("Section1", style: TextStyle(fontSize: 18),)),
-        //   _buildSliverList(section: 1, list: list),
-        // ],
+
       );
   }
 
@@ -113,17 +107,17 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
   }
 
   Widget _buildSliverList({required int section, required List<Tuple2<String, String>> list}) {
+    final items = widget.sectionList[section];
+
     return
         SliverList(
           delegate: SliverChildBuilderDelegate((_, int index)
-          => _buildSliverItem(section: 0, index: index),
-              childCount: list.length),
+          => _buildSliverItem(section: section, index: index, e: items[index]),
+              childCount: items.length),
         );
   }
 
-  Widget _buildSliverItem({required int section, required int index}) {
-    final e = list[index];
-
+  Widget _buildSliverItem({required int section, required int index, required Tuple2<String, String> e}) {
     return ListTile(
       title: Text(e.item2),
       subtitle: Text(e.item2.toCapitalize()),
@@ -141,14 +135,14 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
   }
 
   _updateSlivers() {
-    for(int i = 0; i < widget.sectionTitles.length - 1; i++) {
+    for(int i = 0; i < widget.sectionTitles.length; i++) {
       final title = widget.sectionTitles[i];
-      final list = widget.sectionList[i];
-
+      final items = widget.sectionList[i];
+      items.sort((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()));
       slivers.add(_buildHeader(section: i,
-        child: Text(title, style: TextStyle(fontSize: 18),),
+        child: Text(title, style: TextStyle(fontSize: 16),),
       ));
-      slivers.add(_buildSliverList(section: 1, list: list));
+      slivers.add(_buildSliverList(section: i, list: items));
     }
     ddlog([widget.sectionTitles.length, slivers.length]);
 
@@ -156,22 +150,111 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
 
     });
   }
+}
 
 
-  // List<Widget> _createSlivers() {
-  //   List<Widget> slivers = [];
-  //
-  //   for(int i = 0; i < widget.sectionTitles.length - 1; i++) {
-  //     final title = widget.sectionTitles[i];
-  //     final list = widget.sectionList[i];
-  //
-  //     slivers.add(_buildHeader(section: i,
-  //         child: Text(title, style: TextStyle(fontSize: 18),),
-  //     ));
-  //     slivers.add(_buildSliverList(section: 1, list: list));
-  //   }
-  //   ddlog([widget.sectionTitles.length, slivers.length]);
-  //   return slivers;
-  // }
 
+///抽象封装
+class SectionList<T extends Object> extends StatefulWidget {
+
+  final String? title;
+
+  final bool hiddenAppBar;
+
+  final List<String> headerTitles;
+
+  final List<List<T>> itemList;
+
+  final Widget Function(String title) headerBuilder;
+
+  final Widget Function(int section, int row) itemBuilder;
+
+  SectionList({
+    Key? key,
+    this.title,
+    this.headerTitles = const [],
+    this.itemList = const [],
+    this.hiddenAppBar = false,
+    required this.headerBuilder,
+    required this.itemBuilder,
+  }) :  assert(itemList.length == headerTitles.length),
+        super(key: key);
+
+  @override
+  _SectionListState createState() => _SectionListState();
+}
+
+class _SectionListState<T extends Object> extends State<SectionList> {
+
+  List<Widget> slivers = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _updateSlivers();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    dynamic arguments = ModalRoute.of(context)!.settings.arguments;
+
+    return Scaffold(
+      appBar: widget.hiddenAppBar ? null : AppBar(
+        title: Text(widget.title ?? "$widget"),
+      ),
+      body: _buildBody(),
+    );
+  }
+
+  Widget _buildBody() {
+    return CustomScrollView(
+      slivers: slivers,
+    );
+  }
+
+  Widget _buildHeader({required int section, required Widget child}) {
+    return
+      SliverToBoxAdapter(
+        child: Container(
+          color: Color(0xFFDDDDDD),
+          padding: EdgeInsets.only(
+              top: 10,
+              bottom: 8,
+              left: 15,
+              right: 15
+          ),
+          child: child,
+        ),
+      );
+  }
+
+  Widget _buildSliverList({required int section, required List<T> list}) {
+    final items = widget.itemList[section];
+    return SliverList(
+        delegate: SliverChildBuilderDelegate((_, int index)
+        => widget.itemBuilder(section, index),
+            childCount: items.length),
+      );
+  }
+
+  _updateSlivers() {
+    for(int i = 0; i < widget.headerTitles.length; i++) {
+      final title = widget.headerTitles[i];
+      var items = widget.itemList[i];
+      slivers.add(_buildHeader(section: i, child: widget.headerBuilder(title),
+      ));
+      slivers.add(_buildSliverList(section: i, list: items.whereType<T>().toList()));
+    }
+    // ddlog([widget.sectionTitles.length, slivers.length]);
+
+    setState(() {
+
+    });
+  }
 }

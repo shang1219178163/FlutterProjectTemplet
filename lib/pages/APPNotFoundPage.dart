@@ -34,7 +34,7 @@ class APPNotFoundPage extends StatelessWidget {
         children: <Widget>[
           Hero(
             tag: 'avatar',
-            child: Image.asset('assets/images/avatar.png', width:90),
+            child: Image.asset('images/avatar.png', width:90),
           ),
           SizedBox(height: 10),
           Text('哎呀, 你的页面跑路了!', style: TextStyle(fontSize: 17.0, color: Colors.black)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/color_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
@@ -85,17 +86,21 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
     PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
 
-    PageWidgetModel(title: '升级列表(新)', widget: WidgetDemoList(
-      sectionTitles: ["Section0", "Section1"],
-      sectionList: [list, list],
+    PageWidgetModel(title: '升级列表', widget: WidgetDemoList(
+      sectionTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
+      sectionList: [_specials, _list, _customeWidgets, _others],
       hiddenAppBar: true,)),
 
-    PageWidgetModel(title: '功能列表', widget: ListView.separated(
-      itemCount: list.length,
-      itemBuilder: (context, index) {
-        list.sort((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()));
-        final e = list[index];
-
+    PageWidgetModel(title: '升级列表', widget: SectionList<Tuple2<String, String>>(
+      hiddenAppBar: true,
+      headerTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
+        itemList: [_specials, _list, _customeWidgets, _others],
+      headerBuilder: (String title) {
+        return Text(title, style: TextStyle(fontWeight: FontWeight.w600),);
+      },
+      itemBuilder: (int section, int row) {
+        var list = [_specials, _list, _customeWidgets, _others][section];
+        final e = list[row];
         return ListTile(
           title: Text(e.item2),
           subtitle: Text(e.item2.toCapitalize()),
@@ -111,18 +116,41 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
           },
         );
       },
-      separatorBuilder: (context, index) {
-        return Divider(
-          height: .5,
-          indent: 15,
-          endIndent: 15,
-          color: Color(0xFFDDDDDD),
-        );
-      },
     ),
     ),
-  ];
 
+    // PageWidgetModel(title: '功能列表', widget: ListView.separated(
+    //   itemCount: list.length,
+    //   itemBuilder: (context, index) {
+    //     list.sort((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()));
+    //     final e = list[index];
+    //
+    //     return ListTile(
+    //       title: Text(e.item2),
+    //       subtitle: Text(e.item2.toCapitalize()),
+    //       trailing: Icon(Icons.keyboard_arrow_right_rounded),
+    //       dense: true,
+    //       onTap: (){
+    //         // Get.toNamed(e.item1, arguments: e);
+    //         if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+    //           Get.offNamed(e.item1, arguments: e.item1);
+    //         } else {
+    //           Get.toNamed(e.item1, arguments: e.item1);
+    //         }
+    //       },
+    //     );
+    //   },
+    //   separatorBuilder: (context, index) {
+    //     return Divider(
+    //       height: .5,
+    //       indent: 15,
+    //       endIndent: 15,
+    //       color: Color(0xFFDDDDDD),
+    //     );
+    //   },
+    // ),
+    // ),
+  ];
 
   void testData() {
     final String? a = null;
@@ -153,7 +181,7 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   }
 }
 
-var list = [
+var _list = [
   Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
   Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
@@ -167,34 +195,17 @@ var list = [
   Tuple2(APPRouter.contextMenuActionDemo, "cupertinoFormDemo", ),
 
   Tuple2(APPRouter.dateTableDemoPage, "dateTableDemoPage", ),
-  Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
   Tuple2(APPRouter.draggableDemoPage, "draggableDemoPage", ),
   Tuple2(APPRouter.draggableScrollableSheetDemoPage, "draggableScrollableSheetDemoPage", ),
-  Tuple2(APPRouter.dateTimeDemo, "dateTimeDemo", ),
 
   Tuple2(APPRouter.enlargeStrategyDemo, "enlargeStrategyDemo", ),
   Tuple2(APPRouter.expandIconDemo, "expandIconDemo", ),
   Tuple2(APPRouter.expandIconDemoNew, "ExpandIconDemoNew", ),
 
-  Tuple2(APPRouter.hudProgressDemo, "HudProgressDemo", ),
-
-  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
-
   Tuple2(APPRouter.gridViewDemoPage, "GridView", ),
   Tuple2(APPRouter.gridPaperDemo, "gridPaperDemo", ),
 
-  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
-
-  Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
-  Tuple2(APPRouter.locationPopView, "locationPopView", ),
-
-  Tuple2(APPRouter.loginPage, "LoginPage", ),
-  Tuple2(APPRouter.loginPage2, "LoginPage2", ),
-
   Tuple2(APPRouter.menuDemo, "MenuDemo", ),
-
-  Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
-  Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
 
   Tuple2(APPRouter.pageViewDemo, "PageViewDemo", ),
   Tuple2(APPRouter.pageViewTabBarWidget, "PageViewTabBarWidget", ),
@@ -207,7 +218,6 @@ var list = [
   Tuple2(APPRouter.reorderableListViewDemoPage, "reorderableListViewDemoPage", ),
   Tuple2(APPRouter.recordListDemo, "textFieldDemoPage", ),
   Tuple2(APPRouter.rangerSliderDemoPage, "rangerSliderDemoPage", ),
-  Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
 
   Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
   Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
@@ -216,25 +226,40 @@ var list = [
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
   Tuple2(APPRouter.sliverFamilyDemo, "SliverFamilyDemo", ),
   Tuple2(APPRouter.sliverFamilyPageViewDemo, "sliverFamilyPageViewDemo", ),
+  Tuple2(APPRouter.sliverPersistentHeaderDemo, "sliverPersistentHeaderDemo", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
   Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
   Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
-  Tuple2(APPRouter.sliverPersistentHeaderDemo, "sliverPersistentHeaderDemo", ),
-  Tuple2(APPRouter.providerRoute, "providerRoute", ),
 
   Tuple2(APPRouter.layoutBuilderDemo, "layoutBuilderDemo", ),
   Tuple2(APPRouter.tableDemo, "tableDemo", ),
-  Tuple2(APPRouter.widgetDemoList, "widgetDemoList", ),
-
-
 ];
 
-
-var providers = [
+var _specials = [
+  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
+  Tuple2(APPRouter.providerRoute, "providerRoute", ),
   Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
 
+  // Tuple2(APPRouter.widgetDemoList, "widgetDemoList", ),
 ];
 
+var _customeWidgets = [
+  Tuple2(APPRouter.datePickerPage, "DatePickerPage", ),
+  Tuple2(APPRouter.dateTimeDemo, "dateTimeDemo", ),
+  Tuple2(APPRouter.hudProgressDemo, "HudProgressDemo", ),
+  Tuple2(APPRouter.localNotifationDemoPage, "localNotifationDemoPage", ),
+  Tuple2(APPRouter.locationPopView, "locationPopView", ),
+  Tuple2(APPRouter.numberStepperDemoPage, "NumberStepperDemoPage", ),
+  Tuple2(APPRouter.numberFormatDemo, "numberFormatDemo", ),
+
+];
+
+var _others = [
+  Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
+  Tuple2(APPRouter.loginPage, "LoginPage", ),
+  Tuple2(APPRouter.loginPage2, "LoginPage2", ),
+  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
+];
 

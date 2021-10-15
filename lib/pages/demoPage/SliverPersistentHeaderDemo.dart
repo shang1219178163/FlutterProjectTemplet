@@ -89,8 +89,10 @@ class PersistentHeaderBuilder extends SliverPersistentHeaderDelegate {
   final double min;
   final Widget Function(BuildContext context, double offset) builder;
 
-  PersistentHeaderBuilder(
-      {this.max = 120, this.min = 80, required this.builder})
+  PersistentHeaderBuilder({
+    this.max = 120,
+    this.min = 80,
+    required this.builder})
       : assert(max >= min);
 
   @override
