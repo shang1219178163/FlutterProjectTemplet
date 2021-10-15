@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 
 class SliverPersistentHeaderDemo extends StatelessWidget {
   // 色彩数据
-  final List<Color> data = List.generate(24, (i) => Color(0xFFFF00FF - 24*i));
+  // final List<Color> data = List.generate(24, (i) => Color(0xFFFF00FF - 24*i));
+  final List<Color> data = Colors.primaries.take(4).toList();
+  final List<Color> data1 = Colors.primaries.take(1).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +24,22 @@ class SliverPersistentHeaderDemo extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          _buildPersistentHeader(), //<-- 在列表上方创建PersistentHeader
-          _buildSliverList()
+          _buildPersistentHeader("section0"), //<-- 在列表上方创建PersistentHeader
+          _buildSliverList(list: data1),
+          _buildPersistentHeader("section1"),
+          _buildSliverList(list: data),
+
         ],
       ),
     );
   }
 
   // 构建颜色列表
-  Widget _buildSliverList() =>
+  Widget _buildSliverList({required List<Color> list}) =>
       SliverList(
         delegate: SliverChildBuilderDelegate((_, int index)
-        => _buildColorItem(data[index], index),
-            childCount: data.length),
+        => _buildColorItem(list[index], index),
+            childCount: list.length),
       );
 
   // 构建颜色列表item
@@ -64,14 +69,14 @@ class SliverPersistentHeaderDemo extends StatelessWidget {
   String colorString1(Color color) =>
       "#${color.value.toRadixString(16).toUpperCase()}";
 
-  Widget _buildPersistentHeader() => SliverPersistentHeader(
+  Widget _buildPersistentHeader(String title) => SliverPersistentHeader(
       pinned: true,
       floating: true,
       delegate: PersistentHeaderBuilder(builder: (ctx, offset) => Container(
         alignment: Alignment.center,
         color: Colors.orangeAccent,
         child: Text(
-          "shrinkOffset:${offset.toStringAsFixed(1)}",
+          "$title shrinkOffset:${offset.toStringAsFixed(1)}",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       )));
