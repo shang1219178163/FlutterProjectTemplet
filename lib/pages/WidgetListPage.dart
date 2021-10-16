@@ -91,16 +91,17 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
       sectionList: [_specials, _list, _customeWidgets, _others],
       hiddenAppBar: true,)),
 
-    PageWidgetModel(title: '升级列表', widget: SectionList<Tuple2<String, String>>(
+    PageWidgetModel(title: '升级列表', widget: SectionListView<Tuple2<String, String>>(
       hiddenAppBar: true,
       headerTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
         itemList: [_specials, _list, _customeWidgets, _others],
       headerBuilder: (String title) {
         return Text(title, style: TextStyle(fontWeight: FontWeight.w600),);
       },
-      itemBuilder: (int section, int row) {
-        var list = [_specials, _list, _customeWidgets, _others][section];
-        final e = list[row];
+      itemBuilder: (int section, int row, dynamic item) {
+        // var list = [_specials, _list, _customeWidgets, _others][section];
+        // final e = list[row];
+        Tuple2<String, String> e = item;
         return ListTile(
           title: Text(e.item2),
           subtitle: Text(e.item2.toCapitalize()),

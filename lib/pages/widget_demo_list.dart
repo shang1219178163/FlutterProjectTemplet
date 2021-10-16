@@ -155,7 +155,7 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
 
 
 ///抽象封装
-class SectionList<T extends Object> extends StatefulWidget {
+class SectionListView<T> extends StatefulWidget {
 
   final String? title;
 
@@ -167,9 +167,9 @@ class SectionList<T extends Object> extends StatefulWidget {
 
   final Widget Function(String title) headerBuilder;
 
-  final Widget Function(int section, int row) itemBuilder;
+  final Widget Function(int section, int row, T e) itemBuilder;
 
-  SectionList({
+  SectionListView({
     Key? key,
     this.title,
     this.headerTitles = const [],
@@ -181,10 +181,10 @@ class SectionList<T extends Object> extends StatefulWidget {
         super(key: key);
 
   @override
-  _SectionListState createState() => _SectionListState();
+  _SectionListViewState createState() => _SectionListViewState();
 }
 
-class _SectionListState<T extends Object> extends State<SectionList> {
+class _SectionListViewState<T extends Object> extends State<SectionListView> {
 
   List<Widget> slivers = [];
 
@@ -238,7 +238,7 @@ class _SectionListState<T extends Object> extends State<SectionList> {
     final items = widget.itemList[section];
     return SliverList(
         delegate: SliverChildBuilderDelegate((_, int index)
-        => widget.itemBuilder(section, index),
+        => widget.itemBuilder(section, index, items[index]),
             childCount: items.length),
       );
   }
