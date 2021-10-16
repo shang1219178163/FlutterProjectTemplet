@@ -1,3 +1,12 @@
+//
+//  WidgetListPageDart.dart
+//  fluttertemplet
+//
+//  Created by shang on 10/16/21 12:31 PM.
+//  Copyright © 10/16/21 shang. All rights reserved.
+//
+
+
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
@@ -83,24 +92,23 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
   List<PageWidgetModel> pages = [
     // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
-    PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
-    PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
+    // PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
+    // PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
 
-    PageWidgetModel(title: '升级列表', widget: WidgetDemoList(
-      sectionTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
-      sectionList: [_specials, _list, _customeWidgets, _others],
-      hiddenAppBar: true,)),
+    // PageWidgetModel(title: '升级列表', widget: WidgetDemoList(
+    //   sectionTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
+    //   sectionList: [_specials, _list, _customeWidgets, _others],
+    //   hiddenAppBar: true,)),
 
-    PageWidgetModel(title: '升级列表', widget: SectionListView<Tuple2<String, String>>(
+    PageWidgetModel(title: '列表', widget: SectionListView<String, Tuple2<String, String>>(
       hiddenAppBar: true,
-      headerTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
+      headerList: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
         itemList: [_specials, _list, _customeWidgets, _others],
-      headerBuilder: (String title) {
+      headerBuilder: (dynamic e) {
+        String title = e;
         return Text(title, style: TextStyle(fontWeight: FontWeight.w600),);
       },
       itemBuilder: (int section, int row, dynamic item) {
-        // var list = [_specials, _list, _customeWidgets, _others][section];
-        // final e = list[row];
         Tuple2<String, String> e = item;
         return ListTile(
           title: Text(e.item2),
@@ -117,8 +125,33 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
           },
         );
       },
-    ),
-    ),
+    ),),
+
+    PageWidgetModel(title: '列表(泛型)', widget: SectionListView<String, Tuple2<String, String>>(
+      hiddenAppBar: true,
+      headerList: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
+      itemList: [_specials, _list, _customeWidgets, _others],
+      headerBuilder: (String e) {
+        return Text(e, style: TextStyle(fontWeight: FontWeight.w600),);
+      },
+      itemBuilder: (int section, int row, Tuple2<String, String> e) {
+        return ListTile(
+          title: Text(e.item2),
+          subtitle: Text(e.item2.toCapitalize()),
+          trailing: Icon(Icons.keyboard_arrow_right_rounded),
+          dense: true,
+          onTap: (){
+            // Get.toNamed(e.item1, arguments: e);
+            if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+              Get.offNamed(e.item1, arguments: e.item1);
+            } else {
+              Get.toNamed(e.item1, arguments: e.item1);
+            }
+          },
+        );
+      },
+    ),),
+
 
     // PageWidgetModel(title: '功能列表', widget: ListView.separated(
     //   itemCount: list.length,

@@ -155,36 +155,38 @@ class _WidgetDemoListState extends State<WidgetDemoList> {
 
 
 ///抽象封装
-class SectionListView<T> extends StatefulWidget {
+class SectionListView<H, E> extends StatefulWidget {
+  // class SectionListView<H extends String, E extends Tuple2<String, String>> extends StatefulWidget {
 
   final String? title;
 
   final bool hiddenAppBar;
 
-  final List<String> headerTitles;
+  final List<H> headerList;
 
-  final List<List<T>> itemList;
+  final List<List<E>> itemList;
 
-  final Widget Function(String title) headerBuilder;
+  final Widget Function(H e) headerBuilder;
 
-  final Widget Function(int section, int row, T e) itemBuilder;
+  final Widget Function(int section, int row, E e) itemBuilder;
 
   SectionListView({
     Key? key,
     this.title,
-    this.headerTitles = const [],
-    this.itemList = const [],
     this.hiddenAppBar = false,
+    // this.headerTitles = const [],
+    this.headerList = const [],
     required this.headerBuilder,
+    this.itemList = const [],
     required this.itemBuilder,
-  }) :  assert(itemList.length == headerTitles.length),
+  }) :  assert(itemList.length == headerList.length),
         super(key: key);
 
   @override
   _SectionListViewState createState() => _SectionListViewState();
 }
 
-class _SectionListViewState<T extends Object> extends State<SectionListView> {
+class _SectionListViewState<H, E> extends State<SectionListView> {
 
   List<Widget> slivers = [];
 
@@ -234,7 +236,7 @@ class _SectionListViewState<T extends Object> extends State<SectionListView> {
       );
   }
 
-  Widget _buildSliverList({required int section, required List<T> list}) {
+  Widget _buildSliverList({required int section, required List<E> list}) {
     final items = widget.itemList[section];
     return SliverList(
         delegate: SliverChildBuilderDelegate((_, int index)
@@ -244,17 +246,15 @@ class _SectionListViewState<T extends Object> extends State<SectionListView> {
   }
 
   _updateSlivers() {
-    for(int i = 0; i < widget.headerTitles.length; i++) {
-      final title = widget.headerTitles[i];
+    for(int i = 0; i < widget.headerList.length; i++) {
+      final headerItem = widget.headerList[i];
       var items = widget.itemList[i];
-      slivers.add(_buildHeader(section: i, child: widget.headerBuilder(title),
+      slivers.add(_buildHeader(section: i, child: widget.headerBuilder(headerItem),
       ));
-      slivers.add(_buildSliverList(section: i, list: items.whereType<T>().toList()));
+      slivers.add(_buildSliverList(section: i, list: items.whereType<E>().toList()));
     }
     // ddlog([widget.sectionTitles.length, slivers.length]);
 
-    setState(() {
-
-    });
+    setState(() { });
   }
 }
