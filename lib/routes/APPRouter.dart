@@ -65,7 +65,7 @@ import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/Pages/textlessDemo.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/pages/sliver_demo/sliver_family_demo.dart';
-import 'package:fluttertemplet/pages/widget_demo_list.dart';
+import 'package:fluttertemplet/basicWidget/section_list_view.dart';
 import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
 import 'package:get/get.dart';
 
@@ -536,13 +536,10 @@ class AppPage{
       page: () => SliverFamilyPageViewDemo(),
     ),
 
-    GetPage(
-      name: APPRouter.widgetDemoList,
-      page: () => WidgetDemoList(),
-    ),
-
-
-
+    // GetPage(
+    //   name: APPRouter.widgetDemoList,
+    //   page: () => WidgetDemoList(),
+    // ),
 
     // GetPage(
     //   name: APPRouter.providerRoute,

@@ -16,7 +16,7 @@ import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
-import 'package:fluttertemplet/pages/widget_demo_list.dart';
+import 'package:fluttertemplet/basicWidget/section_list_view.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 
 import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
@@ -100,41 +100,14 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     //   sectionList: [_specials, _list, _customeWidgets, _others],
     //   hiddenAppBar: true,)),
 
-    PageWidgetModel(title: '列表', widget: SectionListView<String, Tuple2<String, String>>(
-      hiddenAppBar: true,
-      headerList: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
-        itemList: [_specials, _list, _customeWidgets, _others],
-      headerBuilder: (dynamic e) {
-        String title = e;
-        return Text(title, style: TextStyle(fontWeight: FontWeight.w600),);
-      },
-      itemBuilder: (int section, int row, dynamic item) {
-        Tuple2<String, String> e = item;
-        return ListTile(
-          title: Text(e.item2),
-          subtitle: Text(e.item2.toCapitalize()),
-          trailing: Icon(Icons.keyboard_arrow_right_rounded),
-          dense: true,
-          onTap: (){
-            // Get.toNamed(e.item1, arguments: e);
-            if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
-              Get.offNamed(e.item1, arguments: e.item1);
-            } else {
-              Get.toNamed(e.item1, arguments: e.item1);
-            }
-          },
-        );
-      },
-    ),),
 
     PageWidgetModel(title: '列表(泛型)', widget: SectionListView<String, Tuple2<String, String>>(
-      hiddenAppBar: true,
       headerList: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
       itemList: [_specials, _list, _customeWidgets, _others],
-      headerBuilder: (String e) {
+      headerBuilder: (e) {
         return Text(e, style: TextStyle(fontWeight: FontWeight.w600),);
       },
-      itemBuilder: (int section, int row, Tuple2<String, String> e) {
+      itemBuilder: (section, row, e) {
         return ListTile(
           title: Text(e.item2),
           subtitle: Text(e.item2.toCapitalize()),
