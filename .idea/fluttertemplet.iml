@@ -2778,6 +2778,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/multiple_flutters/module/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/multiple_flutters/module/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/multiple_flutters/module/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_channels_benchmarks/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_channels_benchmarks/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_channels_benchmarks/build" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_views_layout/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_views_layout/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/benchmarks/platform_views_layout/build" />
@@ -2790,6 +2793,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/bots/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/bots/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/bots/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/conductor/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/conductor/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/conductor/build" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/customer_testing/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/customer_testing/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/customer_testing/build" />
@@ -2799,6 +2805,9 @@
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/docs/platform_integration/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/docs/platform_integration/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/docs/platform_integration/build" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/forbidden_from_release_tests/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/forbidden_from_release_tests/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/forbidden_from_release_tests/build" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/integration_tests/abstract_method_smoke_test/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/integration_tests/abstract_method_smoke_test/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/.fvm/flutter_sdk/dev/integration_tests/abstract_method_smoke_test/build" />
