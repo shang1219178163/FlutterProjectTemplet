@@ -163,20 +163,7 @@ class SlideTransitionX extends AnimatedWidget {
   Widget build(BuildContext context) {
     Offset offset = _tween.evaluate(position);
     if (position.status == AnimationStatus.reverse) {
-      switch (direction) {
-        case AxisDirection.up:
-          offset = Offset(offset.dx, -offset.dy);
-          break;
-        case AxisDirection.right:
-          offset = Offset(-offset.dx, offset.dy);
-          break;
-        case AxisDirection.down:
-          offset = Offset(offset.dx, -offset.dy);
-          break;
-        case AxisDirection.left:
-          offset = Offset(-offset.dx, offset.dy);
-          break;
-      }
+      offset = Offset(-offset.dx, -offset.dy);
     }
     return FractionalTranslation(
       translation: offset,
@@ -196,7 +183,8 @@ class LineSlideTransition extends AnimatedWidget {
     this.transformHitTests = true,
     this.direction = AxisDirection.down,
     required this.child,
-  }) : assert(position != null),
+  })
+      : assert(position != null),
         super(key: key, listenable: position);
 
   Animation<Offset> get position => listenable as Animation<Offset>;
@@ -212,7 +200,7 @@ class LineSlideTransition extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    Offset offset = position.value as Offset;
+    Offset offset = position.value;
     if (position.status == AnimationStatus.reverse) {
       offset = Offset(-offset.dx, -offset.dy);
     }
@@ -222,3 +210,5 @@ class LineSlideTransition extends AnimatedWidget {
       child: child,
     );
   }
+}
+

@@ -66,12 +66,12 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
       children: <Widget>[
         _buildPausePlayIcon(),
         _buildAnimatedSizeIcon(),
-        _buildAnimatedCrossFadeIcon(),
-        _buildAnimatedSwitcher(),
-        _buildAnimatedSwitcher1(),
-        _buildAnimatedSwitcher2(),
-        _buildAnimatedSwitcher3(),
-        _buildAnimatedSwitcher4(),
+        _buildAnimatedCrossFade(),
+        _buildAnimatedScaleTransition(),
+        _buildAnimatedMySlideTransition(),
+        _buildAnimatedSlideTransition(),
+        _buildAnimatedSlideTransitionX(),
+        _buildAnimatedLineSlideTransition(),
         Container(
           child: Text('第0页')
               .center()
@@ -142,7 +142,7 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
 
   CrossFadeState _crossFadeState = CrossFadeState.showFirst;
   ///播放按钮组件
-  Widget _buildAnimatedCrossFadeIcon() {
+  Widget _buildAnimatedCrossFade() {
     return Center(
       child: InkWell(
         child: AnimatedCrossFade(
@@ -164,11 +164,12 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
 
   int _count = 0;
 
-  Widget _buildAnimatedSwitcher() {
+  Widget _buildAnimatedScaleTransition() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("ScaleTransition"),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             transitionBuilder: (Widget child, Animation<double> animation) {
@@ -197,12 +198,14 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
     );
   }
 
-  Widget _buildAnimatedSwitcher1() {
+  Widget _buildAnimatedMySlideTransition() {
     ddlog( this.context == context );
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("MySlideTransition"),
+
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             transitionBuilder: (Widget child, Animation<double> animation) {
@@ -236,11 +239,13 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
     );
   }
 
-  Widget _buildAnimatedSwitcher2() {
+  Widget _buildAnimatedSlideTransition() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("SlideTransition"),
+
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             transitionBuilder: (Widget child, Animation<double> animation) {
@@ -272,17 +277,19 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
     );
   }
 
-  Widget _buildAnimatedSwitcher3() {
+  Widget _buildAnimatedSlideTransitionX() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("SlideTransitionX"),
+
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             transitionBuilder: (Widget child, Animation<double> animation) {
               return SlideTransitionX(
                 child: child,
-                direction: AxisDirection.down, //上入下出
+                direction: AxisDirection.up, //上入下出
                 position: animation,
               );
             },
@@ -309,24 +316,20 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
     );
   }
 
-  Widget _buildAnimatedSwitcher4() {
+  Widget _buildAnimatedLineSlideTransition() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Text("LineSlideTransition"),
+
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 500),
             transitionBuilder: (Widget child, Animation<double> animation) {
-              final tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
-
+              final tween = Tween<Offset>(begin: Offset(0, 1), end: Offset(0, 0));
               return LineSlideTransition(
                   position: animation.drive(tween),
                   child: child);
-              // final tween = Tween(begin: Offset(0.0, 1.0), end: Offset.zero);
-              // return SlideTransition(
-              //   position: animation.drive(tween),
-              //   child: child,
-              // );
             },
             child: Text(
               '$_count',
@@ -350,4 +353,5 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
       ),
     );
   }
+
 }
