@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 
+import 'AnimatedSwitcherDemo.dart';
+
 
 class AnimatedDemoPage extends StatefulWidget {
 
-  final String? title;
+  String? title;
 
   AnimatedDemoPage({ Key? key, this.title}) : super(key: key);
 
@@ -57,12 +59,19 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
       pageSnapping: true,
       onPageChanged: (index){
         print('当前为第$index页');
+        setState(() {
+          widget.title ='当前为第$index页';
+        });
       },
       children: <Widget>[
         _buildPausePlayIcon(),
-        _buildAnimatedSizeIcon(context),
+        _buildAnimatedSizeIcon(),
         _buildAnimatedCrossFadeIcon(),
-        _buildAnimatedSwitcher(context),
+        _buildAnimatedSwitcher(),
+        _buildAnimatedSwitcher1(),
+        _buildAnimatedSwitcher2(),
+        _buildAnimatedSwitcher3(),
+        _buildAnimatedSwitcher4(),
         Container(
           child: Text('第0页')
               .center()
@@ -111,7 +120,7 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
 
 
   ///缩放组件
-  Widget _buildAnimatedSizeIcon(BuildContext context) {
+  Widget _buildAnimatedSizeIcon() {
     return GestureDetector(
       onTap: (){
         ddlog("AnimatedSize");
@@ -124,7 +133,6 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
           color: Colors.green,
           child: AnimatedSize(
             duration: Duration(milliseconds: 350),
-            vsync: this,
             child: FlutterLogo(size: size,),
           ),
         ),
@@ -156,7 +164,7 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
 
   int _count = 0;
 
-  Widget _buildAnimatedSwitcher(BuildContext context) {
+  Widget _buildAnimatedSwitcher() {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -174,6 +182,160 @@ class _AnimatedDemoPageState extends State<AnimatedDemoPage> with TickerProvider
               style: Theme.of(context).textTheme.headline4,
             ),
           ),
+          OutlinedButton(
+            child: const Text('+1',),
+            onPressed: () {
+              ddlog("AnimatedSwitcher");
+
+              setState(() {
+                _count += 1;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnimatedSwitcher1() {
+    ddlog( this.context == context );
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              //执行缩放动画
+              // return ScaleTransition(child: child, scale: animation);
+              var tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
+              return MySlideTransition(
+                child: child,
+                position: tween.animate(animation),
+              );
+            },
+            child: Text(
+              '$_count',
+              //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
+              key: ValueKey<int>(_count),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
+          OutlinedButton(
+            child: const Text('+1',),
+            onPressed: () {
+              ddlog("AnimatedSwitcher");
+
+              setState(() {
+                _count += 1;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnimatedSwitcher2() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              final tween = Tween(begin: Offset(0.0, 1.0), end: Offset.zero);
+              return SlideTransition(
+                position: animation.drive(tween),
+                child: child,
+              );
+            },
+            child: Text('$_count',
+              //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
+              key: ValueKey<int>(_count),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
+
+          OutlinedButton(
+            child: const Text('+1',),
+            onPressed: () {
+              ddlog("AnimatedSwitcher");
+
+              setState(() {
+                _count += 1;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnimatedSwitcher3() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              return SlideTransitionX(
+                child: child,
+                direction: AxisDirection.down, //上入下出
+                position: animation,
+              );
+            },
+            child: Text(
+              '$_count',
+              //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
+              key: ValueKey<int>(_count),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
+
+          OutlinedButton(
+            child: const Text('+1',),
+            onPressed: () {
+              ddlog("AnimatedSwitcher");
+
+              setState(() {
+                _count += 1;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnimatedSwitcher4() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 500),
+            transitionBuilder: (Widget child, Animation<double> animation) {
+              final tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
+
+              return LineSlideTransition(
+                  position: animation.drive(tween),
+                  child: child);
+              // final tween = Tween(begin: Offset(0.0, 1.0), end: Offset.zero);
+              // return SlideTransition(
+              //   position: animation.drive(tween),
+              //   child: child,
+              // );
+            },
+            child: Text(
+              '$_count',
+              //显示指定key，不同的key会被认为是不同的Text，这样才能执行动画
+              key: ValueKey<int>(_count),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ),
+
           OutlinedButton(
             child: const Text('+1',),
             onPressed: () {

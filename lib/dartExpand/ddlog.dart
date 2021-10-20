@@ -14,14 +14,14 @@ import 'package:flutter/material.dart';
 void ddlog(dynamic? obj) {
   DDTraceModel model = DDTraceModel(StackTrace.current);
 
-  var list = [
+  var items = [
     DateTime.now().toString(),
     model.fileName,
     model.className,
     model.selectorName,
     "[${model.lineNumber}:${model.columnNumber}]"
   ].where((element) => element != "");
-  print("${list.join(" ")}: $obj");
+  print("${items.join(" ")}: $obj");
 }
 
 /// TraceModel

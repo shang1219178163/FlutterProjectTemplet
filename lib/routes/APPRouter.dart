@@ -63,12 +63,19 @@ import 'package:fluttertemplet/pages/LoginPage.dart';
 import 'package:fluttertemplet/pages/LoginPage2.dart';
 import 'package:fluttertemplet/pages/SigninPage.dart';
 import 'package:fluttertemplet/Pages/textlessDemo.dart';
-import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/pages/sliver_demo/sliver_family_demo.dart';
+
+import 'package:fluttertemplet/pages/demoPage/FutureBuilderDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/StreamBuilderDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/AnimatedSwitcherDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/AnimatedWidgetDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
+
 import 'package:fluttertemplet/basicWidget/section_list_view.dart';
 import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
-import 'package:get/get.dart';
 
+import 'package:get/get.dart';
+import 'package:fluttertemplet/main.dart';
 
 ///https://www.jianshu.com/p/b9d6ec92926f
 class APPRouter {
@@ -87,6 +94,8 @@ class APPRouter {
   static const tabBarDemoPage = '/TabBarDemoPage';
   static const widgetListPage = '/WidgetListPage';
   static const animatedDemoPage = '/AnimatedDemoPage';
+  static const animatedWidgetDemo = '/AnimatedWidgetDemo';
+  static const animatedSwitcherDemo = '/AnimatedSwitcherDemo';
 
   static const textlessDemo = '/textlessDemo';
   static const alertDialogDemoPage = '/AlertDialogDemoPage';
@@ -110,7 +119,7 @@ class APPRouter {
   static const slidableDemoPage = '/FlutterSlidaableDemoPage';
   static const settingsPage = '/AppSettingsPage';
   static const draggableDemoPage = '/DraggableDemoPage';
-  static const animatedIconDemoPage = '/AnimatedIconDemoPage';
+  // static const animatedIconDemoPage = '/AnimatedIconDemoPage';
   static const forgetPasswordPage = '/ForgetPasswordPage';
   static const dateTableDemoPage = '/DateTableDemoPage';
   static const segmentControlDemoPage = '/SegmentControlDemoPage';
@@ -148,36 +157,11 @@ class APPRouter {
   static const tableDemo = '/TableDemo';
   static const widgetDemoList = '/WidgetDemoList';
 
+  static const futureBuilderDemo = '/FutureBuilderDemo';
+  static const streamBuilderDemo = '/StreamBuilderDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
-  //   firstPage: (context) => FirstPage(),
-  //   secondPage: (context) => SecondPage(),
-  //   thirdPage: (context) => ThirdPage(),
-  //   fourthPage: (context) => FourthPage(),
-  //   tabBarDemo: (context) => TabBarDemo(),
-  //   widgetListPage: (context) => WidgetListPage(),
-  //   textlessPage: (context) => TextlessPage(),
-  //   alertDialogDemoPage: (context) => AlertDialogDemoPage(),
-  //   alertSheetDemoPage: (context) => AlertSheetDemoPage(),
-  //   iconsListPage: (context) => IconsListPage(),
-  //   gridViewDemoPage: (context) => GridViewDemoPage(),
-  //   PageViewDemo: (context) => PageViewDemo(),
-  //   pageViewTabBarWidget: (context) => PageViewTabBarWidget(),
-  //   snackBarDemoPage: (context) => SnackBarDemoPage(),
-  //   cupertinoTabScaffoldDemo: (context) => CupertinoTabScaffoldDemoPage(),
-  //   pickerDemoPage: (context) => PickerDemoPage(),
-  //   datePickerPage: (context) => DatePickerPage(),
-  //   localNotifationDemoPage: (context) => LocalNotifationDemoPage(),
-  //   ProgressHudDemoNew: (context) => ProgressHudDemoNew(),
-  //   toastContext: (context) => ToastContext(),
-  //   toastNoContext: (context) => ToastNoContext(),
-  //   textFieldDemoPage: (context) => TextFieldDemoPage(),
-  //   slidableDemoPage: (context) => SlidableDemoPage(),
-  //   notFound: (context) => APPNotFoundPage(),
-  //   settingsPage: (context) => AppSettingsPage(),
-  //   draggableDemoPage: (context) => DraggableDemoPage(),
-  //
   // };
   // APPRouter.push(BuildContext context, String url, {Object? arguments,}) {
   //   if (url.startsWith('https://') || url.startsWith('http://')) {
@@ -436,9 +420,34 @@ class AppPage{
       page: () => NumberStepperDemoPage(),
     ),
 
+    // GetPage(
+    //   name: APPRouter.animatedIconDemoPage,
+    //   page: () => AnimatedIconDemoPage(),
+    // ),
+
     GetPage(
       name: APPRouter.animatedDemoPage,
       page: () => AnimatedDemoPage(),
+    ),
+
+    GetPage(
+      name: APPRouter.animatedSwitcherDemo,
+      page: () => AnimatedSwitcherDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.animatedWidgetDemo,
+      page: () => AnimatedWidgetDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.futureBuilderDemo,
+      page: () => FutureBuilderDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.streamBuilderDemo,
+      page: () => StreamBuilderDemo(),
     ),
 
     GetPage(

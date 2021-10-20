@@ -87,6 +87,13 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
         controller: this.tabController,
         children: pages.map((item) => item.widget).toList(),
       ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+        onPressed: () {
+          ddlog(["a", 18, null, true, ["1", "2", "3"], {"a": "aa", "b": "bb"}]);
+        },
+      ),
     );
   }
 
@@ -95,15 +102,9 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     // PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
     // PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
 
-    // PageWidgetModel(title: '升级列表', widget: WidgetDemoList(
-    //   sectionTitles: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
-    //   sectionList: [_specials, _list, _customeWidgets, _others],
-    //   hiddenAppBar: true,)),
-
-
     PageWidgetModel(title: '列表(泛型)', widget: SectionListView<String, Tuple2<String, String>>(
-      headerList: ["特殊功能", "系统组件demo", "自定义组件", "其它"],
-      itemList: [_specials, _list, _customeWidgets, _others],
+      headerList: ["特殊功能", "动画相关", "系统组件demo", "自定义组件", "其它"],
+      itemList: [_specials, _animateds, _list, _customeWidgets, _others],
       headerBuilder: (e) {
         return Text(e, style: TextStyle(fontWeight: FontWeight.w600),);
       },
@@ -178,19 +179,25 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
       return "111";
     }));
 
-    // array.or(() => null)
+    // array.or(() => null);
 
     final List<String>? array1 = List.generate(9, (index) => "$index");
-    final array11 = array1!.reduce((value, element) => value + element);
-    ddlog(array11);
+    final result = array1!.reduce((value, element) => value + element);
+    ddlog(result);
 
     ddlog(array.or(() => array1));
+
+    final nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    final val = nums.reduce((value, element) => value + element);
+    ddlog(val);
+
+    final map = {"a": "aa", "b": "bb", "c": "cc",} ;
+    final value = map["d"] ?? "-";
+    ddlog(value);
   }
 }
 
 var _list = [
-  Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
-  Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
   Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
   Tuple2(APPRouter.appWebViewDemoPage, "appWebViewDemoPage", ),
@@ -250,6 +257,15 @@ var _specials = [
   Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
 
   // Tuple2(APPRouter.widgetDemoList, "widgetDemoList", ),
+];
+
+var _animateds = [
+  // Tuple2(APPRouter.animatedIconDemoPage, "AnimatedIconDemoPage", ),
+  Tuple2(APPRouter.animatedDemoPage, "AnimatedDemoPage", ),
+
+  Tuple2(APPRouter.animatedSwitcherDemo, "animatedSwitcherDemo", ),
+  Tuple2(APPRouter.animatedWidgetDemo, "animatedWidgetDemo", ),
+
 ];
 
 var _customeWidgets = [

@@ -96,6 +96,17 @@ dependencies:
 
   enhance_stepper: ^0.0.8
 
+#  User:
+#    hosted:
+#      name: syn_mine_pages
+#      url: git@github.com:shang1219178163/UserPlugin.git
+#    version: 0.0.1
+
+#  User: ^0.0.1
+#    git:
+#      url: 'git@github.com:shang1219178163/UserPlugin.git'
+#    ref: 'master'
+
 #  ansicolor: ^2.0.1
 #  fl_chart: 0.36.1
 #  fbutton: ^2.0.0

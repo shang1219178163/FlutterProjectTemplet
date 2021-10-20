@@ -61,7 +61,7 @@ class _APPDrawerMenuPageState extends State<APPDrawerMenuPage> {
                       child: CircleAvatar(
                           radius: 48,
                           // backgroundColor: Colors.transparent,
-                          backgroundImage: AssetImage('assets/images/avatar.png')
+                          backgroundImage: AssetImage('images/avatar.png')
                       ),
                     ),
                   ),
