@@ -809,7 +809,7 @@ xxxx十分重视用户权利及隐私政策并严格按照相关法律法规的�
         ddlog("tap Container");
       },
       child: Container(
-        width: screenSize.width - 10,
+        width: screenSize.width - 30,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular((10.0)), // 圆角度

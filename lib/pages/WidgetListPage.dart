@@ -9,6 +9,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
+import 'package:fluttertemplet/dartExpand/list_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
 import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
@@ -92,6 +93,11 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
         child: Icon(Icons.add),
         onPressed: () {
           ddlog(["a", 18, null, true, ["1", "2", "3"], {"a": "aa", "b": "bb"}]);
+          ddlog(_list);
+          // final items = _list.map((e) => e.item1.compareTo(e.item2)).toList();
+          final items = _list.sorted((a, b) => a.item1.toLowerCase().compareTo(b.item2.toLowerCase()));
+          ddlog(items);
+
         },
       ),
     );
@@ -104,7 +110,8 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
 
     PageWidgetModel(title: '列表(泛型)', widget: SectionListView<String, Tuple2<String, String>>(
       headerList: ["特殊功能", "动画相关", "系统组件demo", "自定义组件", "其它"],
-      itemList: [_specials, _animateds, _list, _customeWidgets, _others],
+      itemList: [_specials, _animateds, _list, _customeWidgets, _others]
+          .map((e) => e.sorted((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()))).toList(),
       headerBuilder: (e) {
         return Text(e, style: TextStyle(fontWeight: FontWeight.w600),);
       },
@@ -115,7 +122,7 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
           trailing: Icon(Icons.keyboard_arrow_right_rounded),
           dense: true,
           onTap: (){
-            // Get.toNamed(e.item1, arguments: e);
+            Get.toNamed(e.item1, arguments: e);
             if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
               Get.offNamed(e.item1, arguments: e.item1);
             } else {
@@ -197,6 +204,7 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
   }
 }
 
+
 var _list = [
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
   Tuple2(APPRouter.alertSheetDemoPage, "AlertSheet", ),
@@ -249,6 +257,10 @@ var _list = [
 
   Tuple2(APPRouter.layoutBuilderDemo, "layoutBuilderDemo", ),
   Tuple2(APPRouter.tableDemo, "tableDemo", ),
+  Tuple2(APPRouter.nestedScrollViewDemo, "nestedScrollViewDemo", ),
+
+  Tuple2(APPRouter.popoverDemo, "popoverDemo", ),
+  
 ];
 
 var _specials = [
@@ -284,5 +296,7 @@ var _others = [
   Tuple2(APPRouter.loginPage, "LoginPage", ),
   Tuple2(APPRouter.loginPage2, "LoginPage2", ),
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
+
+
 ];
 

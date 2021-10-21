@@ -16,6 +16,7 @@ import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LayoutBuilderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/MenuDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/NestedScrollViewDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberFormatDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/NumberStepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/ProgressHudDemo.dart';
@@ -73,6 +74,7 @@ import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 
 import 'package:fluttertemplet/basicWidget/section_list_view.dart';
 import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
+import 'package:fluttertemplet/vendor/popover_demo.dart';
 
 import 'package:get/get.dart';
 import 'package:fluttertemplet/main.dart';
@@ -159,6 +161,9 @@ class APPRouter {
 
   static const futureBuilderDemo = '/FutureBuilderDemo';
   static const streamBuilderDemo = '/StreamBuilderDemo';
+  static const nestedScrollViewDemo = '/NestedScrollViewDemo';
+
+  static const popoverDemo = '/popoverDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -544,6 +549,17 @@ class AppPage{
       name: APPRouter.sliverFamilyPageViewDemo,
       page: () => SliverFamilyPageViewDemo(),
     ),
+
+    GetPage(
+      name: APPRouter.nestedScrollViewDemo,
+      page: () => NestedScrollViewDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.popoverDemo,
+      page: () => PopoverDemo(),
+    ),
+
 
     // GetPage(
     //   name: APPRouter.widgetDemoList,

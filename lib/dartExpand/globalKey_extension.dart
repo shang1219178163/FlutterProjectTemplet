@@ -21,16 +21,16 @@ extension GlobalKeyExt on GlobalKey{
   }
 
   /// 获取当前组件的 Offset
-  Offset globalOffset() {
+  Offset offset({Offset offset = Offset.zero}) {
     if (this.renderBox() == null) {
       return Offset.zero;
     }
-    var point = this.renderBox()!.localToGlobal(Offset.zero); //组件坐标
+    var point = this.renderBox()!.localToGlobal(offset); //组件坐标
     return point;
   }
 
   /// 获取当前组件的 Size
-  Size globalSize() {
+  Size size() {
     if (this.renderBox() == null) {
       return Size.zero;
     }

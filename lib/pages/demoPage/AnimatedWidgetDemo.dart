@@ -42,14 +42,15 @@ class _AnimatedWidgetDemoState extends State<AnimatedWidgetDemo> {
   }
 
   Widget buildBody(BuildContext context) {
-    var duration = Duration(seconds: 5);
+    var duration = Duration(seconds: 2);
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
+
           RaisedButton(
             onPressed: () {
               setState(() {
-                _padding = 20;
+                _padding += 10;
               });
             },
             child: AnimatedPadding(
@@ -197,4 +198,3 @@ class _AnimatedDecoratedBoxState
     );
   }
 }
-

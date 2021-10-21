@@ -93,24 +93,21 @@ class _SecondPageState extends State<SecondPage> {
 
             ElevatedButton.icon(
               icon: Icon(Icons.send),
-              label: Text("发送"),
+              label: Text("ElevatedButton"),
               // onPressed: () => ddlog('pressed'),
               key: _globalKey,
               onPressed: (){
                 // _showCustomPopView();
-                ddlog(_globalKey.globalOffset());
-                ddlog(_globalKey.globalSize());
+                ddlog([_globalKey.offset(), _globalKey.size()]);
                 // test();
               },
             ),
-
             OutlinedButton.icon(
               icon: Icon(Icons.add),
-              label: Text("添加"),
+              label: Text("OutlinedButton"),
               key: _globalKey1,
               onPressed: (){
-                // ddlog(_globalKey1.globalOffset());
-                // ddlog(_globalKey1.globalSize());
+                ddlog([_globalKey1.offset(), _globalKey1.size()]);
                 // test();
               },
             ),
@@ -121,7 +118,7 @@ class _SecondPageState extends State<SecondPage> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('呼叫',
+                  Text('TextButton',
                   ).padding(right: 5),
                   // SizedBox(width: 30),
                   Icon(Icons.call),
@@ -130,13 +127,13 @@ class _SecondPageState extends State<SecondPage> {
             ).decorated(borderRadius: BorderRadius.all(Radius.circular(5))),
 
             TextButton(
-              onPressed: () => ddlog('Make a Note'),
+              onPressed: () => ddlog('TextButton'),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text("Make a Note"),
+                  Text("TextButton"),
                   SizedBox(width: 5),
                   Icon(Icons.send),
                 ],

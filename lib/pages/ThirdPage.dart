@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/globalKey_extension.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
@@ -23,6 +24,10 @@ class _ThirdPageState extends State<ThirdPage> {
 
   var selectedIndex = 0;
 
+  GlobalKey _globalKey(int index) {
+    return GlobalKey(debugLabel: "$index");
+  }
+
   @override
   void initState() {
     super.initState();
@@ -33,12 +38,12 @@ class _ThirdPageState extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-            // leading: Icon(Icons.backspace_outlined)
-            // // .gestures(onTap: ()=> ddlog("back")
-            //     .gestures(onTap: (){ Navigator.pop(context); }),
-            title: Text(widget.title ?? "$widget"),
-          ),
+      appBar: AppBar(
+        // leading: Icon(Icons.backspace_outlined)
+        // // .gestures(onTap: ()=> ddlog("back")
+        //     .gestures(onTap: (){ Navigator.pop(context); }),
+        title: Text(widget.title ?? "$widget"),
+      ),
           // body: buildListView(context),
       body: EasyRefresh(
         child: buildListView(context),
@@ -48,23 +53,22 @@ class _ThirdPageState extends State<ThirdPage> {
         onLoad: () async {
           ddlog("onLoad");
           await Future.delayed(Duration(seconds: 2), () {
-            if (mounted) {
-              setState(() {
-                items.addAll(List<String>.generate(
-                    20, (i) => 'Item ${items.length + i}'));
-              });
-              _controller.finishLoad(noMore: (items.length >= 80));
+            if (!mounted) {
+              return;
             }
+            setState(() {
+              items.addAll(List<String>.generate(
+                  20, (i) => 'Item ${items.length + i}'));
+            });
+            _controller.finishLoad(noMore: (items.length >= 80));
           });
         },
       ),
-
     );
   }
 
 
   Widget buildListView(BuildContext context) {
-
     return ListView.separated(
       itemCount: items.length,
       itemBuilder: (context, index) {
@@ -72,16 +76,19 @@ class _ThirdPageState extends State<ThirdPage> {
 
         return Dismissible(
           key: Key(item),
-          child: ListTile(title: Text("$item"),
+          child: ListTile(
+            title: Text("$item"),
             selected: (selectedIndex == index),
+            // trailing: selectedIndex == index ? Icon(Icons.check) : null,
             trailing: selectedIndex == index ? Icon(Icons.check) : null,
+
             onTap: (){
               setState(() {
                 selectedIndex = index;
               });
-              ddlog([selectedIndex, index]);
-            }
-            ,
+              ddlog([selectedIndex, index,]);
+              ddlog([_globalKey(index).offset(), _globalKey(index).size()]);
+            },
           ),
           onDismissed: (direction) {
             setState(() {
@@ -97,7 +104,7 @@ class _ThirdPageState extends State<ThirdPage> {
           background: buildFavorite(context),
           secondaryBackground: buildDelete(context),
           confirmDismiss: (DismissDirection direction) async {
-              return buildConfirmDismiss(context);
+            return buildConfirmDismiss(context);
           },
         );
       },

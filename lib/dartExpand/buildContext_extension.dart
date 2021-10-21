@@ -10,18 +10,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
-// extension BuildContextExt on BuildContext {
-//
-//   get scaffoldMessenger => ScaffoldMessenger.of(this);
-//
-//   void showSnackBar(SnackBar snackBar, [bool isReplace = false]) {
-//     if (isReplace) {
-//       this.scaffoldMessenger.hideCurrentSnackBar();
-//     }
-//     this.scaffoldMessenger.showSnackBar(snackBar);
-//   }
-//
-// }
+extension BuildContextExt on BuildContext {
+
+  ///扩展方法
+  void logRendBoxInfo() {
+    RenderObject? renderObject = this.findRenderObject();
+    if (renderObject == null || renderObject is! RenderBox) {
+      return;
+    }
+    RenderBox box = renderObject;
+    Offset origin = box.localToGlobal(Offset.zero);
+    print([DateTime.now(), origin, box.size]);
+  }
+  // get scaffoldMessenger => ScaffoldMessenger.of(this);
+  //
+  // void showSnackBar(SnackBar snackBar, [bool isReplace = false]) {
+  //   if (isReplace) {
+  //     this.scaffoldMessenger.hideCurrentSnackBar();
+  //   }
+  //   this.scaffoldMessenger.showSnackBar(snackBar);
+  // }
+
+}
 
 
 extension StatefulWidgetExt<T extends StatefulWidget> on State<T> {

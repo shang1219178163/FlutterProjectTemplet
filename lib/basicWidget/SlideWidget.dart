@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -5,6 +7,7 @@ import 'package:notes/common/Common.dart';
 
 typedef void VoidCallback();
 
+double getWindowSize() => window.physicalSize.width / window.devicePixelRatio;
 double _buttonWidth = 80.0;
 final _effectiveSpeed = 600;
 
@@ -15,11 +18,11 @@ class SlideWidget extends StatefulWidget {
   VoidCallback onButtonPressed;
 
   SlideWidget(
-      {Key key,
-      @required this.child,
-      @required this.button,
+      {Key? key,
+      required this.child,
+      required this.button,
       this.buttonColor: Colors.red,
-      this.onButtonPressed})
+      required this.onButtonPressed})
       : super(key: key);
 
   @override
@@ -149,7 +152,10 @@ class IState extends State<SlideWidget> with SingleTickerProviderStateMixin {
 class Slide2Widget extends SingleChildRenderObjectWidget {
   Offset offset;
 
-  Slide2Widget({Key key, Widget child, this.offset: Offset.zero})
+  Slide2Widget({
+    Key? key,
+    required Widget child,
+    this.offset: Offset.zero})
       : super(key: key, child: child);
 
   @override
@@ -166,7 +172,10 @@ class Slide2Widget extends SingleChildRenderObjectWidget {
 class RenderSlideObject extends RenderProxyBox {
   Offset _offset = Offset.zero;
 
-  RenderSlideObject({RenderBox child}) : super(child);
+  RenderSlideObject({
+    required RenderBox child}) :
+        assert(child != null),
+        super(child);
 
   @override
   void paint(PaintingContext context, Offset offset) {
