@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/Provider/provider_list_demo.dart';
+import 'package:fluttertemplet/basicWidget/TabBarViewDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ContextMenuActionDemo.dart';
@@ -32,7 +33,10 @@ import 'package:fluttertemplet/Pages/FourthPage.dart';
 import 'package:fluttertemplet/Pages/IconsListPage.dart';
 import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/ThirdPage.dart';
-import 'package:fluttertemplet/Pages/WidgetListPage.dart';
+import 'package:fluttertemplet/pages/tabBar_reuse_page_demo.dart';
+import 'package:fluttertemplet/pages/tabBar_tabBarView_demo.dart';
+import 'package:fluttertemplet/pages/tabBar_pageView_demo.dart';
+
 
 import 'package:fluttertemplet/Pages/demoPage/AlertDialogDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/AlertSheetDemoPage.dart';
@@ -56,7 +60,6 @@ import 'package:fluttertemplet/pages/demoPage/SliverPersistentHeaderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/StepperDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TabBarDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/TableDemo.dart';
-import 'package:fluttertemplet/pages/demoPage/TableViewDemoPage.dart';
 
 import 'package:fluttertemplet/pages/AppWebViewDemoPage.dart';
 import 'package:fluttertemplet/pages/ForgetPasswordPage.dart';
@@ -70,10 +73,8 @@ import 'package:fluttertemplet/pages/demoPage/FutureBuilderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/StreamBuilderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedSwitcherDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedWidgetDemo.dart';
-import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 
-import 'package:fluttertemplet/basicWidget/section_list_view.dart';
-import 'package:fluttertemplet/uti/ChangeNotifierProviderDemo.dart';
+
 import 'package:fluttertemplet/vendor/popover_demo.dart';
 
 import 'package:get/get.dart';
@@ -164,6 +165,10 @@ class APPRouter {
   static const nestedScrollViewDemo = '/NestedScrollViewDemo';
 
   static const popoverDemo = '/popoverDemo';
+  static const tabBarTabBarViewDemo = '/tabBarTabBarViewDemo';
+  static const tabBarPageViewDemo = '/tabBarPageViewDemo';
+  static const tabBarPageViewDemoNew = '/tabBarPageViewDemoNew';
+  static const tabBarReusePageDemo = '/tabBarReusePageDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -205,6 +210,16 @@ class AppPage{
     GetPage(
       name: APPRouter.homePage,
       page: () => MyHomePage(),
+    ),
+
+    GetPage(
+      name: APPRouter.tabBarTabBarViewDemo,
+      page: () => TabBarTabBarViewDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.tabBarPageViewDemo,
+      page: () => TabBarPageViewDemo(),
     ),
 
     GetPage(
@@ -253,11 +268,6 @@ class AppPage{
      GetPage(
        name: APPRouter.tabBarDemoPage,
        page: () => TabBarDemoPage(),
-     ),
-
-     GetPage(
-       name: APPRouter.widgetListPage,
-       page: () => WidgetListPage(),
      ),
 
      GetPage(
@@ -456,11 +466,6 @@ class AppPage{
     ),
 
     GetPage(
-      name: APPRouter.tableViewDemoPage,
-      page: () => TableViewDemoPage(),
-    ),
-
-    GetPage(
       name: APPRouter.githubRepoDemo,
       page: () => GithubRepoDemo(),
     ),
@@ -560,16 +565,17 @@ class AppPage{
       page: () => PopoverDemo(),
     ),
 
+    GetPage(
+      name: APPRouter.tabBarPageViewDemo,
+      page: () => TabBarPageViewDemo(),
+    ),
 
-    // GetPage(
-    //   name: APPRouter.widgetDemoList,
-    //   page: () => WidgetDemoList(),
-    // ),
 
-    // GetPage(
-    //   name: APPRouter.providerRoute,
-    //   page: () => ProviderRoute(),
-    // ),
+
+    GetPage(
+      name: APPRouter.tabBarReusePageDemo,
+      page: () => TabBarReusePageDemo(),
+    ),
 
   ];
 

@@ -4,13 +4,31 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
 
-class UpdateAppCard extends StatelessWidget {
-  final data;
+class UpdateAppCard extends StatefulWidget {
+  final AppUpdateItemModel data;
 
-  const UpdateAppCard({
+  late bool isExpand;
+
+  final bool showExpand;
+
+  UpdateAppCard({
     Key? key,
-    this.data,
+    required this.data,
+    this.isExpand = false,
+    this.showExpand = true,
   }) : super(key: key);
+
+  @override
+  _UpdateAppCardState createState() => _UpdateAppCardState();
+}
+
+class _UpdateAppCardState extends State<UpdateAppCard> {
+
+  void _changeState() {
+    setState(() {
+      widget.isExpand = !widget.isExpand;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +36,7 @@ class UpdateAppCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start, //水平方向距左对⻬
         children: <Widget>[
           buildTopRow(context), //上半部分
-          buildBottomRow(context) //下半部分
+          buildBottomRowNew(context) //下半部分
         ]
     );
   }
@@ -26,41 +44,42 @@ class UpdateAppCard extends StatelessWidget {
   Widget buildTopRow(BuildContext context) {
     return Row( //Row控件，用来水平摆放子Widget
         children: <Widget>[
-          Padding( //Paddng控件，用来设置Image控件边距
-            padding: EdgeInsets.all(10), //上下左右边距均为1
-            child: ClipRRect( //圆⻆矩形裁剪控件
-                borderRadius: BorderRadius.circular(8.0), //圆⻆半径为8
-                // child: Image.asset(data.appIcon, width: 60, height: 60),
-                child: FlutterLogo(size: 60,),
-            ),
-          ),
+          ClipRRect( //圆⻆矩形裁剪控件
+            borderRadius: BorderRadius.circular(8.0), //圆⻆半径为8
+            // child: Image.asset(data.appIcon, width: 60, height: 60),
+            child: FlutterLogo(size: 60,),
+          )
+              .padding(all: 10)
+          ,
           Expanded( //Expanded控件，用来拉伸中间区域
             child: Column( //Column控件，用来垂直摆放子Widget
               mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对⻬
               crossAxisAlignment: CrossAxisAlignment.start, //水平方向居左对⻬
               children: <Widget>[
-                Text(data.appName, maxLines: 1, overflow: TextOverflow.ellipsis), //App名字
-                Text(data.appDate, maxLines: 1), //App更新日期
+                Text(widget.data.appName, maxLines: 1, overflow: TextOverflow.ellipsis), //App名字
+                Text(widget.data.appDate, maxLines: 1), //App更新日期
+              ],
+            )
+            // .backgroundColor(Colors.greenAccent)
+            ,
+          )
+          ,
+          ElevatedButton(
+            onPressed: () => ddlog('Make a Note'),
+            child: Row(
+              children: [
+                Text("更新"),
+                // SizedBox(width: 5),
+                // Icon(Icons.send),
               ],
             ),
-          ),
-          Padding( //Paddng控件，用来设置Widget间边距
-            padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
-            //右边距为10，其余均为0 child: FlatButton(//按钮控件
-            child: ElevatedButton(
-              onPressed: () => ddlog('Make a Note'),
-              child: Row(
-                children: [
-                  Text("更新"),
-                  // SizedBox(width: 5),
-                  // Icon(Icons.send),
-                ],
-              ),
-            ),
           )
+              .padding(right: 10)
+          ,
         ]
     );
   }
+
 
   Widget buildBottomRow(BuildContext context) {
     return Padding( //Padding控件用来设置整体边距
@@ -68,21 +87,66 @@ class UpdateAppCard extends StatelessWidget {
         child: Column( //Column控件用来垂直摆放子Widget
             crossAxisAlignment: CrossAxisAlignment.start, //水平方向距左对⻬
             children: <Widget>[
-              Text(data.appDescription), //更新文案
-              Padding( //Padding控件用来设置边距
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0), //上边距为10
-                  child: Text("${data.appVersion} • ${data.appSize} MB")
-              )
+              Container(
+                child: Builder(
+                    builder: (BuildContext context) {
+                      return Stack(
+                        alignment:Alignment.center , //指定未定位或部分定位widget的对齐方式
+                        children: <Widget>[
+                          Text(widget.data.appDescription, maxLines: widget.isExpand ? null : 2,)
+                          // .padding(right: 20)
+                              .width(MediaQuery.of(context).size.width - 30)
+                          ,
+                          if (widget.showExpand) InkWell(
+                            child: Text(widget.isExpand ? '收起' : "展开",
+                              style: TextStyle(color: Theme.of(context).accentColor),
+                            )
+                            // .backgroundColor(Colors.white60)
+                            ,
+                            onTap: _changeState,
+                          ).positioned(right: 0, bottom: 0),
+                        ],
+                      );
+                    }
+                ),
+              ),
+              Text("${widget.data.appVersion} • ${widget.data.appSize} MB")
+                  .positioned(top: 10, bottom: 5),
             ]
         )
-            // .backgroundColor(Colors.greenAccent)
-    )
-        // .backgroundColor(Colors.yellow)
-    ;
+      // .backgroundColor(Colors.greenAccent)
+    );
   }
+
+  Widget buildBottomRowNew(BuildContext context) {
+    return Column( //Column控件用来垂直摆放子Widget
+        crossAxisAlignment: CrossAxisAlignment.start, //水平方向距左对⻬
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.center, //指定未定位或部分定位widget的对齐方式
+            children: <Widget>[
+              Text(widget.data.appDescription, maxLines: widget.isExpand ? null : 2,)
+                  .padding(right: 15)
+                  .width(MediaQuery.of(context).size.width - 30)
+              ,
+              if (widget.showExpand) InkWell(
+                child: Text(widget.isExpand ? '收起' : "展开",
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+                onTap: _changeState,
+              )
+                  .positioned(right: 0, bottom: 0)
+              ,
+            ],
+          ),
+          Text("${widget.data.appVersion} • ${widget.data.appSize} MB")
+              .padding(top: 10, bottom: 5)
+          ,
+        ]
+    ).padding(left: 15, right: 15);
+  }
+
 }
-
-
 
 
 class NNListUpdateAppWidget extends StatelessWidget {
@@ -115,5 +179,3 @@ class NNListUpdateAppWidget extends StatelessWidget {
     );
   }
 }
-
-

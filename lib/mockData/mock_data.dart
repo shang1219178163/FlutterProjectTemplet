@@ -10,7 +10,7 @@ const List<UserModel> kAliPayList = [
   UserModel(
     title: '生活缴费',
     imageUrl: 'http://alipay.dl.django.t.taobao.com/rest/1.0/image?fileIds=uYFc1rftQnOzQ6UIysboFQAAACMAAQQD&zoom=original',
-    content: '听说，这6个人的电费被承包了！',
+    content: '听说，这6个人的电费被承包了！听说，这6个人的电费被承包了！听说，这6个人的电费被承包了！听说，这6个人的电费被承包了！',
     time: '13:50',
   ),
   UserModel(

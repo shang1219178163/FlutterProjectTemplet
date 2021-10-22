@@ -401,7 +401,8 @@ extension GetDynamicExt<T> on T {
   }
 }
 
-extension ListExtensions<T> on Iterable<T> {
+extension IterableExt<T> on Iterable<T> {
+
   double sum(double Function(T) extract) {
     double result = 0.0;
     for (T element in this) {

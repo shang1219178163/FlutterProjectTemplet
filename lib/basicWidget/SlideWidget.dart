@@ -27,10 +27,10 @@ class SlideWidget extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      IState(child, button, buttonColor, onButtonPressed);
+      SlideWidgetState(child, button, buttonColor, onButtonPressed);
 }
 
-class IState extends State<SlideWidget> with SingleTickerProviderStateMixin {
+class SlideWidgetState extends State<SlideWidget> with SingleTickerProviderStateMixin {
   Widget child;
   String button;
   Color buttonColor;
@@ -44,7 +44,10 @@ class IState extends State<SlideWidget> with SingleTickerProviderStateMixin {
   VoidCallback _animationListener;
   bool isOpen = false;
 
-  IState(this.child, this.button, this.buttonColor,
+  SlideWidgetState(
+      this.child,
+      this.button,
+      this.buttonColor,
       this.onButtonPressed);
 
   @override

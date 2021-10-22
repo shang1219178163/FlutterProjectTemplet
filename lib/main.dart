@@ -2,9 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertemplet/APPThemeSettings.dart';
+import 'package:fluttertemplet/pages/tabBar_tabBarView_demo.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:fluttertemplet/Pages/APPUserCenterPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TabBarDemoPage.dart';
+import 'package:fluttertemplet/dartExpand/popupMenuButton_extension.dart';
+import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
+import 'package:fluttertemplet/dartExpand/ddlog.dart';
+import 'package:fluttertemplet/dartExpand/widget_extension.dart';
+
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -12,23 +18,15 @@ import 'package:tuple/tuple.dart';
 
 import 'Pages/APPDrawerMenuPage.dart';
 import 'Pages/APPUserCenterPage.dart';
-import 'package:fluttertemplet/dartExpand/popupMenuButton_extension.dart';
-import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
 
-import 'Pages/FirstPage.dart';
-import 'Pages/SecondPage.dart';
-import 'Pages/ThirdPage.dart';
-import 'Pages/FourthPage.dart';
-import 'Pages/TextlessDemo.dart';
+import 'pages/FirstPage.dart';
+import 'pages/SecondPage.dart';
+import 'pages/ThirdPage.dart';
+import 'pages/FourthPage.dart';
+import 'pages/TextlessDemo.dart';
 
-import 'Pages/ListPageController.dart';
 
-import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
-import 'NNListWidgetPage.dart';
-import 'Pages/ListPageController.dart';
-import 'pages/WidgetListPage.dart';
 import 'provider/notifier_demo.dart';
 import 'routes/APPRouter.dart';
 
@@ -126,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: Icon(Icons.home),
         label: "首页",
       ),
-      WidgetListPage(),
+      TabBarTabBarViewDemo(),
     ),
     Tuple2(
       BottomNavigationBarItem(

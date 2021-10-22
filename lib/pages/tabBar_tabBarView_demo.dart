@@ -1,58 +1,51 @@
 //
-//  WidgetListPageDart.dart
+//  TabBarTabBarViewDemo.dart
 //  fluttertemplet
 //
-//  Created by shang on 10/16/21 12:31 PM.
-//  Copyright © 10/16/21 shang. All rights reserved.
+//  Created by shang on 10/22/21 2:32 PM.
+//  Copyright © 10/22/21 shang. All rights reserved.
 //
 
-
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/basicWidget/list_subtitle_cell.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
+import 'package:fluttertemplet/dartExpand/divider_extension.dart';
 import 'package:fluttertemplet/dartExpand/list_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
-import 'package:fluttertemplet/basicWidget/PageControllerWidget.dart';
 import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/basicWidget/section_list_view.dart';
 import 'package:fluttertemplet/routes/APPRouter.dart';
 
-import 'package:fluttertemplet/basicWidget/TableCellWidget.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppNewCard.dart';
-
-import 'package:fluttertemplet/mockData/mock_data.dart';
-import 'package:fluttertemplet/routes/APPRouter.dart';
 import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
-import 'demoPage/SliverPersistentHeaderDemo.dart';
-
-class WidgetListPage extends StatefulWidget {
+class TabBarTabBarViewDemo extends StatefulWidget {
 
   @override
-  _WidgetListPageState createState() => _WidgetListPageState();
+  _TabBarTabBarViewDemoState createState() => _TabBarTabBarViewDemoState();
 }
 
-class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProviderStateMixin {
-  late TabController tabController = TabController(length: pages.length, vsync: this);
+class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with SingleTickerProviderStateMixin {
+  late TabController _tabController = TabController(length: _pages.length, vsync: this);
+
+  // late PageController _pageController = PageController(initialPage: 0, keepPage: true);
 
   @override
   void initState() {
     super.initState();
-    this.tabController.index = pages.length - 1;
+    _tabController.index = _pages.length - 1;
 
     testData();
   }
 
   @override
   void dispose() {
-    this.tabController.dispose();
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -61,11 +54,6 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
     return Scaffold(
       appBar: AppBar(
         title: Text('基础组件列表'),
-        bottom: TabBar(
-          controller: this.tabController,
-          isScrollable: true,
-          tabs: pages.map((item) => Tab(text: item.title)).toList(),
-        ),
         leading: Builder(builder: (context) {
           return IconButton(
             icon: Icon(Icons.menu, color: Colors.white), //自定义图标
@@ -78,15 +66,39 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
         }),
         actions: [
           TextButton(onPressed: (){
-              ddlog("provider");
-              Get.toNamed(APPRouter.providerListDemo, arguments: "状态管理");
-            }, child: Text("状态管理", style: TextStyle(color: Colors.white),),
+            ddlog("provider");
+            Get.toNamed(APPRouter.providerListDemo, arguments: "状态管理");
+          }, child: Text("状态管理", style: TextStyle(color: Colors.white),),
           ),
         ],
+        bottom: TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          tabs: _pages.map((e) => Tab(text: e.item1)).toList(),
+          // indicatorSize: TabBarIndicatorSize.label,
+          // indicatorPadding: EdgeInsets.only(left: 6, right: 6),
+        ),
+        //自定义导航栏
+        // bottom: PreferredSize(
+        //     child: Theme(
+        //       data: Theme.of(context).copyWith(accentColor: Colors.white),
+        //       child: Container(
+        //         height: 40,
+        //         alignment: Alignment.center, //圆点居中
+        //         //给自定义导航栏设置圆点控制器
+        //         child: TabPageSelector(
+        //           color: Colors.grey,
+        //           selectedColor: Colors.white,
+        //           controller: _tabController,
+        //         ),
+        //       ),
+        //     ),
+        //     preferredSize: Size.fromHeight(48)),
+
       ),
       body: TabBarView(
-        controller: this.tabController,
-        children: pages.map((item) => item.widget).toList(),
+        controller: _tabController,
+        children: _pages.map((e) => e.item2).toList(),
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Increment',
@@ -94,21 +106,78 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
         onPressed: () {
           ddlog(["a", 18, null, true, ["1", "2", "3"], {"a": "aa", "b": "bb"}]);
           ddlog(_list);
-          // final items = _list.map((e) => e.item1.compareTo(e.item2)).toList();
-          final items = _list.sorted((a, b) => a.item1.toLowerCase().compareTo(b.item2.toLowerCase()));
-          ddlog(items);
-
         },
       ),
     );
   }
 
-  List<PageWidgetModel> pages = [
-    // PageWidgetModel(title: '产品列表', widget: NNListWidget(list: kAliPayList,)),
-    // PageWidgetModel(title: '升级列表', widget: NNListUpdateAppWidget(list: kUpdateAppList,)),
-    // PageWidgetModel(title: '升级列表(新)', widget: NNListUpdateAppNewWidget(list: kUpdateAppList,)),
+  List<Tuple2<String, Widget>> _pages = [
+    Tuple2('功能列表', ListView.separated(
+      cacheExtent: 180,
+      itemCount: kAliPayList.length,
+      itemBuilder: (context, index) {
+        final data = kAliPayList[index];
+        return ListSubtitleCell(
+          padding: EdgeInsets.all(10),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Image.network(
+              data.imageUrl,
+              width: 40,
+              height: 40,
+            ),
+          ),
+          title: Text(
+            data.title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF333333),
+            ),
+          ),
+          subtitle: Text(data.content,
+            // maxLines: 1,
+            // overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: 15,
+              color: Color(0xFF999999),
+            ),
+          ),
+          trailing: Text(data.time,
+            style: TextStyle(
+              fontSize: 13,
+              color: Color(0xFF999999),
+            ),
+          ),
+          subtrailing: Text("已完成",
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.blue,
+            ),
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return DividerExt.custome();
+      },
+    )),
 
-    PageWidgetModel(title: '列表(泛型)', widget: SectionListView<String, Tuple2<String, String>>(
+    Tuple2('升级列表(新)', ListView.separated(
+      cacheExtent: 180,
+      itemCount: kUpdateAppList.length,
+      itemBuilder: (context, index) {
+        final data = kUpdateAppList[index];
+        if (index == 0) {
+          return UpdateAppCard(data: data, isExpand: true, showExpand: false,);
+        }
+        return UpdateAppCard(data: data);
+      },
+      separatorBuilder: (context, index) {
+        return Divider();
+      },
+    )),
+
+    Tuple2('列表(泛型)', SectionListView<String, Tuple2<String, String>>(
       headerList: ["特殊功能", "动画相关", "系统组件demo", "自定义组件", "其它"],
       itemList: [_specials, _animateds, _list, _customeWidgets, _others]
           .map((e) => e.sorted((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()))).toList(),
@@ -132,39 +201,6 @@ class _WidgetListPageState extends State<WidgetListPage> with SingleTickerProvid
         );
       },
     ),),
-
-
-    // PageWidgetModel(title: '功能列表', widget: ListView.separated(
-    //   itemCount: list.length,
-    //   itemBuilder: (context, index) {
-    //     list.sort((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()));
-    //     final e = list[index];
-    //
-    //     return ListTile(
-    //       title: Text(e.item2),
-    //       subtitle: Text(e.item2.toCapitalize()),
-    //       trailing: Icon(Icons.keyboard_arrow_right_rounded),
-    //       dense: true,
-    //       onTap: (){
-    //         // Get.toNamed(e.item1, arguments: e);
-    //         if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
-    //           Get.offNamed(e.item1, arguments: e.item1);
-    //         } else {
-    //           Get.toNamed(e.item1, arguments: e.item1);
-    //         }
-    //       },
-    //     );
-    //   },
-    //   separatorBuilder: (context, index) {
-    //     return Divider(
-    //       height: .5,
-    //       indent: 15,
-    //       endIndent: 15,
-    //       color: Color(0xFFDDDDDD),
-    //     );
-    //   },
-    // ),
-    // ),
   ];
 
   void testData() {
@@ -251,7 +287,6 @@ var _list = [
   Tuple2(APPRouter.sliverPersistentHeaderDemo, "sliverPersistentHeaderDemo", ),
 
   Tuple2(APPRouter.tabBarDemoPage, "tabBarDemoPage", ),
-  Tuple2(APPRouter.tableViewDemoPage, "tableViewDemoPage", ),
   Tuple2(APPRouter.textlessDemo, "textlessDemo", ),
   Tuple2(APPRouter.textFieldDemo, "textFieldDemo", ),
 
@@ -260,7 +295,7 @@ var _list = [
   Tuple2(APPRouter.nestedScrollViewDemo, "nestedScrollViewDemo", ),
 
   Tuple2(APPRouter.popoverDemo, "popoverDemo", ),
-  
+
 ];
 
 var _specials = [
@@ -268,7 +303,9 @@ var _specials = [
   Tuple2(APPRouter.providerRoute, "providerRoute", ),
   Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
 
-  // Tuple2(APPRouter.widgetDemoList, "widgetDemoList", ),
+  Tuple2(APPRouter.tabBarPageViewDemo, "tabBarPageViewDemo", ),
+  Tuple2(APPRouter.tabBarReusePageDemo, "tabBarReusePageDemo", ),
+
 ];
 
 var _animateds = [
@@ -297,6 +334,4 @@ var _others = [
   Tuple2(APPRouter.loginPage2, "LoginPage2", ),
   Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
 
-
 ];
-
