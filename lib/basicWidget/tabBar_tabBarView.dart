@@ -14,6 +14,7 @@ import 'package:tuple/tuple.dart';
 
 import 'package:flutter/material.dart';
 
+///TabBar+TabBarView
 class TabBarTabBarView extends StatefulWidget {
 
   final List<Tuple2<String, Widget>> items;
@@ -49,10 +50,10 @@ class TabBarTabBarView extends StatefulWidget {
   _TabBarTabBarViewState createState() => _TabBarTabBarViewState();
 }
 
-class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerProviderStateMixin {
+class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProviderStateMixin {
 
   late TabController _tabController;
-  // late PageController _pageController;
+  late TabController _tabController1 = TabController(length: widget.items.length, vsync: this);
 
   ///是否允许滚动
   bool get canScrollable {
@@ -64,10 +65,14 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerPr
 
   @override
   void initState() {
-    _tabController = widget.tabController ??
-        TabController(length: widget.items.length, vsync: this);
-    // _pageController =
-    //     widget.pageController ?? PageController(initialPage: 0, keepPage: true);
+    _tabController = widget.tabController ?? TabController(length: widget.items.length, vsync: this)
+    ..addListener(() {
+      // ddlog(_tabController.index);
+      setState(() {
+        _tabController1.animateTo( _tabController.index);
+      });
+      widget.onPageChanged(_tabController.index);
+    });
 
     super.initState();
   }
@@ -75,7 +80,6 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerPr
   @override
   void dispose() {
     _tabController.dispose();
-    // _pageController.dispose();
 
     super.dispose();
   }
@@ -84,7 +88,7 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerPr
   Widget build(BuildContext context) {
     final list = [
       _buildTabBar(),
-      _buildPageView(),
+      _buildTabBarView(),
     ];
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -124,13 +128,16 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerPr
 
 
     final tabBar = TabBar(
-      controller: _tabController,
+      controller: _tabController1,
       tabs: widget.items.map((e) => Tab(text: e.item1)).toList(),
       labelColor: textColor,
       indicator: widget.isTabBarTop ? indicatorBom : indicatorTop,
       onTap: (index) {
-        ddlog([index, _tabController.index]);
-        setState(() { });
+        // ddlog([index, _tabController.index]);
+        setState(() {
+          _tabController.animateTo( _tabController1.index);
+        });
+        // widget.onPageChanged(_tabController.index);
       },
     );
 
@@ -152,11 +159,11 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerPr
     );
   }
 
-  Widget _buildPageView() {
+  Widget _buildTabBarView() {
     return Expanded(
       child: TabBarView(
-        physics: canScrollable ? BouncingScrollPhysics() : NeverScrollableScrollPhysics(),
         controller: _tabController,
+        physics: canScrollable ? BouncingScrollPhysics() : NeverScrollableScrollPhysics(),
         children: widget.items.map((e) => e.item2).toList(),
       ),);
   }

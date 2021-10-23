@@ -26,6 +26,8 @@ class TabBarPageView extends StatefulWidget {
 
   final ValueChanged<int> onPageChanged;
 
+  final bool Function(int)? canPageChanged;
+
   final bool isTabBarTop;
 
   TabBarPageView({
@@ -37,6 +39,7 @@ class TabBarPageView extends StatefulWidget {
     this.pageController,
     this.tabController,
     required this.onPageChanged,
+    this.canPageChanged,
   }) : super(key: key);
 
   @override
@@ -48,13 +51,22 @@ class _TabBarPageViewState extends State<TabBarPageView> with SingleTickerProvid
   late TabController _tabController;
   late PageController _pageController;
 
+  ///是否允许滚动
+  bool get canScrollable {
+    if (widget.canPageChanged != null && widget.canPageChanged!(_tabController.index) == false) {
+      return false;
+    }
+    return true;
+  }
 
   @override
   void initState() {
-    _tabController = widget.tabController ??
-        TabController(length: widget.items.length, vsync: this);
-    _pageController =
-        widget.pageController ?? PageController(initialPage: 0, keepPage: true);
+    _tabController = widget.tabController ?? TabController(length: widget.items.length, vsync: this);
+    _pageController = widget.pageController ?? PageController(initialPage: 0, keepPage: true);
+    // ..addListener(() {
+    //   ddlog(_pageController.page);
+    //
+    // });
 
     super.initState();
   }
@@ -116,12 +128,18 @@ class _TabBarPageViewState extends State<TabBarPageView> with SingleTickerProvid
       labelColor: textColor,
       indicator: widget.isTabBarTop ? indicatorBom : indicatorTop,
       onTap: (index) {
-        ddlog(index);
+        // ddlog(index);
         setState(() {
           _pageController.jumpToPage(index);
         });
       },
     );
+
+    if (!canScrollable) {
+      return IgnorePointer(
+        child: tabBar,
+      );
+    }
 
     if (widget.isTabBarTop) {
       return tabBar;
@@ -139,6 +157,7 @@ class _TabBarPageViewState extends State<TabBarPageView> with SingleTickerProvid
     return Expanded(
       child: PageView(
         controller: _pageController,
+        physics: canScrollable ? BouncingScrollPhysics() : NeverScrollableScrollPhysics(),
         children: widget.items.map((e) => e.item2).toList(),
         onPageChanged: (index) {
           widget.onPageChanged(index);

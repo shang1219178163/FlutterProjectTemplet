@@ -80,6 +80,9 @@ class _TabBarReusePageDemoState extends State<TabBarReusePageDemo> {
       TabBarPageView(
           isTabBarTop: isTabBarTop,
           items: _items,
+          canPageChanged: (index) {
+            return (index != 1);
+          },
           onPageChanged: (index) {
             ddlog(index);
           }
@@ -91,9 +94,9 @@ class _TabBarReusePageDemoState extends State<TabBarReusePageDemo> {
       TabBarTabBarView(
           isTabBarTop: isTabBarTop,
           items: _items,
-          canPageChanged: (index) {
-            return (index != 1);
-          },
+          // canPageChanged: (index) {
+          //   return (index != 1);
+          // },
           onPageChanged: (index) {
             ddlog(index);
           }
