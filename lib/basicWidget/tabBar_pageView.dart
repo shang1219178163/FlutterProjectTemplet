@@ -95,38 +95,32 @@ class _TabBarPageViewState extends State<TabBarPageView> with SingleTickerProvid
     final textColor = widget.labelColor ?? Theme
         .of(context)
         .colorScheme
-        .secondary;
+        .primary;
+
     final bgColor = widget.indicatorColor ?? Colors.white;
 
-    // final bgColor = Theme.of(context).colorScheme.secondary;
-    // final textColor = Colors.white;
+    final borderSide = BorderSide(
+      color: textColor,
+      width: 2.0,
+    );
 
-    BoxDecoration indicatorTop = BoxDecoration(
+    BoxDecoration decorationTop = BoxDecoration(
       border: Border(
-        top: BorderSide(
-          // color: textColor ,
-            color: textColor,
-            width: 3.0
-        ),
+        top: borderSide,
       ),
     );
 
-    BoxDecoration indicatorBom = BoxDecoration(
+    BoxDecoration decorationBom = BoxDecoration(
       border: Border(
-        bottom: BorderSide(
-          // color: textColor ,
-            color: textColor,
-            width: 3.0
-        ),
+        bottom: borderSide,
       ),
     );
-
 
     final tabBar = TabBar(
       controller: _tabController,
       tabs: widget.items.map((e) => Tab(text: e.item1)).toList(),
       labelColor: textColor,
-      indicator: widget.isTabBarTop ? indicatorBom : indicatorTop,
+      indicator: widget.isTabBarTop ? decorationBom : decorationTop,
       onTap: (index) {
         // ddlog(index);
         setState(() {

@@ -10,8 +10,6 @@ import 'package:fluttertemplet/dartExpand/globalKey_extension.dart';
 import 'package:fluttertemplet/dartExpand/navigator_extension.dart';
 
 import 'package:fluttertemplet/network/fileManager.dart';
-import 'package:fluttertemplet/network/httpManager.dart';
-
 import 'package:fluttertemplet/basicWidget/hud/progresshud.dart';
 
 import 'package:styled_widget/styled_widget.dart';

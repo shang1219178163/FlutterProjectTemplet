@@ -280,7 +280,7 @@ var _list = [
   Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
   Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
-  Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
+  Tuple2(APPRouter.slidableDemo, "SlidableDemo", ),
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
   Tuple2(APPRouter.sliverFamilyDemo, "SliverFamilyDemo", ),
   Tuple2(APPRouter.sliverFamilyPageViewDemo, "sliverFamilyPageViewDemo", ),
@@ -295,6 +295,12 @@ var _list = [
   Tuple2(APPRouter.nestedScrollViewDemo, "nestedScrollViewDemo", ),
 
   Tuple2(APPRouter.popoverDemo, "popoverDemo", ),
+  Tuple2(APPRouter.absorbPointerDemo, "absorbPointerDemo", ),
+  Tuple2(APPRouter.willPopScopeDemo, "willPopScopeDemo", ),
+
+  Tuple2(APPRouter.futureBuilderDemo, "futureBuilderDemo", ),
+  Tuple2(APPRouter.streamBuilderDemo, "streamBuilderDemo", ),
+
 
 ];
 

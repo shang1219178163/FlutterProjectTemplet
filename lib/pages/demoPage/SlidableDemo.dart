@@ -14,16 +14,16 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 
-class SlidableDemoPage extends StatefulWidget {
-  SlidableDemoPage({Key? key, this.title}) : super(key: key);
+class SlidableDemo extends StatefulWidget {
+  SlidableDemo({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _SlidableDemoPageState createState() => _SlidableDemoPageState();
+  _SlidableDemoState createState() => _SlidableDemoState();
 }
 
-class _SlidableDemoPageState extends State<SlidableDemoPage> {
+class _SlidableDemoState extends State<SlidableDemo> {
   late final SlidableController slidableController;
   final List<_HomeItem> items = List.generate(20, (i) => _HomeItem(
       i,

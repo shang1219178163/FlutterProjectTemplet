@@ -52,7 +52,7 @@ class _TabBarReusePageDemoState extends State<TabBarReusePageDemo> {
         .settings
         .arguments;
 
-    var val = isTabBarTop ? "顶部" : "底部";
+    var val = isTabBarTop ? "底部" : "顶部";
     return Scaffold(
       appBar: AppBar(
         title: Text(isPageView ? "TabBarPageView" : "TabBarTabBarView"),

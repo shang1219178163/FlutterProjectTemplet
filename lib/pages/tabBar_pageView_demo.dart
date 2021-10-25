@@ -318,7 +318,6 @@ var _list = [
   Tuple2(APPRouter.segmentControlDemoPage, "segmentControlDemoPage", ),
   Tuple2(APPRouter.snackBarDemoPage, "SnackBar", ),
   Tuple2(APPRouter.stepperDemoPage, "stepperDemoPage", ),
-  Tuple2(APPRouter.slidableDemoPage, "SlidableDemoPage", ),
   Tuple2(APPRouter.sliverAppBarDemoPage, "SliverAppBarDemoPage", ),
   Tuple2(APPRouter.sliverFamilyDemo, "SliverFamilyDemo", ),
   Tuple2(APPRouter.sliverFamilyPageViewDemo, "sliverFamilyPageViewDemo", ),

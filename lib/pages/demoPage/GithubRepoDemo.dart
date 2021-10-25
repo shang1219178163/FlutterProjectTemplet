@@ -10,7 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
-import 'package:fluttertemplet/network/httpManager.dart';
+import 'package:fluttertemplet/network/RequestClient.dart';
 
 class GithubRepoDemo extends StatefulWidget {
 
@@ -25,6 +25,8 @@ class GithubRepoDemo extends StatefulWidget {
 
 class _GithubRepoDemoState extends State<GithubRepoDemo> {
   Dio _dio = new Dio();
+
+  // Cliet _dio = new Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class _GithubRepoDemoState extends State<GithubRepoDemo> {
         alignment: Alignment.center,
         child: FutureBuilder(
             // future: _dio.get("https://api.github.com/orgs/flutterchina/repos"),
-            future: HttpManager.get("https://api.github.com/orgs/flutterchina/repos"),
+            future: RequestClient.get("https://api.github.com/orgs/flutterchina/repos"),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               //请求完成
               if (snapshot.connectionState == ConnectionState.done) {

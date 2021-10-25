@@ -8,13 +8,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/dartExpand/box_decoration_extension.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:tuple/tuple.dart';
 
 
-import 'package:flutter/material.dart';
-
-///TabBar+TabBarView
 class TabBarTabBarView extends StatefulWidget {
 
   final List<Tuple2<String, Widget>> items;
@@ -50,10 +48,10 @@ class TabBarTabBarView extends StatefulWidget {
   _TabBarTabBarViewState createState() => _TabBarTabBarViewState();
 }
 
-class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProviderStateMixin {
+class _TabBarTabBarViewState extends State<TabBarTabBarView> with SingleTickerProviderStateMixin {
 
   late TabController _tabController;
-  late TabController _tabController1 = TabController(length: widget.items.length, vsync: this);
+  // late PageController _pageController;
 
   ///是否允许滚动
   bool get canScrollable {
@@ -65,14 +63,7 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProvider
 
   @override
   void initState() {
-    _tabController = widget.tabController ?? TabController(length: widget.items.length, vsync: this)
-    ..addListener(() {
-      // ddlog(_tabController.index);
-      setState(() {
-        _tabController1.animateTo( _tabController.index);
-      });
-      widget.onPageChanged(_tabController.index);
-    });
+    _tabController = widget.tabController ??  TabController(length: widget.items.length, vsync: this);
 
     super.initState();
   }
@@ -88,7 +79,7 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProvider
   Widget build(BuildContext context) {
     final list = [
       _buildTabBar(),
-      _buildTabBarView(),
+      _buildPageView(),
     ];
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -100,44 +91,36 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProvider
     final textColor = widget.labelColor ?? Theme
         .of(context)
         .colorScheme
-        .secondary;
+        .primary;
+
     final bgColor = widget.indicatorColor ?? Colors.white;
 
-    // final bgColor = Theme.of(context).colorScheme.secondary;
-    // final textColor = Colors.white;
+    final borderSide = BorderSide(
+      color: textColor,
+      width: 2.0,
+    );
 
-    BoxDecoration indicatorTop = BoxDecoration(
+    BoxDecoration decorationTop = BoxDecoration(
       border: Border(
-        top: BorderSide(
-          // color: textColor ,
-            color: textColor,
-            width: 3.0
-        ),
+        top: borderSide,
       ),
     );
 
-    BoxDecoration indicatorBom = BoxDecoration(
+    BoxDecoration decorationBom = BoxDecoration(
       border: Border(
-        bottom: BorderSide(
-          // color: textColor ,
-            color: textColor,
-            width: 3.0
-        ),
+        bottom: borderSide,
       ),
     );
 
 
     final tabBar = TabBar(
-      controller: _tabController1,
+      controller: _tabController,
       tabs: widget.items.map((e) => Tab(text: e.item1)).toList(),
       labelColor: textColor,
-      indicator: widget.isTabBarTop ? indicatorBom : indicatorTop,
+      indicator: widget.isTabBarTop ? decorationBom : decorationTop,
       onTap: (index) {
         // ddlog([index, _tabController.index]);
-        setState(() {
-          _tabController.animateTo( _tabController1.index);
-        });
-        // widget.onPageChanged(_tabController.index);
+        setState(() { });
       },
     );
 
@@ -159,11 +142,11 @@ class _TabBarTabBarViewState extends State<TabBarTabBarView> with TickerProvider
     );
   }
 
-  Widget _buildTabBarView() {
+  Widget _buildPageView() {
     return Expanded(
       child: TabBarView(
-        controller: _tabController,
         physics: canScrollable ? BouncingScrollPhysics() : NeverScrollableScrollPhysics(),
+        controller: _tabController,
         children: widget.items.map((e) => e.item2).toList(),
       ),);
   }

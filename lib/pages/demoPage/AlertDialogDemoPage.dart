@@ -16,7 +16,6 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/richText_extension.dart';
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 import 'package:fluttertemplet/dartExpand/alertDialog_extension.dart';
-import 'package:fluttertemplet/network/httpManager.dart';
 import 'package:get/get.dart';
 
 import 'package:popover/popover.dart';

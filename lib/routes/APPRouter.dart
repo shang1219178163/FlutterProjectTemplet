@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/Provider/provider_list_demo.dart';
 import 'package:fluttertemplet/basicWidget/TabBarViewDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/AbsorbPointerDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/ContextMenuActionDemo.dart';
@@ -33,6 +34,7 @@ import 'package:fluttertemplet/Pages/FourthPage.dart';
 import 'package:fluttertemplet/Pages/IconsListPage.dart';
 import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/ThirdPage.dart';
+import 'package:fluttertemplet/pages/demoPage/will_pop_scope_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_reuse_page_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_tabBarView_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_pageView_demo.dart';
@@ -48,7 +50,7 @@ import 'package:fluttertemplet/Pages/demoPage/PickerDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/ProgressHudDemoNew.dart';
 import 'package:fluttertemplet/Pages/demoPage/SnackBarDemoPage.dart';
 import 'package:fluttertemplet/Pages/demoPage/TextFieldDemo.dart';
-import 'package:fluttertemplet/Pages/demoPage/SlidableDemoPage.dart';
+import 'package:fluttertemplet/Pages/demoPage/SlidableDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/CarouselSliderDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/DateTableDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/DraggableDemoPage.dart';
@@ -119,7 +121,7 @@ class APPRouter {
   static const toastContext = '/ToastContext';
   static const toastNoContext = '/ToastNoContext';
   static const recordListDemo = '/RecordListDemo';
-  static const slidableDemoPage = '/FlutterSlidaableDemoPage';
+  static const slidableDemo = '/SlidaableDemo';
   static const settingsPage = '/AppSettingsPage';
   static const draggableDemoPage = '/DraggableDemoPage';
   // static const animatedIconDemoPage = '/AnimatedIconDemoPage';
@@ -169,6 +171,9 @@ class APPRouter {
   static const tabBarPageViewDemo = '/tabBarPageViewDemo';
   static const tabBarPageViewDemoNew = '/tabBarPageViewDemoNew';
   static const tabBarReusePageDemo = '/tabBarReusePageDemo';
+  static const absorbPointerDemo = '/AbsorbPointerDemo';
+  static const willPopScopeDemo = '/WillPopScopeDemo';
+
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -351,8 +356,8 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.slidableDemoPage,
-       page: () => SlidableDemoPage(),
+       name: APPRouter.slidableDemo,
+       page: () => SlidableDemo(),
      ),
 
      GetPage(
@@ -570,11 +575,19 @@ class AppPage{
       page: () => TabBarPageViewDemo(),
     ),
 
-
-
     GetPage(
       name: APPRouter.tabBarReusePageDemo,
       page: () => TabBarReusePageDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.absorbPointerDemo,
+      page: () => AbsorbPointerDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.willPopScopeDemo,
+      page: () => WillPopScopeDemo(),
     ),
 
   ];
