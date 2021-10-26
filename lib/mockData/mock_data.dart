@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluttertemplet/Model/AppUpdateItemModel.dart';
+import 'package:fluttertemplet/Model/app_update_model.dart';
 import 'package:fluttertemplet/model/user_model.dart';
 
 

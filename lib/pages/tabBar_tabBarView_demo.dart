@@ -162,7 +162,7 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
       },
     )),
 
-    Tuple2('升级列表(新)', ListView.separated(
+    Tuple2('升级列表', ListView.separated(
       cacheExtent: 180,
       itemCount: kUpdateAppList.length,
       itemBuilder: (context, index) {
@@ -312,6 +312,8 @@ var _specials = [
   Tuple2(APPRouter.tabBarPageViewDemo, "tabBarPageViewDemo", ),
   Tuple2(APPRouter.tabBarReusePageDemo, "tabBarReusePageDemo", ),
 
+  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
+
 ];
 
 var _animateds = [
@@ -338,6 +340,5 @@ var _others = [
   Tuple2(APPRouter.richTextDemo, "richTextDemo", ),
   Tuple2(APPRouter.loginPage, "LoginPage", ),
   Tuple2(APPRouter.loginPage2, "LoginPage2", ),
-  Tuple2(APPRouter.githubRepoDemo, "githubRepoDemo", ),
 
 ];
