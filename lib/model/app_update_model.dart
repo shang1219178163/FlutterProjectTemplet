@@ -1,5 +1,5 @@
 //
-//  AppUpdateItemModel.dart
+//  app_update_model.dart
 //  fluttertemplet
 //
 //  Created by shang on 5/19/21 5:34 PM.
