@@ -227,11 +227,9 @@ class Repository {
     archived = json['archived'];
     disabled = json['disabled'];
     openIssuesCount = json['open_issues_count'];
-    license =
-        json['license'] != null ? License.fromJson(json['license']) : null;
+    license = json['license'] != null ? License.fromJson(json['license']) : null;
     allowForking = json['allow_forking'];
     isTemplate = json['is_template'];
-    // topics = json['topics'].cast<String>();
     topics = json['topics'] != null ? json['topics'].cast<String>() : <String>[];
     visibility = json['visibility'];
     forks = json['forks'];
