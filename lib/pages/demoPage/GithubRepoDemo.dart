@@ -20,8 +20,6 @@ import 'package:fluttertemplet/network/HttpManager.dart';
 import 'package:fluttertemplet/network/RequestClient.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:logger/logger.dart';
-import 'package:simple_logger/simple_logger.dart';
 class GithubRepoDemo extends StatefulWidget {
 
   final String? title;
@@ -48,6 +46,16 @@ class _GithubRepoDemoState extends State<GithubRepoDemo> {
             setState(() { });
             requestRepos();
 
+            final map = {
+            'admin': true,
+            'maintain': true,
+            'push': true,
+            'triage': false,
+            'pull': false,
+            };
+            final model = Permissions.fromJson(map);
+            ddlog(model);
+
           }, icon: Icon(Icons.refresh)),
           TextButton(onPressed: (){
             setState(() { });
@@ -56,6 +64,7 @@ class _GithubRepoDemoState extends State<GithubRepoDemo> {
         ],
       ),
       body: _isModel ? _buildBodyByModel() : _buildBody(),
+      // body: _isModel ? _buildBodyByModel1() : _buildBody(),
     );
   }
 
@@ -77,7 +86,7 @@ class _GithubRepoDemoState extends State<GithubRepoDemo> {
               return ListView(
                 children: response.data.map<Widget>((e) =>
                   ListTile(
-                      title: Text(e["full_name"]),
+                    title: Text(e["full_name"]),
                     subtitle: Text(e["url"]),
                   )).toList(),
               );
@@ -107,6 +116,41 @@ class _GithubRepoDemoState extends State<GithubRepoDemo> {
               List<dynamic> list = json.decode(response.data);
               ///json转模型
               List<Repository> models = list.map<Repository>((e) => Repository.fromJson(e)).toList();
+              ///界面显示
+              return ListView(
+                children: models.map<Widget>((e) =>
+                    ListTile(
+                      title: Text("${e.name ?? "_"}"),
+                      subtitle: Text("${e.url ?? "_"}"),
+                    )
+                ).toList(),
+              );
+            }
+            //请求未完成时弹出loading
+            return CircularProgressIndicator();
+          }
+      ),
+    );
+  }
+
+  Widget _buildBodyByModel1() {
+    return Container(
+      alignment: Alignment.center,
+      child: FutureBuilder(
+          future: _dio.get("https://api.github.com/orgs/flutterchina/repos"),
+          // future: RequestClient.get("https://api.github.com/orgs/flutterchina/repos"),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            //请求完成
+            if (snapshot.connectionState == ConnectionState.done) {
+              Response response = snapshot.data;
+              //发生错误
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              }
+              ///字符串转json
+              // List<dynamic> list = json.decode(response.data);
+              ///json转模型
+              List<Repository> models = response.data.map<Repository>((e) => Repository.fromJson(e)).toList();
               ///界面显示
               return ListView(
                 children: models.map<Widget>((e) =>

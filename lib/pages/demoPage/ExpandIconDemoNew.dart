@@ -23,24 +23,35 @@ class ExpandIconDemoNewState extends State<ExpandIconDemoNew> {
 
   late bool _isExpanded = false;
 
+  late List<ExpandedItem<String>> _data;
+
+  @override
+  void initState() {
+    _data = this._generateItems(20);
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("$widget"),
       ),
-      // body: buildExpandIcon(context),
-      // body: buildExpansionPanelList(context),
-      body: Column(
-        children: [
-          buildExpandIcon(context),
-          buildExpansionPanelList(context),
-        ],
+      // body: _buildExpandIcon(context),
+      // body: _buildExpansionPanelList(context),
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildExpandIcon(),
+            Expanded(child: _buildExpansionPanelList()),
+          ],
+        ),
       ),
-
     );
   }
 
-  Widget buildExpandIcon(BuildContext context) {
+  Widget _buildExpandIcon() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -87,69 +98,141 @@ class ExpandIconDemoNewState extends State<ExpandIconDemoNew> {
     );
   }
 
-
-  final List<Item> _data = generateItems(3);
-
-  Widget buildExpansionPanelList(BuildContext context) {
+  Widget _buildExpansionPanelList() {
     return SingleChildScrollView(
       child: Container(
-        child: _buildPanel(),
+        child: ExpansionPanelList(
+          dividerColor: Colors.red,
+          // elevation: 4,
+          expandedHeaderPadding: EdgeInsets.only(top: 0, bottom: 0),
+          expansionCallback: (int index, bool isExpanded) {
+            setState(() {
+              _data[index].isExpanded = !isExpanded;
+            });
+          },
+          children: _data.map<ExpansionPanel>((item) {
+            return ExpansionPanel(
+              isExpanded: item.isExpanded,
+              canTapOnHeader: true,
+              headerBuilder: (BuildContext context, bool isExpanded) {
+                return CustomExpansionTile();
+                return Container(
+                  color: Colors.green,
+                  child: ListTile(
+                    title: Text(item.headerValue),
+                    subtitle: Text("subtitle"),
+                  ),
+                );
+                // return ListTile(
+                //   title: Text(item.headerValue),
+                //   subtitle: Text("subtitle"),
+                // );
+              },
+              body: _buildExpansionPanelBody(item.index),
+              // body: _buildListTitle(item),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
 
-  Widget _buildPanel() {
-    return ExpansionPanelList(
-      dividerColor: Colors.red,
-      // elevation: 4,
-      expandedHeaderPadding: EdgeInsets.only(top: 0, bottom: 0),
-      expansionCallback: (int index, bool isExpanded) {
-        setState(() {
-          _data[index].isExpanded = !isExpanded;
-        });
-      },
-      children: _data.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
-          headerBuilder: (BuildContext context, bool isExpanded) {
-            return ListTile(
-              title: Text(item.headerValue),
-              subtitle: Text("subtitle"),
-            );
-          },
-          body: ListTile(
-              title: Text(item.expandedValue),
-              subtitle: Text('To delete this panel, tap the trash can icon'),
-              trailing: Icon(Icons.delete),
-              onTap: () {
-                setState(() {
-                  _data.removeWhere((Item currentItem) => item == currentItem);
-                });
-              }),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+  Widget _buildExpansionPanelBody(int section) {
+    final item = _data[section];
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: item.items.map((e) => Column(
+        children: [
+          ListTile(
+            title: Text("detail index: $e"),
+            subtitle: Text('To delete this panel, tap the trash can icon'),
+            trailing: Icon(Icons.delete),
+            onTap: () {
+              ddlog("section_${section}_${e}");
+              setState(() {});
+            }),
+          Divider(color: Colors.blue,),
+        ],
+      )).toList(),
     );
+  }
+
+  _buildListTitle(ExpandedItem item) {
+    return
+    ListTile(
+      title: Text(item.expandedValue),
+      subtitle: Text('To delete this panel, tap the trash can icon'),
+      trailing: Icon(Icons.delete),
+      onTap: () {
+        setState(() {
+          _data.removeWhere((ExpandedItem currentItem) => item == currentItem);
+        });
+      });
+  }
+
+  List<ExpandedItem<String>> _generateItems(int count) {
+    return List<ExpandedItem<String>>.generate(count, (int index) {
+      return ExpandedItem<String>(
+        index: index,
+        headerValue: 'Panel $index',
+        expandedValue: 'This is item number $index',
+        items: List.generate(index, (index) => "$index"),
+      );
+    });
   }
 }
 
 // stores ExpansionPanel state information
-class Item {
-  Item({
-    required this.expandedValue,
-    required this.headerValue,
-    this.isExpanded = false,
-  });
-
+class ExpandedItem<E> {
+  int index;
   String expandedValue;
   String headerValue;
   bool isExpanded;
+
+  List<E> items;
+
+  ExpandedItem({
+    required this.index,
+    required this.expandedValue,
+    required this.headerValue,
+    required this.items,
+    this.isExpanded = false,
+  });
+
 }
 
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      headerValue: 'Panel $index',
-      expandedValue: 'This is item number $index',
+
+///自定义视图
+class CustomExpansionTile extends StatefulWidget {
+  @override
+  State createState() => CustomExpansionTileState();
+}
+
+class CustomExpansionTileState extends State<CustomExpansionTile> {
+  bool isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionTile(
+      leading: Icon(
+        Icons.face,
+        size: 36.0,
+      ),
+      title: Container(
+        child: Text("HEADER HERE",
+          style: TextStyle(
+            color: isExpanded ? Colors.black : Colors.black,
+          ),
+        ),
+        // Change header (which is a Container widget in this case) background colour here.
+        color: isExpanded ? Colors.orange : Colors.green,
+      ),
+      subtitle: Text("subtitle"),
+      children: <Widget>[
+        Text("Child Widget One"),
+        Text("Child Widget Two"),
+      ],
+      onExpansionChanged: (bool expanding) => setState(() => this.isExpanded = expanding),
     );
-  });
+  }
 }

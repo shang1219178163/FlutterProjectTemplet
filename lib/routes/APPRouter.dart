@@ -15,6 +15,7 @@ import 'package:fluttertemplet/pages/demoPage/GridViewDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/GridPaperDemo.dart';
 
 import 'package:fluttertemplet/pages/demoPage/HudProgressDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/IndexedStackDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LayoutBuilderDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/LocationPopView.dart';
 import 'package:fluttertemplet/pages/demoPage/MenuDemo.dart';
@@ -34,6 +35,7 @@ import 'package:fluttertemplet/Pages/FourthPage.dart';
 import 'package:fluttertemplet/Pages/IconsListPage.dart';
 import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/ThirdPage.dart';
+import 'package:fluttertemplet/pages/demoPage/banner_demo.dart';
 import 'package:fluttertemplet/pages/demoPage/will_pop_scope_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_reuse_page_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_tabBarView_demo.dart';
@@ -173,7 +175,8 @@ class APPRouter {
   static const tabBarReusePageDemo = '/tabBarReusePageDemo';
   static const absorbPointerDemo = '/AbsorbPointerDemo';
   static const willPopScopeDemo = '/WillPopScopeDemo';
-
+  static const bannerDemo = '/bannerDemo';
+  static const indexedStackDemo = '/IndexedStackDemo';
 
   // static final routes = <String, WidgetBuilder>{
   //   homePage: (context) => MyHomePage(),
@@ -588,6 +591,16 @@ class AppPage{
     GetPage(
       name: APPRouter.willPopScopeDemo,
       page: () => WillPopScopeDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.bannerDemo,
+      page: () => BannerDemo(),
+    ),
+
+    GetPage(
+      name: APPRouter.indexedStackDemo,
+      page: () => IndexedStackDemo(),
     ),
 
   ];

@@ -274,9 +274,6 @@ class _TabBarPageViewDemoState extends State<TabBarPageViewDemo> with SingleTick
       },
     ),),
   ];
-
-
-
 }
 
 var _list = [

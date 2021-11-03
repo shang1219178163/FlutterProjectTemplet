@@ -51,13 +51,14 @@ class _TableDemoState extends State<TableDemo> {
     Table(
       columnWidths: <int, TableColumnWidth>{
         0: IntrinsicColumnWidth(),
-        1: FlexColumnWidth(100),
-        1: FlexColumnWidth(),
+        1: FlexColumnWidth(80),
+        2: FlexColumnWidth(80),
       },
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       border: TableBorder.all(
-          color: Colors.grey,
-          width: 1,
+        color: Colors.green,
+        width: 2,
+        style: BorderStyle.solid,
       ),
       children: _renderList(),
     );

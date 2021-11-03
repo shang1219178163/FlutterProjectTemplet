@@ -50,6 +50,18 @@ extension StatefulWidgetExt<T extends StatefulWidget> on State<T> {
 
 }
 
+// showSnackBar({
+//   required BuildContext context,
+//   required SnackBar snackBar,
+//   bool isReplace = false
+// }) {
+//   final scaffoldMessenger = ScaffoldMessenger.of(context);
+//   if (isReplace) {
+//     scaffoldMessenger.hideCurrentSnackBar();
+//   }
+//   scaffoldMessenger.showSnackBar(snackBar);
+// }
+
 // extension SnackBarExt on SnackBar {
 //
 //   void showBy(BuildContext context, [bool isReplace = false]) {

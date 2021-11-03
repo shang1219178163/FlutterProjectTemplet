@@ -104,3 +104,4 @@ class _SectionListViewState<H, E> extends State<SectionListView<H,E>> {
     setState(() { });
   }
 }
+

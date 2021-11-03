@@ -6,6 +6,7 @@
 //  Copyright © 10/22/21 shang. All rights reserved.
 //
 
+import 'package:enhance_expansion_panel/enhance_expansion_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/basicWidget/list_subtitle_cell.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
@@ -23,6 +24,8 @@ import 'package:get/get.dart';
 import 'package:tuple/tuple.dart';
 
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
+
+import '../basicWidget/expand_section_list_view.dart';
 
 class TabBarTabBarViewDemo extends StatefulWidget {
 
@@ -104,8 +107,8 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
         tooltip: 'Increment',
         child: Icon(Icons.add),
         onPressed: () {
-          ddlog(["a", 18, null, true, ["1", "2", "3"], {"a": "aa", "b": "bb"}]);
-          ddlog(_list);
+          // ddlog(["a", 18, null, true, ["1", "2", "3"], {"a": "aa", "b": "bb"}]);
+          // ddlog(_list);
         },
       ),
     );
@@ -178,8 +181,8 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
     )),
 
     Tuple2('列表(泛型)', SectionListView<String, Tuple2<String, String>>(
-      headerList: ["特殊功能", "动画相关", "系统组件demo", "自定义组件", "其它"],
-      itemList: [_specials, _animateds, _list, _customeWidgets, _others]
+      headerList: _tuples.map((e) => e.item1).toList(),
+      itemList: _tuples.map((e) => e.item2).toList()
           .map((e) => e.sorted((a, b) => a.item1.toLowerCase().compareTo(b.item1.toLowerCase()))).toList(),
       headerBuilder: (e) {
         return Text(e, style: TextStyle(fontWeight: FontWeight.w600),);
@@ -191,7 +194,7 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
           trailing: Icon(Icons.keyboard_arrow_right_rounded),
           dense: true,
           onTap: (){
-            Get.toNamed(e.item1, arguments: e);
+            // Get.toNamed(e.item1, arguments: e);
             if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
               Get.offNamed(e.item1, arguments: e.item1);
             } else {
@@ -201,6 +204,40 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
         );
       },
     ),),
+
+    Tuple2('列表(折叠)', EnhanceExpandSectionListView<Tuple2<String, String>>(
+      children: _tuples.map<ExpandPanelSectionModel<Tuple2<String, String>>>((e) => ExpandPanelSectionModel(
+      canTapOnHeader: true,
+      isExpanded: false,
+      // arrowPosition: EnhanceExpansionPanelArrowPosition.none,
+      // backgroundColor: Color(0xFFDDDDDD),
+      headerBuilder: (contenx, isExpand) {
+        return Container(
+          // color: Colors.green,
+          // color: Colors.green,
+        child: ListTile(
+            title: Text("${e.item1}"),
+            // subtitle: Text("subtitle"),
+          ),
+        );
+      },
+      bodyChildren: e.item2,
+      bodyItemBuilder: (context, e) {
+        return ListTile(
+            title: Text(e.item1),
+            subtitle: Text(e.item2),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {
+              ddlog("section_");
+              if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+                Get.offNamed(e.item1, arguments: e.item1);
+              } else {
+                Get.toNamed(e.item1, arguments: e.item1);
+              }
+            });
+      },
+    )).toList(),)),
+
   ];
 
   void testData() {
@@ -240,6 +277,12 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
   }
 }
 
+final _tuples = [
+  Tuple2("特殊功能", _specials),
+  Tuple2("动画相关", _animateds),
+  Tuple2("系统组件demo", _list),
+  Tuple2("自定义组件", _customeWidgets),
+  Tuple2("其它", _others)];
 
 var _list = [
   Tuple2(APPRouter.alertDialogDemoPage, "AlertDialog", ),
@@ -300,7 +343,9 @@ var _list = [
 
   Tuple2(APPRouter.futureBuilderDemo, "futureBuilderDemo", ),
   Tuple2(APPRouter.streamBuilderDemo, "streamBuilderDemo", ),
+  Tuple2(APPRouter.bannerDemo, "bannerDemo", ),
 
+  Tuple2(APPRouter.indexedStackDemo, "indexedStackDemo", ),
 
 ];
 
