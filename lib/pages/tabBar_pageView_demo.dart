@@ -14,7 +14,7 @@ import 'package:fluttertemplet/dartExpand/divider_extension.dart';
 import 'package:fluttertemplet/dartExpand/list_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/app_update_card.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/basicWidget/section_list_view.dart';
@@ -240,9 +240,9 @@ class _TabBarPageViewDemoState extends State<TabBarPageViewDemo> with SingleTick
       itemBuilder: (context, index) {
         final data = kUpdateAppList[index];
         if (index == 0) {
-          return UpdateAppCard(data: data, isExpand: true, showExpand: false,);
+          return AppUpdateCard(data: data, isExpand: true, showExpand: false,);
         }
-        return UpdateAppCard(data: data);
+        return AppUpdateCard(data: data);
       },
       separatorBuilder: (context, index) {
         return Divider();
@@ -333,7 +333,7 @@ var _list = [
 ];
 
 var _specials = [
-  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
+  Tuple2(APPRouter.systemIconsPage, "flutter 系统 Icons", ),
   Tuple2(APPRouter.providerRoute, "providerRoute", ),
   Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
 

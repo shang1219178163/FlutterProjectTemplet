@@ -111,11 +111,11 @@ class Student{
 
 	/*  required initializer.  */
 	Student({
-		this.classroom,
-		this.id,
-		this.name,
-		this.score,
-		this.teachers
+		required this.classroom,
+		required this.id,
+		required this.name,
+		required this.score,
+		required this.teachers
 	});
 
 }

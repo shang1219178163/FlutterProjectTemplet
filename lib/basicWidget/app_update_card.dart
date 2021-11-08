@@ -4,14 +4,14 @@ import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/Model/app_update_model.dart';
 
-class UpdateAppCard extends StatefulWidget {
+class AppUpdateCard extends StatefulWidget {
   final AppUpdateItemModel data;
 
   late bool isExpand;
 
   final bool showExpand;
 
-  UpdateAppCard({
+  AppUpdateCard({
     Key? key,
     required this.data,
     this.isExpand = false,
@@ -19,10 +19,10 @@ class UpdateAppCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _UpdateAppCardState createState() => _UpdateAppCardState();
+  _AppUpdateCardState createState() => _AppUpdateCardState();
 }
 
-class _UpdateAppCardState extends State<UpdateAppCard> {
+class _AppUpdateCardState extends State<AppUpdateCard> {
 
   void _changeState() {
     setState(() {
@@ -165,7 +165,7 @@ class NNListUpdateAppWidget extends StatelessWidget {
       itemCount: list.length,
       itemBuilder: (context, index) {
         final data = list[index];
-        return UpdateAppCard(data: data);
+        return AppUpdateCard(data: data);
       },
       separatorBuilder: (context, index) {
         return Divider(

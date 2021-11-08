@@ -8,7 +8,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/BlurWidget.dart';
+import 'package:fluttertemplet/basicWidget/blur_view.dart';
 
 class BackdropFilterDemo extends StatefulWidget {
 
@@ -47,7 +47,7 @@ class _BackdropFilterDemoState extends State<BackdropFilterDemo> {
           fit: BoxFit.cover,
         ),
         Center(
-          child: BlurWidget(
+          child: BlurView(
             child: Container(
               // color: Colors.white10,
               padding: EdgeInsets.all(10),

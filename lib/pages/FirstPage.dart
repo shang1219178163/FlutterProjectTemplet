@@ -3,7 +3,6 @@ import 'package:fluttertemplet/APPThemeSettings.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
-import 'package:fluttertemplet/dartExpand/navigator_extension.dart';
 
 class FirstPage extends StatefulWidget {
 

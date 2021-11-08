@@ -7,6 +7,8 @@
 //
 
 
+import 'dart:convert';
+
 extension StringExt on String{
   /// 获取匹配到的元素数组
   List<String> allMatchesByReg(RegExp regExp) {
@@ -18,4 +20,20 @@ extension StringExt on String{
   String toCapitalize() {
     return "${this[0].toUpperCase()}${this.substring(1)}";
   }
+
+  ///解析
+  static parseResponse(dynamic data) {
+    String result = "";
+    if (data is Map) {
+      result += json.encode(data);
+    } else if (data is bool) {
+      result += data.toString();
+    } else if (data is String) {
+      result += data;
+    } else if (data is List) {
+      result += json.encode(data);
+    }
+    return result;
+  }
+
 }

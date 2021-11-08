@@ -1,11 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/basicWidget/chioce_wrap.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
-import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
-import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
+import 'package:fluttertemplet/basicWidget/chioce_list.dart';
 import 'package:fluttertemplet/dartExpand/actionSheet_extension.dart';
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
@@ -19,8 +19,10 @@ class PickerDemoPage extends StatefulWidget {
 
 class _PickerDemoPageState extends State<PickerDemoPage> {
 
-  var titles = ["datePicker", "datePicker浅封装", "datePicker封装",
-    "Picker浅封装", "Picker封装", "自定义", "单选滚动列表", "多选滚动列表", "8"];
+  var titles = [
+    "datePicker", "datePicker浅封装", "datePicker封装",
+    "Picker浅封装", "Picker封装", "自定义",
+    "单选滚动列表", "多选滚动列表", "8"];
 
   @override
   void initState() {
@@ -216,7 +218,15 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
             height: 500,
             child: Container(
               // color: Colors.green,
-              child: SingleChoiceListWidget(items: list, index: 1, canScroll: true, callback: (Object index) { ddlog(index); }, ),
+              child: ChioceList(
+                isMutiple: true,
+                children: list,
+                indexs: [0],
+                canScroll: true,
+                callback: (Object index) {
+                  ddlog(index);
+                },
+              ),
             ).toMaterial(),
             callback: (String title) {
               ddlog(title);
@@ -249,7 +259,15 @@ class _PickerDemoPageState extends State<PickerDemoPage> {
             child: Container(
               // color: Colors.green,
               // height: 500,
-              child: MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: true, callback: (Object index) { ddlog(index); }, ),
+              child: ChioceList(
+                isMutiple: true,
+                children: list,
+                indexs: [0],
+                canScroll: true,
+                callback: (Object index) {
+                  ddlog(index);
+                  },
+              ),
             ).toMaterial(),
             callback: (String title) {
               ddlog(title);

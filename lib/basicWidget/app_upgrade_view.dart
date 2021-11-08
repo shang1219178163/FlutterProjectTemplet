@@ -6,8 +6,8 @@ import 'package:styled_widget/styled_widget.dart';
 ///
 /// des:app升级提示控件
 ///
-class AppUpgradeWidget extends StatefulWidget {
-  const AppUpgradeWidget(
+class AppUpgradeView extends StatefulWidget {
+  const AppUpgradeView(
       {required this.title,
         this.titleStyle,
         required this.content,
@@ -74,7 +74,7 @@ class AppUpgradeWidget extends StatefulWidget {
   State<StatefulWidget> createState() => _AppUpgradeWidget();
 }
 
-class _AppUpgradeWidget extends State<AppUpgradeWidget> {
+class _AppUpgradeWidget extends State<AppUpgradeView> {
   static final String _downloadApkName = 'temp.apk';
 
   ///

@@ -81,10 +81,8 @@ class _DateTableDemoPageState extends State<DateTableDemoPage> {
     super.dispose();
   }
 
-  var _selectedTab = 0;
   @override
   Widget build(BuildContext context) {
-    dynamic arguments = ModalRoute.of(context)!.settings.arguments;
 
     return Scaffold(
         appBar: AppBar(

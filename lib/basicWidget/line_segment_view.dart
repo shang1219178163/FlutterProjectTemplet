@@ -20,7 +20,7 @@ enum LineSegmentStyle {
 }
 
 ///线条指示器分段组件
-class LineSegmentControl<T> extends StatefulWidget {
+class LineSegmentView<T> extends StatefulWidget {
   
   final Map<T, Widget> children;
   
@@ -42,7 +42,7 @@ class LineSegmentControl<T> extends StatefulWidget {
 
   void Function(T value) onValueChanged;
 
-  LineSegmentControl({
+  LineSegmentView({
     Key? key,
     required this.children,
     required this.groupValue,
@@ -61,10 +61,10 @@ class LineSegmentControl<T> extends StatefulWidget {
 
 
   @override
-  _LineSegmentControlState createState() => _LineSegmentControlState();
+  _LineSegmentViewState createState() => _LineSegmentViewState();
 }
 
-class _LineSegmentControlState extends State<LineSegmentControl> {
+class _LineSegmentViewState extends State<LineSegmentView> {
 
   @override
   Widget build(BuildContext context) {

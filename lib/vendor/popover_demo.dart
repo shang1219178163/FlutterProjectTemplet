@@ -140,19 +140,6 @@ class PopoverButton extends StatelessWidget {
       );
   }
 
-  void _handleShowPopover(BuildContext context) {
-    showPopover(
-      context: context,
-      transitionDuration: const Duration(milliseconds: 150),
-      bodyBuilder: (context) => const ListItems(),
-      onPop: () => print('Popover was popped!'),
-      direction: PopoverDirection.bottom,
-      width: 200,
-      height: 400,
-      arrowHeight: 15,
-      arrowWidth: 30,
-    );
-  }
 
   void _handleShowPopover1(BuildContext context) {
     showPopover(

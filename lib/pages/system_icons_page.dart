@@ -7,13 +7,13 @@ import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
 
-class IconsListPage extends StatefulWidget {
+class SystemIconsPage extends StatefulWidget {
 
   @override
-  _IconsListPageState createState() => _IconsListPageState();
+  _SystemIconsPageState createState() => _SystemIconsPageState();
 }
 
-class _IconsListPageState extends State<IconsListPage> {
+class _SystemIconsPageState extends State<SystemIconsPage> {
   TextEditingController editingController = TextEditingController();
 
   var titles = List.from(kIconDataDic.keys);

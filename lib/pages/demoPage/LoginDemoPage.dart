@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertemplet/model/user_model.dart';
 import 'package:fluttertemplet/pages/demoPage/DateTableDemoPage.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginRoute extends StatefulWidget {

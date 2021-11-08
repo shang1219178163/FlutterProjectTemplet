@@ -187,18 +187,18 @@ class RenderSlideObject extends RenderProxyBox {
   }
 
   void defaultPaint(PaintingContext context, Offset offset) {
-    context.paintChild(child, offset + _offset);
+    context.paintChild(child!, offset + _offset);
   }
 
   @override
   performLayout() {
     BoxConstraints childConstraints = const BoxConstraints();
-    child.layout(childConstraints, parentUsesSize: true);
-    size = child.size - Offset(_buttonWidth, 0.0);
+    child!.layout(childConstraints, parentUsesSize: true);
+    size = child!.size - Offset(_buttonWidth, 0.0);
   }
 
   @override
-  bool hitTestChildren(HitTestResult result, {Offset position}) {
-    return child.hitTest(result, position: (position - _offset));
+  bool hitTestChildren(HitTestResult result, {required Offset position}) {
+    return child!.hitTest(result, position: (position - _offset));
   }
 }

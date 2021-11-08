@@ -1,5 +1,5 @@
 //
-//  BlurWidget.dart
+//  blur_view.dart
 //  fluttertemplet
 //
 //  Created by shang on 7/30/21 11:49 AM.
@@ -11,13 +11,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 /// 高斯模糊
-class BlurWidget extends StatelessWidget {
+class BlurView extends StatelessWidget {
   final EdgeInsets? margin;
   final double? radius;
   final BackdropFilter? backdropFilter;
   final Widget child;
 
-  const BlurWidget({this.margin, this.radius = 10, required this.child, this.backdropFilter});
+  const BlurView({this.margin, this.radius = 10, required this.child, this.backdropFilter});
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/LineSegmentControl.dart';
-import 'package:fluttertemplet/basicWidget/ListViewSegmentControl.dart';
+import 'package:fluttertemplet/basicWidget/line_segment_view.dart';
+import 'package:fluttertemplet/basicWidget/list_view_segment_control.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
 import 'package:styled_widget/styled_widget.dart';
@@ -238,7 +238,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
     };
 
     if (backgroundColor != null) {
-      return LineSegmentControl(
+      return LineSegmentView(
         groupValue: groupValue,
         children: children,
         backgroundColor: backgroundColor,
@@ -251,7 +251,7 @@ class _SegmentControlDemoPageState extends State<SegmentControlDemoPage> {
         },
       );
     }
-    return LineSegmentControl(
+    return LineSegmentView(
       groupValue: groupValue,
       children: children,
       // backgroundColor: backgroundColor,

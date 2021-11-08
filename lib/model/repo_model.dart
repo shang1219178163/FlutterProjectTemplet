@@ -250,7 +250,7 @@ class OwnerData{
   OwnerData({
     this.login,
     required this.id,
-    this.node_id,
+    this.node_id = "",
     this.avatar_url,
     this.gravatar_id,
     this.url,

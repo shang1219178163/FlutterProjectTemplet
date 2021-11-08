@@ -7,7 +7,7 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/app_update_card.dart';
 import 'package:fluttertemplet/basicWidget/list_subtitle_cell.dart';
 import 'package:fluttertemplet/basicWidget/tabBar_pageView.dart';
 import 'package:fluttertemplet/basicWidget/tabBar_tabBarView.dart';
@@ -160,9 +160,9 @@ class _TabBarReusePageDemoState extends State<TabBarReusePageDemo> {
       itemBuilder: (context, index) {
         final data = kUpdateAppList[index];
         if (index == 0) {
-          return UpdateAppCard(data: data, isExpand: true, showExpand: false,);
+          return AppUpdateCard(data: data, isExpand: true, showExpand: false,);
         }
-        return UpdateAppCard(data: data);
+        return AppUpdateCard(data: data);
       },
       separatorBuilder: (context, index) {
         return Divider();
@@ -174,7 +174,7 @@ class _TabBarReusePageDemoState extends State<TabBarReusePageDemo> {
       itemCount: kUpdateAppList.length,
       itemBuilder: (context, index) {
         final data = kUpdateAppList[index];
-        return UpdateAppCard(data: data);
+        return AppUpdateCard(data: data);
       },
       separatorBuilder: (context, index) {
         return Divider();

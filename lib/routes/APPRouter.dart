@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertemplet/Provider/provider_list_demo.dart';
-import 'package:fluttertemplet/basicWidget/TabBarViewDemo.dart';
+import 'package:fluttertemplet/pages/demoPage/TabBarViewDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AbsorbPointerDemo.dart';
 import 'package:fluttertemplet/pages/demoPage/AnimatedDemoPage.dart';
 import 'package:fluttertemplet/pages/demoPage/BackdropFilterDemo.dart';
@@ -32,11 +32,11 @@ import 'package:fluttertemplet/Pages/APPNotFoundPage.dart';
 import 'package:fluttertemplet/Pages/AppSettingsPage.dart';
 import 'package:fluttertemplet/Pages/FirstPage.dart';
 import 'package:fluttertemplet/Pages/FourthPage.dart';
-import 'package:fluttertemplet/Pages/IconsListPage.dart';
 import 'package:fluttertemplet/Pages/SecondPage.dart';
 import 'package:fluttertemplet/Pages/ThirdPage.dart';
 import 'package:fluttertemplet/pages/demoPage/banner_demo.dart';
 import 'package:fluttertemplet/pages/demoPage/will_pop_scope_demo.dart';
+import 'package:fluttertemplet/pages/system_icons_page.dart';
 import 'package:fluttertemplet/pages/tabBar_reuse_page_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_tabBarView_demo.dart';
 import 'package:fluttertemplet/pages/tabBar_pageView_demo.dart';
@@ -107,7 +107,7 @@ class APPRouter {
   static const textlessDemo = '/textlessDemo';
   static const alertDialogDemoPage = '/AlertDialogDemoPage';
   static const alertSheetDemoPage = '/AlertSheetDemoPage';
-  static const iconsListPage = '/IconsListPage';
+  static const systemIconsPage = '/IconsListPage';
   static const gridViewDemoPage = '/GridViewDemoPage';
   static const gridPaperDemo = '/GridPaperDemo';
 
@@ -294,8 +294,8 @@ class AppPage{
      ),
 
      GetPage(
-       name: APPRouter.iconsListPage,
-       page: () => IconsListPage(),
+       name: APPRouter.systemIconsPage,
+       page: () => SystemIconsPage(),
      ),
 
      GetPage(

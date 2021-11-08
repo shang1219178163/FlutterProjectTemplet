@@ -87,6 +87,10 @@ class DDTraceModel {
 
   /// parse className
   void _parseClassName({required String path}) {
+    if (path.contains("/") == false) {
+      print([DateTime.now(), path]);
+      return;
+    }
     assert(path.contains("/"));
     List<String> list = path
         .split("/")

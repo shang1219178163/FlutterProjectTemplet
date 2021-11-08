@@ -33,7 +33,6 @@ class _SliverFamilyDemoState extends State<SliverFamilyDemo> {
 
   @override
   Widget build(BuildContext context) {
-    dynamic arguments = ModalRoute.of(context)!.settings.arguments;
 
     return Scaffold(
         appBar: AppBar(

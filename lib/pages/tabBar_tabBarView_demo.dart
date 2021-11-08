@@ -8,13 +8,14 @@
 
 import 'package:enhance_expansion_panel/enhance_expansion_panel.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:fluttertemplet/basicWidget/list_subtitle_cell.dart';
 import 'package:fluttertemplet/dartExpand/color_extension.dart';
 import 'package:fluttertemplet/dartExpand/divider_extension.dart';
 import 'package:fluttertemplet/dartExpand/list_extension.dart';
 import 'package:fluttertemplet/dartExpand/string_extension.dart';
 import 'package:fluttertemplet/main.dart';
-import 'package:fluttertemplet/basicWidget/UpdateAppCard.dart';
+import 'package:fluttertemplet/basicWidget/app_update_card.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 import 'package:fluttertemplet/mockData/mock_data.dart';
 import 'package:fluttertemplet/basicWidget/section_list_view.dart';
@@ -25,7 +26,7 @@ import 'package:tuple/tuple.dart';
 
 import 'package:fluttertemplet/dartExpand/widget_extension.dart';
 
-import '../basicWidget/expand_section_list_view.dart';
+import '../basicWidget/enhance_expand_list_view.dart';
 
 class TabBarTabBarViewDemo extends StatefulWidget {
 
@@ -171,9 +172,9 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
       itemBuilder: (context, index) {
         final data = kUpdateAppList[index];
         if (index == 0) {
-          return UpdateAppCard(data: data, isExpand: true, showExpand: false,);
+          return AppUpdateCard(data: data, isExpand: true, showExpand: false,);
         }
-        return UpdateAppCard(data: data);
+        return AppUpdateCard(data: data);
       },
       separatorBuilder: (context, index) {
         return Divider();
@@ -205,18 +206,18 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
       },
     ),),
 
-    Tuple2('列表(折叠)', EnhanceExpandSectionListView<Tuple2<String, String>>(
-      children: _tuples.map<ExpandPanelSectionModel<Tuple2<String, String>>>((e) => ExpandPanelSectionModel(
+    Tuple2('列表(折叠)', EnhanceExpandListView(
+      children: _tuples.map<ExpandPanelModel<Tuple2<String, String>>>((e) => ExpandPanelModel(
       canTapOnHeader: true,
       isExpanded: false,
-      // arrowPosition: EnhanceExpansionPanelArrowPosition.none,
+      arrowPosition: EnhanceExpansionPanelArrowPosition.none,
       // backgroundColor: Color(0xFFDDDDDD),
       headerBuilder: (contenx, isExpand) {
         return Container(
           // color: Colors.green,
-          // color: Colors.green,
-        child: ListTile(
-            title: Text("${e.item1}"),
+          color: isExpand ? Colors.black12 : null,
+          child: ListTile(
+            title: Text("${e.item1}", style: TextStyle(fontWeight: FontWeight.bold),),
             // subtitle: Text("subtitle"),
           ),
         );
@@ -224,17 +225,17 @@ class _TabBarTabBarViewDemoState extends State<TabBarTabBarViewDemo> with Single
       bodyChildren: e.item2,
       bodyItemBuilder: (context, e) {
         return ListTile(
-            title: Text(e.item1),
-            subtitle: Text(e.item2),
-            trailing: Icon(Icons.chevron_right),
-            onTap: () {
-              ddlog("section_");
-              if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
-                Get.offNamed(e.item1, arguments: e.item1);
-              } else {
-                Get.toNamed(e.item1, arguments: e.item1);
-              }
-            });
+          title: Text(e.item1, style: TextStyle(fontSize: 14),),
+          subtitle: Text(e.item2, style: TextStyle(fontSize: 12),),
+          trailing: Icon(Icons.chevron_right),
+          onTap: () {
+            ddlog("section_");
+            if (e.item1.toLowerCase().contains("loginPage".toLowerCase())){
+              Get.offNamed(e.item1, arguments: e.item1);
+            } else {
+              Get.toNamed(e.item1, arguments: e.item1);
+            }
+          });
       },
     )).toList(),)),
 
@@ -350,7 +351,7 @@ var _list = [
 ];
 
 var _specials = [
-  Tuple2(APPRouter.iconsListPage, "flutter 系统 Icons", ),
+  Tuple2(APPRouter.systemIconsPage, "flutter 系统 Icons", ),
   Tuple2(APPRouter.providerRoute, "providerRoute", ),
   Tuple2(APPRouter.providerListDemo, "providerListDemo", ),
 

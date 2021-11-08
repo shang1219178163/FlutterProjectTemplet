@@ -6,9 +6,8 @@ import 'package:get/get.dart';
 import 'package:styled_widget/styled_widget.dart';
 import 'package:fluttertemplet/dartExpand/ddlog.dart';
 
-import 'package:fluttertemplet/basicWidget/MultipleChioceListWidget.dart';
-import 'package:fluttertemplet/basicWidget/MultipleChioceWrapWidget.dart';
-import 'package:fluttertemplet/basicWidget/SingleChoiceListWidget.dart';
+import 'package:fluttertemplet/basicWidget/chioce_list.dart';
+import 'package:fluttertemplet/basicWidget/chioce_wrap.dart';
 import 'package:fluttertemplet/DartExpand/actionSheet_extension.dart';
 import 'package:fluttertemplet/DartExpand/widget_extension.dart';
 import 'ShowSearchDemoPage.dart';
@@ -70,6 +69,24 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
       case 2:
         {
+          CupertinoActionSheet(
+            title: Text(title),
+            message: Text(message),
+            actions: [
+              Container(
+                color: Colors.lightGreen,
+                height: 300,
+              ),
+            ],
+            cancelButton: CupertinoActionSheetAction(
+              child: Text('取消'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          )
+              .toShowCupertinoModalPopup(context: context)
+          ;
         }
         break;
 
@@ -88,36 +105,16 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
 
       case 4:
         {
-          showModalPopupRadioListChoose();
+          _showChioceList(isMutiple: false);
 
         }
         break;
 
       case 5:
         {
-          final list = [
-            ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
-            ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
-            ChioceModel(title: Text("银联支付"), subtitle: Text("不打开APP就支付"), secondary: Icon(Icons.payment), selected: true),
-          ];
+          _showChioceList(isMutiple: true);
 
-          CupertinoActionSheet(
-            title: Text(title),
-            message: Text(message),
-            actions: [
-              MultipleChioceListWidget(items: list, indexs: Set.from([0]), canScroll: false, containerColor: Colors.black.withAlpha(10), callback: (Set<int> indexs) { ddlog(indexs); },),
-            ],
-            cancelButton: CupertinoActionSheetAction(
-              child: Text('取消'),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          )
-              .toShowCupertinoModalPopup(context: context)
-          ;
-
-      }
+        }
         break;
 
       case 6:
@@ -127,19 +124,16 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
           Get.toNamed(APPRouter.showSearchDemoPage, arguments: []);
         }
         break;
-
-      case 7:
-        {
-          // showSearch(context: context, delegate: SearchBarViewDelegate());
-
-        }
-        break;
-
-      case 8:
-        {
-
-        }
-        break;
+      // case 7:
+      //   {
+      //
+      //   }
+      //   break;
+      // case 8:
+      //   {
+      //
+      //   }
+      //   break;
 
       default:
           showAlertSheet();
@@ -226,7 +220,7 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
       ;
     }
 
-  void showModalPopupRadioListChoose(){
+  void _showChioceList({required bool isMutiple}){
       final list = [
         ChioceModel(title: Text("微信支付"), subtitle: Text("微信支付，不止支付"), secondary: Icon(Icons.camera), selected: true),
         ChioceModel(title: Text("阿里支付"), subtitle: Text("支付就用支付宝"), secondary: Icon(Icons.palette), selected: true),
@@ -237,7 +231,16 @@ class _AlertSheetDemoPageState extends State<AlertSheetDemoPage> {
         title: Text(title),
         message: Text(message),
         actions: [
-          SingleChoiceListWidget(items: list, index: 1, callback: (Object index) { ddlog(index); }, canScroll: false,),
+          ChioceList(
+            isMutiple: isMutiple,
+            backgroudColor: Colors.black.withAlpha(10),
+            children: list,
+            indexs: [1],
+            canScroll: false,
+            callback: (indexs) {
+              ddlog([indexs.runtimeType, indexs]);
+            },
+          ),
         ],
         cancelButton: CupertinoActionSheetAction(
           child: Text('取消'),
